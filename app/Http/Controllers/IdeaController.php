@@ -29,10 +29,20 @@ class IdeaController extends Controller
      */
     public function index(): Response
     {
+        // Get all ideas in db
         $ideas = Idea::with('user:id,name')->latest()->get();
+
+        // Create an array $ideasByBrand storing each ideas with their corresponding brand
+        $brands = Idea::distinct('brand')->pluck('brand');
+        $ideasByBrand = [];
+        foreach ($brands as $brand) {
+            $idea = Idea::where('brand', $brand)->get();
+            $ideasByBrand[$brand] = $idea;
+        }
 
         return Inertia::render('Ideas/Index', [
             'ideas' => $ideas,
+            'ideasByBrand' => $ideasByBrand,
         ]);
     }
 

@@ -1,20 +1,62 @@
-import React from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import Idea from "@/Components/Idea/Idea";
-
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 export default function Index({ auth, ideas }) {
+    // console.log("ideas : ", ideas);
+
+    const [listOfIdeas, updateListOfIdeas] = useState(ideas);
+
+    const onDragEnd = (result) => {
+        // si la nouvelle position est en dehors du cadre : on arrete l'exécution de la fonction
+        if (!result.destination) {
+            return;
+        }
+
+        const newListOfIdeas = Array.from(listOfIdeas);
+        const [reorderedIdeas] = newListOfIdeas.splice(result.source.index, 1);
+        newListOfIdeas.splice(result.destination.index, 0, reorderedIdeas);
+
+        updateListOfIdeas(newListOfIdeas);
+    };
+
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Consulter ma liste" />
 
             <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                <div className="mt-6">
-                    {ideas.map((idea) => (
-                        <Idea key={idea.id} idea={idea} />
-                    ))}
-                </div>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <div className="mt-6">
+                        <Droppable
+                            droppableId={"listOfIdeas"}
+                            key={listOfIdeas.id}
+                        >
+                            {(provider) => (
+                                <ul
+                                    {...provider.droppableProps}
+                                    ref={provider.innerRef}
+                                >
+                                    {listOfIdeas.map((idea, index) => (
+                                        <Idea
+                                            key={idea.id}
+                                            idea={idea}
+                                            index={index}
+                                        />
+                                    ))}
+                                    {provider.placeholder}
+                                </ul>
+                            )}
+                        </Droppable>
+                    </div>
+                </DragDropContext>
             </div>
         </AuthenticatedLayout>
     );
 }
+
+Index.propTypes = {
+    auth: PropTypes.object.isRequired,
+    ideas: PropTypes.array,
+};
