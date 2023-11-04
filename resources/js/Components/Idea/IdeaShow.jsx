@@ -1,6 +1,5 @@
 import React from "react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
-import { DragDropContext } from "react-beautiful-dnd";
 
 export default function IdeaShow({ idea }) {
     return (
@@ -18,9 +17,6 @@ export default function IdeaShow({ idea }) {
                                 {idea.brand}
                             </small>
                         )}
-                        <small className="text-xs text-gray-600 italic">
-                            (id : {idea.id})
-                        </small>
                     </div>
                     {idea.link && (
                         <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-w-lg overflow-ellipsis overflow-hidden">

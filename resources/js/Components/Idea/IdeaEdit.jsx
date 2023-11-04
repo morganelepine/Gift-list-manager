@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
-import TextInput from "@/Components/TextInput";
-import InputLabel from "@/Components/InputLabel";
-import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/Laravel/TextInput";
+import InputLabel from "@/Components/Laravel/InputLabel";
+import InputError from "@/Components/Laravel/InputError";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
 export default function IdeaEdit({ auth, idea, setEditing }) {
     const { data, setData, patch, clearErrors, reset, errors } = useForm({

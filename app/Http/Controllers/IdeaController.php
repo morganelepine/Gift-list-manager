@@ -62,6 +62,7 @@ class IdeaController extends Controller
         $string = 'nullable|string|max:255';
 
         $validated = $request->validate([
+            'index' => 'integer',
             'user_name' => 'required|string|max:255',
             'idea' => $string,
             'brand' => $string,
@@ -71,6 +72,8 @@ class IdeaController extends Controller
             'membership_reduction' => $string,
             'promo' => 'nullable|boolean',
             'promo_details' => $string,
+            'status' => $string,
+            'status_user' => 'integer',
         ]);
 
         $request->user()->ideas()->create($validated);
@@ -92,10 +95,10 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
-            'membership' => $string,
-            'membership_reduction' => $string,
             'promo' => 'nullable|boolean',
             'promo_details' => $string,
+            'membership' => $string,
+            'membership_reduction' => $string,
         ]);
 
         $idea->update($validated);

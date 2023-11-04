@@ -58,15 +58,9 @@ export default function Index({ auth, ideas, ideasByBrand }) {
                     <div className="mt-6">
                         {Object.keys(datas).map((brandName) => {
                             const brand = datas[brandName];
-                            {
-                                /* console.log("brand : ", brand); */
-                            }
                             let ideas = [];
                             for (const idea of brand) {
                                 ideas.push(idea);
-                            }
-                            {
-                                /* console.log("array of ideas : ", ideas); */
                             }
                             return (
                                 <Brand

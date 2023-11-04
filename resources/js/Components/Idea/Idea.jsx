@@ -4,15 +4,15 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import IdeaShow from "@/Components/Idea/IdeaShow";
 import IdeaEdit from "@/Components/Idea/IdeaEdit";
-import EditDeleteButtons from "@/Components/EditDelete";
+import EditDeleteButtons from "@/Components/Buttons/EditDeleteButtons";
 import { Draggable } from "@hello-pangea/dnd";
 
 dayjs.extend(relativeTime);
 
 export default function Idea({ brand, idea, index }) {
-    console.log("idea.id : ", idea.id);
-    console.log("idea : ", idea);
-    console.log("index : ", index);
+    // console.log("idea.id : ", idea.id);
+    // console.log("idea : ", idea);
+    // console.log("index : ", index);
 
     const { auth } = usePage().props;
 

@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import PrimaryButton from "@/Components/PrimaryButton";
+import InputError from "@/Components/Laravel/InputError";
+import InputLabel from "@/Components/Laravel/InputLabel";
+import TextInput from "@/Components/Laravel/TextInput";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head } from "@inertiajs/react";
 
 export default function Create({ auth }) {
     // const userName = auth.user.name;
 
     const { data, setData, post, processing, reset, errors } = useForm({
+        index: 1,
         user_name: auth.user.name,
         idea: "",
         brand: "",
         link: "",
         details: "",
-        membership: "",
-        membership_reduction: "",
         promo: "",
         promo_details: "",
+        membership: "",
+        membership_reduction: "",
+        status: "available",
+        status_user: 0,
     });
     const submit = (e) => {
         e.preventDefault();

@@ -22,15 +22,18 @@ class Idea extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'index',
         'user_id',
         'user_name',
         'idea',
         'brand',
         'link',
         'details',
-        'membership',
-        'membership_reduction',
         'promo',
         'promo_details',
+        'membership',
+        'membership_reduction',
+        'status',
+        'status_user',
     ];
 }
