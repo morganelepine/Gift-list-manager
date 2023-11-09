@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 
-export default function EditDelete({ idea, setEditing }) {
+export default function EditDeleteButtons({ idea, setEditing }) {
     return (
         <>
             {/* EDIT BUTTON */}

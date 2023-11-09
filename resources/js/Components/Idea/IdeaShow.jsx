@@ -34,7 +34,7 @@ export default function IdeaShow({ idea }) {
                     </div>
                 )}
             </div>
-            {idea.promo === 0 && (
+            {idea.promo === 1 && (
                 <div className="flex items-center mt-4">
                     <div className="flex items-center">
                         <svg

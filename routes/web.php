@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GiftListController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -36,12 +37,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    // Route::get('/ideas/create/{idea}', [IdeaController::class, 'createIdeaInList'])->name('ideas.createIdeaInList');
 });
 
 Route::resource('ideas', IdeaController::class)
-->only(['index', 'create', 'store', 'update', 'destroy'])
+->only(['show', 'index', 'create', 'store', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+Route::resource('lists', GiftListController::class)
+->only(['show', 'index', 'create', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('users', UserController::class);
+
+//Routes pour réserver/acheter côté admin
+Route::patch('/ideas/status/{idea}', [IdeaController::class, 'updateStatus'])->name('ideas.updateStatus');
 
 require __DIR__.'/auth.php';

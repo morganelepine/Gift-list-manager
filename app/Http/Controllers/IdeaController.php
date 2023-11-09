@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GiftList;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -29,20 +30,31 @@ class IdeaController extends Controller
      */
     public function index(): Response
     {
-        // Get all ideas in db
-        $ideas = Idea::with('user:id,name')->latest()->get();
+        $authUserId = Auth::id();
 
-        // Create an array $ideasByBrand storing each ideas with their corresponding brand
-        $brands = Idea::distinct('brand')->pluck('brand');
-        $ideasByBrand = [];
-        foreach ($brands as $brand) {
-            $idea = Idea::where('brand', $brand)->get();
-            $ideasByBrand[$brand] = $idea;
-        }
+        // Get all ideas of connected user
+        $ideas = Idea::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
+
+        // // Create an array $ideasByBrand storing each ideas with their corresponding brand
+        // $brands = Idea::distinct('brand')->pluck('brand');
+        // $ideasByBrand = [];
+        // foreach ($brands as $brand) {
+        //     $idea = Idea::where('brand', $brand)->get();
+        //     $ideasByBrand[$brand] = $idea;
+        // }
+
+        // Get all ideas in each lists of connected user
+        $userLists = GiftList::where('user_id', $authUserId)->get();
+        $ideasInList = Idea::join('gift_lists', 'ideas.list_id', '=', 'gift_lists.id')
+        ->select('ideas.*', 'gift_lists.*')
+        ->whereIn('list_id', $userLists->pluck('id'))
+        // ->orderby('created_at', 'desc')
+        ->get();
 
         return Inertia::render('Ideas/Index', [
             'ideas' => $ideas,
-            'ideasByBrand' => $ideasByBrand,
+            // 'ideasByBrand' => $ideasByBrand,
+            'ideasInList' => $ideasInList,
         ]);
     }
 
@@ -62,7 +74,7 @@ class IdeaController extends Controller
         $string = 'nullable|string|max:255';
 
         $validated = $request->validate([
-            'index' => 'integer',
+            'list_id' => 'required|integer',
             'user_name' => 'required|string|max:255',
             'idea' => $string,
             'brand' => $string,
@@ -70,7 +82,7 @@ class IdeaController extends Controller
             'details' => $string,
             'membership' => $string,
             'membership_reduction' => $string,
-            'promo' => 'nullable|boolean',
+            'promo' => 'boolean',
             'promo_details' => $string,
             'status' => $string,
             'status_user' => 'integer',
@@ -86,7 +98,7 @@ class IdeaController extends Controller
      */
     public function update(Request $request, Idea $idea): RedirectResponse
     {
-        $this->authorize('update', $idea);
+        // $this->authorize('update', $idea);
 
         $string = 'nullable|string|max:255';
 
@@ -95,15 +107,31 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
-            'promo' => 'nullable|boolean',
+            'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
             'membership_reduction' => $string,
+            'status' => $string,
+            'status_user' => 'integer',
         ]);
 
         $idea->update($validated);
 
         return redirect(route('ideas.index'));
+    }
+
+    public function updateStatus(Request $request, Idea $idea, $id): RedirectResponse
+    {
+        $purchasedIdea = Idea::find($id);
+
+        if (!$purchasedIdea) {
+            return response()->json(['message' => 'Idée-cadeau non trouvée'], 404);
+        }
+
+        $purchasedIdea->status = "purchased"; // Marquer le cadeau comme acheté
+        $purchasedIdea->save();
+
+        return response()->json(['message' => 'Cadeau marqué comme acheté']);
     }
 
     /**

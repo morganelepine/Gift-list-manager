@@ -1,6 +1,7 @@
 import React from "react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Idea from "@/Components/Idea/Idea";
 
 export default function Show({ auth, idea }) {
@@ -16,3 +17,8 @@ export default function Show({ auth, idea }) {
         </AuthenticatedLayout>
     );
 }
+
+Show.propTypes = {
+    auth: PropTypes.object.isRequired,
+    idea: PropTypes.object,
+};

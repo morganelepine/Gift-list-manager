@@ -37,7 +37,7 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea): bool
     {
-        return $idea->user()->is($user);
+        // return $idea->user()->is($user);
     }
 
     /**
@@ -45,10 +45,8 @@ class IdeaPolicy
      */
     public function delete(User $user, Idea $idea): bool
     {
-        //Rather than repeating the logic from the update method,
-            //we can define the same logic by calling the update method from our destroy method.
-        //Anyone that is authorized to update an Idea will now be authorized to delete it as well.
-        return $this->update($user, $idea);
+        // return $this->update($user, $idea);
+        return $idea->user()->is($user);
     }
 
     /**

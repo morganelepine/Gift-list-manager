@@ -48,10 +48,16 @@ class User extends Authenticatable
         'private_code' => 'hashed',
     ];
 
-    //Un user peut avoir plusieurs idées
+    // Un user peut avoir plusieurs idées
     public function ideas(): HasMany
     {
         return $this->hasMany(Idea::class);
+    }
+
+    // Un user peut avoir plusieurs listes
+    public function gift_lists(): HasMany
+    {
+        return $this->hasMany(GiftList::class);
     }
 
 }

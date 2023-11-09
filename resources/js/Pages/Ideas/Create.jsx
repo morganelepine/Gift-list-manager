@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
@@ -7,16 +8,20 @@ import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head } from "@inertiajs/react";
 
 export default function Create({ auth }) {
-    // const userName = auth.user.name;
+    const [isPromo, setIsPromo] = useState(1);
+    const handlePromoCheck = () => {
+        setIsPromo((current) => !current);
+    };
+    // console.log("isPromo : ", isPromo);
 
     const { data, setData, post, processing, reset, errors } = useForm({
-        index: 1,
+        list_id: 3,
         user_name: auth.user.name,
         idea: "",
         brand: "",
         link: "",
         details: "",
-        promo: "",
+        promo: 0,
         promo_details: "",
         membership: "",
         membership_reduction: "",
@@ -26,11 +31,6 @@ export default function Create({ auth }) {
     const submit = (e) => {
         e.preventDefault();
         post(route("ideas.store"), { onSuccess: () => reset() });
-    };
-
-    const [isPromo, setIsPromo] = useState(false);
-    const handlePromoCheck = () => {
-        setIsPromo((current) => !current);
     };
 
     const [openPromo, setOpenPromo] = useState(false);
@@ -190,12 +190,12 @@ export default function Create({ auth }) {
                                     <TextInput
                                         id="promo"
                                         name="promo"
-                                        type="radio"
+                                        type="checkbox"
                                         value={isPromo}
                                         defaultChecked={false}
-                                        onChange={() => {
+                                        onChange={(e) => {
                                             handlePromoCheck();
-                                            setData("promo", isPromo);
+                                            setData("promo", e.target.checked);
                                         }}
                                     />
                                     <InputLabel
@@ -241,3 +241,7 @@ export default function Create({ auth }) {
         </AuthenticatedLayout>
     );
 }
+
+Create.propTypes = {
+    auth: PropTypes.object.isRequired,
+};

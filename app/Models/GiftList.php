@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Idea extends Model
+class GiftList extends Model
 {
     use HasFactory;
 
-    //Une idée ne peut avoir qu'un user
+    //Une liste ne peut avoir qu'un user
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -22,18 +22,27 @@ class Idea extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'list_id',
         'user_id',
         'user_name',
-        'idea',
-        'brand',
-        'link',
-        'details',
-        'promo',
-        'promo_details',
-        'membership',
-        'membership_reduction',
-        'status',
-        'status_user',
+        'name',
+        'private_code',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'private_code',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'private_code' => 'hashed',
     ];
 }

@@ -26,19 +26,35 @@ export default function Authenticated({ user, header, children }) {
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
-                                    Bienvenue
+                                    Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route("ideas.create")}
-                                    active={route().current("ideas.create")}
+                                    href={route("users.index")}
+                                    active={route().current("users.index")}
                                 >
-                                    Compléter ma liste
+                                    Mes listes suivies
                                 </NavLink>
                                 <NavLink
-                                    href={route("ideas.index")}
-                                    active={route().current("ideas.index")}
+                                    href={route("lists.index")}
+                                    active={route().current("lists.index")}
                                 >
-                                    Consulter ma liste
+                                    Mes listes
+                                </NavLink>
+                                <NavLink
+                                    href={route("lists.create")}
+                                    active={route().current("lists.create")}
+                                    className="text-indigo-700"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        className="w-5 h-5 mr-1"
+                                    >
+                                        <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Créer une liste
                                 </NavLink>
                             </div>
                         </div>

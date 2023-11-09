@@ -74,17 +74,6 @@ export default function Dashboard({ auth }) {
                             Arthur
                         </Link>
                     </div>
-
-                    <div className="flex flex-col">
-                        <Link
-                            href={route("ideas.index")}
-                            // active={route().current("ideas.index")}
-                            className={`${firstButton}`}
-                        >
-                            Les listes à suivre
-                        </Link>
-                        <Index auth={auth} />
-                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>
