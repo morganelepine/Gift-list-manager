@@ -67,6 +67,19 @@ class IdeaController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create_idea(Request $request, $id): Response
+    {
+        // get list id from url
+        $list = GiftList::find($id);
+
+        return Inertia::render('Ideas/Create', [
+            'list' => $list,
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse
@@ -90,7 +103,7 @@ class IdeaController extends Controller
 
         $request->user()->ideas()->create($validated);
 
-        return redirect(route('ideas.index'));
+        return redirect()->route('lists.show', ['list' => $validated['list_id']]);
     }
 
     /**
@@ -99,6 +112,10 @@ class IdeaController extends Controller
     public function update(Request $request, Idea $idea): RedirectResponse
     {
         // $this->authorize('update', $idea);
+
+        // // get list id from url
+        // $list = GiftList::find($id);
+        // $listId = $list->id;
 
         $string = 'nullable|string|max:255';
 
@@ -118,6 +135,7 @@ class IdeaController extends Controller
         $idea->update($validated);
 
         return redirect(route('ideas.index'));
+        // return redirect(route('lists.show', $listId));
     }
 
     public function updateStatus(Request $request, Idea $idea, $id): RedirectResponse

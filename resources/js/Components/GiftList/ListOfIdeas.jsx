@@ -30,7 +30,7 @@ export default function Index({ auth, ideas }) {
             <Head title="Consulter ma liste" />
 
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className="mt-6">
+                <div className="mt-2">
                     <Droppable droppableId={"listOfIdeas"} key={listOfIdeas.id}>
                         {(provider) => (
                             <ul

@@ -38,7 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    // Route::get('/ideas/create/{idea}', [IdeaController::class, 'createIdeaInList'])->name('ideas.createIdeaInList');
+    Route::get('/ideas/index/{list}', [IdeaController::class, 'index_idea'])->name('ideas.index_idea');
+    Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
 });
 
 Route::resource('ideas', IdeaController::class)
@@ -51,7 +52,8 @@ Route::resource('lists', GiftListController::class)
 
 Route::resource('users', UserController::class);
 
-//Routes pour réserver/acheter côté admin
+// Custome routes
 Route::patch('/ideas/status/{idea}', [IdeaController::class, 'updateStatus'])->name('ideas.updateStatus');
+// Route::get('/posts/like/{post}', [PostController::class, 'like'])->name('posts.like');
 
 require __DIR__.'/auth.php';

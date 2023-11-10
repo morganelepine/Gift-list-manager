@@ -42,7 +42,7 @@ export default function Idea({ brand, idea, index }) {
                 >
                     {(provided) => (
                         <div
-                            className="my-1 flex items-center"
+                            className="my-2 flex items-center"
                             // ref={ideaDiv}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
