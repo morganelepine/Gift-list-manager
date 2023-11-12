@@ -5,7 +5,7 @@ import IdeaShow from "@/Components/Idea/IdeaShow";
 import AdminButtons from "@/Components/Buttons/AdminButtons";
 
 export default function Show({ auth, user, ideas }) {
-    console.log("user.id : ", user.id);
+    // console.log("user.id : ", user.id);
 
     return (
         <AuthenticatedLayout

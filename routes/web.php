@@ -32,6 +32,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/privatecode', function () {
+    return Inertia::render('PrivateCode');
+})->middleware(['auth', 'verified'])->name('privatecode');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::get('/ideas/index/{list}', [IdeaController::class, 'index_idea'])->name('ideas.index_idea');
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
+    Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
 });
 
 Route::resource('ideas', IdeaController::class)
@@ -52,8 +57,7 @@ Route::resource('lists', GiftListController::class)
 
 Route::resource('users', UserController::class);
 
-// Custome routes
+// Custom routes
 Route::patch('/ideas/status/{idea}', [IdeaController::class, 'updateStatus'])->name('ideas.updateStatus');
-// Route::get('/posts/like/{post}', [PostController::class, 'like'])->name('posts.like');
 
 require __DIR__.'/auth.php';

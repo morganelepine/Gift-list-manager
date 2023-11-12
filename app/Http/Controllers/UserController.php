@@ -36,15 +36,20 @@ class UserController extends Controller
      */
     public function index(): Response
     {
+        // Get all users except connected user
         $authUserId = Auth::id();
         $users = User::where('id', '!=', $authUserId)->get();
-        // $users = User::all()->except($authUserId);
 
-        // dd($users);
+        // Get the lists followed by connected user and the lists to follow
+        $authUser = Auth::user();
+        $followedLists = $authUser->followedLists()->get();
+        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+        $listsToFollow = GiftList::whereNot('user_id', $authUserId)->whereNotIn('id', $followedListIds)->get();
 
         return Inertia::render('Users/Index', [
             'users' => $users,
-            'authUserId' => $authUserId,
+            'followedLists' => $followedLists,
+            'listsToFollow' => $listsToFollow
         ]);
     }
 }

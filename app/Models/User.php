@@ -13,6 +13,24 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // Un user peut avoir plusieurs listes
+    public function gift_lists(): HasMany
+    {
+        return $this->hasMany(GiftList::class);
+    }
+
+    // Un user peut avoir plusieurs relations
+    public function followed_lists(): HasMany
+    {
+        return $this->hasMany(FollowedList::class);
+    }
+
+    //  Each user can follow several lists and each list can be followed by several users
+    public function followedLists()
+    {
+        return $this->belongsToMany(GiftList::class, 'followed_lists')->withPivot('private_code');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -34,7 +52,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'private_code',
+        // 'private_code',
     ];
 
     /**
@@ -54,10 +72,5 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
-    // Un user peut avoir plusieurs listes
-    public function gift_lists(): HasMany
-    {
-        return $this->hasMany(GiftList::class);
-    }
 
 }

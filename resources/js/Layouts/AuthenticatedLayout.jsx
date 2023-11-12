@@ -32,7 +32,7 @@ export default function Authenticated({ user, header, children }) {
                                     href={route("users.index")}
                                     active={route().current("users.index")}
                                 >
-                                    Mes listes suivies
+                                    Les listes
                                 </NavLink>
                                 <NavLink
                                     href={route("lists.index")}

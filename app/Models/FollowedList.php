@@ -3,24 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class GiftList extends Model
+class FollowedList extends Authenticatable
 {
-    use HasFactory;
-
-    //Une liste ne peut avoir qu'un user
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    // Each list can be followed by several users and each user can follow several lists
-    public function followers()
-    {
-        return $this->belongsToMany(User::class, 'followed_lists')->withPivot('private_code');
-    }
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,8 +19,7 @@ class GiftList extends Model
      */
     protected $fillable = [
         'user_id',
-        'user_name',
-        'name',
+        'gift_list_id',
         'private_code',
     ];
 
@@ -51,4 +40,5 @@ class GiftList extends Model
     protected $casts = [
         // 'private_code' => 'hashed',
     ];
+
 }
