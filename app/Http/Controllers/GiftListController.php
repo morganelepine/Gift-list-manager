@@ -22,15 +22,21 @@ class GiftListController extends Controller
      */
     public function show(Request $request, $id): Response
     {
+        $authUserId = Auth::id();
+
         // get list id from url
         $list = GiftList::find($id);
 
         // idées dans la liste dont l'id est dans l'url
         $ideas = Idea::where('list_id', $id)->get();
 
+        // get lists followed by connected user
+        $followedLists = FollowedList::where('user_id', $authUserId)->get();
+
         return Inertia::render('GiftList/Show', [
             'list' => $list,
             'ideas' => $ideas,
+            'followedLists' => $followedLists,
         ]);
     }
 

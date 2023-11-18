@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Idea from "@/Components/Idea/Idea";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
-export default function Index({ auth, ideas }) {
-    // console.log("listsOfIdeas : ", listsOfIdeas);
-
+export default function Index({ auth, list, ideas }) {
     const [listOfIdeas, setListOfIdeas] = useState(ideas);
+    // console.log("listOfIdeas : ", listOfIdeas);
 
     const onDragEnd = (result) => {
         // si la nouvelle position est en dehors du cadre : on arrete l'exécution de la fonction
@@ -29,6 +27,7 @@ export default function Index({ auth, ideas }) {
         <>
             <Head title="Consulter ma liste" />
 
+            {}
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="mt-2">
                     <Droppable droppableId={"listOfIdeas"} key={listOfIdeas.id}>
@@ -57,4 +56,5 @@ export default function Index({ auth, ideas }) {
 Index.propTypes = {
     auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
+    list: PropTypes.object,
 };
