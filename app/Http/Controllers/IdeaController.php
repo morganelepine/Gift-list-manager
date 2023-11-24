@@ -35,26 +35,8 @@ class IdeaController extends Controller
         // Get all ideas of connected user
         $ideas = Idea::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
 
-        // // Create an array $ideasByBrand storing each ideas with their corresponding brand
-        // $brands = Idea::distinct('brand')->pluck('brand');
-        // $ideasByBrand = [];
-        // foreach ($brands as $brand) {
-        //     $idea = Idea::where('brand', $brand)->get();
-        //     $ideasByBrand[$brand] = $idea;
-        // }
-
-        // Get all ideas in each lists of connected user
-        $userLists = GiftList::where('user_id', $authUserId)->get();
-        $ideasInList = Idea::join('gift_lists', 'ideas.list_id', '=', 'gift_lists.id')
-        ->select('ideas.*', 'gift_lists.*')
-        ->whereIn('list_id', $userLists->pluck('id'))
-        // ->orderby('created_at', 'desc')
-        ->get();
-
         return Inertia::render('Ideas/Index', [
             'ideas' => $ideas,
-            // 'ideasByBrand' => $ideasByBrand,
-            'ideasInList' => $ideasInList,
         ]);
     }
 

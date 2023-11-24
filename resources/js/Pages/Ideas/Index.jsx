@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Idea from "@/Components/Idea/Idea";
+import Idea from "@/Components/GiftList/Ideas/Available/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 export default function Index({ auth, ideas }) {
     // console.log("ideas : ", ideas);

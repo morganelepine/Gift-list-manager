@@ -1,8 +1,8 @@
 import React from "react";
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import IdeaShow from "@/Components/Idea/IdeaShow";
-import AdminButtons from "@/Components/Buttons/AdminButtons";
+import IdeaShow from "@/Components/GiftList/Ideas/All/State/IdeaShow";
+import AdminButtons from "@/Components/GiftList/Ideas/Available/Buttons";
 
 export default function Show({ auth, user, ideas }) {
     // console.log("user.id : ", user.id);

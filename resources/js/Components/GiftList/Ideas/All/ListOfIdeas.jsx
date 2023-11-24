@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import Idea from "@/Components/Idea/Idea";
+import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
-export default function Index({ auth, list, ideas }) {
-    const [listOfIdeas, setListOfIdeas] = useState(ideas);
+export default function Ideas_all({ auth, list, ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
+    const [listOfIdeas, setListOfIdeas] = useState(ideas);
 
     const onDragEnd = (result) => {
         // si la nouvelle position est en dehors du cadre : on arrete l'exécution de la fonction
@@ -29,7 +29,7 @@ export default function Index({ auth, list, ideas }) {
 
             {}
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className="mt-2">
+                <div className="">
                     <Droppable droppableId={"listOfIdeas"} key={listOfIdeas.id}>
                         {(provider) => (
                             <ul
@@ -37,11 +37,9 @@ export default function Index({ auth, list, ideas }) {
                                 ref={provider.innerRef}
                             >
                                 {listOfIdeas.map((idea, index) => (
-                                    <Idea
-                                        key={idea.id}
-                                        idea={idea}
-                                        index={index}
-                                    />
+                                    <div key={idea.id}>
+                                        <Ideas idea={idea} index={index} />
+                                    </div>
                                 ))}
                                 {provider.placeholder}
                             </ul>
@@ -53,7 +51,7 @@ export default function Index({ auth, list, ideas }) {
     );
 }
 
-Index.propTypes = {
+Ideas_all.propTypes = {
     auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
     list: PropTypes.object,

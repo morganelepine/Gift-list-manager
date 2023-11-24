@@ -30,12 +30,26 @@ class GiftListController extends Controller
         // idées dans la liste dont l'id est dans l'url
         $ideas = Idea::where('list_id', $id)->get();
 
+        // idées disponibles
+        $ideas_available = Idea::where('list_id', $id)->where('status', "available")->get();
+
+        // idées réservées
+        $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")->get();
+
+        // idées réservées
+        $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")->get();
+
+        // dd($ideas_available, $ideas_reserved, $ideas_purchased);
+
         // get lists followed by connected user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();
 
         return Inertia::render('GiftList/Show', [
             'list' => $list,
             'ideas' => $ideas,
+            'ideas_available' => $ideas_available,
+            'ideas_reserved' => $ideas_reserved,
+            'ideas_purchased' => $ideas_purchased,
             'followedLists' => $followedLists,
         ]);
     }

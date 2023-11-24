@@ -2,17 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import ListOfIdeas from "@/Components/GiftList/ListOfIdeas";
+import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 
-export default function AuthList({ auth, list, ideas, followedList }) {
-    console.log("followedList : ", followedList);
+export default function AuthList({ auth, list, ideas }) {
+    // console.log("followedList : ", followedList);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        Ma liste "{list.name}""
+                        Ma liste "{list.name}"
                     </h2>
                     <Link
                         as="button"
@@ -39,7 +40,7 @@ export default function AuthList({ auth, list, ideas, followedList }) {
         >
             <Head title="Ma liste" />
             <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                <div className="my-1 flex items-center justify-center">
+                <div className="flex items-center justify-center">
                     <ListOfIdeas
                         key={list.id}
                         list={list}

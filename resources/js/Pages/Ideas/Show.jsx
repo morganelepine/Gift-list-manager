@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Idea from "@/Components/Idea/Idea";
+import Idea from "@/Components/GiftList/Ideas/Available/Ideas";
 
 export default function Show({ auth, idea }) {
     return (
