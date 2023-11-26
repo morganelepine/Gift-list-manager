@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Idea from "@/Components/GiftList/Ideas/Available/Ideas";
+import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 export default function Index({ auth, ideas }) {
     // console.log("ideas : ", ideas);
@@ -41,7 +41,7 @@ export default function Index({ auth, ideas }) {
                                     ref={provider.innerRef}
                                 >
                                     {listOfIdeas.map((idea, index) => (
-                                        <Idea
+                                        <Ideas
                                             key={idea.id}
                                             idea={idea}
                                             index={index}
