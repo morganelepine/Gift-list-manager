@@ -56,7 +56,7 @@ export default function Ideas_available({ auth, ideas }) {
                                     <div className="flex items-center mt-4">
                                         <div className="flex items-center">
                                             <svg
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns="https://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
                                                 fill="currentColor"
                                                 className="w-4 h-4 mr-1"

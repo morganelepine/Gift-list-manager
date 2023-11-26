@@ -62,7 +62,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
                     <div>
                         <button>
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 className="h-6 w-6 my-2 ml-4 text-gray-300 hover:text-indigo-800"

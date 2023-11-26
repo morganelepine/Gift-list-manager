@@ -21,7 +21,7 @@ export default function Welcome({ auth }) {
                             >
                                 <div className="h-12 w-12 bg-red-50 hover:bg-red-500 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                     <svg
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns="https://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         strokeWidth="1.5"
@@ -38,7 +38,7 @@ export default function Welcome({ auth }) {
                             <Link href={route("login")} className={`${link}`}>
                                 <div className="h-12 w-12 bg-red-50 hover:bg-red-500 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                     <svg
-                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns="https://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         strokeWidth="1.5"

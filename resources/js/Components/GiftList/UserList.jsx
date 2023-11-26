@@ -28,7 +28,7 @@ export default function UserList({
                     <div className="flex">
                         <div className="flex items-center justify-end text-xs hover:text-indigo-700 ml-3">
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -40,7 +40,7 @@ export default function UserList({
                         </div>
                         <div className="flex items-center justify-end text-xs hover:text-indigo-700 ml-3">
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -52,7 +52,7 @@ export default function UserList({
                         </div>
                         <div className="flex items-center justify-end text-xs hover:text-indigo-700 ml-3">
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -94,7 +94,7 @@ export default function UserList({
                                 Pour confirmer ton achat, clique sur le picto
                             </small>
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -108,7 +108,7 @@ export default function UserList({
                                 Pour annuler ta réservation, clique sur le picto
                             </small>
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -140,7 +140,7 @@ export default function UserList({
                                 Pour annuler ton achat, clique sur le picto
                             </small>
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"

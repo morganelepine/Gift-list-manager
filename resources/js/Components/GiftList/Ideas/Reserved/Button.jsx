@@ -31,7 +31,7 @@ export default function Buttons({ auth, idea }) {
                         disabled={processing}
                     >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns="https://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -53,7 +53,7 @@ export default function Buttons({ auth, idea }) {
                         disabled={processing}
                     >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns="https://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"

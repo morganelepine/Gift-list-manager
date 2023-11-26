@@ -66,7 +66,7 @@ export default function Create({ auth, list }) {
                         >
                             <div className="h-7 w-7 mr-2 bg-indigo-50 flex items-center justify-center rounded-full">
                                 <svg
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="https://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -149,7 +149,7 @@ export default function Create({ auth, list }) {
                         >
                             Parainnage
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -212,7 +212,7 @@ export default function Create({ auth, list }) {
                         >
                             Promotion
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
