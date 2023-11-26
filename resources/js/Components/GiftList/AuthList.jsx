@@ -40,7 +40,7 @@ export default function AuthList({ auth, list, ideas }) {
         >
             <Head title="Ma liste" />
             <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center w-full">
                     <ListOfIdeas
                         key={list.id}
                         list={list}

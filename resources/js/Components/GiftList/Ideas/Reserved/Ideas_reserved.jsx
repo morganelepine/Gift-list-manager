@@ -6,7 +6,7 @@ import Linkify from "linkify-react"; //rendre les liens cliquables
 
 dayjs.extend(relativeTime);
 
-export default function Ideas_reserved({ ideas }) {
+export default function Ideas_reserved({ auth, ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
@@ -16,7 +16,7 @@ export default function Ideas_reserved({ ideas }) {
                     <div className="my-2 flex justify-between">
                         {/* BUTTON */}
                         <div className="flex items-center mr-2">
-                            <Button idea={idea} />
+                            <Button auth={auth} idea={idea} />
                         </div>
 
                         {/* IDEA */}

@@ -29,7 +29,7 @@ export default function Ideas_all({ auth, list, ideas }) {
 
             {}
             <DragDropContext onDragEnd={onDragEnd}>
-                <div className="">
+                <div className="w-full">
                     <Droppable droppableId={"listOfIdeas"} key={listOfIdeas.id}>
                         {(provider) => (
                             <ul

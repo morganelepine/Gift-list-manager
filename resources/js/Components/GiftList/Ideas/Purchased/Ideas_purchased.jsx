@@ -6,7 +6,7 @@ import Linkify from "linkify-react"; //rendre les liens cliquables
 
 dayjs.extend(relativeTime);
 
-export default function Ideas_purchased({ ideas }) {
+export default function Ideas_purchased({ auth, ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
@@ -16,11 +16,11 @@ export default function Ideas_purchased({ ideas }) {
                     <div className="my-2 flex justify-between">
                         {/* BUTTON */}
                         <div className="flex items-center mr-2">
-                            <Button idea={idea} />
+                            <Button auth={auth} idea={idea} />
                         </div>
 
                         {/* IDEA */}
-                        <div className="p-3 flex flex-1 flex-col bg-gray-100 shadow-sm rounded-lg">
+                        <div className="p-3 flex flex-1 flex-col bg-gray-200 shadow-sm rounded-lg">
                             <div className="flex flex-col">
                                 <div className="flex flex-col">
                                     <div className="flex justify-between">
@@ -59,7 +59,7 @@ export default function Ideas_purchased({ ideas }) {
                                     </div>
                                     <div className="text-right">
                                         <small className="text-xs italic text-gray-700">
-                                            Reserved by {idea.status_user}{" "}
+                                            Purchased by {idea.status_user}{" "}
                                             {dayjs(idea.updated_at).fromNow()}
                                         </small>
                                     </div>

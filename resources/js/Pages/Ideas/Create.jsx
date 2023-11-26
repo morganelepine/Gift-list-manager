@@ -28,11 +28,16 @@ export default function Create({ auth, list }) {
         membership: "",
         membership_reduction: "",
         status: "available",
-        status_user: 0,
+        status_user: auth.user.name,
     });
     const submit = (e) => {
         e.preventDefault();
-        post(route("ideas.store"), { onSuccess: () => reset() });
+        post(route("ideas.store"), {
+            onSuccess: () => reset(),
+            onError: (errors) => {
+                console.error(errors);
+            },
+        });
     };
 
     const [openPromo, setOpenPromo] = useState(false);

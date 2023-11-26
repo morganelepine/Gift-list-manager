@@ -80,7 +80,7 @@ class IdeaController extends Controller
             'promo' => 'boolean',
             'promo_details' => $string,
             'status' => $string,
-            'status_user' => 'integer',
+            'status_user' => $string,
         ]);
 
         $request->user()->ideas()->create($validated);
@@ -111,7 +111,7 @@ class IdeaController extends Controller
             'membership' => $string,
             'membership_reduction' => $string,
             'status' => $string,
-            'status_user' => 'integer',
+            'status_user' => $string,
         ]);
 
         $idea->update($validated);
