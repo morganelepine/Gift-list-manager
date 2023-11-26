@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('ideas', IdeaController::class)
-->only(['show', 'index', 'create', 'store', 'update', 'destroy'])
+->only(['index', 'create', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('lists', GiftListController::class)

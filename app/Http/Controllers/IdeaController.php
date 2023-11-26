@@ -20,9 +20,9 @@ class IdeaController extends Controller
      */
     public function show(Idea $idea): Response
     {
-        return Inertia::render('Ideas/Show', [
-            'idea' => $idea,
-        ]);
+        // return Inertia::render('Ideas/Show', [
+        //     'idea' => $idea,
+        // ]);
     }
 
     /**
