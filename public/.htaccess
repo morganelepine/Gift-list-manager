@@ -18,10 +18,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    # Using the Content-Security-Policy: upgrade-insecure-requests mechanism,
-    # it is possible to force a page to be loaded with HTTPS even if mixed content is present
-    # Header add Content-Security-Policy "upgrade-insecure-requests"
-    # Header always set Content-Security-Policy "upgrade-insecure-requests;"
-
 </IfModule>
