@@ -19,4 +19,5 @@
     <body class="font-sans antialiased">
         @inertia
     </body>
+    <script type="module" src="{{ asset('build/manifest.json') }}"></script>
 </html>
