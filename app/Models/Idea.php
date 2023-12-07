@@ -29,6 +29,7 @@ class Idea extends Model
         'brand',
         'link',
         'details',
+        'price',
         'promo',
         'promo_details',
         'membership',

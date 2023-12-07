@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/ideas/index/{list}', [IdeaController::class, 'index_idea'])->name('ideas.index_idea');
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
+    Route::patch('/ideas/{idea}/update', [IdeaController::class, 'modify'])->name('ideas.modify');
     Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
 });
 
@@ -56,8 +56,5 @@ Route::resource('lists', GiftListController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('users', UserController::class);
-
-// Custom routes
-Route::patch('/ideas/status/{idea}', [IdeaController::class, 'updateStatus'])->name('ideas.updateStatus');
 
 require __DIR__.'/auth.php';

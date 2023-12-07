@@ -75,6 +75,7 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
+            'price' => $string,
             'membership' => $string,
             'membership_reduction' => $string,
             'promo' => 'boolean',
@@ -93,12 +94,6 @@ class IdeaController extends Controller
      */
     public function update(Request $request, Idea $idea): RedirectResponse
     {
-        // $this->authorize('update', $idea);
-
-        // // get list id from url
-        // $list = GiftList::find($id);
-        // $listId = $list->id;
-
         $string = 'nullable|string|max:255';
 
         $validated = $request->validate([
@@ -106,6 +101,7 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
+            'price' => $string,
             'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
@@ -116,22 +112,25 @@ class IdeaController extends Controller
 
         $idea->update($validated);
 
-        return redirect(route('ideas.index'));
-        // return redirect(route('lists.show', $listId));
+        // return redirect(route('ideas.index'));
+        return back();
     }
 
-    public function updateStatus(Request $request, Idea $idea, $id): RedirectResponse
+    /**
+     * Update the specified resource in storage.
+     */
+    public function modify(Request $request, $listId, Idea $idea): RedirectResponse
     {
-        $purchasedIdea = Idea::find($id);
+        $string = 'nullable|string|max:255';
 
-        if (!$purchasedIdea) {
-            return response()->json(['message' => 'Idée-cadeau non trouvée'], 404);
-        }
+        $validated = $request->validate([
+            'status' => $string,
+            'status_user' => $string,
+        ]);
 
-        $purchasedIdea->status = "purchased"; // Marquer le cadeau comme acheté
-        $purchasedIdea->save();
+        $idea->update($validated);
 
-        return response()->json(['message' => 'Cadeau marqué comme acheté']);
+        return redirect(route('lists.show', $listId));
     }
 
     /**

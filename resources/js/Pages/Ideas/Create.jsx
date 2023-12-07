@@ -23,6 +23,7 @@ export default function Create({ auth, list }) {
         brand: "",
         link: "",
         details: "",
+        price: "",
         promo: 0,
         promo_details: "",
         membership: "",
@@ -141,6 +142,18 @@ export default function Create({ auth, list }) {
                         />
 
                         <InputError message={errors.details} className="mt-2" />
+                    </div>
+                    <div className="my-2">
+                        <TextInput
+                            id="price"
+                            name="price"
+                            value={data.price}
+                            placeholder="Prix de l'article"
+                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            onChange={(e) => setData("price", e.target.value)}
+                        />
+
+                        <InputError message={errors.price} className="mt-2" />
                     </div>
                     <div>
                         <div

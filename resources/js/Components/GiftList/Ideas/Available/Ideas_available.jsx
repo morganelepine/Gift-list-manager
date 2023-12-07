@@ -51,6 +51,13 @@ export default function Ideas_available({ auth, ideas }) {
                                             </p>
                                         </div>
                                     )}
+                                    {idea.price && (
+                                        <div className="w-2/12">
+                                            <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 ml-3 text-center">
+                                                {idea.price}
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                                 {idea.promo === 1 && (
                                     <div className="flex items-center mt-4">
