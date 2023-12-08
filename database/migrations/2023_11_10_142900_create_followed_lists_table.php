@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('followed_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('list_id')->constrained('gift_lists')->onDelete('cascade');
+            $table->foreignId('gift_list_id')->constrained('gift_lists')->onDelete('cascade');
             $table->string('private_code');
             $table->timestamps();
         });
