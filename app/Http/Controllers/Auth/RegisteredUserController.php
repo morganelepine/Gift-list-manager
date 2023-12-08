@@ -35,7 +35,6 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'private_code' => 'required|string|max:255',
             // 'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif']
         ]);
 
@@ -46,7 +45,6 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'private_code' => $request->private_code
             // 'photo' => $photo_path
         ]);
 
