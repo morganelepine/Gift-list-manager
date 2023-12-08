@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             //Les champs qui seront ajoutés à la table des idées :
             $table->id();
-            $table->foreign('list_id')->references('id')->on('gift_lists')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('list_id')->constrained('gift_lists')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreign('user_name');
             $table->string('idea')->nullable();
             $table->string('brand')->nullable();
