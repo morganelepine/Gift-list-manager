@@ -36,11 +36,11 @@ class UserController extends Controller
      */
     public function index(): Response
     {
-        // Get all users except connected user
+        // Get all users except the authenticated user
         $authUserId = Auth::id();
         $users = User::where('id', '!=', $authUserId)->get();
 
-        // Get the lists followed by connected user and the lists to follow
+        // Get the lists followed by the authenticated user and the existing lists to follow
         $authUser = Auth::user();
         $followedLists = $authUser->followedLists()->get();
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
