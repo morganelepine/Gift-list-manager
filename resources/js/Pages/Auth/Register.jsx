@@ -12,8 +12,6 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
-        private_code: "",
-        // photo: "",
     });
 
     useEffect(() => {
@@ -105,27 +103,6 @@ export default function Register() {
 
                     <InputError
                         message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="private_code" value="Private code" />
-
-                    <TextInput
-                        id="private_code"
-                        name="private_code"
-                        value={data.private_code}
-                        className="mt-1 block w-full"
-                        autoComplete="private_code"
-                        onChange={(e) =>
-                            setData("private_code", e.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        message={errors.private_code}
                         className="mt-2"
                     />
                 </div>

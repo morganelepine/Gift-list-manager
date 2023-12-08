@@ -40,8 +40,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'private_code',
-        // 'photo',
     ];
 
     /**
@@ -52,7 +50,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        // 'private_code',
     ];
 
     /**
@@ -63,7 +60,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'private_code' => 'hashed',
     ];
 
     // Un user peut avoir plusieurs idées
