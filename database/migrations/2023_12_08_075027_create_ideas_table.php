@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('list_id')->constrained('gift_lists')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreign('user_name');
+            $table->string('user_name');
             $table->string('idea')->nullable();
             $table->string('brand')->nullable();
             $table->string('link')->nullable();
