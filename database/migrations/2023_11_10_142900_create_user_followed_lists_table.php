@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('followed_lists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('list_id')->constrained('gift_lists')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('list_id')->references('id')->on('gift_lists')->onDelete('cascade');
             $table->string('private_code');
             $table->timestamps();
         });

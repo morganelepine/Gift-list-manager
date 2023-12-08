@@ -14,14 +14,20 @@ return new class extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             //Les champs qui seront ajoutés à la table des idées :
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('user_name');
-            $table->string('idea');
-            $table->string('brand');
-            $table->string('link');
-            $table->string('details');
-            $table->boolean('promo');
-            $table->string('promo_details');
+            $table->foreign('list_id')->references('id')->on('gift_lists')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_name');
+            $table->string('idea')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('link')->nullable();
+            $table->string('details')->nullable();
+            $table->integer('price')->nullable();
+            $table->boolean('promo')->nullable();
+            $table->string('promo_details')->nullable();
+            $table->string('membership')->nullable();
+            $table->string('membership_reduction')->nullable();
+            $table->string('status')->default('available')->nullable();
+            $table->string('status_user')->nullable();
             $table->timestamps();
         });
     }

@@ -75,7 +75,7 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
-            'price' => $string,
+            'price' => 'integer',
             'membership' => $string,
             'membership_reduction' => $string,
             'promo' => 'boolean',
@@ -101,7 +101,7 @@ class IdeaController extends Controller
             'brand' => $string,
             'link' => $string,
             'details' => $string,
-            'price' => $string,
+            'price' => 'integer',
             'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
@@ -143,6 +143,7 @@ class IdeaController extends Controller
 
         $idea->delete();
 
-        return redirect(route('ideas.index'));
+        // return redirect(route('ideas.index'));
+        return back();
     }
 }

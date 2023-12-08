@@ -19,12 +19,19 @@ export default function Ideas_available({ auth, ideas }) {
                         <div className="p-3 flex flex-1 flex-col bg-white shadow-sm rounded-lg">
                             <div className="flex flex-col">
                                 <div className="flex justify-between">
-                                    <div className="flex flex-col mr-10">
+                                    <div className="flex flex-col mr-3">
                                         <div className="flex items-center">
                                             {idea.idea && (
                                                 <p className="text-sm uppercase font-semibold text-gray-900 mr-4">
                                                     {idea.idea}
                                                 </p>
+                                            )}
+                                            {idea.details && (
+                                                <div className="">
+                                                    <p className="text-xs text-gray-900 bg-indigo-200 rounded-md px-2 mr-4 text-center">
+                                                        {idea.details}
+                                                    </p>
+                                                </div>
                                             )}
                                             {idea.brand && (
                                                 <small className="text-sm text-gray-600 mr-4">
@@ -44,21 +51,15 @@ export default function Ideas_available({ auth, ideas }) {
                                             </p>
                                         )}
                                     </div>
-                                    {idea.details && (
-                                        <div className="w-2/12">
-                                            <p className="text-xs text-gray-900 bg-indigo-200 rounded-lg p-1 text-center">
-                                                {idea.details}
-                                            </p>
-                                        </div>
-                                    )}
                                     {idea.price && (
-                                        <div className="w-2/12">
+                                        <div className="">
                                             <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 ml-3 text-center">
-                                                {idea.price}
+                                                {idea.price} €
                                             </p>
                                         </div>
                                     )}
                                 </div>
+
                                 {idea.promo === 1 && (
                                     <div className="flex items-center mt-4">
                                         <div className="flex items-center">

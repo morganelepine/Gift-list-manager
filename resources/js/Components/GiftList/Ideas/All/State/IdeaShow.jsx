@@ -5,12 +5,19 @@ export default function IdeaShow({ idea }) {
     return (
         <div className="flex flex-col">
             <div className="flex justify-between">
-                <div className="flex flex-col mr-10">
+                <div className="flex flex-col mr-3">
                     <div className="flex items-center">
                         {idea.idea && (
                             <p className="text-sm uppercase font-semibold text-gray-900 mr-4">
                                 {idea.idea}
                             </p>
+                        )}
+                        {idea.details && (
+                            <div className="">
+                                <p className="text-xs text-gray-900 bg-indigo-200 rounded-md px-2 mr-4 text-center">
+                                    {idea.details}
+                                </p>
+                            </div>
                         )}
                         {idea.brand && (
                             <small className="text-sm text-gray-600 mr-4">
@@ -26,10 +33,10 @@ export default function IdeaShow({ idea }) {
                         </p>
                     )}
                 </div>
-                {idea.details && (
-                    <div className="w-2/12">
-                        <p className="text-xs text-gray-900 bg-indigo-200 rounded-lg p-1 text-center">
-                            {idea.details}
+                {idea.price && (
+                    <div className="">
+                        <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 ml-3 text-center">
+                            {idea.price} €
                         </p>
                     </div>
                 )}

@@ -148,7 +148,7 @@ export default function Create({ auth, list }) {
                             id="price"
                             name="price"
                             value={data.price}
-                            placeholder="Prix de l'article"
+                            placeholder="Prix de l'article (mettre un chiffre rond : 34,99 -> 35)"
                             className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             onChange={(e) => setData("price", e.target.value)}
                         />
