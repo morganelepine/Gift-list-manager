@@ -10,12 +10,12 @@ export default function Ideas_reserved({ auth, ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
-        <div className="w-full">
+        <div className="w-full space-y-5 sm:space-y-0">
             {ideas.map((idea) => (
                 <div key={idea.id}>
-                    <div className="my-2 flex justify-between">
+                    <div className="my-2 sm:flex items-center">
                         {/* BUTTON */}
-                        <div className="flex items-center mr-2">
+                        <div className="flex sm:flex-col mr-2 mb-1">
                             <Button auth={auth} idea={idea} />
                         </div>
 
@@ -24,22 +24,28 @@ export default function Ideas_reserved({ auth, ideas }) {
                             <div className="flex flex-col">
                                 <div className="flex flex-col">
                                     <div className="flex justify-between">
-                                        <div className="flex flex-col mr-10">
-                                            <div className="flex items-center">
+                                        <div className="flex flex-col mr-3">
+                                            <div className="flex flex-wrap items-center">
                                                 {idea.idea && (
-                                                    <p className="text-sm uppercase font-semibold text-gray-900 mr-4">
+                                                    <p className="text-sm sm:uppercase font-semibold text-gray-900 mr-2 mb-1 sm:mb-0 sm:mr-4">
                                                         {idea.idea}
                                                     </p>
                                                 )}
+                                                {idea.details && (
+                                                    <p className="min-w-max text-xs text-center text-gray-900 bg-indigo-200 rounded-md px-2 mb-1 sm:mb-0 mr-4">
+                                                        {idea.details}
+                                                    </p>
+                                                )}
                                                 {idea.brand && (
-                                                    <small className="text-sm text-gray-600 mr-4">
+                                                    <small className="text-sm text-center text-gray-600 mb-1 sm:mb-0 mr-4">
                                                         {idea.brand}
                                                     </small>
                                                 )}
                                             </div>
                                             {idea.link && (
-                                                <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-w-lg overflow-ellipsis overflow-hidden">
+                                                <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all">
                                                     <Linkify
+                                                        className=""
                                                         options={{
                                                             target: "blank",
                                                         }}
@@ -48,20 +54,16 @@ export default function Ideas_reserved({ auth, ideas }) {
                                                     </Linkify>
                                                 </p>
                                             )}
-                                        </div>
-                                        {idea.details && (
-                                            <div className="w-2/12">
-                                                <p className="text-xs text-gray-900 bg-indigo-200 rounded-lg p-1 text-center">
-                                                    {idea.details}
-                                                </p>
+                                            <div className="text-right">
+                                                <small className="text-xs italic text-gray-700">
+                                                    Reserved by{" "}
+                                                    {idea.status_user}{" "}
+                                                    {dayjs(
+                                                        idea.updated_at
+                                                    ).fromNow()}
+                                                </small>
                                             </div>
-                                        )}
-                                    </div>
-                                    <div className="text-right">
-                                        <small className="text-xs italic text-gray-700">
-                                            Reserved by {idea.status_user}{" "}
-                                            {dayjs(idea.updated_at).fromNow()}
-                                        </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

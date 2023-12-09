@@ -6,12 +6,12 @@ export default function Ideas_available({ auth, ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
-        <div className="w-full">
+        <div className="w-full space-y-5 sm:space-y-0">
             {ideas.map((idea) => (
                 <div key={idea.id}>
-                    <div className="my-2 flex items-center">
+                    <div className="my-2 sm:flex items-center">
                         {/* RESERVE & BUY BUTTONS */}
-                        <div className="flex flex-col mr-2">
+                        <div className="flex sm:flex-col mr-2 mb-1">
                             <Buttons auth={auth} idea={idea} />
                         </div>
 
@@ -20,28 +20,27 @@ export default function Ideas_available({ auth, ideas }) {
                             <div className="flex flex-col">
                                 <div className="flex justify-between">
                                     <div className="flex flex-col mr-3">
-                                        <div className="flex items-center">
+                                        <div className="flex flex-wrap items-center">
                                             {idea.idea && (
-                                                <p className="text-sm uppercase font-semibold text-gray-900 mr-4">
+                                                <p className="text-sm sm:uppercase font-semibold text-gray-900 mr-2 mb-1 sm:mb-0 sm:mr-4">
                                                     {idea.idea}
                                                 </p>
                                             )}
                                             {idea.details && (
-                                                <div className="">
-                                                    <p className="text-xs text-gray-900 bg-indigo-200 rounded-md px-2 mr-4 text-center">
-                                                        {idea.details}
-                                                    </p>
-                                                </div>
+                                                <p className="min-w-max text-xs text-center text-gray-900 bg-indigo-200 rounded-md px-2 mb-1 sm:mb-0 mr-4">
+                                                    {idea.details}
+                                                </p>
                                             )}
                                             {idea.brand && (
-                                                <small className="text-sm text-gray-600 mr-4">
+                                                <small className="text-sm text-center text-gray-600 mb-1 sm:mb-0 mr-4">
                                                     {idea.brand}
                                                 </small>
                                             )}
                                         </div>
                                         {idea.link && (
-                                            <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-w-lg overflow-ellipsis overflow-hidden">
+                                            <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all">
                                                 <Linkify
+                                                    className=""
                                                     options={{
                                                         target: "blank",
                                                     }}
@@ -52,16 +51,15 @@ export default function Ideas_available({ auth, ideas }) {
                                         )}
                                     </div>
                                     {idea.price && (
-                                        <div className="">
-                                            <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 ml-3 text-center">
+                                        <div className="min-w-max">
+                                            <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 text-center">
                                                 {idea.price} €
                                             </p>
                                         </div>
                                     )}
                                 </div>
-
                                 {idea.promo === 1 && (
-                                    <div className="flex items-center mt-4">
+                                    <div className="flex items-center mt-2">
                                         <div className="flex items-center">
                                             <svg
                                                 xmlns="https://www.w3.org/2000/svg"
@@ -84,7 +82,7 @@ export default function Ideas_available({ auth, ideas }) {
                                     </div>
                                 )}
                                 {idea.membership && (
-                                    <div className="flex bg-indigo-50 rounded-md p-1 mt-3">
+                                    <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                                         <p className="text-xs italic text-gray-900">
                                             Lien à utiliser pour bénéficier de
                                             la réduction de parainnage (
@@ -99,7 +97,7 @@ export default function Ideas_available({ auth, ideas }) {
                                         </p>
                                     </div>
                                 )}
-                            </div>
+                            </div>{" "}
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ export default function Buttons({ auth, idea }) {
                     onClick={() => {
                         setData("status", "available");
                     }}
-                    className="text-xs mr-1 hover:text-indigo-600"
+                    className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-700"
                     disabled={processing}
                 >
                     <svg
@@ -38,6 +38,7 @@ export default function Buttons({ auth, idea }) {
                     >
                         <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </svg>
+                    <p className="block sm:hidden ml-1 mr-3">Annuler l'achat</p>
                 </button>
             </div>
         </form>
