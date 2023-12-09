@@ -153,41 +153,48 @@ export default function Authenticated({ user, header, children }) {
                         " sm:hidden"
                     }
                 >
-                    <div className="pt-2 pb-3 space-y-1">
+                    <div className="py-2">
                         <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
+                            href={route("users.index")}
+                            active={route().current("users.index")}
                         >
-                            Dashboard
+                            Les listes suivies / à suivre
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("ideas.index")}
-                            active={route().current("ideas.index")}
+                            href={route("lists.index")}
+                            active={route().current("lists.index")}
                         >
-                            Ma liste
+                            Mes listes
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("lists.create")}
+                            active={route().current("lists.create")}
+                            className="flex items-center"
+                        >
+                            Créer une liste
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="px-4">
+                    <div className="py-2 border-t border-gray-200">
+                        {/* <div className="px-4">
                             <div className="font-medium text-base text-gray-800">
                                 {user.name}
                             </div>
                             <div className="font-medium text-sm text-gray-500">
                                 {user.email}
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className="mt-3 space-y-1">
+                        <div className="">
                             <ResponsiveNavLink href={route("profile.edit")}>
-                                Profile
+                                Mon profil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route("logout")}
                                 as="button"
                             >
-                                Log Out
+                                Déconnexion
                             </ResponsiveNavLink>
                         </div>
                     </div>
