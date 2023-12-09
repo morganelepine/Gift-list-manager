@@ -16,7 +16,7 @@ export default function Authenticated({ user, header, children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/dashboard">
+                                <Link href={route("users.index")}>
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
@@ -203,7 +203,7 @@ export default function Authenticated({ user, header, children }) {
 
             {header && (
                 <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>

@@ -11,7 +11,7 @@ export default function AuthList({ auth, list, ideas }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <div className="flex items-center justify-between">
+                <div className="sm:flex items-center justify-between">
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                         Ma liste "{list.name}"
                     </h2>
@@ -20,7 +20,7 @@ export default function AuthList({ auth, list, ideas }) {
                         href={route("ideas.create_idea", list.id)}
                         className="flex items-center my-1"
                     >
-                        <div className="h-7 w-7 mr-2 bg-indigo-50 flex items-center justify-center rounded-full">
+                        <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
