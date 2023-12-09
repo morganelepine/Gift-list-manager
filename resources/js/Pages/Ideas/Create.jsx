@@ -160,7 +160,7 @@ export default function Create({ auth, list }) {
                             className="pt-4 flex cursor-pointer"
                             onClick={toggleOpenMembership}
                         >
-                            Parainnage
+                            Parrainage
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
@@ -179,7 +179,7 @@ export default function Create({ auth, list }) {
                                         id="membership"
                                         name="membership"
                                         value={data.membership}
-                                        placeholder="Lien de parainnage à utiliser lors de l'achat"
+                                        placeholder="Lien de parrainage à utiliser lors de l'achat"
                                         className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
@@ -200,7 +200,7 @@ export default function Create({ auth, list }) {
                                         id="membership_reduction"
                                         name="membership_reduction"
                                         value={data.membership_reduction}
-                                        placeholder="Réduction offerte grâce au parainnage : -15%, un acheté un offert..."
+                                        placeholder="Réduction offerte grâce au parrainage : -15%, un acheté un offert..."
                                         className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
