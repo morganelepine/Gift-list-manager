@@ -32,7 +32,7 @@ export default function PrivateList({ auth, list }) {
             }
         >
             <Head title="Accès refusé" />
-            <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
+            <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-4">
                 <div className="my-1 flex items-center justify-center">
                     <form onSubmit={submit}>
                         <p className="text-sm italic">

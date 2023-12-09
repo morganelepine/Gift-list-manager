@@ -6,27 +6,25 @@ export default function IdeaShow({ idea }) {
         <div className="flex flex-col">
             <div className="flex justify-between">
                 <div className="flex flex-col mr-3">
-                    <div className="flex items-center">
+                    <div className="flex flex-wrap items-center">
                         {idea.idea && (
-                            <p className="text-sm uppercase font-semibold text-gray-900 mr-4">
+                            <p className="text-sm uppercase font-semibold text-gray-900 mr-2 mb-1 sm:mb-0 sm-mr-4">
                                 {idea.idea}
                             </p>
                         )}
                         {idea.details && (
-                            <div className="">
-                                <p className="text-xs text-gray-900 bg-indigo-200 rounded-md px-2 mr-4 text-center">
-                                    {idea.details}
-                                </p>
-                            </div>
+                            <p className="min-w-max text-xs text-center text-gray-900 bg-indigo-200 rounded-md px-2 mb-1 sm-mb-0 mr-4">
+                                {idea.details}
+                            </p>
                         )}
                         {idea.brand && (
-                            <small className="text-sm text-gray-600 mr-4">
+                            <small className="text-sm text-center text-gray-600 mb-1 sm-mb-0 mr-4">
                                 {idea.brand}
                             </small>
                         )}
                     </div>
                     {idea.link && (
-                        <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-w-lg overflow-ellipsis overflow-hidden">
+                        <p className="text-sm italic text-indigo-800 hover:text-indigo-500 overflow-ellipsis overflow-hidden">
                             <Linkify options={{ target: "blank" }}>
                                 {idea.link}
                             </Linkify>
@@ -34,8 +32,8 @@ export default function IdeaShow({ idea }) {
                     )}
                 </div>
                 {idea.price && (
-                    <div className="">
-                        <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 ml-3 text-center">
+                    <div className="min-w-max">
+                        <p className="text-xs text-gray-900 border border-indigo-500 rounded-lg p-1 text-center">
                             {idea.price} €
                         </p>
                     </div>

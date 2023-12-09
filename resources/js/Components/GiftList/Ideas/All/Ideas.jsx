@@ -34,7 +34,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
         <Draggable draggableId={idea.id.toString()} index={index} key={idea.id}>
             {(provided) => (
                 <div
-                    className="my-2 flex items-center"
+                    className="my-2 sm-flex items-center"
                     // ref={ideaDiv}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -59,7 +59,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
                     </div>
 
                     {/* DRAG & DROP BUTTON */}
-                    <div>
+                    <div className="hidden sm:block">
                         <button>
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
