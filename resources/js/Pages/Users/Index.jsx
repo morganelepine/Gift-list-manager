@@ -28,7 +28,7 @@ export default function Index({ auth, listsToFollow, followedLists }) {
                 <div className="mt-6 flex justify-evenly">
                     {followedLists.length > 0 && (
                         <div className="flex flex-col items-center w-3/6">
-                            <h1 className="text-lg">Mes listes suivies :</h1>
+                            <h1 className="text-lg">Mes listes suivies</h1>
                             {followedLists.map((followedList) => (
                                 <FollowedList
                                     key={followedList.id}
@@ -41,7 +41,7 @@ export default function Index({ auth, listsToFollow, followedLists }) {
 
                     {listsToFollow.length > 0 && (
                         <div className="flex flex-col items-center w-3/6">
-                            <h1 className="text-lg">Les listes à suivre :</h1>
+                            <h1 className="text-lg">Les listes à suivre</h1>
                             {listsToFollow.map((listToFollow) => (
                                 <ListsToFollow
                                     key={listToFollow.id}

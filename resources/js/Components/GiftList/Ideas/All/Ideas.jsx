@@ -34,7 +34,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
         <Draggable draggableId={idea.id.toString()} index={index} key={idea.id}>
             {(provided) => (
                 <div
-                    className="my-2 sm-flex items-center"
+                    className="my-2 sm:flex items-center"
                     // ref={ideaDiv}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

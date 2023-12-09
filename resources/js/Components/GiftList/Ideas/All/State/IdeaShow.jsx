@@ -24,8 +24,8 @@ export default function IdeaShow({ idea }) {
                         )}
                     </div>
                     {idea.link && (
-                        <p className="text-sm italic text-indigo-800 hover:text-indigo-500 overflow-ellipsis overflow-hidden">
-                            <Linkify options={{ target: "blank" }}>
+                        <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all">
+                            <Linkify className="" options={{ target: "blank" }}>
                                 {idea.link}
                             </Linkify>
                         </p>
@@ -61,7 +61,7 @@ export default function IdeaShow({ idea }) {
                 </div>
             )}
             {idea.membership && (
-                <div className="flex bg-indigo-50 rounded-md p-1 mt-3">
+                <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                     <p className="text-xs italic text-gray-900">
                         Lien à utiliser pour bénéficier de la réduction de
                         parainnage ({idea.membership_reduction}) :&nbsp;

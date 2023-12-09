@@ -64,7 +64,7 @@ export default function ListsToFollow({ auth, listToFollow }) {
                         />
                     </div>
 
-                    <PrimaryButton className="" disabled={processing}>
+                    <PrimaryButton className="p-2" disabled={processing}>
                         Suivre la liste de {listToFollow.user_name}
                     </PrimaryButton>
                 </form>
