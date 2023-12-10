@@ -140,7 +140,7 @@ class GiftListController extends Controller
 
         $request->user()->gift_lists()->create($validated);
 
-        return redirect(route('lists.index'));
+        return redirect(route('lists.userLists'));
     }
 
     /**
