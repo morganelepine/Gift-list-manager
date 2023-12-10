@@ -42,7 +42,7 @@ export default function Index({ auth, listsToFollow, followedLists }) {
                     )}
 
                     {listsToFollow.length > 0 && (
-                        <div className="flex flex-col items-center w-3/6">
+                        <div className="flex flex-col items-start w-3/6">
                             <h1 className="text-xl font-semibold">
                                 Les listes à suivre
                             </h1>

@@ -8,7 +8,7 @@ export default function IdeaShow({ idea }) {
                 <div className="flex flex-col mr-3">
                     <div className="flex flex-wrap items-center">
                         {idea.idea && (
-                            <p className="text-sm uppercase font-semibold text-gray-900 mr-2 mb-1 sm:mb-0 sm:mr-4">
+                            <p className="text-sm sm:uppercase font-semibold text-gray-900 mr-2 mb-1 sm:mb-0 sm:mr-4">
                                 {idea.idea}
                             </p>
                         )}

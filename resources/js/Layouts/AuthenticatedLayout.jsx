@@ -156,14 +156,14 @@ export default function Authenticated({ user, header, children }) {
                 >
                     <div className="py-2">
                         <ResponsiveNavLink
-                            href={route("users.index")}
-                            active={route().current("users.index")}
+                            href={route("lists.index")}
+                            active={route().current("lists.index")}
                         >
                             Les listes suivies / à suivre
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("lists.index")}
-                            active={route().current("lists.index")}
+                            href={route("lists.userLists")}
+                            active={route().current("lists.userLists")}
                         >
                             Mes listes
                         </ResponsiveNavLink>
