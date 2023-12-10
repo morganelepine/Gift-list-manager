@@ -13,26 +13,26 @@ export default function VerifyEmail({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Email Verification" />
+            <Head title="Vérification de l'e-mail" />
 
             <div className="mb-4 text-sm text-gray-600">
-                Thanks for signing up! Before getting started, could you verify
-                your email address by clicking on the link we just emailed to
-                you? If you didn't receive the email, we will gladly send you
-                another.
+                Merci pour votre inscription ! Avant de commencer, pourriez-vous
+                vérifier votre adresse e-mail en cliquant sur le lien que nous
+                venons de vous envoyer par e-mail ? Si vous ne l'avez pas reçu,
+                nous vous en enverrons un nouveau.
             </div>
 
             {status === "verification-link-sent" && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                    Un nouveau lien de vérification a été envoyé à l'adresse que
+                    vous avez fournie lors de votre inscription.
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
                     <PrimaryButton disabled={processing}>
-                        Resend Verification Email
+                        Renvoyer l'e-mail de vérification
                     </PrimaryButton>
 
                     <Link
@@ -41,7 +41,7 @@ export default function VerifyEmail({ status }) {
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Log Out
+                        Se déconnecter
                     </Link>
                 </div>
             </form>

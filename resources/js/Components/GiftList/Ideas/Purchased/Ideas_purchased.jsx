@@ -51,7 +51,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                             )}
                                             <div className="text-right">
                                                 <small className="text-xs italic text-gray-700">
-                                                    Reserved by{" "}
+                                                    Purchased by{" "}
                                                     {idea.status_user}{" "}
                                                     {dayjs(
                                                         idea.updated_at

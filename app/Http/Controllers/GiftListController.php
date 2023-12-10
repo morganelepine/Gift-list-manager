@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Carbon\Carbon;
 
 class GiftListController extends Controller
 {
@@ -55,9 +56,44 @@ class GiftListController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the gift lists.
      */
     public function index(): Response
+    {
+        // Get all users except the authenticated user
+        $authUserId = Auth::id();
+        $users = User::where('id', '!=', $authUserId)->get();
+
+        // Get the lists followed by the authenticated user and the existing lists to follow
+        $authUser = Auth::user();
+        $followedLists = $authUser->followedLists()->get();
+        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
+        ->whereNotIn('id', $followedListIds)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        // Formatage de la date pour les listes suivies
+        foreach ($followedLists as $followedList) {
+            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
+        }
+
+        // Formatage de la date pour les listes à suivre
+        foreach ($listsToFollow as $listToFollow) {
+            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
+        }
+
+        return Inertia::render('Users/Index', [
+            'users' => $users,
+            'followedLists' => $followedLists,
+            'listsToFollow' => $listsToFollow,
+        ]);
+    }
+
+    /**
+     * Display a listing of the auth user's gift lists.
+     */
+    public function userLists(): Response
     {
         $authUserId = Auth::id();
 
@@ -72,7 +108,7 @@ class GiftListController extends Controller
         // ->orderby('created_at', 'desc')
         ->get();
 
-        return Inertia::render('GiftList/Index', [
+        return Inertia::render('GiftList/UserLists', [
             'lists' => $lists,
             'listsOfIdeas' => $listsOfIdeas,
         ]);

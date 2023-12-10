@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
     Route::patch('/ideas/{idea}/update', [IdeaController::class, 'modify'])->name('ideas.modify');
     Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::get('/my-lists', [GiftListController::class, 'userLists'])->name('lists.userLists');
 });
 
 Route::resource('ideas', IdeaController::class)

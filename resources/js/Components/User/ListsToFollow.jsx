@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import TextInput from "@/Components/Laravel/TextInput";
 import InputError from "@/Components/Laravel/InputError";
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
-
+import SmallButton from "@/Components/Buttons/SmallButton";
 export default function ListsToFollow({ auth, listToFollow }) {
     // console.log("auth.user.id : ", auth.user.id);
 
@@ -24,24 +23,31 @@ export default function ListsToFollow({ auth, listToFollow }) {
     return (
         <>
             <div className="flex flex-col justify-center mt-5">
-                <small className="text-center">
-                    La liste de {listToFollow.user_name}
+                <p>
+                    La liste{" "}
+                    <span className="uppercase font-semibold text-indigo-700">
+                        {listToFollow.name}
+                    </span>{" "}
+                    de {listToFollow.user_name}
+                </p>
+                <small className="italic text-gray-500 mt-1">
+                    Créée le {listToFollow.formatted_created_at}
                 </small>
 
-                <Link
+                {/* <Link
                     // as="button"
                     href={route("lists.show", listToFollow.id)}
                     key={listToFollow.id}
                     className="text-center mt-1 px-3 py-1 bg-indigo-200 border border-transparent rounded-md font-semibold text-md text-indigo-800 hover:text-white hover:bg-indigo-500 focus:bg-indigo-900 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
                 >
                     {listToFollow.name}
-                </Link>
+                </Link> */}
             </div>
 
-            <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+            <div className="max-w-2xl mx-auto mt-3">
                 <form onSubmit={submit}>
                     <p className="text-sm italic">
-                        Veuillez renseigner le code secret que{" "}
+                        Veuillez renseigner le code secret <br></br> que{" "}
                         {listToFollow.user_name} vous a communiqué
                     </p>
 
@@ -64,9 +70,9 @@ export default function ListsToFollow({ auth, listToFollow }) {
                         />
                     </div>
 
-                    <PrimaryButton className="p-2" disabled={processing}>
-                        Suivre la liste de {listToFollow.user_name}
-                    </PrimaryButton>
+                    <SmallButton className="p-2" disabled={processing}>
+                        Suivre la liste
+                    </SmallButton>
                 </form>
             </div>
         </>

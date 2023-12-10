@@ -22,21 +22,15 @@ export default function Authenticated({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                {/* <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
-                                >
-                                    Dashboard
-                                </NavLink> */}
                                 <NavLink
-                                    href={route("users.index")}
-                                    active={route().current("users.index")}
+                                    href={route("lists.index")}
+                                    active={route().current("lists.index")}
                                 >
                                     Les listes
                                 </NavLink>
                                 <NavLink
-                                    href={route("lists.index")}
-                                    active={route().current("lists.index")}
+                                    href={route("lists.userLists")}
+                                    active={route().current("lists.userLists")}
                                 >
                                     Mes listes
                                 </NavLink>
@@ -55,6 +49,13 @@ export default function Authenticated({ user, header, children }) {
                                         <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     Créer une liste
+                                </NavLink>
+                                <NavLink
+                                    href={route("dashboard")}
+                                    active={route().current("dashboard")}
+                                    className="italic"
+                                >
+                                    [ Évolutions à venir ]
                                 </NavLink>
                             </div>
                         </div>
