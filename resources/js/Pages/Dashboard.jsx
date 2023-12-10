@@ -27,6 +27,8 @@ export default function Dashboard({ auth }) {
                                 Pouvoir ajouter des photos dans le formulaire
                                 d'ajout d'une idée
                             </li>
+                            <li>Ranger les cadeaux par marque/catégorie</li>
+                            <li>Trier les listes</li>
                         </ul>
                     </div>
                     <div className="w-4/12">
@@ -38,6 +40,8 @@ export default function Dashboard({ auth }) {
                                 modifie/supprime une idée (sans avoir à
                                 recharger la page)
                             </li>
+                            <li>Modifier le mot de passe à la connexion</li>
+                            <li>Drag&drop qui enregistre le changement</li>
                         </ul>
                     </div>
                 </div>

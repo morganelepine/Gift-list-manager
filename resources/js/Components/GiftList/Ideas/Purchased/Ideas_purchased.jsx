@@ -24,7 +24,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                             <div className="flex flex-col">
                                 <div className="flex flex-col">
                                     <div className="flex justify-between">
-                                        <div className="flex flex-col mr-3">
+                                        <div className="flex flex-col mr-3 w-full">
                                             <div className="flex flex-wrap items-center">
                                                 {idea.idea && (
                                                     <p className="text-sm sm:uppercase text-gray-400 mr-2 mb-1 sm:mb-0 sm:mr-4 line-through">

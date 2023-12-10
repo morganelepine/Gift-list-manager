@@ -160,7 +160,7 @@ class GiftListController extends Controller
 
         $list->update($validated);
 
-        return redirect(route('lists.index'));
+        return redirect(route('lists.userLists'));
     }
 
     /**
@@ -173,7 +173,7 @@ class GiftListController extends Controller
 
         $list->delete();
 
-        return redirect(route('lists.index'));
+        return redirect(route('lists.userLists'));
     }
 
     /**
