@@ -70,7 +70,7 @@ export default function ListsToFollow({ auth, listToFollow }) {
                         />
                     </div>
 
-                    <SmallButton className="p-2" disabled={processing}>
+                    <SmallButton disabled={processing}>
                         Suivre la liste
                     </SmallButton>
                 </form>

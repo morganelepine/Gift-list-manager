@@ -76,11 +76,14 @@ class GiftListController extends Controller
         // Formatage de la date pour les listes suivies
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
+            $followedList->formatted_updated_at = Carbon::parse($followedList->updated_at)->format('d/m/Y');
         }
 
         // Formatage de la date pour les listes à suivre
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
+            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->updated_at)->format('d/m/Y');
+
         }
 
         return Inertia::render('Users/Index', [
