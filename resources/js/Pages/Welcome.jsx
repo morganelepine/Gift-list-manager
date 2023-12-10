@@ -9,7 +9,7 @@ export default function Welcome({ auth }) {
             <Head title="Welcome" />
             <div className="flex flex-wrap justify-center content-center min-h-screen">
                 {auth.user ? (
-                    <Link href={route("users.index")} className={`${link}`}>
+                    <Link href={route("lists.index")} className={`${link}`}>
                         Bienvenue
                     </Link>
                 ) : (
