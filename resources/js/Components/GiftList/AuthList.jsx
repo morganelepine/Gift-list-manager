@@ -54,7 +54,7 @@ export default function AuthList({ auth, list, ideas }) {
                     <div className="mt-6 text-center">
                         <p>
                             Votre liste est vide. Cliquez sur ce bouton pour la
-                            compléter !
+                            compléter :
                         </p>
                         <Link
                             as="button"

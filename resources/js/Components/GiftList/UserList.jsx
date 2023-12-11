@@ -69,61 +69,69 @@ export default function UserList({
             <Head title="Ma liste" />
 
             <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                <div className="p-4 flex flex-col justify-center">
-                    <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
-                        Cadeaux disponibles
-                    </h1>
-                    <div className="hidden sm:flex items-center text-gray-500 italic">
-                        <small className="text-xs mr-1">
-                            Pour réserver un cadeau, clique sur le picto
-                        </small>
-                        <svg
-                            xmlns="https://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-4 h-4 mr-1"
-                        >
-                            <path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                        </svg>
-                    </div>
-                    <div className="hidden sm:flex items-center mb-3 text-gray-500 italic">
-                        <small className="text-xs mr-1">
-                            Pour acheter un cadeau, clique sur le picto
-                        </small>
-                        <svg
-                            xmlns="https://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="w-4 h-4 cursor-pointer"
-                        >
-                            <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                        </svg>
-                    </div>
+                {ideas_available.length == 0 &&
+                    ideas_reserved.length == 0 &&
+                    ideas_purchased.length == 0 && (
+                        <p className="text-center">
+                            Cette liste est vide pour le moment. Revenez plus
+                            tard !
+                        </p>
+                    )}
 
-                    <div className="flex items-center justify-between w-full">
-                        <IdeasAvailable
-                            key={list.id}
-                            list={list}
-                            ideas={ideas_available}
-                            auth={auth}
-                        />
+                {ideas_available.length > 0 && (
+                    <div className="p-4 flex flex-col justify-center">
+                        <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
+                            Cadeaux disponibles
+                        </h1>
+                        <div className="hidden sm:flex items-center text-gray-500 italic">
+                            <small className="text-xs mr-1">
+                                Pour réserver un cadeau, cliquez sur le picto
+                            </small>
+                            <svg
+                                xmlns="https://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-4 h-4 mr-1"
+                            >
+                                <path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                            </svg>
+                        </div>
+                        <div className="hidden sm:flex items-center mb-3 text-gray-500 italic">
+                            <small className="text-xs mr-1">
+                                Pour indiquer que vous avez acheté un cadeau,
+                                cliquez sur le picto
+                            </small>
+                            <svg
+                                xmlns="https://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-4 h-4 cursor-pointer"
+                            >
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </div>
+
+                        <div className="flex items-center justify-between w-full">
+                            <IdeasAvailable
+                                key={list.id}
+                                list={list}
+                                ideas={ideas_available}
+                                auth={auth}
+                            />
+                        </div>
                     </div>
-                </div>
-            </div>
+                )}
 
-            {/* <hr className="my-8"></hr> */}
-
-            {ideas_reserved.length > 0 && (
-                <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                    <div className="p-4 flex flex-col justify-center rounded-lg">
+                {ideas_reserved.length > 0 && (
+                    <div className="p-4 flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
                             Cadeaux réservés
                         </h1>
                         <div className="hidden sm:flex items-center text-gray-500 italic">
                             <small className="text-xs mr-1">
-                                Pour confirmer ton achat, clique sur le picto
+                                Pour confirmer votre achat, cliquez sur le picto
                             </small>
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
@@ -137,7 +145,8 @@ export default function UserList({
                         </div>
                         <div className="hidden sm:flex items-center mb-3 text-gray-500 italic">
                             <small className="text-xs mr-1">
-                                Pour annuler ta réservation, clique sur le picto
+                                Pour annuler votre réservation, cliquez sur le
+                                picto
                             </small>
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
@@ -158,18 +167,16 @@ export default function UserList({
                             />
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {ideas_purchased.length > 0 && (
-                <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
-                    <div className="p-4 flex flex-col justify-center rounded-lg">
+                {ideas_purchased.length > 0 && (
+                    <div className="p-4 flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
                             Cadeaux achetés
                         </h1>
                         <div className="hidden sm:flex items-center mb-3 text-gray-500 italic">
                             <small className="text-xs mr-1">
-                                Pour annuler ton achat, clique sur le picto
+                                Pour annuler votre achat, cliquez sur le picto
                             </small>
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
@@ -190,8 +197,8 @@ export default function UserList({
                             />
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </AuthenticatedLayout>
     );
 }

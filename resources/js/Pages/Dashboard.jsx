@@ -20,7 +20,7 @@ export default function Dashboard({ auth }) {
                         <ul className="list-disc px-4 mt-3">
                             <li>
                                 Ajouter un bouton "Demander l'accès" qui envoie
-                                un mail au propriétaire de la liste
+                                un mail au·à la propriétaire de la liste
                             </li>
                             <li>Avoir un récap de ses achats</li>
                             <li>
@@ -29,12 +29,18 @@ export default function Dashboard({ auth }) {
                             </li>
                             <li>Ranger les cadeaux par marque/catégorie</li>
                             <li>Trier les listes</li>
+                            <li>
+                                Pop up pour inviter l'utilisateur·ice à ajouter
+                                des idées lorsqu'il n'y en a plus beaucoup de
+                                disponibles
+                            </li>
                         </ul>
                     </div>
                     <div className="w-4/12">
                         <h1 className="font-semibold">Bugs</h1>
                         <ul className="list-disc px-4 mt-3">
                             <li>Focus de la page des listes</li>
+                            <li>Page d'accueil sur smartphone</li>
                             <li>
                                 Mettre à jour la liste lorsqu'on
                                 modifie/supprime une idée (sans avoir à
