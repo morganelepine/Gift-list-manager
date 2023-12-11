@@ -79,7 +79,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                     id="details"
                     name="details"
                     value={data.details}
-                    placeholder="Détails sur l'article : taille, coloris..."
+                    placeholder="Des détails sur l'article : taille, coloris..."
                     className="block w-full mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     onChange={(e) => setData("details", e.target.value)}
                 />
@@ -91,7 +91,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                     id="price"
                     name="price"
                     value={data.price}
-                    placeholder="Prix de l'article (mettre un chiffre rond : 34,99 -> 35)"
+                    placeholder="Le prix (chiffre rond : 34,99 = 35)"
                     className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     onChange={(e) => setData("price", e.target.value)}
                 />
@@ -152,7 +152,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                     id="promo_details"
                     name="promo_details"
                     value={data.promo_details}
-                    placeholder="Détails sur la promo en cours : durée, conditions..."
+                    placeholder="Des détails sur la promo en cours : durée, conditions..."
                     className="block w-full mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     onChange={(e) => setData("promo_details", e.target.value)}
                 />

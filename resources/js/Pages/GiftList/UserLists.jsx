@@ -7,9 +7,31 @@ export default function UserLists({ auth, lists }) {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Consulter et compléter mes listes
-                </h2>
+                <div className="sm:flex items-center justify-between">
+                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                        Consulter et compléter mes listes
+                    </h2>
+                    <Link
+                        as="button"
+                        href={route("lists.create")}
+                        className="flex items-center my-1"
+                    >
+                        <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                            <svg
+                                xmlns="https://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-5 h-5"
+                            >
+                                <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <p className="hover:text-indigo-500 text-indigo-800 text-sm">
+                            Créer une liste
+                        </p>
+                    </Link>
+                </div>
             }
         >
             <Head title="Mes listes" />
@@ -20,7 +42,7 @@ export default function UserLists({ auth, lists }) {
                         {lists.map((list) => (
                             <div
                                 key={list.id}
-                                className="p-5 mb-8 mx-10 flex flex-col border bg-white rounded-xl"
+                                className="p-5 mb-8 mx-10 flex flex-col border bg-white rounded-xl w-full sm:w-80"
                             >
                                 <div className="flex items center justify-between">
                                     {/* LIST NAME */}

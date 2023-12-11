@@ -27,10 +27,12 @@ export default function Index({ auth, listsToFollow, followedLists }) {
             <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-4">
                 <div className="mt-6 sm:flex justify-evenly">
                     {followedLists.length > 0 && (
-                        <div className="flex flex-col items-start">
-                            <h1 className="text-lg">Mes listes suivies</h1>
+                        <div className="flex flex-col items-center">
+                            <h1 className="text-xl font-semibold mb-2">
+                                Les listes suivies
+                            </h1>
                             {followedLists.map((followedList) => (
-                                <div className="mb-3">
+                                <div className="p-5 my-2 flex flex-col text-center border bg-white rounded-xl w-full">
                                     <FollowedList
                                         key={followedList.id}
                                         followedList={followedList}
@@ -42,12 +44,12 @@ export default function Index({ auth, listsToFollow, followedLists }) {
                     )}
 
                     {listsToFollow.length > 0 && (
-                        <div className="flex flex-col mt-12 sm:mt-0">
-                            <h1 className="text-lg font-semibold">
+                        <div className="flex flex-col items-center mt-12 sm:mt-0">
+                            <h1 className="text-xl font-semibold mb-2">
                                 Les listes à suivre
                             </h1>
                             {listsToFollow.map((listToFollow) => (
-                                <div className="mb-3">
+                                <div className="p-5 my-2 flex flex-col text-center border bg-white rounded-xl w-full">
                                     <ListsToFollow
                                         key={listToFollow.id}
                                         listToFollow={listToFollow}

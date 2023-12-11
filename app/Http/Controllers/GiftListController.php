@@ -90,7 +90,8 @@ class GiftListController extends Controller
             'users' => $users,
             'followedLists' => $followedLists,
             'listsToFollow' => $listsToFollow,
-        ]);
+            // 'url' => route('lists.index') . '#top',
+        ])->withViewData(['url' => route('lists.index') . '#top']);
     }
 
     /**
@@ -102,6 +103,7 @@ class GiftListController extends Controller
 
         // Get all lists in db
         $lists = GiftList::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
+        // dd($lists);
 
         // Get all ideas in each lists of connected user
         $userLists = GiftList::where('user_id', $authUserId)->get();
@@ -111,10 +113,14 @@ class GiftListController extends Controller
         // ->orderby('created_at', 'desc')
         ->get();
 
-        return Inertia::render('GiftList/UserLists', [
-            'lists' => $lists,
-            'listsOfIdeas' => $listsOfIdeas,
-        ]);
+        return count($lists) == 1
+            ? Inertia::render('GiftList/AuthList', [
+                'list' => $lists,
+                'ideas' => $listsOfIdeas,
+            ])
+            : Inertia::render('GiftList/UserLists', [
+                'lists' => $lists,
+            ]);
     }
 
     /**
@@ -204,6 +210,5 @@ class GiftListController extends Controller
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }
-
     }
 }

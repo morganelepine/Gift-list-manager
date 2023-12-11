@@ -22,7 +22,7 @@ export default function ListsToFollow({ auth, listToFollow }) {
 
     return (
         <>
-            <div className="flex flex-col mt-5">
+            <div className="flex flex-col">
                 <p>
                     La liste{" "}
                     <span className="uppercase font-semibold text-indigo-700">
@@ -57,7 +57,7 @@ export default function ListsToFollow({ auth, listToFollow }) {
                             name="private_code"
                             value={data.private_code}
                             placeholder="Le code secret"
-                            className="block w-60 py-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            className="block w-52 py-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             isFocused={true}
                             onChange={(e) =>
                                 setData("private_code", e.target.value)
