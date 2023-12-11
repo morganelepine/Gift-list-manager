@@ -23,6 +23,7 @@ export default function Dashboard({ auth }) {
                                 un mail au·à la propriétaire de la liste
                             </li>
                             <li>Avoir un récap de ses achats</li>
+                            <li>Modifier le nom des listes</li>
                             <li>
                                 Pouvoir ajouter des photos dans le formulaire
                                 d'ajout d'une idée
