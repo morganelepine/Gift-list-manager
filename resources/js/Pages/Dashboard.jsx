@@ -25,6 +25,9 @@ export default function Dashboard({ auth }) {
                             <li>Avoir un récap de ses achats</li>
                             <li>Modifier le nom des listes</li>
                             <li>
+                                Visualiser les personnes qui suivent nos listes
+                            </li>
+                            <li>
                                 Pouvoir ajouter des photos dans le formulaire
                                 d'ajout d'une idée
                             </li>
