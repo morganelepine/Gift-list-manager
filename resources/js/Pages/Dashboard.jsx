@@ -13,9 +13,9 @@ export default function Dashboard({ auth }) {
         >
             <Head title="Évolutions" />
 
-            <div className="flex justify-center py-12 ">
-                <div className="space-x-20 sm:-my-px sm:ml-10 flex justify-center">
-                    <div className="w-4/12">
+            <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-4">
+                <div className="mt-6 space-x-0 sm:space-x-20 sm:flex">
+                    <div className="">
                         <h1 className="font-semibold">Évolutions</h1>
                         <ul className="list-disc px-4 mt-3">
                             <li>
@@ -36,7 +36,7 @@ export default function Dashboard({ auth }) {
                             </li>
                         </ul>
                     </div>
-                    <div className="w-4/12">
+                    <div className="sm:mt-0 mt-10">
                         <h1 className="font-semibold">Bugs</h1>
                         <ul className="list-disc px-4 mt-3">
                             <li>Focus de la page des listes</li>

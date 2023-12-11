@@ -174,6 +174,13 @@ export default function Authenticated({ user, header, children }) {
                         >
                             Créer une liste
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("dashboard")}
+                            active={route().current("dashboard")}
+                            className="italic"
+                        >
+                            Évolutions à venir
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="py-2 border-t border-gray-200">
