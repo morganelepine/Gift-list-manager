@@ -54,5 +54,5 @@ export default function Ideas_all({ auth, list, ideas }) {
 Ideas_all.propTypes = {
     auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
-    list: PropTypes.object,
+    list: PropTypes.array,
 };

@@ -28,8 +28,8 @@ export default function Dashboard({ auth }) {
                                 Visualiser les personnes qui suivent nos listes
                             </li>
                             <li>
-                                Pouvoir ajouter des photos dans le formulaire
-                                d'ajout d'une idée
+                                Ajouter des photos dans le formulaire d'ajout
+                                d'une idée
                             </li>
                             <li>Ranger les cadeaux par marque/catégorie</li>
                             <li>Trier les listes</li>
