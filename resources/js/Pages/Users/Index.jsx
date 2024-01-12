@@ -20,9 +20,9 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
         >
             <Head title="Les listes à suivre" />
             <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-4">
-                <div className="mt-6 sm:flex space-x-20 justify-evenly">
+                <div className="mt-6 sm:flex sm:space-x-20 justify-evenly">
                     {listsToFollow.length > 0 && (
-                        <div className="flex flex-col items-center w-1/3">
+                        <div className="flex flex-col items-center sm:w-1/3">
                             <h1 className="text-xl font-semibold mb-2">
                                 Les listes à suivre
                             </h1>
@@ -39,7 +39,7 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
                     )}
 
                     {followedLists.length > 0 && (
-                        <div className="flex flex-col items-center w-1/3 mt-12 sm:mt-0">
+                        <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
                             <h1 className="text-xl font-semibold mb-2">
                                 Les listes suivies
                             </h1>
@@ -56,7 +56,7 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
                     )}
 
                     {mylists.length > 0 && (
-                        <div className="flex flex-col items-center w-1/3 mt-12 sm:mt-0">
+                        <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
                             <h1 className="text-xl font-semibold mb-2">
                                 Mes listes
                             </h1>

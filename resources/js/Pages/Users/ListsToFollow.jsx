@@ -25,7 +25,7 @@ export default function ListsToFollow({ auth, listsToFollow }) {
             <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-4">
                 <div className="mt-6 sm:flex justify-evenly">
                     {listsToFollow.length > 0 ? (
-                        <div className="flex flex-col items-center mt-12 sm:mt-0">
+                        <div className="flex flex-col items-center">
                             {listsToFollow.map((listToFollow) => (
                                 <div className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full">
                                     <ListToFollow
