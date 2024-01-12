@@ -2,7 +2,7 @@ import { Head, Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-export default function UserLists({ auth, lists }) {
+export default function AuthLists({ auth, lists }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -14,9 +14,9 @@ export default function UserLists({ auth, lists }) {
                     <Link
                         as="button"
                         href={route("lists.create")}
-                        className="flex items-center my-1"
+                        className="flex items-center"
                     >
-                        <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                        <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
@@ -158,7 +158,7 @@ export default function UserLists({ auth, lists }) {
     );
 }
 
-UserLists.propTypes = {
+AuthLists.propTypes = {
     auth: PropTypes.object.isRequired,
     lists: PropTypes.array,
 };

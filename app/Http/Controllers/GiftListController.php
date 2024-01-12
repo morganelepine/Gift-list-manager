@@ -40,8 +40,6 @@ class GiftListController extends Controller
         // idées réservées
         $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")->get();
 
-        // dd($ideas_available, $ideas_reserved, $ideas_purchased);
-
         // get lists followed by connected user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();
 
@@ -60,48 +58,101 @@ class GiftListController extends Controller
      */
     public function index(): Response
     {
-        // Get all users except the authenticated user
-        $authUserId = Auth::id();
-        $users = User::where('id', '!=', $authUserId)->get();
-
-        // Get the lists followed by the authenticated user and the existing lists to follow
         $authUser = Auth::user();
-        $followedLists = $authUser->followedLists()->get();
-        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
-        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
-        ->whereNotIn('id', $followedListIds)
-        ->orderBy('created_at', 'desc')
-        ->get();
+        $authUserId = Auth::id();
 
+        // Get the lists of the auth user
+        $mylists = GiftList::where('user_id', $authUserId)->orderBy('created_at', 'desc')->get();
+        // Formatage de la date
+        foreach ($mylists as $mylist) {
+            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format('d/m/Y');
+            $mylist->formatted_updated_at = Carbon::parse($mylist->updated_at)->format('d/m/Y');
+        }
+
+        // Get the lists followed by the auth user
+        $followedLists = $authUser->followedLists()->get();
         // Formatage de la date pour les listes suivies
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
             $followedList->formatted_updated_at = Carbon::parse($followedList->updated_at)->format('d/m/Y');
         }
 
+        // Get the lists to follow
+        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
+        ->whereNotIn('id', $followedListIds)
+        ->orderBy('created_at', 'desc')
+        ->get();
         // Formatage de la date pour les listes à suivre
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
             $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->updated_at)->format('d/m/Y');
-
         }
 
         return Inertia::render('Users/Index', [
-            'users' => $users,
+            'mylists' => $mylists,
             'followedLists' => $followedLists,
             'listsToFollow' => $listsToFollow,
-            // 'url' => route('lists.index') . '#top',
-        ])->withViewData(['url' => route('lists.index') . '#top']);
+        ]);
+    }
+
+    /**
+     * Display a listing of the gift lists to follow.
+     */
+    public function listsToFollow(): Response
+    {
+        // Get all users except the authenticated user
+        $authUserId = Auth::id();
+        $users = User::where('id', '!=', $authUserId)->get();
+
+        // Get the lists to follow
+        $authUser = Auth::user();
+        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
+        ->whereNotIn('id', $followedListIds)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        // Formatage de la date
+        foreach ($listsToFollow as $listToFollow) {
+            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
+            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->updated_at)->format('d/m/Y');
+        }
+
+        return Inertia::render('Users/ListsToFollow', [
+            'users' => $users,
+            'listsToFollow' => $listsToFollow,
+        ]);
+    }
+
+    /**
+     * Display a listing of the followed gift lists.
+     */
+    public function followedLists(): Response
+    {
+        // Get the lists followed by the authenticated user
+        $authUser = Auth::user();
+        $followedLists = $authUser->followedLists()->get();
+
+        // Formatage de la date
+        foreach ($followedLists as $followedList) {
+            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
+            $followedList->formatted_updated_at = Carbon::parse($followedList->updated_at)->format('d/m/Y');
+        }
+
+        return Inertia::render('Users/FollowedLists', [
+            'followedLists' => $followedLists,
+        ]);
     }
 
     /**
      * Display a listing of the auth user's gift lists.
      */
-    public function userLists(): Response
+    public function authLists(): Response
     {
         $authUserId = Auth::id();
 
-        // Get all lists in db
+        // Get all lists of connected user
         $lists = GiftList::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
         // dd($lists);
 
@@ -114,11 +165,11 @@ class GiftListController extends Controller
         ->get();
 
         return count($lists) == 1
-            ? Inertia::render('GiftList/AuthList', [
+            ? Inertia::render('GiftList/FirstAuthList', [
                 'list' => $lists,
                 'ideas' => $listsOfIdeas,
             ])
-            : Inertia::render('GiftList/UserLists', [
+            : Inertia::render('GiftList/AuthLists', [
                 'lists' => $lists,
             ]);
     }
@@ -146,7 +197,7 @@ class GiftListController extends Controller
 
         $request->user()->gift_lists()->create($validated);
 
-        return redirect(route('lists.userLists'));
+        return redirect(route('lists.authLists'));
     }
 
     /**
@@ -166,7 +217,7 @@ class GiftListController extends Controller
 
         $list->update($validated);
 
-        return redirect(route('lists.userLists'));
+        return redirect(route('lists.authLists'));
     }
 
     /**
@@ -179,7 +230,7 @@ class GiftListController extends Controller
 
         $list->delete();
 
-        return redirect(route('lists.userLists'));
+        return redirect(route('lists.authLists'));
     }
 
     /**
@@ -202,11 +253,8 @@ class GiftListController extends Controller
                 'gift_list_id' => 'required|integer',
                 'private_code' => 'required|string',
             ]);
-
             $request->user()->followed_lists()->create($validated);
-
             return redirect()->back()->with('success', 'Vous suivez maintenant cette liste !');
-
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }

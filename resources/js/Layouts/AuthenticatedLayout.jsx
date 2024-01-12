@@ -23,14 +23,24 @@ export default function Authenticated({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("lists.index")}
-                                    active={route().current("lists.index")}
+                                    href={route("lists.followedLists")}
+                                    active={route().current(
+                                        "lists.followedLists"
+                                    )}
                                 >
-                                    Les listes
+                                    Mes listes suivies
                                 </NavLink>
                                 <NavLink
-                                    href={route("lists.userLists")}
-                                    active={route().current("lists.userLists")}
+                                    href={route("lists.listsToFollow")}
+                                    active={route().current(
+                                        "lists.listsToFollow"
+                                    )}
+                                >
+                                    Les listes à suivre
+                                </NavLink>
+                                <NavLink
+                                    href={route("lists.authLists")}
+                                    active={route().current("lists.authLists")}
                                 >
                                     Mes listes
                                 </NavLink>
@@ -156,14 +166,20 @@ export default function Authenticated({ user, header, children }) {
                 >
                     <div className="py-2">
                         <ResponsiveNavLink
-                            href={route("lists.index")}
-                            active={route().current("lists.index")}
+                            href={route("lists.followedLists")}
+                            active={route().current("lists.followedLists")}
                         >
-                            Les listes suivies / à suivre
+                            Mes listes suivies
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("lists.userLists")}
-                            active={route().current("lists.userLists")}
+                            href={route("lists.listsToFollow")}
+                            active={route().current("lists.listsToFollow")}
+                        >
+                            Les listes à suivre
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("lists.authLists")}
+                            active={route().current("lists.authLists")}
                         >
                             Mes listes
                         </ResponsiveNavLink>
