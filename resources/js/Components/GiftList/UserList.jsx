@@ -25,7 +25,7 @@ export default function UserList({
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                         La liste "{list.name}" de {list.user_name}
                     </h2>
-                    <div className="hidden sm:block sm:flex">
+                    <div className="hidden sm:flex">
                         <div className="flex items-center justify-end text-xs hover:text-indigo-700 ml-3">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"

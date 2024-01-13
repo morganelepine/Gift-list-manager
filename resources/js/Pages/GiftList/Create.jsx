@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import TextInput from "@/Components/Laravel/TextInput";
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
+import SmallButton from "@/Components/Buttons/SmallButton";
 import { useForm, Head } from "@inertiajs/react";
 
 export default function Create({ auth }) {
@@ -66,9 +66,9 @@ export default function Create({ auth }) {
                         />
                     </div>
 
-                    <PrimaryButton className="mt-6" disabled={processing}>
+                    <SmallButton className="mt-6" disabled={processing}>
                         Créer la liste
-                    </PrimaryButton>
+                    </SmallButton>
                 </form>
             </div>
         </AuthenticatedLayout>

@@ -107,5 +107,6 @@ export default function Ideas_available({ auth, ideas }) {
 }
 
 Ideas_available.propTypes = {
+    auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
 };

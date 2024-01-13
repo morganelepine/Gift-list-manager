@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
+import SmallButton from "@/Components/Buttons/SmallButton";
 import { useForm, Head, Link } from "@inertiajs/react";
 
 export default function Create({ auth, list }) {
@@ -282,9 +282,9 @@ export default function Create({ auth, list }) {
                             </div>
                         )}
                     </div>
-                    <PrimaryButton className="mt-6" disabled={processing}>
+                    <SmallButton className="mt-6" disabled={processing}>
                         Ajouter l'idée
-                    </PrimaryButton>
+                    </SmallButton>
                 </form>
             </div>
         </AuthenticatedLayout>

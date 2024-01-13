@@ -2,9 +2,15 @@ import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 
 export default function MyLists({ list }) {
+    const seeButton =
+        "min-w-full px-2 py-1 bg-indigo-700 border border-transparent rounded-md text-sm text-white hover:bg-indigo-900 transition ease-in-out duration-150";
+
+    const addButton =
+        "min-w-full px-2 py-1 border border-indigo-700 rounded-md text-sm text-indigo-700 hover:bg-indigo-50 hover:border-indigo-400 transition ease-in-out duration-150";
+
     return (
-        <>
-            <div className="flex flex-col items center justify-between">
+        <div className="flex flex-col items-center">
+            <div className="flex flex-col items center">
                 {/* LIST NAME */}
                 <p>
                     Ma liste{" "}
@@ -17,43 +23,40 @@ export default function MyLists({ list }) {
                 </small>
             </div>
 
-            {/* SEE BUTTON */}
-            <div>
+            <div className="flex flex-col items-center space-y-2 max-w-max">
+                {/* SEE BUTTON */}
                 <Link
                     as="button"
                     href={route("lists.show", list.id)}
-                    className="max-w-max px-2 py-1 bg-indigo-700 border border-transparent rounded-md font-normal text-sm text-white hover:bg-indigo-900 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                    className={seeButton}
                 >
                     Voir ma liste
                 </Link>
-            </div>
 
-            {/* EDIT BUTTON */}
-            <div className="mt-2">
+                {/* EDIT BUTTON */}
                 <Link
                     as="button"
                     href={route("ideas.create_idea", list.id)}
-                    className="max-w-max px-2 py-1 bg-indigo-700 border border-transparent rounded-md font-normal text-sm text-white hover:bg-indigo-900 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                    className={addButton}
                 >
                     Compléter ma liste
                 </Link>
-            </div>
 
-            {/* DELETE BUTTON */}
-            <div>
+                {/* DELETE BUTTON */}
                 <Link
                     as="button"
                     href={route("lists.destroy", list.id)}
                     method="delete"
                 >
-                    <small className="italic mt-1">Supprimer ma liste </small>
+                    <small className="italic hover:text-indigo-600">
+                        Supprimer ma liste{" "}
+                    </small>
                 </Link>
             </div>
-        </>
+        </div>
     );
 }
 
 MyLists.propTypes = {
-    auth: PropTypes.object.isRequired,
     list: PropTypes.array,
 };

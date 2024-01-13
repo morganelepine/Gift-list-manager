@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
-export default function Ideas_all({ auth, list, ideas }) {
+export default function Ideas_all({ ideas }) {
     // console.log("listOfIdeas : ", listOfIdeas);
     const [listOfIdeas, setListOfIdeas] = useState(ideas);
 
@@ -52,7 +52,5 @@ export default function Ideas_all({ auth, list, ideas }) {
 }
 
 Ideas_all.propTypes = {
-    auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
-    list: PropTypes.array,
 };

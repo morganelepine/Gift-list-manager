@@ -71,5 +71,6 @@ export default function Ideas_purchased({ auth, ideas }) {
 }
 
 Ideas_purchased.propTypes = {
+    auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
 };

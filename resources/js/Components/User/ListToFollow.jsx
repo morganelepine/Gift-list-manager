@@ -4,7 +4,7 @@ import { useForm } from "@inertiajs/react";
 import TextInput from "@/Components/Laravel/TextInput";
 import InputError from "@/Components/Laravel/InputError";
 import SmallButton from "@/Components/Buttons/SmallButton";
-export default function ListsToFollow({ auth, listToFollow }) {
+export default function ListToFollow({ auth, listToFollow }) {
     // console.log("auth.user.id : ", auth.user.id);
 
     const { data, setData, post, processing, reset, errors } = useForm({
@@ -79,7 +79,7 @@ export default function ListsToFollow({ auth, listToFollow }) {
     );
 }
 
-ListsToFollow.propTypes = {
+ListToFollow.propTypes = {
     auth: PropTypes.object.isRequired,
     listToFollow: PropTypes.object,
 };

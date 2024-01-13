@@ -1,4 +1,5 @@
 import { Link, Head } from "@inertiajs/react";
+import PropTypes from "prop-types";
 
 export default function Welcome({ auth }) {
     const link =
@@ -56,3 +57,7 @@ export default function Welcome({ auth }) {
         </>
     );
 }
+
+Welcome.propTypes = {
+    auth: PropTypes.object.isRequired,
+};

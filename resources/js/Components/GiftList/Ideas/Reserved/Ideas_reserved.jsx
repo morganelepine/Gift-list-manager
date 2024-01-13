@@ -76,5 +76,6 @@ export default function Ideas_reserved({ auth, ideas }) {
 }
 
 Ideas_reserved.propTypes = {
+    auth: PropTypes.object.isRequired,
     ideas: PropTypes.array,
 };
