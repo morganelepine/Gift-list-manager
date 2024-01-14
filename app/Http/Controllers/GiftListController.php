@@ -254,7 +254,8 @@ class GiftListController extends Controller
                 'private_code' => 'required|string',
             ]);
             $request->user()->followed_lists()->create($validated);
-            return redirect()->back()->with('success', 'Vous suivez maintenant cette liste !');
+            // return redirect()->back()->with('success', 'Vous suivez maintenant cette liste !');
+            return redirect(route('lists.followedLists'));
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }

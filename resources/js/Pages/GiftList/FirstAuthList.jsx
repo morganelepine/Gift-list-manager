@@ -22,9 +22,9 @@ export default function AuthList({ auth, list, ideas }) {
                             <Link
                                 as="button"
                                 href={route("ideas.create_idea", list[0].id)}
-                                className="flex items-center my-1 mr-5"
+                                className="flex items-center mr-5"
                             >
-                                <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                                <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                                     <svg
                                         xmlns="https://www.w3.org/2000/svg"
                                         fill="none"
@@ -42,9 +42,9 @@ export default function AuthList({ auth, list, ideas }) {
                             <Link
                                 as="button"
                                 href={route("lists.create")}
-                                className="flex items-center my-1"
+                                className="flex items-center"
                             >
-                                <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                                <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                                     <svg
                                         xmlns="https://www.w3.org/2000/svg"
                                         fill="none"

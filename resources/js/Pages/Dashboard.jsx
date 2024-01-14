@@ -38,6 +38,7 @@ export default function Dashboard({ auth }) {
                                 des idées lorsqu'il n'y en a plus beaucoup de
                                 disponibles
                             </li>
+                            <li>Permettre de ne plus suivre une liste</li>
                         </ul>
                     </div>
                     <div className="sm:mt-0 mt-10">

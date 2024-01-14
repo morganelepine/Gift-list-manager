@@ -38,8 +38,8 @@ export default function ListsToFollow({ auth, listsToFollow }) {
                         </div>
                     ) : (
                         <div className="flex flex-col items-center mt-12 sm:mt-0">
-                            <p>
-                                Il n'y a actuellement pas de listes à suivre.
+                            <p className="text-center">
+                                Il n'y a actuellement aucune liste à suivre.
                                 Revenez plus tard&nbsp;!
                             </p>
                         </div>
