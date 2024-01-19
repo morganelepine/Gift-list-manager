@@ -32,7 +32,7 @@ class GiftListController extends Controller
         $ideas = Idea::where('list_id', $id)
             ->orderBy('brand')
             ->orderByDesc('favorite')
-            ->orderByDesc('price')
+            ->orderBy('price')
             ->orderBy('idea')
             ->get();
 
