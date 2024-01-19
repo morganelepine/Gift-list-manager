@@ -8,7 +8,7 @@ export default function InputLabel({
         <label
             {...props}
             className={
-                `block text-sm ml-2 hover:text-indigo-800 mr-2` + className
+                `block text-md ml-2 hover:text-indigo-800 mr-2` + className
             }
         >
             {value ? value : children}

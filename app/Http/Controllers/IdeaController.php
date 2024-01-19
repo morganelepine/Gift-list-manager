@@ -76,10 +76,11 @@ class IdeaController extends Controller
             'link' => 'required_without:idea|nullable|string|max:255',
             'details' => $string,
             'price' => 'nullable|integer',
-            'membership' => $string,
-            'membership_reduction' => $string,
+            'favorite' => 'boolean',
             'promo' => 'boolean',
             'promo_details' => $string,
+            'membership' => $string,
+            'membership_reduction' => $string,
             'status' => $string,
             'status_user' => $string,
         ]);
@@ -102,6 +103,7 @@ class IdeaController extends Controller
             'link' => $string,
             'details' => $string,
             'price' => 'nullable|integer',
+            'favorite' => 'boolean',
             'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
@@ -131,6 +133,17 @@ class IdeaController extends Controller
         $idea->update($validated);
 
         return redirect(route('lists.show', $listId));
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $order = $request->input('order');
+
+        foreach ($order as $index => $ideaId) {
+            Idea::where('id', $ideaId)->update(['order' => $index + 1]);
+        }
+
+        return back();
     }
 
     /**

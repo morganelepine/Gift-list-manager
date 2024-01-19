@@ -30,6 +30,7 @@ class Idea extends Model
         'link',
         'details',
         'price',
+        'favorite',
         'promo',
         'promo_details',
         'membership',

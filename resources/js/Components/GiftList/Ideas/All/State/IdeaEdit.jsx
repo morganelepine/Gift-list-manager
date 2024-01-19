@@ -9,6 +9,11 @@ import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 export default function IdeaEdit({ auth, idea, setEditing }) {
     // console.log("idea.promo : ", idea.promo);
 
+    const [isFavorite, setIsFavorite] = useState(idea.favorite);
+    const handleFavoriteCheck = () => {
+        setIsFavorite((current) => !current);
+    };
+
     const [isPromo, setIsPromo] = useState(idea.promo);
     const handlePromoCheck = () => {
         setIsPromo((current) => !current);
@@ -21,6 +26,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
         link: idea.link,
         details: idea.details,
         price: idea.price,
+        favorite: idea.favorite,
         membership: idea.membership,
         membership_reduction: idea.membership_reduction,
         promo: idea.promo,
@@ -97,6 +103,25 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                 />
 
                 <InputError message={errors.price} className="mt-2" />
+            </div>
+            <div className="flex items-center mt-3 mb-4">
+                <TextInput
+                    id="favorite"
+                    name="favorite"
+                    type="checkbox"
+                    value={isFavorite}
+                    defaultChecked={false}
+                    onChange={(e) => {
+                        handleFavoriteCheck();
+                        setData("favorite", e.target.checked);
+                    }}
+                />
+                <InputLabel
+                    htmlFor="link"
+                    value="L'article est un coup de cœur"
+                    className="pl-2"
+                />
+                <InputError message={errors.favorite} className="mt-2" />
             </div>
             <div className="my-4">
                 <TextInput
