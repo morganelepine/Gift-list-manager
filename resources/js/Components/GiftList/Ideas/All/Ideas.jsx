@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -16,20 +16,6 @@ export default function IdeaAdmin({ brand, idea, index }) {
 
     const [editing, setEditing] = useState(false);
 
-    const ideaDiv = useRef();
-    let divHeight = "";
-    const [flexDirection, setFlexDirection] = useState("flex-col");
-
-    useEffect(() => {
-        if (ideaDiv.current) {
-            divHeight = ideaDiv.current.offsetHeight;
-            // console.log("Hauteur de la div :", divHeight);
-        }
-        if (divHeight < 84) {
-            setFlexDirection("");
-        }
-    }, []);
-
     return (
         <Draggable draggableId={idea.id.toString()} index={index} key={idea.id}>
             {(provided) => (
@@ -41,7 +27,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
                     ref={provided.innerRef}
                 >
                     {/* EDIT & DELETE BUTTONS */}
-                    <div className={`flex ${flexDirection} items-center w-16 `}>
+                    <div className="flex items-center w-16">
                         <Buttons idea={idea} setEditing={setEditing} />
                     </div>
 

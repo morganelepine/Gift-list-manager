@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -6,6 +6,11 @@ import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 
 export default function AuthList({ auth, list, ideas }) {
     console.log("ideas : ", ideas);
+
+    const [sortBy, setSortBy] = useState("created_at");
+    const handleSortChange = (newSortBy) => {
+        setSortBy(newSortBy);
+    };
 
     return (
         <AuthenticatedLayout
@@ -41,6 +46,18 @@ export default function AuthList({ auth, list, ideas }) {
             }
         >
             <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
+                {/* <div className="space-x-5">
+                    <button onClick={() => handleSortChange("price")}>
+                        Trier par prix
+                    </button>
+                    <button onClick={() => handleSortChange("brand")}>
+                        Trier par marque
+                    </button>
+                    <button onClick={() => handleSortChange("favorite")}>
+                        Trier par coup de coeur
+                    </button>
+                </div> */}
+
                 {ideas.length > 0 ? (
                     <div className="flex w-full">
                         <ListOfIdeas

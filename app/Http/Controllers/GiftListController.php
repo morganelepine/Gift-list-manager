@@ -29,7 +29,12 @@ class GiftListController extends Controller
         $list = GiftList::find($id);
 
         // idées dans la liste dont l'id est dans l'url
-        $ideas = Idea::where('list_id', $id)->orderBy('created_at', 'desc')->get();
+        $ideas = Idea::where('list_id', $id)
+            ->orderBy('brand')
+            ->orderByDesc('favorite')
+            ->orderByDesc('price')
+            ->orderBy('idea')
+            ->get();
 
         // idées disponibles
         $ideas_available = Idea::where('list_id', $id)->where('status', "available")->get();
