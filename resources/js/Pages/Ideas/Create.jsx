@@ -160,7 +160,7 @@ export default function Create({ auth, list }) {
                         <InputError message={errors.price} className="mt-2" />
                     </div>
 
-                    <div className="flex items-center mt-3 mb-4">
+                    <div className="flex items-center mt-3 mb-1">
                         <TextInput
                             id="favorite"
                             name="favorite"
@@ -183,69 +183,6 @@ export default function Create({ auth, list }) {
                         />
                     </div>
 
-                    <div>
-                        <div
-                            className="pt-4 flex cursor-pointer"
-                            onClick={toggleOpenMembership}
-                        >
-                            Parrainage
-                            <svg
-                                xmlns="https://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                className="w-6 h-6 pl-1"
-                            >
-                                <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-
-                        {openMembership && (
-                            <div>
-                                <div className="my-2">
-                                    <TextInput
-                                        id="membership"
-                                        name="membership"
-                                        value={data.membership}
-                                        placeholder="Lien de parrainage à utiliser lors de l'achat"
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                        onChange={(e) =>
-                                            setData(
-                                                "membership",
-                                                e.target.value
-                                            )
-                                        }
-                                    />
-
-                                    <InputError
-                                        message={errors.membership}
-                                        className="mt-2"
-                                    />
-                                </div>
-
-                                <div className="my-2">
-                                    <TextInput
-                                        id="membership_reduction"
-                                        name="membership_reduction"
-                                        value={data.membership_reduction}
-                                        placeholder="Réduction offerte grâce au parrainage : -15%, un acheté un offert..."
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                        onChange={(e) =>
-                                            setData(
-                                                "membership_reduction",
-                                                e.target.value
-                                            )
-                                        }
-                                    />
-
-                                    <InputError
-                                        message={errors.membership_reduction}
-                                        className="mt-2"
-                                    />
-                                </div>
-                            </div>
-                        )}
-                    </div>
                     <div>
                         <div
                             className="pt-4 flex cursor-pointer"
@@ -306,6 +243,70 @@ export default function Create({ auth, list }) {
 
                                     <InputError
                                         message={errors.promo_details}
+                                        className="mt-2"
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div>
+                        <div
+                            className="pt-4 flex cursor-pointer"
+                            onClick={toggleOpenMembership}
+                        >
+                            Parrainage
+                            <svg
+                                xmlns="https://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-6 h-6 pl-1"
+                            >
+                                <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+
+                        {openMembership && (
+                            <div>
+                                <div className="my-2">
+                                    <TextInput
+                                        id="membership"
+                                        name="membership"
+                                        value={data.membership}
+                                        placeholder="Lien de parrainage à utiliser lors de l'achat"
+                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        onChange={(e) =>
+                                            setData(
+                                                "membership",
+                                                e.target.value
+                                            )
+                                        }
+                                    />
+
+                                    <InputError
+                                        message={errors.membership}
+                                        className="mt-2"
+                                    />
+                                </div>
+
+                                <div className="my-2">
+                                    <TextInput
+                                        id="membership_reduction"
+                                        name="membership_reduction"
+                                        value={data.membership_reduction}
+                                        placeholder="Réduction offerte grâce au parrainage : -15%, un acheté un offert..."
+                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        onChange={(e) =>
+                                            setData(
+                                                "membership_reduction",
+                                                e.target.value
+                                            )
+                                        }
+                                    />
+
+                                    <InputError
+                                        message={errors.membership_reduction}
                                         className="mt-2"
                                     />
                                 </div>

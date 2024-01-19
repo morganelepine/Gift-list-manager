@@ -39,7 +39,7 @@ export default function AuthLists({ auth, lists }) {
         >
             <Head title="Mes listes" />
 
-            <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-4">
+            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
                 {lists.length ? (
                     <div className="mt-6 flex flex-wrap justify-center">
                         {lists.map((list) => (
