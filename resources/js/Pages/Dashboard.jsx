@@ -18,34 +18,44 @@ export default function Dashboard({ auth }) {
                     <div className="">
                         <h1 className="font-semibold">Évolutions</h1>
                         <ul className="list-disc px-4 mt-3">
+                            <li>Avoir une page d'accueil sans connexion</li>
+                            <li>
+                                Organiser les cadeaux par marque/catégorie dans
+                                une liste
+                            </li>
+                            <li>
+                                Trier les listes (par nom, date de création...)
+                            </li>
+                            <li>Trier les cadeaux (par prix, promo...)</li>
+                            <li>Avoir un récap de ses achats</li>
                             <li>
                                 Ajouter un bouton "Demander l'accès" qui envoie
                                 un mail au·à la propriétaire de la liste
                             </li>
-                            <li>Avoir un récap de ses achats</li>
                             <li>Modifier le nom des listes</li>
+                            <li>Permettre de ne plus suivre une liste</li>
                             <li>
                                 Visualiser les personnes qui suivent nos listes
                             </li>
-                            <li>
-                                Ajouter des photos dans le formulaire d'ajout
-                                d'une idée
-                            </li>
-                            <li>Ranger les cadeaux par marque/catégorie</li>
-                            <li>Trier les listes</li>
                             <li>
                                 Pop up pour inviter l'utilisateur·ice à ajouter
                                 des idées lorsqu'il n'y en a plus beaucoup de
                                 disponibles
                             </li>
-                            <li>Permettre de ne plus suivre une liste</li>
+                            <li>
+                                Encart parrainage pour ne pas remettre l'info
+                                dans chaque idée ?
+                            </li>
+                            <li>
+                                Ajouter des photos dans le formulaire d'ajout
+                                d'une idée
+                            </li>
                         </ul>
                     </div>
                     <div className="sm:mt-0 mt-10">
-                        <h1 className="font-semibold">Bugs</h1>
+                        <h1 className="font-semibold">Bugs à corriger</h1>
                         <ul className="list-disc px-4 mt-3">
                             <li>Focus de la page des listes</li>
-                            <li>Page d'accueil sur smartphone</li>
                             <li>
                                 Mettre à jour la liste lorsqu'on
                                 modifie/supprime une idée (sans avoir à
