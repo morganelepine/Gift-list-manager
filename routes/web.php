@@ -41,7 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/my-purchases', [ProfileController::class, 'purchase'])->name('profile.purchase');
+
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
     Route::patch('/ideas/{idea}/update', [IdeaController::class, 'modify'])->name('ideas.modify');
 

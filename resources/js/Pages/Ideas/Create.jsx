@@ -35,7 +35,7 @@ export default function Create({ auth, list }) {
         membership: "",
         membership_reduction: "",
         status: "available",
-        status_user: auth.user.name,
+        status_user: "",
     });
     const submit = (e) => {
         e.preventDefault();

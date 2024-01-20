@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Idea;
 
 class ProfileController extends Controller
 {
@@ -59,5 +60,22 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Display the user's purchases.
+     */
+    public function purchase(): Response
+    {
+        $authUserName = Auth::user()->name;
+
+        // Get all ideas purchased by auth user
+        $ideas = Idea::where('status_user', $authUserName)->get();
+        $totalPrice = $ideas->sum('price');
+
+        return Inertia::render('Profile/Purchases', [
+            'ideas' => $ideas,
+            'totalPrice' => $totalPrice
+        ]);
     }
 }

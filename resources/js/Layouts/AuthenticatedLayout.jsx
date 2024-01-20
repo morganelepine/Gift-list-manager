@@ -104,6 +104,11 @@ export default function Authenticated({ user, header, children }) {
                                             Mon profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
+                                            href={route("profile.purchase")}
+                                        >
+                                            Mes achats
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
                                             as="button"
@@ -212,6 +217,9 @@ export default function Authenticated({ user, header, children }) {
                         <div className="">
                             <ResponsiveNavLink href={route("profile.edit")}>
                                 Mon profil
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink href={route("profile.purchase")}>
+                                Mes achats
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
