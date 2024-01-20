@@ -19,7 +19,7 @@ export default function MyLists({ list }) {
                     </span>{" "}
                 </p>
                 <small className="italic text-gray-500 mt-1 mb-2">
-                    Créée le {list.formatted_created_at}
+                    Mise à jour le {list.formatted_updated_at}
                 </small>
             </div>
 
@@ -58,5 +58,5 @@ export default function MyLists({ list }) {
 }
 
 MyLists.propTypes = {
-    list: PropTypes.array,
+    list: PropTypes.object,
 };

@@ -68,7 +68,7 @@ export default function UserList({
         >
             <Head title="Ma liste" />
 
-            <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-4">
+            <div className="max-w-3xl mx-auto space-y-10 mt-8 pb-20 px-4">
                 {ideas_available.length == 0 &&
                     ideas_reserved.length == 0 &&
                     ideas_purchased.length == 0 && (
@@ -79,7 +79,7 @@ export default function UserList({
                     )}
 
                 {ideas_available.length > 0 && (
-                    <div className="p-4 flex flex-col justify-center">
+                    <div className="flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
                             Cadeaux disponibles
                         </h1>
@@ -125,7 +125,7 @@ export default function UserList({
                 )}
 
                 {ideas_reserved.length > 0 && (
-                    <div className="p-4 flex flex-col justify-center">
+                    <div className="flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
                             Cadeaux réservés
                         </h1>
@@ -170,7 +170,7 @@ export default function UserList({
                 )}
 
                 {ideas_purchased.length > 0 && (
-                    <div className="p-4 flex flex-col justify-center">
+                    <div className="flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
                             Cadeaux achetés
                         </h1>

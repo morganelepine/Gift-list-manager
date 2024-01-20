@@ -7,7 +7,7 @@ import MyLists from "@/Components/User/MyLists";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
 
-export default function Index({ auth, listsToFollow, followedLists, mylists }) {
+export default function Index({ auth, followedLists, mylists }) {
     // console.log("listsToFollow : ", listsToFollow);
 
     return (

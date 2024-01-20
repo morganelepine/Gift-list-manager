@@ -37,7 +37,7 @@ export default function ListsToFollow({ auth, listsToFollow }) {
                             ))}
                         </div>
                     ) : (
-                        <div className="flex flex-col items-center mt-12 sm:mt-0">
+                        <div className="flex flex-col items-center">
                             <p className="text-center">
                                 Il n'y a actuellement aucune liste à suivre.
                                 Revenez plus tard&nbsp;!
