@@ -5,7 +5,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 
 export default function AuthList({ auth, list, ideas }) {
-    console.log("ideas : ", ideas);
+    // console.log("ideas : ", ideas);
 
     const [sortBy, setSortBy] = useState("created_at");
     const handleSortChange = (newSortBy) => {

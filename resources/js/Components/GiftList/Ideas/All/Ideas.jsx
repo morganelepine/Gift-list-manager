@@ -9,7 +9,7 @@ import { Draggable } from "@hello-pangea/dnd";
 
 dayjs.extend(relativeTime);
 
-export default function IdeaAdmin({ brand, idea, index }) {
+export default function Ideas({ brand, idea, index }) {
     // console.log("idea : ", idea);
 
     const { auth } = usePage().props;
@@ -45,7 +45,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
                     </div>
 
                     {/* DRAG & DROP BUTTON */}
-                    <div className="hidden sm:block">
+                    {/* <div className="hidden sm:block">
                         <button>
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ export default function IdeaAdmin({ brand, idea, index }) {
                                 <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             )}
         </Draggable>

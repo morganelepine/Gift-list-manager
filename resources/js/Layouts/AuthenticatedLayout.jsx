@@ -45,6 +45,12 @@ export default function Authenticated({ user, header, children }) {
                                     Mes listes
                                 </NavLink>
                                 <NavLink
+                                    href={route("profile.purchase")}
+                                    active={route().current("profile.purchase")}
+                                >
+                                    Mes achats
+                                </NavLink>
+                                <NavLink
                                     href={route("lists.create")}
                                     active={route().current("lists.create")}
                                     className="text-indigo-700"

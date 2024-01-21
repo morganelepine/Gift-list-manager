@@ -24,6 +24,23 @@ export default function Index({ auth, ideas }) {
         listOfIdeas.map((idea) => (ideaId = idea.id));
     };
 
+    // Regrouper les idées par brand
+    const groupedIdeas = ideas.reduce((ideasByBrand, idea) => {
+        const { brand, ...rest } = idea;
+
+        if (!ideasByBrand[brand]) {
+            ideasByBrand[brand] = { brand, ideas: [rest] };
+        } else {
+            ideasByBrand[brand].ideas.push(rest);
+        }
+
+        return ideasByBrand;
+    }, {});
+
+    // Convertir l'objet en tableau
+    listOfIdeas = Object.values(groupedIdeas);
+    // const groupedIdeasArray = Object.values(groupedIdeas);
+
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Consulter ma liste" />

@@ -35,7 +35,7 @@ export default function IdeaShow({ idea }) {
                     </div>
                     {idea.link && (
                         <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all">
-                            <Linkify className="" options={{ target: "blank" }}>
+                            <Linkify options={{ target: "blank" }}>
                                 {idea.link}
                             </Linkify>
                         </p>
