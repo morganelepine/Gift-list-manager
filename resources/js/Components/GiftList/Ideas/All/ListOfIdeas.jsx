@@ -56,10 +56,10 @@ export default function Ideas_all({ ideas }) {
                                     ([brand, brandData]) => (
                                         <div key={brand}>
                                             <div class="inline-flex items-center w-full">
-                                                <hr class="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
-                                                <span class="absolute pr-3 font-medium bg-gray-50">
+                                                <p class="min-w-max pr-3 font-medium">
                                                     {brand}
-                                                </span>
+                                                </p>
+                                                <hr class="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
                                             </div>
                                             {brandData.ideas.map(
                                                 (idea, index) => (

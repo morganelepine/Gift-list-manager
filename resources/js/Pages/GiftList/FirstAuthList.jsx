@@ -7,7 +7,7 @@ import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 //-----------DISPLAY THIS PAGE WHEN THE AUTH USER ONLY HAVE ONE LIST IN DB
 
 export default function AuthList({ auth, list, ideas }) {
-    console.log("list[0].id : ", list[0].id);
+    // console.log("list[0].id : ", list[0].id);
 
     return (
         <AuthenticatedLayout

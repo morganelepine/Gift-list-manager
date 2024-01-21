@@ -20,23 +20,25 @@ export default function Dashboard({ auth }) {
                         <ul className="list-disc px-4 mt-3">
                             <li>Avoir une page d'accueil sans connexion</li>
                             <li>
-                                Organiser les cadeaux par marque/catégorie dans
-                                une liste
+                                Organiser les idées par catégorie dans une liste
                             </li>
                             <li>
                                 Trier les listes (par nom, date de création...)
                             </li>
-                            <li>Trier les cadeaux (par prix, promo...)</li>
+                            <li>
+                                Permettre le tri des idées (par prix, promo...)
+                            </li>
                             <li>Avoir un récap de ses achats</li>
                             <li>
                                 Ajouter un bouton "Demander l'accès" qui envoie
-                                un mail au·à la propriétaire de la liste
+                                un message au·à la propriétaire de la liste
                             </li>
                             <li>Modifier le nom des listes</li>
                             <li>Permettre de ne plus suivre une liste</li>
                             <li>
                                 Visualiser les personnes qui suivent nos listes
                             </li>
+                            <li>Transférer une idée dans une autre liste</li>
                             <li>
                                 Pop up pour inviter l'utilisateur·ice à ajouter
                                 des idées lorsqu'il n'y en a plus beaucoup de
