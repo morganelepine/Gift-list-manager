@@ -21,6 +21,7 @@ export default function Ideas_all({ ideas }) {
     // Convertir l'objet en tableau
     const groupedIdeasArray = Object.values(groupedIdeas);
 
+    //Permettre le drag&drop
     const [listOfIdeas, setListOfIdeas] = useState(groupedIdeasArray);
 
     const onDragEnd = (result) => {

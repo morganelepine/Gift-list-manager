@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-// import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 import IdeasAvailable from "@/Components/GiftList/Ideas/Available/Ideas_available";
 import IdeasReserved from "@/Components/GiftList/Ideas/Reserved/Ideas_reserved";
 import IdeasPurchased from "@/Components/GiftList/Ideas/Purchased/Ideas_purchased";
@@ -10,12 +9,24 @@ import IdeasPurchased from "@/Components/GiftList/Ideas/Purchased/Ideas_purchase
 export default function UserList({
     auth,
     list,
-    // ideas,
     ideas_available,
     ideas_reserved,
     ideas_purchased,
 }) {
     // console.log("followedList : ", followedList);
+
+    // Regrouper les idées par marque
+    const groupedIdeas = ideas_available.reduce((ideasByBrand, idea) => {
+        const { brand, ...rest } = idea;
+
+        if (!ideasByBrand[brand]) {
+            ideasByBrand[brand] = { brand, ideas_available: [rest] };
+        } else {
+            ideasByBrand[brand].ideas_available.push(rest);
+        }
+
+        return ideasByBrand;
+    }, {});
 
     return (
         <AuthenticatedLayout
@@ -113,13 +124,25 @@ export default function UserList({
                             </svg>
                         </div>
 
-                        <div className="flex items-center justify-between w-full">
-                            <IdeasAvailable
-                                key={list.id}
-                                list={list}
-                                ideas={ideas_available}
-                                auth={auth}
-                            />
+                        <div className="mt-4 space-y-6">
+                            {Object.entries(groupedIdeas).map(
+                                ([brand, brandData]) => (
+                                    <div key={brand}>
+                                        <div class="inline-flex items-center w-full">
+                                            <hr class="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
+                                            <span class="absolute pr-3 font-medium bg-gray-50">
+                                                {brand}
+                                            </span>
+                                        </div>
+                                        <IdeasAvailable
+                                            key={list.id}
+                                            list={list}
+                                            ideas={brandData.ideas_available}
+                                            auth={auth}
+                                        />
+                                    </div>
+                                )
+                            )}
                         </div>
                     </div>
                 )}
