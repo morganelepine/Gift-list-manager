@@ -24,6 +24,7 @@
         "@tailwindcss/line-clamp": "^0.4.4",
         "@types/prop-types": "^15.7.9",
         "dayjs": "^1.11.10",
+        "keep-react": "^1.1.2",
         "linkify-react": "^4.1.0",
         "prop-types": "^15.8.1",
         "react-beautiful-dnd": "^13.1.1"

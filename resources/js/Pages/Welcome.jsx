@@ -68,12 +68,12 @@ export default function Welcome({ auth }) {
                         <span className="">par Morgane Lu</span>
                     </div>
 
-                    <ul className="flex flex-wrap justify-center items-center mt-3 sm:mt-0 space-x-3 sm:space-x-10">
+                    <ul className="flex flex-wrap justify-center items-center mt-2 sm:mt-0 space-x-3 sm:space-x-10">
                         <li>
                             <a
                                 href="https://github.com/morganelepine"
                                 target="_blank"
-                                className="hover:text-indigo-700 font-medium"
+                                className="hover:text-indigo-700 sm:font-medium"
                             >
                                 GitHub
                             </a>
@@ -82,7 +82,7 @@ export default function Welcome({ auth }) {
                             <a
                                 href="https://www.linkedin.com/in/morgane-l%C3%A9pine-utter-a7bb5353/"
                                 target="_blank"
-                                className="hover:text-indigo-700 font-medium"
+                                className="hover:text-indigo-700 sm:font-medium"
                             >
                                 LinkedIn
                             </a>
@@ -91,7 +91,7 @@ export default function Welcome({ auth }) {
                             <a
                                 href="https://morganelepine.github.io/"
                                 target="_blank"
-                                className="hover:text-indigo-700 font-medium"
+                                className="hover:text-indigo-700 sm:font-medium"
                             >
                                 Portfolio
                             </a>
