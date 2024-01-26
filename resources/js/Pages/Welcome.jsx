@@ -54,7 +54,7 @@ export default function Welcome({ auth }) {
                     )}
                 </div>
 
-                <footer className="fixed bottom-0 left-0 w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-50 shadow-md text-gray-500 text-sm">
+                <footer className="fixed bottom-0 left-0 w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-indigo-50 to-pink-50 shadow-md text-gray-500 text-sm">
                     <div className="flex justify-center items-center font-medium">
                         <span className="">Fait avec</span>
                         <svg
