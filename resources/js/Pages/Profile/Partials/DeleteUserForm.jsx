@@ -89,7 +89,7 @@ export default function DeleteUserForm({ className = "" }) {
                             }
                             className="mt-1 block w-3/4"
                             isFocused
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                         />
 
                         <InputError

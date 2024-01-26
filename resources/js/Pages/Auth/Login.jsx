@@ -71,7 +71,7 @@ export default function Login({ status, canResetPassword }) {
                             id="password"
                             name="password"
                             type={passwordType}
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                             className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-blue-500 focus:border-blue-500 focus:ring-1"
                             value={data.password}
                             autoComplete="current-password"
