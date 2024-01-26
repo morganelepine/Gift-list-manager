@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 export default function NoListCreated() {
     return (
-        <div className="mt-2 text-center">
+        <div className="mt-6 text-center">
             <p>
                 Vous n’avez pas encore créé de liste. <br></br>
                 Cliquez sur ce bouton pour créer votre première liste&nbsp;!

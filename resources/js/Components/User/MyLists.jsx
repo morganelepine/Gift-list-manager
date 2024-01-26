@@ -43,7 +43,7 @@ export default function MyLists({ list }) {
                 </Link>
 
                 {/* DELETE BUTTON */}
-                <Link
+                {/* <Link
                     as="button"
                     href={route("lists.destroy", list.id)}
                     method="delete"
@@ -51,7 +51,7 @@ export default function MyLists({ list }) {
                     <small className="italic hover:text-indigo-600">
                         Supprimer ma liste{" "}
                     </small>
-                </Link>
+                </Link> */}
             </div>
         </div>
     );

@@ -23,12 +23,9 @@ export default function Dashboard({ auth }) {
                                 Organiser les idées par catégorie dans une liste
                             </li>
                             <li>
-                                Trier les listes (par nom, date de création...)
+                                Permettre le tri/filtre des idées (par prix,
+                                promo...)
                             </li>
-                            <li>
-                                Permettre le tri des idées (par prix, promo...)
-                            </li>
-                            <li>Avoir un récap de ses achats</li>
                             <li>
                                 Ajouter un bouton "Demander l'accès" qui envoie
                                 un message au·à la propriétaire de la liste

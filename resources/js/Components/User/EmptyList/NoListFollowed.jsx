@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 export default function NoListFollowed() {
     return (
-        <div className="mt-2 text-center">
+        <div className="mt-6 text-center">
             <p>
                 Vous ne suivez pas encore de liste. <br></br>
                 Cliquez sur ce bouton pour découvrir les listes
