@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import IdeasAvailable from "@/Components/GiftList/Ideas/Available/Ideas_available";
 import IdeasReserved from "@/Components/GiftList/Ideas/Reserved/Ideas_reserved";
@@ -27,6 +27,9 @@ export default function UserList({
 
         return ideasByBrand;
     }, {});
+
+    const seeButton =
+        "px-2 py-1 bg-indigo-700 border border-transparent rounded-md text-sm text-white hover:bg-indigo-900 transition ease-in-out duration-150";
 
     return (
         <AuthenticatedLayout
@@ -89,6 +92,18 @@ export default function UserList({
                         </p>
                     )}
 
+                {/* <div className="flex space-x-4">
+                    <Link as="button" className={seeButton}>
+                        Disponibles
+                    </Link>
+                    <Link as="button" className={seeButton}>
+                        Réservés
+                    </Link>
+                    <Link as="button" className={seeButton}>
+                        Achetés
+                    </Link>
+                </div> */}
+
                 {ideas_available.length > 0 && (
                     <div className="flex flex-col justify-center">
                         <h1 className="text-2xl font-semibold text-gray-700 mb-1 w-full">
@@ -128,11 +143,11 @@ export default function UserList({
                             {Object.entries(groupedIdeas).map(
                                 ([brand, brandData]) => (
                                     <div key={brand}>
-                                        <div class="inline-flex items-center w-full">
-                                            <p class="min-w-max pr-3 font-medium">
+                                        <div className="inline-flex items-center w-full">
+                                            <p className="min-w-max pr-3 font-medium">
                                                 {brand}
                                             </p>
-                                            <hr class="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
+                                            <hr className="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
                                         </div>
                                         <IdeasAvailable
                                             key={list.id}

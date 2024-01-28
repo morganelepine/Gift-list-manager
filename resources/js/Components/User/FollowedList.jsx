@@ -25,6 +25,14 @@ export default function FollowedList({ followedList }) {
             >
                 Voir la liste
             </Link>
+            {/* <Link
+                as="button"
+                href={route("lists.unfollowList", followedList.id)}
+                method="delete"
+                className="text-xs italic mt-3"
+            >
+                Ne plus suivre
+            </Link> */}
         </div>
     );
 }

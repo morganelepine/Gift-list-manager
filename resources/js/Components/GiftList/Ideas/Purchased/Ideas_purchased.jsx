@@ -49,7 +49,6 @@ export default function Ideas_purchased({ auth, ideas }) {
                                     {idea.link && (
                                         <p className="text-sm italic text-gray-400 hover:text-gray-500 max-h-5 text-ellipsis overflow-hidden break-all line-through">
                                             <Linkify
-                                                className=""
                                                 options={{
                                                     target: "blank",
                                                 }}

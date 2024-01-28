@@ -148,6 +148,8 @@ class GiftListController extends Controller
         // Get the lists followed by the authenticated user
         $authUser = Auth::user();
         $followedLists = $authUser->followedLists()->get();
+        // $authUserId = Auth::id();
+        // $followedLists = FollowedList::where('user_id', $authUserId)->get();
 
         // Formatage de la date
         foreach ($followedLists as $followedList) {
@@ -274,5 +276,19 @@ class GiftListController extends Controller
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }
+    }
+
+
+    /**
+     * Unfollow a list
+     */
+    public function unfollowList(FollowedList $list): RedirectResponse
+    {
+        //Only the auth user can unfollow the list
+        $this->authorize('delete', $list);
+
+        $list->delete();
+
+        return redirect(route('lists.authLists'));
     }
 }

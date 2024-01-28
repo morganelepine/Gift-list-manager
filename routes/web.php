@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/lists-to-follow', [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
     Route::get('/lists-followed', [GiftListController::class, 'followedLists'])->name('lists.followedLists');
     Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::delete('/lists/follow', [GiftListController::class, 'unfollowList'])->name('lists.unfollowList');
 });
 
 Route::resource('ideas', IdeaController::class)

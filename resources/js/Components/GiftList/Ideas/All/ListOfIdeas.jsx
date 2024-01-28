@@ -55,11 +55,11 @@ export default function Ideas_all({ ideas }) {
                                 {Object.entries(groupedIdeas).map(
                                     ([brand, brandData]) => (
                                         <div key={brand}>
-                                            <div class="inline-flex items-center w-full">
-                                                <p class="min-w-max pr-3 font-medium">
+                                            <div className="inline-flex items-center w-full">
+                                                <p className="min-w-max pr-3 font-medium">
                                                     {brand}
                                                 </p>
-                                                <hr class="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
+                                                <hr className="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
                                             </div>
                                             {brandData.ideas.map(
                                                 (idea, index) => (

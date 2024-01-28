@@ -50,7 +50,6 @@ export default function Ideas_available({ auth, ideas }) {
                                         {idea.link && (
                                             <p className="text-sm italic text-indigo-800 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all">
                                                 <Linkify
-                                                    className=""
                                                     options={{
                                                         target: "blank",
                                                     }}
