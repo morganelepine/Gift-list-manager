@@ -30,7 +30,6 @@ export default function Dashboard({ auth }) {
                                 Ajouter un bouton "Demander l'accès" qui envoie
                                 un message au·à la propriétaire de la liste
                             </li>
-                            <li>Modifier le nom des listes</li>
                             <li>Permettre de ne plus suivre une liste</li>
                             <li>
                                 Visualiser les personnes qui suivent nos listes
