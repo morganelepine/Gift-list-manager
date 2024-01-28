@@ -18,11 +18,11 @@ export default function EditListTitle({ list, setEditing }) {
     };
 
     return (
-        <div className="flex items-center">
+        <div className="sm:flex items-center">
             <h2 className="font-semibold text-xl text-gray-800 leading-tight mr-3">
-                Ma liste :
+                Ma liste
             </h2>
-            <form onSubmit={submit} className="flex items-center">
+            <form onSubmit={submit} className="flex items-center sm:py-0 py-3">
                 <div>
                     <input
                         id="name"
