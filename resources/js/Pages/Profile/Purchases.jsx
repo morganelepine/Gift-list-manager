@@ -39,14 +39,13 @@ export default function Purchases({ auth, ideas, totalPrice }) {
                         <Link
                             as="button"
                             href={route("lists.followedLists")}
-                            className="flex items-center"
+                            className="flex items-center mt-2 sm:mt-0"
                         >
                             <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
-                                    stroke-width="1.5"
                                     stroke="currentColor"
                                     className="w-5 h-5"
                                 >
@@ -64,7 +63,7 @@ export default function Purchases({ auth, ideas, totalPrice }) {
         >
             <Head title="Mes achats" />
 
-            <div className="max-w-3xl mx-auto pb-20 px-4 mt-6">
+            <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
                     <div className="space-y-10">
                         <div className="flex justify-between mt-10 text-indigo-900 text-xl uppercase font-extrabold">

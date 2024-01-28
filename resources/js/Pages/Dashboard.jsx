@@ -13,8 +13,8 @@ export default function Dashboard({ auth }) {
         >
             <Head title="Évolutions" />
 
-            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
-                <div className="mt-6 space-x-0 sm:space-x-20 sm:flex">
+            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
+                <div className="space-x-0 sm:space-x-20 sm:flex">
                     <div className="">
                         <h1 className="font-semibold">Évolutions</h1>
                         <ul className="list-disc px-4 mt-3">

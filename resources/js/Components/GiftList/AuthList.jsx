@@ -33,7 +33,7 @@ export default function AuthList({ auth, list, ideas }) {
                                 <button onClick={() => setEditing(true)}>
                                     <svg
                                         xmlns="https://www.w3.org/2000/svg"
-                                        className="h-5 w-5 text-gray-300 hover:text-indigo-800"
+                                        className="h-5 w-5 text-gray-400 hover:text-indigo-800"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -48,7 +48,7 @@ export default function AuthList({ auth, list, ideas }) {
                         <Link
                             as="button"
                             href={route("ideas.create_idea", list.id)}
-                            className="flex items-center"
+                            className="flex items-center mt-2 sm:mt-0"
                         >
                             <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                                 <svg
@@ -69,7 +69,7 @@ export default function AuthList({ auth, list, ideas }) {
                 </div>
             }
         >
-            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
+            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 {/* <div className="space-x-5">
                     <button onClick={() => handleSortChange("price")}>
                         Trier par prix
@@ -92,7 +92,7 @@ export default function AuthList({ auth, list, ideas }) {
                         />
                     </div>
                 ) : (
-                    <div className="mt-6 text-center">
+                    <div className="text-center">
                         <p>
                             Votre liste est vide. Cliquez sur ce bouton pour la
                             compléter :

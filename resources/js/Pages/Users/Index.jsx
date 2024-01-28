@@ -22,7 +22,7 @@ export default function Index({ auth, followedLists, mylists }) {
             <Head title="Les listes à suivre" />
             <div className="max-w-7xl mx-auto px-4 sm:p-4">
                 <div className="sm:mt-6 sm:flex sm:space-x-14 justify-evenly">
-                    <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
+                    <div className="flex flex-col items-center sm:w-1/3 mt-6 sm:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Les listes suivies
                         </h1>

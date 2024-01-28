@@ -68,7 +68,7 @@ export default function Create({ auth, list }) {
                     <Link
                         as="button"
                         href={route("lists.show", list.id)}
-                        className="flex items-center my-1"
+                        className="flex items-center mt-2 sm:mt-0"
                     >
                         <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                             <svg

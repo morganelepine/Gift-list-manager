@@ -45,9 +45,9 @@ export default function Index({ auth, ideas }) {
         <AuthenticatedLayout user={auth.user}>
             <Head title="Consulter ma liste" />
 
-            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
+            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 <DragDropContext onDragEnd={onDragEnd}>
-                    <div className="mt-6">
+                    <div className="">
                         <Droppable
                             droppableId={"listOfIdeas"}
                             key={listOfIdeas.id}

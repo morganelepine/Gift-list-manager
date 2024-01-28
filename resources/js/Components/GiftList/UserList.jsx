@@ -82,7 +82,7 @@ export default function UserList({
         >
             <Head title="Ma liste" />
 
-            <div className="max-w-3xl mx-auto space-y-10 mt-8 pb-20 px-4">
+            <div className="max-w-3xl mx-auto space-y-10 pb-14 px-4 mt-6">
                 {ideas_available.length == 0 &&
                     ideas_reserved.length == 0 &&
                     ideas_purchased.length == 0 && (

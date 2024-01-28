@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
-import TextInput from "@/Components/Laravel/TextInput";
 import InputError from "@/Components/Laravel/InputError";
 
 export default function EditListTitle({ list, setEditing }) {
@@ -29,7 +28,7 @@ export default function EditListTitle({ list, setEditing }) {
                         name="name"
                         value={data.name}
                         placeholder="Le nom votre liste"
-                        className="py-1 px-2 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        className="py-1 px-2 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         onChange={(e) => setData("name", e.target.value)}
                     />
 

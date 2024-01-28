@@ -22,7 +22,7 @@ export default function AuthLists({ auth, lists }) {
                         <Link
                             as="button"
                             href={route("lists.create")}
-                            className="flex items-center"
+                            className="flex items-center mt-2 sm:mt-0"
                         >
                             <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
                                 <svg
@@ -45,9 +45,9 @@ export default function AuthLists({ auth, lists }) {
         >
             <Head title="Mes listes" />
 
-            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
+            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 {lists.length ? (
-                    <div className="mt-6 flex flex-wrap justify-center">
+                    <div className="flex flex-wrap justify-center">
                         {lists.map((list) => (
                             <div
                                 key={list.id}
@@ -142,7 +142,7 @@ export default function AuthLists({ auth, lists }) {
                                 </div>
 
                                 {/* PRIVATE CODE */}
-                                <div className="mt-4 flex flex-wrap  justify-between w-3/4">
+                                <div className="mt-4 flex flex-wrap  justify-between sm:w-3/4 min-w-min">
                                     <p className="text-sm whitespace-normal">
                                         Code privé
                                     </p>

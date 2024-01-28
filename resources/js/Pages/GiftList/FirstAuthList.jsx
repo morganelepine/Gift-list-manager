@@ -18,7 +18,7 @@ export default function AuthList({ auth, list, ideas }) {
                         Ma liste "{list[0].name}"
                     </h2>
                     {ideas.length > 0 && (
-                        <div className="flex flex-wrap">
+                        <div className="flex flex-wrap mt-2 sm:mt-0">
                             <Link
                                 as="button"
                                 href={route("ideas.create_idea", list[0].id)}
@@ -64,7 +64,7 @@ export default function AuthList({ auth, list, ideas }) {
                 </div>
             }
         >
-            <div className="max-w-4xl mx-auto pt-4 pb-20 px-4">
+            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
                     <div className="flex w-full">
                         <ListOfIdeas
@@ -75,7 +75,7 @@ export default function AuthList({ auth, list, ideas }) {
                         />
                     </div>
                 ) : (
-                    <div className="mt-6 text-center">
+                    <div className="text-center">
                         <p>
                             Votre liste est vide. Cliquez sur ce bouton pour la
                             compléter :
