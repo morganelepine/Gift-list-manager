@@ -66,13 +66,6 @@ export default function Authenticated({ user, header, children }) {
                                     </svg>
                                     Créer une liste
                                 </NavLink>
-                                <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
-                                    className="italic"
-                                >
-                                    [ Évolutions à venir ]
-                                </NavLink>
                             </div>
                         </div>
 
@@ -113,6 +106,12 @@ export default function Authenticated({ user, header, children }) {
                                             href={route("profile.purchase")}
                                         >
                                             Mes achats
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route("dashboard")}
+                                            className="italic"
+                                        >
+                                            [ Évolutions à venir ]
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route("logout")}
@@ -211,15 +210,6 @@ export default function Authenticated({ user, header, children }) {
                     </div>
 
                     <div className="py-2 border-t border-gray-200">
-                        {/* <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">
-                                {user.name}
-                            </div>
-                            <div className="font-medium text-sm text-gray-500">
-                                {user.email}
-                            </div>
-                        </div> */}
-
                         <div className="">
                             <ResponsiveNavLink href={route("profile.edit")}>
                                 Mon profil

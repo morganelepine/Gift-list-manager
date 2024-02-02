@@ -22,12 +22,12 @@ export default function ListsToFollow({ auth, listsToFollow }) {
             }
         >
             <Head title="Les listes à suivre" />
-            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
-                <div className="mt-6 sm:flex justify-evenly">
+            <div className="max-w-7xl mx-auto pb-14 px-4 mt-6">
+                <div className="mt-6 flex justify-center">
                     {listsToFollow.length > 0 ? (
-                        <div className="flex flex-col sm:flex-row sm:space-x-10">
+                        <div className="flex flex-col sm:flex-row flex-wrap justify-center">
                             {listsToFollow.map((listToFollow) => (
-                                <div className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full">
+                                <div className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl">
                                     <ListToFollow
                                         key={listToFollow.id}
                                         listToFollow={listToFollow}

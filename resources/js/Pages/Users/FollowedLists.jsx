@@ -18,12 +18,12 @@ export default function FollowedLists({ auth, followedLists }) {
             }
         >
             <Head title="Les listes à suivre" />
-            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
-                {followedLists.length > 0 ? (
-                    <div className="mt-6 sm:flex justify-evenly">
-                        <div className="flex flex-col sm:flex-row sm:space-x-10">
+            <div className="max-w-7xl mx-auto pb-14 px-4 mt-6">
+                <div className="mt-6 flex justify-center">
+                    {followedLists.length > 0 ? (
+                        <div className="flex flex-col sm:flex-row flex-wrap justify-center">
                             {followedLists.map((followedList) => (
-                                <div className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full">
+                                <div className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl">
                                     <FollowedList
                                         key={followedList.id}
                                         followedList={followedList}
@@ -32,10 +32,10 @@ export default function FollowedLists({ auth, followedLists }) {
                                 </div>
                             ))}
                         </div>
-                    </div>
-                ) : (
-                    <NoListFollowed />
-                )}
+                    ) : (
+                        <NoListFollowed />
+                    )}
+                </div>
             </div>
         </AuthenticatedLayout>
     );

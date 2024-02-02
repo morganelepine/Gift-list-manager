@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
+import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
 
 export default function MyLists({ list }) {
     const seeButton =
@@ -43,16 +44,8 @@ export default function MyLists({ list }) {
                         Compléter ma liste
                     </Link>
 
-                    {/* DELETE BUTTON */}
-                    {/* <Link
-                    as="button"
-                    href={route("lists.destroy", list.id)}
-                    method="delete"
-                >
-                    <small className="italic hover:text-indigo-600">
-                        Supprimer ma liste{" "}
-                    </small>
-                </Link> */}
+                    {/* PRIVATE CODE */}
+                    <ShowPrivateCode list={list} />
                 </div>
             </div>
 

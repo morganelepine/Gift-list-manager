@@ -67,7 +67,6 @@ export default function Index({ auth, followedLists, mylists }) {
 
 Index.propTypes = {
     auth: PropTypes.object.isRequired,
-    listsToFollow: PropTypes.array,
     followedLists: PropTypes.array,
     mylists: PropTypes.array,
 };
