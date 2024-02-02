@@ -61,7 +61,7 @@ export default function Dashboard({ auth }) {
                             </li>
                             <li>Modifier le mot de passe à la connexion</li>
                             <li>Drag&drop qui enregistre le changement</li>
-                            <li>Pas de marque renseignée > null</li>
+                            <li>Pas de marque renseignée = null</li>
                         </ul>
                     </div>
                 </div>

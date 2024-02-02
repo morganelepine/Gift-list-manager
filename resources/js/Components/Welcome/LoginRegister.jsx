@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 export default function LoginRegister({ auth }) {
     const link =
-        "flex items-center m-2 p-2 font-medium text-indigo-500 hover:text-indigo-700";
+        "flex items-center m-2 p-2 font-medium text-indigo-600 hover:text-indigo-700";
     const svgDiv =
-        "h-8 w-8 bg-gray-50 hover:bg-indigo-100 flex items-center justify-center rounded-full";
+        "h-8 w-8 bg-gradient-to-r from-pink-50 to-indigo-50 hover:bg-indigo-100 flex items-center justify-center rounded-full";
 
-    const svg = "w-6 h-6 stroke-indigo-500 hover:stroke-indigo-900";
+    const svg = "w-6 h-6 stroke-indigo-600 hover:stroke-indigo-900";
 
     return (
         <div className="flex sm:self-end sm:px-20">
