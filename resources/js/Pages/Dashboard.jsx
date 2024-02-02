@@ -47,6 +47,7 @@ export default function Dashboard({ auth }) {
                                 Ajouter des photos dans le formulaire d'ajout
                                 d'une idée
                             </li>
+                            <li>Design du tableau "Mes achats"</li>
                         </ul>
                     </div>
                     <div className="sm:mt-0 mt-10">
@@ -60,6 +61,7 @@ export default function Dashboard({ auth }) {
                             </li>
                             <li>Modifier le mot de passe à la connexion</li>
                             <li>Drag&drop qui enregistre le changement</li>
+                            <li>Pas de marque renseignée > null</li>
                         </ul>
                     </div>
                 </div>

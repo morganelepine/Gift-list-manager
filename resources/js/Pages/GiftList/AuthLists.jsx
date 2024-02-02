@@ -46,7 +46,7 @@ export default function AuthLists({ auth, lists }) {
                         {lists.map((list) => (
                             <div
                                 key={list.id}
-                                className="p-5 mb-8 mx-10 flex flex-col border bg-white rounded-xl w-full sm:w-80"
+                                className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl"
                             >
                                 <div className="flex items center justify-between">
                                     {/* LIST NAME */}
