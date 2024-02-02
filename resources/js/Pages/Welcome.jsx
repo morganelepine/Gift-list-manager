@@ -10,7 +10,10 @@ export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Welcome" />
-            <div className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-indigo-100 to-pink-100">
+            <div
+                className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-indigo-100 to-pink-100"
+                style={{ minHeight: "100svh" }}
+            >
                 {auth.user ? (
                     <div className="flex flex-col max-w-4xl mx-auto">
                         <Link href={route("lists.index")} className={`${link}`}>
