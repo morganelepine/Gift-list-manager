@@ -11,8 +11,8 @@ export default function Welcome({ auth }) {
         <>
             <Head title="Welcome" />
             <div
-                className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-indigo-100 to-pink-100"
-                style={{ minHeight: "100svh" }}
+                className="flex flex-col justify-between items-center bg-gradient-to-r from-indigo-100 to-pink-100"
+                style={{ minHeight: "100vh", minHeight: "100svh" }}
             >
                 {auth.user ? (
                     <div className="flex flex-col max-w-4xl mx-auto">
