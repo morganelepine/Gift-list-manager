@@ -18,7 +18,6 @@ export default function Dashboard({ auth }) {
                     <div className="">
                         <h1 className="font-semibold">Évolutions</h1>
                         <ul className="list-disc px-4 mt-3">
-                            <li>Avoir une page d'accueil sans connexion</li>
                             <li>
                                 Organiser les idées par catégorie dans une liste
                             </li>
