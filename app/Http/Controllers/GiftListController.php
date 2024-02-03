@@ -46,14 +46,15 @@ class GiftListController extends Controller
 
         // idées réservées
         $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")
-            ->orderBy('brand')
-            ->orderByDesc('favorite')
-            ->orderBy('price')
-            ->orderBy('idea')
+            ->orderBy('updated_at')
+            ->orderBy('status_user')
             ->get();
 
         // idées réservées
-        $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")->get();
+        $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")
+            ->orderBy('updated_at')
+            ->orderBy('status_user')
+            ->get();
 
         // get lists followed by connected user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();
