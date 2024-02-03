@@ -187,13 +187,13 @@ export default function UserList({
                                 picto
                             </small>
                             <svg
-                                xmlns="https://www.w3.org/2000/svg"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 className="w-4 h-4"
                             >
-                                <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
                         <div className="flex items-center justify-between w-full">
@@ -217,13 +217,13 @@ export default function UserList({
                                 Pour annuler votre achat, cliquez sur le picto
                             </small>
                             <svg
-                                xmlns="https://www.w3.org/2000/svg"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 className="w-4 h-4"
                             >
-                                <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
                         <div className="flex items-center justify-between w-full">

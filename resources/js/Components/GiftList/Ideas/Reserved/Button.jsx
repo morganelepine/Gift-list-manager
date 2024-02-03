@@ -20,7 +20,7 @@ export default function Buttons({ auth, idea }) {
     };
 
     return (
-        <div className="flex sm:flex-col">
+        <>
             <form onSubmit={submit}>
                 <button
                     onClick={() => {
@@ -34,7 +34,7 @@ export default function Buttons({ auth, idea }) {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        className="w-5 h-5 cursor-pointer"
+                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer fill-white"
                     >
                         <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
@@ -47,24 +47,24 @@ export default function Buttons({ auth, idea }) {
                     onClick={() => {
                         setData("status", "available");
                     }}
-                    className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-700"
+                    className="flex items-center justify-end text-xs text-gray-400 hover:text-red-700"
                     disabled={processing}
                 >
                     <svg
-                        xmlns="https://www.w3.org/2000/svg"
+                        xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        className="w-5 h-5 cursor-pointer"
+                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer fill-white"
                     >
-                        <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <p className="block sm:hidden ml-1 mr-3">
                         Annuler la réservation
                     </p>
                 </button>
             </form>
-        </div>
+        </>
     );
 }
 
