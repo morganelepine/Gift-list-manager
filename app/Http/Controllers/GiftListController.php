@@ -46,13 +46,13 @@ class GiftListController extends Controller
 
         // idées réservées
         $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")
-            ->orderBy('updated_at')
+            ->orderByDesc('updated_at')
             ->orderBy('status_user')
             ->get();
 
         // idées réservées
         $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")
-            ->orderBy('updated_at')
+            ->orderByDesc('updated_at')
             ->orderBy('status_user')
             ->get();
 
