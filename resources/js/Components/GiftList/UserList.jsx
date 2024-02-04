@@ -80,7 +80,7 @@ export default function UserList({
                 </div>
             }
         >
-            <Head title="Ma liste" />
+            <Head title="Liste " />
 
             <div className="max-w-3xl mx-auto space-y-10 pb-14 px-4 mt-6">
                 {ideas_available.length == 0 &&

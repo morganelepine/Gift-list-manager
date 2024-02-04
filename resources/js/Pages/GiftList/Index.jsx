@@ -28,9 +28,11 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
                         </h1>
                         {followedLists.length > 0 ? (
                             followedLists.map((followedList) => (
-                                <div className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full">
+                                <div
+                                    className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
+                                    key={followedList.id}
+                                >
                                     <FollowedList
-                                        key={followedList.id}
                                         followedList={followedList}
                                         auth={auth}
                                     />
@@ -47,12 +49,11 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
                         </h1>
                         {mylists.length > 0 ? (
                             mylists.map((list) => (
-                                <div className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full">
-                                    <MyLists
-                                        key={list.id}
-                                        list={list}
-                                        auth={auth}
-                                    />
+                                <div
+                                    className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
+                                    key={list.id}
+                                >
+                                    <MyLists list={list} auth={auth} />
                                 </div>
                             ))
                         ) : (

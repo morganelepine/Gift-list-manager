@@ -27,9 +27,11 @@ export default function ListsToFollow({ auth, listsToFollow }) {
                     {listsToFollow.length > 0 ? (
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center">
                             {listsToFollow.map((listToFollow) => (
-                                <div className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl">
+                                <div
+                                    className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl"
+                                    key={listToFollow.id}
+                                >
                                     <ListToFollow
-                                        key={listToFollow.id}
                                         listToFollow={listToFollow}
                                         auth={auth}
                                     />

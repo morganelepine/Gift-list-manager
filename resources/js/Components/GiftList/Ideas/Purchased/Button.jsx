@@ -1,30 +1,19 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 
-export default function Buttons({ auth, idea }) {
-    const { data, setData, patch, processing, reset } = useForm({
-        status_user: auth.user.name,
-        status: idea.status,
-    });
-
-    const submit = (e) => {
+export default function Buttons({ id, idea }) {
+    //Remove idea from table PURCHASED
+    const { delete: destroy, processing, reset } = useForm();
+    const cancelPurchase = (e) => {
         e.preventDefault();
-        if (data.status !== idea.status) {
-            patch(route("ideas.update", idea.id), {
-                onSuccess: () => reset(),
-                onError: (errors) => {
-                    console.error(errors);
-                },
-            });
-        }
+        destroy(route("ideas.cancelPurchase", id), {
+            onSuccess: () => reset(),
+        });
     };
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={cancelPurchase}>
             <button
-                onClick={() => {
-                    setData("status", "available");
-                }}
                 className="flex items-center justify-end text-xs text-gray-400 hover:text-red-700"
                 disabled={processing}
             >
@@ -45,4 +34,5 @@ export default function Buttons({ auth, idea }) {
 
 Buttons.propTypes = {
     idea: PropTypes.object,
+    id: PropTypes.number,
 };

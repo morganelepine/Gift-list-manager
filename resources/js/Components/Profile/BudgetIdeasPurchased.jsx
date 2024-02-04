@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
-export default function IdeasPurchased({ idea }) {
+export default function BudgetIdeasPurchased({ idea }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
@@ -49,7 +49,6 @@ export default function IdeasPurchased({ idea }) {
     );
 }
 
-IdeasPurchased.propTypes = {
-    auth: PropTypes.object.isRequired,
+BudgetIdeasPurchased.propTypes = {
     idea: PropTypes.object,
 };

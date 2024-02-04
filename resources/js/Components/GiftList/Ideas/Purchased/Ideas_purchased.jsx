@@ -11,13 +11,13 @@ export default function Ideas_purchased({ auth, ideas }) {
 
     return (
         <div className="w-full space-y-5 sm:space-y-0">
-            {ideas.map((idea) => (
-                <div key={idea.id}>
+            {ideas.map((purchased) => (
+                <div key={purchased.id}>
                     <div className="my-2 sm:flex items-center">
                         {/* BUTTON */}
-                        {idea.status_user === auth.user.name && (
+                        {purchased.idea.status_user === auth.user.name && (
                             <div className="sm:hidden flex mb-1">
-                                <Button auth={auth} idea={idea} />
+                                <Button auth={auth} idea={purchased.idea} />
                             </div>
                         )}
 
@@ -27,7 +27,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                 <div className="flex flex-col mr-3 w-full">
                                     <div className="flex justify-between items-center">
                                         <div className="flex flex-wrap items-center">
-                                            {idea.favorite === 1 && (
+                                            {purchased.idea.favorite === 1 && (
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 16 16"
@@ -38,14 +38,14 @@ export default function Ideas_purchased({ auth, ideas }) {
                                                 </svg>
                                             )}
 
-                                            {idea.idea && (
+                                            {purchased.idea.idea && (
                                                 <p className="text-sm sm:uppercase text-gray-400 mr-2 mb-1 sm:mb-0 sm:mr-4 line-through">
-                                                    {idea.idea}
+                                                    {purchased.idea.idea}
                                                 </p>
                                             )}
-                                            {idea.brand && (
+                                            {purchased.idea.brand && (
                                                 <small className="text-sm text-center text-gray-400 mb-1 sm:mb-0 mr-4 line-through">
-                                                    {idea.brand}
+                                                    {purchased.idea.brand}
                                                 </small>
                                             )}
                                         </div>
@@ -60,32 +60,35 @@ export default function Ideas_purchased({ auth, ideas }) {
                                             </div>
                                         )} */}
                                     </div>
-                                    {idea.link && (
+                                    {purchased.idea.link && (
                                         <p className="text-sm italic text-gray-400 hover:text-gray-500 max-h-5 text-ellipsis overflow-hidden break-all line-through">
                                             <Linkify
                                                 options={{
                                                     target: "blank",
                                                 }}
                                             >
-                                                {idea.link}
+                                                {purchased.idea.link}
                                             </Linkify>
                                         </p>
                                     )}
                                     <div className="flex justify-end items-center text-right">
                                         <small className="text-xs italic text-gray-700">
-                                            Purchased
-                                            {idea.status_user === auth.user.name
+                                            Acheté
+                                            {purchased.idea.status_user ===
+                                            auth.user.name
                                                 ? " "
-                                                : ` by ${idea.status_user} `}
-                                            {dayjs(idea.updated_at).fromNow()}
+                                                : ` by ${purchased.idea.status_user} `}
+                                            {dayjs(
+                                                purchased.idea.updated_at
+                                            ).fromNow()}
                                         </small>
                                         {/* BUTTON */}
-                                        {idea.status_user ===
+                                        {purchased.idea.status_user ===
                                             auth.user.name && (
                                             <div className="hidden sm:flex sm:ml-2">
                                                 <Button
-                                                    auth={auth}
-                                                    idea={idea}
+                                                    idea={purchased.idea}
+                                                    id={purchased.id}
                                                 />
                                             </div>
                                         )}

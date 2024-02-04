@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Idea;
+use App\Models\IdeaPurchased;
 
 class ProfileController extends Controller
 {
@@ -67,13 +68,26 @@ class ProfileController extends Controller
      */
     public function purchase(): Response
     {
-        $authUserName = Auth::user()->name;
-
         // Get all ideas purchased by auth user
+        $authUserName = Auth::user()->name;
         $ideas = Idea::where('status_user', $authUserName)->get();
         $totalPrice = $ideas->sum('price');
 
-        return Inertia::render('Profile/Purchases', [
+
+        // $authId = Auth::id();
+        // $ideas = IdeaPurchased::with('idea')
+        //     ->where('user_id', $authId)
+        //     ->get();
+
+        // foreach ($ideas as $idea) {
+        //     $user_name = $idea->user_name;
+        //     $idea_name = $idea->idea;
+        //     $brand = $idea->brand;
+        //     $link = $idea->link;
+        //     $price = $idea->price;
+        // }
+
+        return Inertia::render('Profile/Budget', [
             'ideas' => $ideas,
             'totalPrice' => $totalPrice
         ]);

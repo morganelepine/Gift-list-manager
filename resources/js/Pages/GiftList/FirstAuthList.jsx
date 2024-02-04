@@ -91,13 +91,8 @@ export default function AuthList({ auth, list, ideas }) {
         >
             <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
-                    <div className="flex w-full">
-                        <ListOfIdeas
-                            key={list[0].id}
-                            list={list}
-                            ideas={ideas}
-                            auth={auth}
-                        />
+                    <div className="flex w-full" key={list[0].id}>
+                        <ListOfIdeas list={list} ideas={ideas} auth={auth} />
                     </div>
                 ) : (
                     <div className="text-center">

@@ -1,9 +1,9 @@
 import { Head, Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import IdeasPurchased from "@/Components/Profile/IdeasPurchased";
+import BudgetIdeasPurchased from "@/Components/Profile/BudgetIdeasPurchased";
 
-export default function Purchases({ auth, ideas, totalPrice }) {
+export default function Budget({ auth, ideas, totalPrice }) {
     // console.log("ideas : ", ideas);
 
     // Regrouper les idées par user_name
@@ -80,7 +80,7 @@ export default function Purchases({ auth, ideas, totalPrice }) {
                                     </div>
                                     <div className="space-y-3">
                                         {userData.ideas.map((idea) => (
-                                            <IdeasPurchased
+                                            <BudgetIdeasPurchased
                                                 key={idea.id}
                                                 idea={idea}
                                             />
@@ -100,7 +100,7 @@ export default function Purchases({ auth, ideas, totalPrice }) {
     );
 }
 
-Purchases.propTypes = {
+Budget.propTypes = {
     auth: PropTypes.object,
     ideas: PropTypes.array,
 };

@@ -23,9 +23,11 @@ export default function FollowedLists({ auth, followedLists }) {
                     {followedLists.length > 0 ? (
                         <div className="flex flex-col sm:flex-row flex-wrap justify-center">
                             {followedLists.map((followedList) => (
-                                <div className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl">
+                                <div
+                                    className="p-5 m-5 flex flex-col text-center shadow bg-white rounded-xl"
+                                    key={followedList.id}
+                                >
                                     <FollowedList
-                                        key={followedList.id}
                                         followedList={followedList}
                                         auth={auth}
                                     />

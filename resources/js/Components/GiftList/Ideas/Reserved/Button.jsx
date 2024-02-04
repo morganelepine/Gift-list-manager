@@ -1,31 +1,28 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 
-export default function Buttons({ auth, idea }) {
-    const { data, setData, patch, processing, reset } = useForm({
-        status_user: auth.user.name,
-        status: idea.status,
-    });
-
-    const submit = (e) => {
+export default function Buttons({ id, idea }) {
+    //Copy idea in table PURCHASED
+    const { post, delete: destroy, processing, reset } = useForm();
+    const purchaseIdea = (e) => {
         e.preventDefault();
-        if (data.status !== idea.status) {
-            patch(route("ideas.update", idea.id), {
-                onSuccess: () => reset(),
-                onError: (errors) => {
-                    console.error(errors);
-                },
-            });
-        }
+        post(route("ideas.purchase", idea.id), {
+            onSuccess: () => reset(),
+        });
+    };
+
+    //Remove idea from table RESERVED
+    const cancelReserve = (e) => {
+        e.preventDefault();
+        destroy(route("ideas.cancelReserve", id), {
+            onSuccess: () => reset(),
+        });
     };
 
     return (
         <>
-            <form onSubmit={submit}>
+            <form onSubmit={purchaseIdea}>
                 <button
-                    onClick={() => {
-                        setData("status", "purchased");
-                    }}
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-700"
                     disabled={processing}
                 >
@@ -42,11 +39,8 @@ export default function Buttons({ auth, idea }) {
                 </button>
             </form>
 
-            <form onSubmit={submit}>
+            <form onSubmit={cancelReserve}>
                 <button
-                    onClick={() => {
-                        setData("status", "available");
-                    }}
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-red-700"
                     disabled={processing}
                 >
@@ -69,6 +63,6 @@ export default function Buttons({ auth, idea }) {
 }
 
 Buttons.propTypes = {
-    auth: PropTypes.object.isRequired,
     idea: PropTypes.object,
+    id: PropTypes.number,
 };

@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\GiftList;
 use App\Models\Idea;
-use App\Models\User;
+use App\Models\IdeaReserved;
+use App\Models\IdeaPurchased;
 use App\Models\FollowedList;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Inertia\Response;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-use Inertia\Response;
 use Carbon\Carbon;
 
 class GiftListController extends Controller
@@ -44,17 +46,29 @@ class GiftListController extends Controller
             ->orderBy('idea')
             ->get();
 
-        // idées réservées
-        $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")
-            ->orderByDesc('updated_at')
-            ->orderBy('status_user')
-            ->get();
+        // get reserved ideas from specific list
+        $ideas_reserved = IdeaReserved::with('idea')
+        ->where('gift_list_id', $id)
+        ->orderByDesc('updated_at')
+        ->get();
 
-        // idées réservées
-        $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")
-            ->orderByDesc('updated_at')
-            ->orderBy('status_user')
-            ->get();
+        // // idées réservées
+        // $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")
+        //     ->orderByDesc('updated_at')
+        //     ->orderBy('status_user')
+        //     ->get();
+
+        // get purchased ideas from specific list
+        $ideas_purchased = IdeaPurchased::with('idea')
+        ->where('gift_list_id', $id)
+        ->orderByDesc('updated_at')
+        ->get();
+
+        // // idées achetées
+        // $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")
+        //     ->orderByDesc('updated_at')
+        //     ->orderBy('status_user')
+        //     ->get();
 
         // get lists followed by connected user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();

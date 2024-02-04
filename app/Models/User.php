@@ -19,7 +19,25 @@ class User extends Authenticatable
         return $this->hasMany(GiftList::class);
     }
 
-    // Un user peut avoir plusieurs relations
+    // Un user peut avoir plusieurs idées
+    public function ideas(): HasMany
+    {
+        return $this->hasMany(Idea::class);
+    }
+
+    // Un user peut réserver plusieurs idées
+    public function ideaReserved()
+    {
+        return $this->hasMany(IdeaReserved::class);
+    }
+
+    // Un user peut acheter plusieurs idées
+    public function ideaPurchased()
+    {
+        return $this->hasMany(IdeaPurchased::class);
+    }
+
+    // Un user peut suivre plusieurs listes
     public function followed_lists(): HasMany
     {
         return $this->hasMany(FollowedList::class);
@@ -61,12 +79,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    // Un user peut avoir plusieurs idées
-    public function ideas(): HasMany
-    {
-        return $this->hasMany(Idea::class);
-    }
-
 
 }

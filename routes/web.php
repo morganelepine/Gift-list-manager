@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GiftListController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\IdeaReservedController;
+use App\Http\Controllers\IdeaPurchasedController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +49,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
     Route::patch('/ideas/{idea}/update', [IdeaController::class, 'modify'])->name('ideas.modify');
+
+    Route::post('/ideas/{idea}/reserve', [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
+    Route::delete('/ideas/{idea}/cancelReserve', [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
+
+    Route::post('/ideas/{idea}/purchase', [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
+    Route::delete('/ideas/{idea}/cancelPurchase', [IdeaPurchasedController::class, 'cancelPurchase'])->name('ideas.cancelPurchase');
 
     Route::get('/my-lists', [GiftListController::class, 'authLists'])->name('lists.authLists');
     Route::get('/lists-to-follow', [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');

@@ -83,13 +83,8 @@ export default function AuthList({ auth, list, ideas }) {
                 </div> */}
 
                 {ideas.length > 0 ? (
-                    <div className="flex w-full">
-                        <ListOfIdeas
-                            key={list.id}
-                            list={list}
-                            ideas={ideas}
-                            auth={auth}
-                        />
+                    <div className="flex w-full" key={list.id}>
+                        <ListOfIdeas list={list} ideas={ideas} auth={auth} />
                     </div>
                 ) : (
                     <div className="text-center">

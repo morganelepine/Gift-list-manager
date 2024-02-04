@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('details')->nullable();
             $table->integer('price')->nullable();
+            $table->boolean('favorite')->default(0);
             $table->boolean('promo')->nullable();
             $table->string('promo_details')->nullable();
             $table->string('membership')->nullable();
