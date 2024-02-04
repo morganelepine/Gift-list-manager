@@ -73,7 +73,7 @@ export default function Ideas_reserved({ auth, ideas }) {
                                             {reserved.idea.status_user ===
                                             auth.user.name
                                                 ? " "
-                                                : ` by ${reserved.idea.status_user} `}
+                                                : ` par ${reserved.idea.status_user} `}
                                             {dayjs(
                                                 reserved.idea.updated_at
                                             ).fromNow()}

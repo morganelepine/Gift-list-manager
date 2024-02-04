@@ -77,7 +77,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                             {purchased.idea.status_user ===
                                             auth.user.name
                                                 ? " "
-                                                : ` by ${purchased.idea.status_user} `}
+                                                : ` par ${purchased.idea.status_user} `}
                                             {dayjs(
                                                 purchased.idea.updated_at
                                             ).fromNow()}
