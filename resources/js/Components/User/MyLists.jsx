@@ -21,8 +21,10 @@ export default function MyLists({ list }) {
                         </span>{" "}
                     </p>
                     <small className="italic text-gray-500 mt-1 mb-2">
-                        Mise à jour le {list.formatted_updated_at}
-                    </small>
+                        {list.isEmpty
+                            ? `Créée le ${list.formatted_created_at}`
+                            : `Mise à jour le ${list.formatted_updated_at}`}
+                    </small>{" "}
                 </div>
 
                 <div className="flex flex-col items-center space-y-2 max-w-max">

@@ -15,7 +15,9 @@ export default function FollowedList({ followedList }) {
                 de {followedList.user_name}
             </p>
             <small className="italic text-gray-500 mt-1 mb-2">
-                Mise à jour le {followedList.formatted_updated_at}
+                {followedList.isEmpty
+                    ? `Créée le ${followedList.formatted_created_at}`
+                    : `Mise à jour le ${followedList.formatted_updated_at}`}
             </small>
             <Link
                 as="button"

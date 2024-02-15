@@ -96,15 +96,20 @@ class GiftListController extends Controller
         // Formatage de la date
         foreach ($mylists as $mylist) {
             $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format('d/m/Y');
-            $mylist->formatted_updated_at = Carbon::parse($mylist->updated_at)->format('d/m/Y');
+            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
+            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format('d/m/Y');
+            $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
+
 
         // Get the lists followed by the auth user
         $followedLists = $authUser->followedLists()->get();
         // Formatage de la date pour les listes suivies
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
-            $followedList->formatted_updated_at = Carbon::parse($followedList->updated_at)->format('d/m/Y');
+            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format('d/m/Y');
+            $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
 
         // Get the lists to follow
@@ -116,7 +121,9 @@ class GiftListController extends Controller
         // Formatage de la date pour les listes à suivre
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
-            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->updated_at)->format('d/m/Y');
+            $listToFollow->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format('d/m/Y');
+            $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
 
         return Inertia::render('Users/Index', [

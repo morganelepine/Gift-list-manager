@@ -30,10 +30,11 @@ export default function ListToFollow({ auth, listToFollow }) {
                     </span>{" "}
                     de {listToFollow.user_name}
                 </p>
-                <small className="italic text-gray-500 mt-1">
-                    Créée le {listToFollow.formatted_created_at}
+                <small className="italic text-gray-500 mt-1 mb-2">
+                    {listToFollow.isEmpty
+                        ? `Créée le ${listToFollow.formatted_created_at}`
+                        : `Mise à jour le ${listToFollow.formatted_updated_at}`}
                 </small>
-
                 {/* <Link
                     // as="button"
                     href={route("lists.show", listToFollow.id)}
