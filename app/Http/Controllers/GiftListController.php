@@ -121,7 +121,7 @@ class GiftListController extends Controller
         // Formatage de la date pour les listes à suivre
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
-            $listToFollow->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('updated_at');
             $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format('d/m/Y');
             $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
