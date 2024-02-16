@@ -90,7 +90,7 @@ export default function Ideas_available({ auth, ideas }) {
                                         )}
                                     </div>
                                 )}
-                                {idea.membership &&
+                                {/* {idea.membership &&
                                     idea.brand != "Nébuleuse" && (
                                         <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                                             <p className="text-xs italic text-gray-900">
@@ -109,7 +109,7 @@ export default function Ideas_available({ auth, ideas }) {
                                                 </Linkify>
                                             </p>
                                         </div>
-                                    )}
+                                    )} */}
                             </div>{" "}
                         </div>
                     </div>

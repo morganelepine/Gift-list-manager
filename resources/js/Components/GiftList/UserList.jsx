@@ -151,12 +151,12 @@ export default function UserList({
                                             <hr className="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
                                         </div>
                                         {brand === "Nébuleuse" && (
-                                            <div className="flex flex-wrap mt-1">
+                                            <div className="flex flex-wrap my-1">
                                                 <p className="text-xs italic text-gray-900">
                                                     Lien à utiliser pour
                                                     bénéficier de la réduction
-                                                    de parainnage (réduction de
-                                                    15%)&nbsp;:&nbsp;
+                                                    de parainnage
+                                                    (-15%)&nbsp;:&nbsp;
                                                 </p>
                                                 <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
                                                     <Linkify
