@@ -91,45 +91,31 @@ class GiftListController extends Controller
         $authUser = Auth::user();
         $authUserId = Auth::id();
 
+        $dateFormat = 'd/m/Y';
+
         // Get the lists of the auth user
         $mylists = GiftList::where('user_id', $authUserId)->orderBy('created_at', 'desc')->get();
         // Formatage de la date
         foreach ($mylists as $mylist) {
-            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format('d/m/Y');
+            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
             $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
-            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format('d/m/Y');
+            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
             $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
-
 
         // Get the lists followed by the auth user
         $followedLists = $authUser->followedLists()->get();
         // Formatage de la date pour les listes suivies
         foreach ($followedLists as $followedList) {
-            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
+            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
             $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
-            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format('d/m/Y');
+            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
             $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
-        }
-
-        // Get the lists to follow
-        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
-        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
-        ->whereNotIn('id', $followedListIds)
-        ->orderBy('created_at', 'desc')
-        ->get();
-        // Formatage de la date pour les listes à suivre
-        foreach ($listsToFollow as $listToFollow) {
-            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
-            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('updated_at');
-            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format('d/m/Y');
-            $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
 
         return Inertia::render('Users/Index', [
             'mylists' => $mylists,
             'followedLists' => $followedLists,
-            'listsToFollow' => $listsToFollow,
         ]);
     }
 
@@ -151,9 +137,12 @@ class GiftListController extends Controller
         ->get();
 
         // Formatage de la date
+        $dateFormat = 'd/m/Y';
         foreach ($listsToFollow as $listToFollow) {
-            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format('d/m/Y');
-            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->updated_at)->format('d/m/Y');
+            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format($dateFormat);
+            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('updated_at');
+            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format($dateFormat);
+            $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
 
         return Inertia::render('Users/ListsToFollow', [
@@ -170,13 +159,14 @@ class GiftListController extends Controller
         // Get the lists followed by the authenticated user
         $authUser = Auth::user();
         $followedLists = $authUser->followedLists()->get();
-        // $authUserId = Auth::id();
-        // $followedLists = FollowedList::where('user_id', $authUserId)->get();
 
         // Formatage de la date
+        $dateFormat = 'd/m/Y';
         foreach ($followedLists as $followedList) {
-            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format('d/m/Y');
-            $followedList->formatted_updated_at = Carbon::parse($followedList->updated_at)->format('d/m/Y');
+            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
+            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
+            $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
 
         return Inertia::render('Users/FollowedLists', [
