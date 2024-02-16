@@ -74,7 +74,7 @@ export default function IdeaShow({ idea }) {
                 <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                     <p className="text-xs italic text-gray-900">
                         Lien à utiliser pour bénéficier de la réduction de
-                        parainnage ({idea.membership_reduction}) :&nbsp;
+                        parrainage ({idea.membership_reduction}) :&nbsp;
                     </p>
                     <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
                         <Linkify options={{ target: "blank" }}>
