@@ -70,7 +70,7 @@ export default function Ideas_all({ ideas }) {
                                                         (réduction de
                                                         15%)&nbsp;:&nbsp;
                                                     </p>
-                                                    <p className="text-sm italic text-indigo-800 hover:text-indigo-500">
+                                                    <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
                                                         <Linkify
                                                             options={{
                                                                 target: "blank",

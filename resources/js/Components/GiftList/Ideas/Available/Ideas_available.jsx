@@ -90,22 +90,26 @@ export default function Ideas_available({ auth, ideas }) {
                                         )}
                                     </div>
                                 )}
-                                {idea.membership && (
-                                    <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
-                                        <p className="text-xs italic text-gray-900">
-                                            Lien à utiliser pour bénéficier de
-                                            la réduction de parrainage (
-                                            {idea.membership_reduction}) :&nbsp;
-                                        </p>
-                                        <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
-                                            <Linkify
-                                                options={{ target: "blank" }}
-                                            >
-                                                {idea.membership}
-                                            </Linkify>
-                                        </p>
-                                    </div>
-                                )}
+                                {idea.membership &&
+                                    idea.brand != "Nébuleuse" && (
+                                        <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
+                                            <p className="text-xs italic text-gray-900">
+                                                Lien à utiliser pour bénéficier
+                                                de la réduction de parrainage (
+                                                {idea.membership_reduction})
+                                                :&nbsp;
+                                            </p>
+                                            <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
+                                                <Linkify
+                                                    options={{
+                                                        target: "blank",
+                                                    }}
+                                                >
+                                                    {idea.membership}
+                                                </Linkify>
+                                            </p>
+                                        </div>
+                                    )}
                             </div>{" "}
                         </div>
                     </div>
