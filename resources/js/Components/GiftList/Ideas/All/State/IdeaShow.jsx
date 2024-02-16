@@ -70,7 +70,7 @@ export default function IdeaShow({ idea }) {
                     )}
                 </div>
             )}
-            {idea.membership && (
+            {idea.membership && idea.brand != "Nébuleuse" && (
                 <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                     <p className="text-xs italic text-gray-900">
                         Lien à utiliser pour bénéficier de la réduction de

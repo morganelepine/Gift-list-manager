@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
-
+import Linkify from "linkify-react"; //rendre les liens cliquables
 export default function Ideas_all({ ideas }) {
     // Regrouper les idées par marque
     const groupedIdeas = ideas.reduce((ideasByBrand, idea) => {
@@ -61,6 +61,26 @@ export default function Ideas_all({ ideas }) {
                                                 </p>
                                                 <hr className="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
                                             </div>
+                                            {brand === "Nébuleuse" && (
+                                                <div className="flex flex-wrap mt-1">
+                                                    <p className="text-xs italic text-gray-900">
+                                                        Lien à utiliser pour
+                                                        bénéficier de la
+                                                        réduction de parainnage
+                                                        (réduction de
+                                                        15%)&nbsp;:&nbsp;
+                                                    </p>
+                                                    <p className="text-sm italic text-indigo-800 hover:text-indigo-500">
+                                                        <Linkify
+                                                            options={{
+                                                                target: "blank",
+                                                            }}
+                                                        >
+                                                            https://snwbl.io/nebuleuse/ROXANE66244
+                                                        </Linkify>
+                                                    </p>
+                                                </div>
+                                            )}
                                             {brandData.ideas.map(
                                                 (idea, index) => (
                                                     <div key={idea.id}>
