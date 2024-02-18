@@ -171,9 +171,9 @@ export default function UserList({
                                         )}
                                         <IdeasAvailable
                                             key={list.id}
-                                            list={list}
-                                            ideas={brandData.ideas_available}
                                             auth={auth}
+                                            ideas={brandData.ideas_available}
+                                            brand={brand}
                                         />
                                     </div>
                                 )

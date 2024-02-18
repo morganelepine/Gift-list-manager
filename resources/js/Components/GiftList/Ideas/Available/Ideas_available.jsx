@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Buttons from "@/Components/GiftList/Ideas/Available/Buttons";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
-export default function Ideas_available({ auth, ideas }) {
+export default function Ideas_available({ auth, ideas, brand }) {
     // console.log("listOfIdeas : ", listOfIdeas);
 
     return (
@@ -90,27 +90,25 @@ export default function Ideas_available({ auth, ideas }) {
                                         )}
                                     </div>
                                 )}
-                                {/* {idea.membership &&
-                                    idea.brand != "Nébuleuse" && (
-                                        <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
-                                            <p className="text-xs italic text-gray-900">
-                                                Lien à utiliser pour bénéficier
-                                                de la réduction de parrainage (
-                                                {idea.membership_reduction})
-                                                :&nbsp;
-                                            </p>
-                                            <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
-                                                <Linkify
-                                                    options={{
-                                                        target: "blank",
-                                                    }}
-                                                >
-                                                    {idea.membership}
-                                                </Linkify>
-                                            </p>
-                                        </div>
-                                    )} */}
-                            </div>{" "}
+                                {idea.membership && brand !== "Nébuleuse" && (
+                                    <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
+                                        <p className="text-xs italic text-gray-900">
+                                            Lien/code à utiliser pour bénéficier
+                                            d'une réduction (
+                                            {idea.membership_reduction}) :&nbsp;
+                                        </p>
+                                        <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
+                                            <Linkify
+                                                options={{
+                                                    target: "blank",
+                                                }}
+                                            >
+                                                {idea.membership}
+                                            </Linkify>
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

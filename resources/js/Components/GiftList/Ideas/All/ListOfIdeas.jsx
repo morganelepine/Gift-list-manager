@@ -85,6 +85,7 @@ export default function Ideas_all({ ideas }) {
                                                     <div key={idea.id}>
                                                         <Ideas
                                                             idea={idea}
+                                                            brand={brand}
                                                             index={index}
                                                         />
                                                     </div>

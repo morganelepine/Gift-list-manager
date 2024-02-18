@@ -1,7 +1,7 @@
 import React from "react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
-export default function IdeaShow({ idea }) {
+export default function IdeaShow({ brand, idea }) {
     return (
         <div className="flex flex-col">
             <div className="flex justify-between">
@@ -70,19 +70,23 @@ export default function IdeaShow({ idea }) {
                     )}
                 </div>
             )}
-            {/* {idea.membership && idea.brand != "Nébuleuse" && (
+            {idea.membership && brand !== "Nébuleuse" && (
                 <div className="flex flex-wrap bg-indigo-50 rounded-md p-1 mt-3">
                     <p className="text-xs italic text-gray-900">
-                        Lien à utiliser pour bénéficier de la réduction de
-                        parrainage ({idea.membership_reduction}) :&nbsp;
+                        Lien/code à utiliser pour bénéficier d'une réduction (
+                        {idea.membership_reduction}) :&nbsp;
                     </p>
                     <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
-                        <Linkify options={{ target: "blank" }}>
+                        <Linkify
+                            options={{
+                                target: "blank",
+                            }}
+                        >
                             {idea.membership}
                         </Linkify>
                     </p>
                 </div>
-            )} */}
+            )}
         </div>
     );
 }
