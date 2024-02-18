@@ -103,16 +103,21 @@ export default function Authenticated({ user, header, children }) {
                                             Mon profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
+                                            href={route("lists.authLists")}
+                                        >
+                                            Mes listes
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
                                             href={route("profile.purchase")}
                                         >
                                             Mes achats
                                         </Dropdown.Link>
-                                        <Dropdown.Link
+                                        {/* <Dropdown.Link
                                             href={route("dashboard")}
                                             className="italic"
                                         >
                                             [ Évolutions à venir ]
-                                        </Dropdown.Link>
+                                        </Dropdown.Link> */}
                                         <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
