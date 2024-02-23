@@ -160,7 +160,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                         id="membership"
                         name="membership"
                         value={data.membership}
-                        placeholder="Lien de parrainage"
+                        placeholder="Code / lien de parrainage"
                         className="block w-full mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         onChange={(e) => setData("membership", e.target.value)}
                     />

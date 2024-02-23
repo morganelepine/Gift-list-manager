@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
+import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import { useForm, Head } from "@inertiajs/react";
@@ -33,11 +34,16 @@ export default function Create({ auth }) {
                     {/* @csrf */}
 
                     <div className="my-2">
+                        <InputLabel
+                            htmlFor="link"
+                            value="Nom de la liste"
+                            className="pl-2"
+                        />
                         <TextInput
                             id="name"
                             name="name"
                             value={data.name}
-                            placeholder="Le nom de votre nouvelle liste (Noël, Anniversaire, Mariage...)"
+                            placeholder="Noël, Anniversaire, Mariage..."
                             className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             isFocused={true}
                             onChange={(e) => setData("name", e.target.value)}
@@ -47,18 +53,27 @@ export default function Create({ auth }) {
                         <InputError message={errors.name} className="mt-2" />
                     </div>
 
-                    <div className="my-2">
+                    <div className="mt-6">
+                        <InputLabel
+                            htmlFor="link"
+                            value="Code privé"
+                            className="pl-2"
+                        />
                         <TextInput
                             id="private_code"
                             name="private_code"
                             value={data.private_code}
-                            placeholder="Le code privé à communiquer à vos proches"
+                            placeholder="1234"
                             className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             onChange={(e) =>
                                 setData("private_code", e.target.value)
                             }
                             required
                         />
+                        <p className="italic text-xs text-gray-600 mt-2">
+                            Communiquez ce code à vos proches pour leur
+                            permettre d'accéder à votre liste privée.
+                        </p>
 
                         <InputError
                             message={errors.private_code}

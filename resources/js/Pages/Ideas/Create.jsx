@@ -274,7 +274,7 @@ export default function Create({ auth, list }) {
                                         id="membership"
                                         name="membership"
                                         value={data.membership}
-                                        placeholder="Lien de parrainage à utiliser lors de l'achat"
+                                        placeholder="Code / lien de parrainage à utiliser lors de l'achat"
                                         className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
