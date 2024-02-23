@@ -140,15 +140,15 @@ export default function UserList({
                             </svg>
                         </div>
 
-                        <div className="mt-4 space-y-6">
+                        <div className="mt-4 space-y-8">
                             {Object.entries(groupedIdeas).map(
                                 ([brand, brandData]) => (
                                     <div key={brand}>
                                         <div className="inline-flex items-center w-full">
-                                            <p className="min-w-max pr-3 font-medium">
+                                            <p className="min-w-max py-1 px-2 bg-indigo-100 rounded-md">
                                                 {brand}
                                             </p>
-                                            <hr className="w-full h-px mt-3 mb-2 bg-gray-300 border-0"></hr>
+                                            <hr className="w-full h-px mt-3 mb-2 bg-indigo-100 border-0"></hr>
                                         </div>
                                         {brand === "Nébuleuse" && (
                                             <div className="flex flex-wrap bg-indigo-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1 mb-3">
