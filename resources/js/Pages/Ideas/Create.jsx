@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
+import Checkbox from "@/Components/Laravel/Checkbox";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head, Link } from "@inertiajs/react";
 
@@ -106,7 +107,7 @@ export default function Create({ auth, list }) {
                                 name="idea"
                                 value={data.idea}
                                 placeholder="Puzzle 500 pièces"
-                                className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                className="py-1"
                                 isFocused={true}
                                 onChange={(e) =>
                                     setData("idea", e.target.value)
@@ -127,7 +128,7 @@ export default function Create({ auth, list }) {
                                 name="link"
                                 value={data.link}
                                 placeholder="https://www.fleux.com/puzzle-snowdonia-500-pieces.html"
-                                className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                className="py-1"
                                 onChange={(e) =>
                                     setData("link", e.target.value)
                                 }
@@ -147,7 +148,7 @@ export default function Create({ auth, list }) {
                                     name="brand"
                                     value={data.brand}
                                     placeholder="Fleux"
-                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    className="py-1"
                                     onChange={(e) =>
                                         setData("brand", e.target.value)
                                     }
@@ -166,7 +167,7 @@ export default function Create({ auth, list }) {
                                     name="details"
                                     value={data.details}
                                     placeholder="Taille, coloris, quantité..."
-                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    className="py-1"
                                     onChange={(e) =>
                                         setData("details", e.target.value)
                                     }
@@ -185,7 +186,7 @@ export default function Create({ auth, list }) {
                                     name="price"
                                     value={data.price}
                                     placeholder="35"
-                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    className="py-1"
                                     onChange={(e) =>
                                         setData("price", e.target.value)
                                     }
@@ -199,7 +200,7 @@ export default function Create({ auth, list }) {
                         </div>
 
                         <div className="flex items-center">
-                            <TextInput
+                            <Checkbox
                                 id="favorite"
                                 name="favorite"
                                 type="checkbox"
@@ -209,11 +210,10 @@ export default function Create({ auth, list }) {
                                     handleFavoriteCheck();
                                     setData("favorite", e.target.checked);
                                 }}
-                                className="mr-1"
                             />
-                            <p className="pl-2">
-                                L'article est un coup de cœur
-                            </p>
+
+                            <p>L'article est un coup de cœur</p>
+
                             <InputError
                                 message={errors.favorite}
                                 className="mt-2"
@@ -241,7 +241,7 @@ export default function Create({ auth, list }) {
                         {openPromo && (
                             <div className="space-y-5">
                                 <div className="flex items-center mt-3 mb-4">
-                                    <TextInput
+                                    <Checkbox
                                         id="promo"
                                         name="promo"
                                         type="checkbox"
@@ -251,11 +251,9 @@ export default function Create({ auth, list }) {
                                             handlePromoCheck();
                                             setData("promo", e.target.checked);
                                         }}
-                                        className="mr-1"
                                     />
-                                    <p className="pl-2">
-                                        L'article est en promo
-                                    </p>
+
+                                    <p>L'article est en promo</p>
 
                                     <InputError
                                         message={errors.promo}
@@ -273,7 +271,7 @@ export default function Create({ auth, list }) {
                                         name="promo_details"
                                         value={data.promo_details}
                                         placeholder="Durée, conditions..."
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        className="py-1"
                                         onChange={(e) =>
                                             setData(
                                                 "promo_details",
@@ -320,7 +318,7 @@ export default function Create({ auth, list }) {
                                         name="membership"
                                         value={data.membership}
                                         placeholder="https://snwbl.io/nebuleuse/ROXANE66244"
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        className="py-1"
                                         onChange={(e) =>
                                             setData(
                                                 "membership",
@@ -345,7 +343,7 @@ export default function Create({ auth, list }) {
                                         name="membership_reduction"
                                         value={data.membership_reduction}
                                         placeholder="-15%, un acheté/un offert..."
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        className="py-1"
                                         onChange={(e) =>
                                             setData(
                                                 "membership_reduction",

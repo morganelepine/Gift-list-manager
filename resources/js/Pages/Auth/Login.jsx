@@ -54,7 +54,7 @@ export default function Login({ status, canResetPassword }) {
                         type="email"
                         placeholder="E-mail"
                         value={data.email}
-                        className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-orange-500 focus:border-orange-500 focus:ring-1"
+                        className="px-4 py-2"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
@@ -67,12 +67,12 @@ export default function Login({ status, canResetPassword }) {
                     <InputLabel htmlFor="password" value="Mot de passe" />
 
                     <div className="relative container mx-auto mt-1">
-                        <input
+                        <TextInput
                             id="password"
                             name="password"
                             type={passwordType}
                             placeholder="Mot de passe"
-                            className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-orange-500 focus:border-orange-500 focus:ring-1"
+                            className="px-4 py-2"
                             value={data.password}
                             autoComplete="current-password"
                             onChange={(e) =>
@@ -81,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                         />
                         <button
                             type="button"
-                            className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+                            className="absolute inset-y-0 right-0 flex items-center px-4 pt-1 text-gray-600 hover:text-orange-500"
                             onClick={togglePasswordVisibility}
                         >
                             {showPassword ? (
@@ -121,7 +121,7 @@ export default function Login({ status, canResetPassword }) {
                                 setData("remember", e.target.checked)
                             }
                         />
-                        <span className="ml-2 text-sm text-gray-600">
+                        <span className="text-sm text-gray-600">
                             Se souvenir de moi
                         </span>
                     </label>
