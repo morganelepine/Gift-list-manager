@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-orange-100 to-pink-100 shadow-md text-gray-500 text-sm">
+        <footer className="w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-orange-50 to-pink-50 shadow-md text-gray-500 text-sm">
             <div className="flex justify-center items-center font-medium">
                 <span className="">Fait avec</span>
                 <svg

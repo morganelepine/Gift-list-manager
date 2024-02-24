@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Lists/EditListTitle";
+import SmallButton from "@/Components/Buttons/SmallButton";
 
 //-----------DISPLAY THIS PAGE WHEN THE AUTH USER ONLY HAVE ONE LIST IN DB
 
@@ -101,7 +102,7 @@ export default function AuthList({ auth, list, ideas }) {
                             href={route("ideas.create_idea", list[0].id)}
                             className="inline-block text-center mt-2 px-3 py-1 bg-orange-200 border border-transparent rounded-md font-semibold text-md text-orange-500 hover:text-white hover:bg-orange-700 active:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2 transition ease-in-out duration-150"
                         >
-                            Commencer la liste
+                            <SmallButton>Commencer la liste</SmallButton>
                         </Link>
                     </div>
                 )}

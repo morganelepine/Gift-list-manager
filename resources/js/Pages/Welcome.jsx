@@ -18,7 +18,7 @@ export default function Welcome({ auth }) {
                     backgroundColor: "rgba(255, 255, 255, 0.8)",
                 }}
             > */}
-            <div className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-orange-200 to-pink-200">
+            <div className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-bordeaux-100 to-orange-100">
                 {auth.user ? (
                     <div className="flex flex-col max-w-4xl mx-auto">
                         <Link href={route("lists.index")} className={`${link}`}>

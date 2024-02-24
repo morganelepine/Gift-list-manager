@@ -35,7 +35,7 @@ export default function MyLists({ list }) {
                     <Link
                         as="button"
                         href={route("ideas.create_idea", list.id)}
-                        className={addButton}
+                        className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-orange-200 hover:to-bordeaux-200 transition ease-in-out duration-150"
                     >
                         Compléter ma liste
                     </Link>
