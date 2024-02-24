@@ -88,28 +88,13 @@ export default function UserList({
 
             <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas_available.length == 0 &&
-                    ideas_reserved.length == 0 &&
-                    ideas_purchased.length == 0 && (
-                        <p className="text-center">
-                            Cette liste est vide pour le moment. Revenez plus
-                            tard !
-                        </p>
-                    )}
-
-                {/* <div className="flex space-x-4">
-                    <Link as="button" className={seeButton}>
-                        Disponibles
-                    </Link>
-                    <Link as="button" className={seeButton}>
-                        Réservés
-                    </Link>
-                    <Link as="button" className={seeButton}>
-                        Achetés
-                    </Link>
-                </div> */}
-
-                {ideas_available.length === 0 &&
-                (ideas_purchased.length > 0 || ideas_reserved.length > 0) ? (
+                ideas_reserved.length == 0 &&
+                ideas_purchased.length == 0 ? (
+                    <p className="text-center">
+                        Cette liste est vide pour le moment. Revenez plus tard !
+                    </p>
+                ) : ideas_available.length === 0 &&
+                  (ideas_purchased.length > 0 || ideas_reserved.length > 0) ? (
                     <>
                         <h1 className={`bg-orange-500 ${h1}`}>
                             Idées disponibles
