@@ -2,16 +2,19 @@ export default function Intro() {
     return (
         <div className="px-8 flex flex-col items-center">
             <div className="text-center">
-                <h1 className="text-4xl font-extrabold mb-2">
-                    Bienvenue sur MerryMate
+                <h1 className="sm:text-6xl text-4xl font-yeseva mb-2 p-1 bg-gradient-to-r from-orange-500 to-bordeaux-500 inline-block text-transparent bg-clip-text">
+                    MerryMate
                 </h1>
-                <h2 className="text-sm">
-                    Un <span className="italic">joyeux compagnon</span> pour
-                    les&nbsp;moments de&nbsp;fêtes
+                <h2
+                    className="text-sm tracking-wide text-orange-500"
+                    style={{ textWrap: "balance" }}
+                >
+                    Un <span className="italic">joyeux compagnon</span> pour les
+                    moments de fêtes
                 </h2>
             </div>
 
-            <div className="mt-10 space-y-3">
+            <div className="mt-16 space-y-3">
                 <div className="flex items-center">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
