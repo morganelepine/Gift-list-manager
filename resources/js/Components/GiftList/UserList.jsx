@@ -108,13 +108,22 @@ export default function UserList({
                     </Link>
                 </div> */}
 
-                <h1 className={`bg-orange-500 ${h1}`}>Idées disponibles</h1>
-                {ideas_available.length === 0 ? (
-                    <p className="text-center text-sm italic mb-10">
-                        Cette liste est vide pour le moment. Revenez plus tard !
-                    </p>
+                {ideas_available.length === 0 &&
+                (ideas_purchased.length > 0 || ideas_reserved.length > 0) ? (
+                    <>
+                        <h1 className={`bg-orange-500 ${h1}`}>
+                            Idées disponibles
+                        </h1>
+                        <p className="text-center text-sm italic mb-10">
+                            Cette liste est vide pour le moment. Revenez plus
+                            tard !
+                        </p>
+                    </>
                 ) : (
                     <>
+                        <h1 className={`bg-orange-500 ${h1}`}>
+                            Idées disponibles
+                        </h1>
                         <div className="hidden sm:flex items-center text-gray-500 italic">
                             <small className="text-xs mr-1">
                                 Pour réserver un cadeau, cliquez sur le picto
