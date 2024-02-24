@@ -18,7 +18,7 @@ export default forwardRef(function TextInput(
             type={type}
             className={
                 // "border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-md shadow-sm " +
-                "border-gray-300 rounded-md shadow-sm " + className
+                "border-gray-300 rounded-md shadow-sm py-1 px-2 " + className
             }
             ref={input}
         />

@@ -27,9 +27,7 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Mes informations
-                </h2>
+                <h2 className="text-lg font-medium ">Mes informations</h2>
 
                 {/* <p className="mt-1 text-sm text-gray-600">
                     Mettez à jour votre nom et votre adresse mail.
@@ -77,7 +75,7 @@ export default function UpdateProfileInformation({
                                 href={route("verification.send")}
                                 method="post"
                                 as="button"
-                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                             >
                                 Click here to re-send the verification email.
                             </Link>

@@ -7,7 +7,10 @@ export default function InputLabel({
     return (
         <label
             {...props}
-            className={`block text-md hover:text-indigo-800 mr-2` + className}
+            className={
+                `block uppercase tracking-wide text-xs font-semibold ` +
+                className
+            }
         >
             {value ? value : children}
         </label>

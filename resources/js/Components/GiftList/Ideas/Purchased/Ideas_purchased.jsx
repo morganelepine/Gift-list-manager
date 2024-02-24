@@ -25,7 +25,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                         )}
 
                         {/* IDEA */}
-                        <div className="p-3 flex flex-1 flex-col bg-gray-200 shadow-sm rounded-lg">
+                        <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg">
                             <div className="flex justify-between">
                                 <div className="flex flex-col mr-3 w-full">
                                     <div className="flex justify-between items-center">
@@ -64,7 +64,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                         )} */}
                                     </div>
                                     {purchased.idea.link && (
-                                        <p className="text-sm italic text-gray-400 hover:text-gray-500 max-h-5 text-ellipsis overflow-hidden break-all line-through">
+                                        <p className="text-sm italic text-gray-400 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all line-through">
                                             <Linkify
                                                 options={{
                                                     target: "blank",

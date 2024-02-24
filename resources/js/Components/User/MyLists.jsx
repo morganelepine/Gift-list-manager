@@ -1,13 +1,11 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
+import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function MyLists({ list }) {
-    const seeButton =
-        "min-w-full px-2 py-1 bg-indigo-700 border border-transparent rounded-md text-sm text-white hover:bg-indigo-900 transition ease-in-out duration-150";
-
     const addButton =
-        "min-w-full px-2 py-1 border border-indigo-700 rounded-md text-sm text-indigo-700 hover:bg-indigo-50 hover:border-indigo-400 transition ease-in-out duration-150";
+        "min-w-full px-2 py-1 bg-gradient-to-r from-bordeaux-300 to-orange-300 hover:from-orange-400 hover:to-pink-400 rounded-full text-sm text-white transition ease-in-out duration-150";
 
     return (
         <div className="relative flex items-start w-full">
@@ -16,7 +14,7 @@ export default function MyLists({ list }) {
                     {/* LIST NAME */}
                     <p>
                         Ma liste{" "}
-                        <span className="uppercase font-semibold text-indigo-700">
+                        <span className="uppercase font-semibold text-orange-500">
                             {list.name}
                         </span>{" "}
                     </p>
@@ -29,12 +27,8 @@ export default function MyLists({ list }) {
 
                 <div className="flex flex-col items-center space-y-2 max-w-max">
                     {/* SEE BUTTON */}
-                    <Link
-                        as="button"
-                        href={route("lists.show", list.id)}
-                        className={seeButton}
-                    >
-                        Voir ma liste
+                    <Link as="button" href={route("lists.show", list.id)}>
+                        <SmallButton>Voir ma liste</SmallButton>
                     </Link>
 
                     {/* EDIT BUTTON */}
@@ -61,7 +55,7 @@ export default function MyLists({ list }) {
                 >
                     <svg
                         xmlns="https://www.w3.org/2000/svg"
-                        className="h-7 w-7 text-gray-300 hover:text-indigo-800"
+                        className="h-7 w-7 text-gray-300 hover:text-orange-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -69,7 +63,7 @@ export default function MyLists({ list }) {
                         <path d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </Link>
-                <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-indigo-900 p-2 text-xs text-center text-white group-hover:scale-100">
+                <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-orange-500 p-2 text-xs text-center text-white group-hover:scale-100">
                     Une fois supprimée, pas de retour en arrière !
                 </span>
             </div>

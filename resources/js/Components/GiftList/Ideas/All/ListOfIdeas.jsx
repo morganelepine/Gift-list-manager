@@ -56,20 +56,20 @@ export default function Ideas_all({ ideas }) {
                                     ([brand, brandData]) => (
                                         <div key={brand}>
                                             <div className="inline-flex items-center w-full">
-                                                <p className="min-w-max py-1 px-2 bg-indigo-100 rounded-md">
+                                                <p className="min-w-max py-1 px-3 text-sm bg-orange-500 text-white rounded-full">
                                                     {brand}
                                                 </p>
-                                                <hr className="w-full h-px mt-3 mb-2 bg-indigo-100 border-0"></hr>
+                                                <hr className="w-full h-px mt-3 mb-2 bg-orange-100 border-0"></hr>
                                             </div>
                                             {brand === "Nébuleuse" && (
-                                                <div className="flex flex-wrap bg-indigo-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1 mb-3">
-                                                    <p className="text-xs italic text-gray-900">
+                                                <div className="flex flex-wrap bg-orange-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1 mb-3">
+                                                    <p className="text-xs italic ">
                                                         Lien à utiliser pour
                                                         bénéficier de la
                                                         réduction de parrainage
                                                         (-15%)&nbsp;:&nbsp;
                                                     </p>
-                                                    <p className="text-xs italic text-indigo-800 hover:text-indigo-500">
+                                                    <p className="text-xs italic text-orange-500 hover:text-orange-500">
                                                         <Linkify
                                                             options={{
                                                                 target: "blank",

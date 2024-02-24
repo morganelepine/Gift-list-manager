@@ -10,7 +10,7 @@ export default function Authenticated({ user, header, children }) {
         useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-lavande-20">
             <nav className="sticky top-0 bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -53,7 +53,6 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink
                                     href={route("lists.create")}
                                     active={route().current("lists.create")}
-                                    className="text-indigo-700"
                                 >
                                     <svg
                                         xmlns="https://www.w3.org/2000/svg"

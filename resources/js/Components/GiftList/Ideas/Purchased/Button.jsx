@@ -14,7 +14,7 @@ export default function Buttons({ id, idea }) {
     return (
         <form onSubmit={cancelPurchase}>
             <button
-                className="flex items-center justify-end text-xs text-gray-400 hover:text-red-700"
+                className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-500"
                 disabled={processing}
             >
                 <svg

@@ -25,7 +25,7 @@ export default function Buttons({ idea }) {
             {/* RESERVED BUTTON */}
             <form onSubmit={reserveIdea}>
                 <button
-                    className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-700"
+                    className="flex items-center justify-end text-xs text-gray-400 hover:text-orange-500"
                     disabled={processing}
                 >
                     <svg
@@ -44,7 +44,7 @@ export default function Buttons({ idea }) {
             {/* BUY BUTTON */}
             <form onSubmit={purchaseIdea}>
                 <button
-                    className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-700"
+                    className="flex items-center justify-end text-xs text-gray-400 hover:text-orange-500"
                     disabled={processing}
                 >
                     <svg

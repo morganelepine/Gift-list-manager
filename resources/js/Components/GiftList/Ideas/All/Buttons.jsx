@@ -8,7 +8,7 @@ export default function EditDeleteButtons({ idea, setEditing }) {
             <button onClick={() => setEditing(true)}>
                 <svg
                     xmlns="https://www.w3.org/2000/svg"
-                    className="h-6 w-6 my-2 text-gray-300 hover:text-indigo-800"
+                    className="h-6 w-6 my-2 text-gray-300 hover:text-orange-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -25,7 +25,7 @@ export default function EditDeleteButtons({ idea, setEditing }) {
             >
                 <svg
                     xmlns="https://www.w3.org/2000/svg"
-                    className="h-6 w-6 my-2 text-gray-300 hover:text-indigo-800"
+                    className="h-6 w-6 my-2 text-gray-300 hover:text-orange-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
