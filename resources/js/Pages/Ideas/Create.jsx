@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
-import SmallButton from "@/Components/Buttons/SmallButton";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head, Link } from "@inertiajs/react";
 
 export default function Create({ auth, list }) {
@@ -70,7 +70,7 @@ export default function Create({ auth, list }) {
                         href={route("lists.show", list.id)}
                         className="flex items-center mt-2 sm:mt-0"
                     >
-                        <div className="h-7 w-7 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                        <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
@@ -82,7 +82,7 @@ export default function Create({ auth, list }) {
                                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </div>
-                        <p className="hover:text-indigo-500 text-indigo-800 text-sm">
+                        <p className="hover:text-orange-500 text-sm">
                             Consulter la liste
                         </p>
                     </Link>
@@ -90,102 +90,140 @@ export default function Create({ auth, list }) {
             }
         >
             <Head title="Compléter ma liste" />
-            <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+            <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
                 <form onSubmit={submit}>
                     {/* @csrf */}
                     <p className="text-sm italic mb-6">
-                        Merci de renseigner au moins le nom de l'idée ou le
-                        lien.
+                        Merci de renseigner au moins le nom de l'idée ou
+                        le&nbsp;lien.
                     </p>
-                    <div className="my-2">
-                        <TextInput
-                            id="idea"
-                            name="idea"
-                            value={data.idea}
-                            placeholder="Le nom de l'idée"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            isFocused={true}
-                            onChange={(e) => setData("idea", e.target.value)}
-                            // required
-                        />
 
-                        <InputError message={errors.idea} className="mt-2" />
+                    <div className="bg-white shadow-md space-y-5 p-5 rounded-xl">
+                        <div className="">
+                            <InputLabel htmlFor="link" value="Nom de l'idée" />
+                            <TextInput
+                                id="idea"
+                                name="idea"
+                                value={data.idea}
+                                placeholder="Puzzle 500 pièces"
+                                className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                isFocused={true}
+                                onChange={(e) =>
+                                    setData("idea", e.target.value)
+                                }
+                                // required
+                            />
+
+                            <InputError
+                                message={errors.idea}
+                                className="mt-2"
+                            />
+                        </div>
+
+                        <div className="">
+                            <InputLabel htmlFor="link" value="Lien" />
+                            <TextInput
+                                id="link"
+                                name="link"
+                                value={data.link}
+                                placeholder="https://www.fleux.com/puzzle-snowdonia-500-pieces.html"
+                                className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                onChange={(e) =>
+                                    setData("link", e.target.value)
+                                }
+                            />
+
+                            <InputError
+                                message={errors.link}
+                                className="mt-2"
+                            />
+                        </div>
+
+                        <div className="flex sm:flex-row flex-col w-full space-y-5 sm:space-y-0 sm:space-x-8">
+                            <div className="sm:w-2/5">
+                                <InputLabel htmlFor="link" value="Marque" />
+                                <TextInput
+                                    id="brand"
+                                    name="brand"
+                                    value={data.brand}
+                                    placeholder="Fleux"
+                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    onChange={(e) =>
+                                        setData("brand", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.brand}
+                                    className="mt-2"
+                                />
+                            </div>
+
+                            <div className="sm:w-2/5">
+                                <InputLabel htmlFor="link" value="Détails" />
+                                <TextInput
+                                    id="details"
+                                    name="details"
+                                    value={data.details}
+                                    placeholder="Taille, coloris, quantité..."
+                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    onChange={(e) =>
+                                        setData("details", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.details}
+                                    className="mt-2"
+                                />
+                            </div>
+
+                            <div className="sm:w-1/5">
+                                <InputLabel htmlFor="link" value="Prix" />
+                                <TextInput
+                                    id="price"
+                                    name="price"
+                                    value={data.price}
+                                    placeholder="35"
+                                    className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                    onChange={(e) =>
+                                        setData("price", e.target.value)
+                                    }
+                                />
+
+                                <InputError
+                                    message={errors.price}
+                                    className="mt-2"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex items-center">
+                            <TextInput
+                                id="favorite"
+                                name="favorite"
+                                type="checkbox"
+                                value={isFavorite}
+                                defaultChecked={false}
+                                onChange={(e) => {
+                                    handleFavoriteCheck();
+                                    setData("favorite", e.target.checked);
+                                }}
+                                className="mr-1"
+                            />
+                            <p className="pl-2">
+                                L'article est un coup de cœur
+                            </p>
+                            <InputError
+                                message={errors.favorite}
+                                className="mt-2"
+                            />
+                        </div>
                     </div>
-                    <div className="my-2">
-                        <TextInput
-                            id="link"
-                            name="link"
-                            value={data.link}
-                            placeholder="Le lien"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            onChange={(e) => setData("link", e.target.value)}
-                        />
 
-                        <InputError message={errors.link} className="mt-2" />
-                    </div>
-                    <div className="my-2">
-                        <TextInput
-                            id="brand"
-                            name="brand"
-                            value={data.brand}
-                            placeholder="La marque"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            onChange={(e) => setData("brand", e.target.value)}
-                        />
-
-                        <InputError message={errors.brand} className="mt-2" />
-                    </div>
-                    <div className="my-2">
-                        <TextInput
-                            id="details"
-                            name="details"
-                            value={data.details}
-                            placeholder="Des détails sur l'article : taille, coloris..."
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            onChange={(e) => setData("details", e.target.value)}
-                        />
-
-                        <InputError message={errors.details} className="mt-2" />
-                    </div>
-                    <div className="my-2">
-                        <TextInput
-                            id="price"
-                            name="price"
-                            value={data.price}
-                            placeholder="Le prix (chiffre rond : 34,99 = 35)"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            onChange={(e) => setData("price", e.target.value)}
-                        />
-
-                        <InputError message={errors.price} className="mt-2" />
-                    </div>
-
-                    <div className="flex items-center mt-3 mb-1">
-                        <TextInput
-                            id="favorite"
-                            name="favorite"
-                            type="checkbox"
-                            value={isFavorite}
-                            defaultChecked={false}
-                            onChange={(e) => {
-                                handleFavoriteCheck();
-                                setData("favorite", e.target.checked);
-                            }}
-                        />
-                        <InputLabel
-                            htmlFor="link"
-                            value="L'article est un coup de cœur"
-                            className="pl-2"
-                        />
-                        <InputError
-                            message={errors.favorite}
-                            className="mt-2"
-                        />
-                    </div>
-
-                    <div>
+                    <div className="bg-white shadow-md p-5 mt-6 rounded-xl">
                         <div
-                            className="pt-4 flex cursor-pointer"
+                            className="flex cursor-pointer text-orange-500 uppercase tracking-widest"
                             onClick={toggleOpenPromo}
                         >
                             Promotion
@@ -201,7 +239,7 @@ export default function Create({ auth, list }) {
                         </div>
 
                         {openPromo && (
-                            <div>
+                            <div className="space-y-5">
                                 <div className="flex items-center mt-3 mb-4">
                                     <TextInput
                                         id="promo"
@@ -213,12 +251,11 @@ export default function Create({ auth, list }) {
                                             handlePromoCheck();
                                             setData("promo", e.target.checked);
                                         }}
+                                        className="mr-1"
                                     />
-                                    <InputLabel
-                                        htmlFor="link"
-                                        value="L'article est en promo"
-                                        className="pl-2"
-                                    />
+                                    <p className="pl-2">
+                                        L'article est en promo
+                                    </p>
 
                                     <InputError
                                         message={errors.promo}
@@ -227,12 +264,16 @@ export default function Create({ auth, list }) {
                                 </div>
 
                                 <div className="my-2">
+                                    <InputLabel
+                                        htmlFor="link"
+                                        value="Détails sur la promo en cours"
+                                    />
                                     <TextInput
                                         id="promo_details"
                                         name="promo_details"
                                         value={data.promo_details}
-                                        placeholder="Des détails sur la promo en cours : durée, conditions..."
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        placeholder="Durée, conditions..."
+                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
                                                 "promo_details",
@@ -250,9 +291,9 @@ export default function Create({ auth, list }) {
                         )}
                     </div>
 
-                    <div>
+                    <div className="bg-white shadow-md p-5 mt-6 rounded-xl">
                         <div
-                            className="pt-4 flex cursor-pointer"
+                            className="flex cursor-pointer text-orange-500 uppercase tracking-widest"
                             onClick={toggleOpenMembership}
                         >
                             Parrainage
@@ -268,14 +309,18 @@ export default function Create({ auth, list }) {
                         </div>
 
                         {openMembership && (
-                            <div>
+                            <div className="space-y-5 mt-4">
                                 <div className="my-2">
+                                    <InputLabel
+                                        htmlFor="link"
+                                        value="Code / lien à utiliser lors de l'achat"
+                                    />
                                     <TextInput
                                         id="membership"
                                         name="membership"
                                         value={data.membership}
-                                        placeholder="Code / lien de parrainage à utiliser lors de l'achat"
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        placeholder="https://snwbl.io/nebuleuse/ROXANE66244"
+                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
                                                 "membership",
@@ -291,12 +336,16 @@ export default function Create({ auth, list }) {
                                 </div>
 
                                 <div className="my-2">
+                                    <InputLabel
+                                        htmlFor="link"
+                                        value="Réduction offerte"
+                                    />
                                     <TextInput
                                         id="membership_reduction"
                                         name="membership_reduction"
                                         value={data.membership_reduction}
-                                        placeholder="Réduction offerte grâce au parrainage : -15%, un acheté un offert..."
-                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        placeholder="-15%, un acheté/un offert..."
+                                        className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         onChange={(e) =>
                                             setData(
                                                 "membership_reduction",
@@ -313,9 +362,9 @@ export default function Create({ auth, list }) {
                             </div>
                         )}
                     </div>
-                    <SmallButton className="mt-6" disabled={processing}>
+                    <PrimaryButton className="mt-8" disabled={processing}>
                         Ajouter l'idée
-                    </SmallButton>
+                    </PrimaryButton>
                 </form>
             </div>
         </AuthenticatedLayout>

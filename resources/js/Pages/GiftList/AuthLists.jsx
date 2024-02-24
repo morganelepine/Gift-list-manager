@@ -19,7 +19,7 @@ export default function AuthLists({ auth, lists }) {
                             href={route("lists.create")}
                             className="flex items-center mt-2 sm:mt-0"
                         >
-                            <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                            <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
                                 <svg
                                     xmlns="https://www.w3.org/2000/svg"
                                     fill="none"
@@ -30,7 +30,7 @@ export default function AuthLists({ auth, lists }) {
                                     <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-                            <p className="hover:text-indigo-500 text-indigo-800 text-sm">
+                            <p className="hover:text-orange-500  text-sm">
                                 Créer une liste
                             </p>
                         </Link>
@@ -51,7 +51,7 @@ export default function AuthLists({ auth, lists }) {
                                 <div className="flex items center justify-between">
                                     {/* LIST NAME */}
                                     <div className="">
-                                        <p className="text-xl uppercase font-semibold text-gray-900 mr-4 mb-2">
+                                        <p className="text-xl uppercase font-semibold  mr-4 mb-2">
                                             {list.name}
                                         </p>
                                     </div>
@@ -69,7 +69,7 @@ export default function AuthLists({ auth, lists }) {
                                         >
                                             <svg
                                                 xmlns="https://www.w3.org/2000/svg"
-                                                className="h-7 w-7 text-gray-300 hover:text-indigo-800"
+                                                className="h-7 w-7 text-gray-300 hover:text-orange-500"
                                                 fill="none"
                                                 viewBox="0 0 24 24"
                                                 stroke="currentColor"
@@ -77,7 +77,7 @@ export default function AuthLists({ auth, lists }) {
                                                 <path d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </Link>
-                                        <span className="absolute top-10 scale-0 transition-all rounded bg-indigo-800 p-2 text-xs text-center text-white group-hover:scale-100">
+                                        <span className="absolute top-10 scale-0 transition-all rounded bg-orange-500 p-2 text-xs text-center text-white group-hover:scale-100">
                                             Une fois supprimée, pas de retour en
                                             arrière !
                                         </span>
@@ -91,7 +91,7 @@ export default function AuthLists({ auth, lists }) {
                                         href={route("lists.show", list.id)}
                                         className="flex items-center my-1"
                                     >
-                                        <div className="h-8 w-8 mr-2 bg-indigo-50 flex items-center justify-center rounded-full">
+                                        <div className="h-8 w-8 mr-2 bg-orange-50 hover:text-orange-500 flex items-center justify-center rounded-full">
                                             <svg
                                                 xmlns="https://www.w3.org/2000/svg"
                                                 fill="none"
@@ -103,7 +103,7 @@ export default function AuthLists({ auth, lists }) {
                                                 <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
-                                        <p className="hover:text-indigo-500">
+                                        <p className="hover:text-orange-500">
                                             Consulter la liste
                                         </p>
                                     </Link>
@@ -119,7 +119,7 @@ export default function AuthLists({ auth, lists }) {
                                         )}
                                         className="flex items-center my-1"
                                     >
-                                        <div className="h-8 w-8 mr-2 bg-indigo-50 flex items-center justify-center rounded-full">
+                                        <div className="h-8 w-8 mr-2 bg-orange-50 hover:text-orange-500 flex items-center justify-center rounded-full">
                                             <svg
                                                 xmlns="https://www.w3.org/2000/svg"
                                                 fill="none"
@@ -127,10 +127,10 @@ export default function AuthLists({ auth, lists }) {
                                                 stroke="currentColor"
                                                 className="w-6 h-6"
                                             >
-                                                <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
                                         </div>
-                                        <p className="hover:text-indigo-500">
+                                        <p className="hover:text-orange-500">
                                             Compléter la liste
                                         </p>
                                     </Link>

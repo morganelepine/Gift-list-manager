@@ -47,7 +47,7 @@ export default function PrivateList({ auth, list }) {
                                 name="private_code"
                                 value={data.private_code}
                                 placeholder="Le code secret"
-                                className="block w-full py-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                className="block w-full py-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                 isFocused={true}
                                 onChange={(e) =>
                                     setData("private_code", e.target.value)

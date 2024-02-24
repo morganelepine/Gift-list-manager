@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
-import SmallButton from "@/Components/Buttons/SmallButton";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head } from "@inertiajs/react";
 
 export default function Create({ auth }) {
@@ -34,17 +34,13 @@ export default function Create({ auth }) {
                     {/* @csrf */}
 
                     <div className="my-2">
-                        <InputLabel
-                            htmlFor="link"
-                            value="Nom de la liste"
-                            className="pl-2"
-                        />
+                        <InputLabel htmlFor="link" value="Nom de la liste" />
                         <TextInput
                             id="name"
                             name="name"
                             value={data.name}
                             placeholder="Noël, Anniversaire, Mariage..."
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             isFocused={true}
                             onChange={(e) => setData("name", e.target.value)}
                             required
@@ -54,17 +50,13 @@ export default function Create({ auth }) {
                     </div>
 
                     <div className="mt-6">
-                        <InputLabel
-                            htmlFor="link"
-                            value="Code privé"
-                            className="pl-2"
-                        />
+                        <InputLabel htmlFor="link" value="Code privé" />
                         <TextInput
                             id="private_code"
                             name="private_code"
                             value={data.private_code}
                             placeholder="1234"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             onChange={(e) =>
                                 setData("private_code", e.target.value)
                             }
@@ -81,9 +73,9 @@ export default function Create({ auth }) {
                         />
                     </div>
 
-                    <SmallButton className="mt-6" disabled={processing}>
+                    <PrimaryButton className="mt-6" disabled={processing}>
                         Créer la liste
-                    </SmallButton>
+                    </PrimaryButton>
                 </form>
             </div>
         </AuthenticatedLayout>

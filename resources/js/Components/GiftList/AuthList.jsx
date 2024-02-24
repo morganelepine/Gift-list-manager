@@ -33,7 +33,7 @@ export default function AuthList({ auth, list, ideas }) {
                                 <button onClick={() => setEditing(true)}>
                                     <svg
                                         xmlns="https://www.w3.org/2000/svg"
-                                        className="h-5 w-5 text-gray-400 hover:text-indigo-800"
+                                        className="h-5 w-5 text-gray-400 hover:text-orange-500"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -50,7 +50,7 @@ export default function AuthList({ auth, list, ideas }) {
                             href={route("ideas.create_idea", list.id)}
                             className="flex items-center mt-2 sm:mt-0"
                         >
-                            <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                            <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
                                 <svg
                                     xmlns="https://www.w3.org/2000/svg"
                                     fill="none"
@@ -61,7 +61,7 @@ export default function AuthList({ auth, list, ideas }) {
                                     <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-                            <p className="hover:text-indigo-500 text-indigo-800 text-sm">
+                            <p className=" hover:text-orange-500 text-sm">
                                 Compléter la liste
                             </p>
                         </Link>
@@ -95,7 +95,7 @@ export default function AuthList({ auth, list, ideas }) {
                         <Link
                             as="button"
                             href={route("ideas.create_idea", list.id)}
-                            className="inline-block text-center mt-2 px-3 py-1 bg-indigo-200 border border-transparent rounded-md font-semibold text-md text-indigo-800 hover:text-white hover:bg-indigo-500 focus:bg-indigo-900 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                            className="inline-block text-center mt-2 px-3 py-1 bg-orange-200 border border-transparent rounded-md font-semibold text-md text-orange-800 hover:text-white hover:bg-orange-700 active:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2 transition ease-in-out duration-150"
                         >
                             Commencer la liste
                         </Link>
@@ -108,6 +108,6 @@ export default function AuthList({ auth, list, ideas }) {
 
 AuthList.propTypes = {
     auth: PropTypes.object.isRequired,
-    list: PropTypes.object,
+    list: PropTypes.array,
     ideas: PropTypes.array,
 };

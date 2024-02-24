@@ -28,14 +28,14 @@ export default function EditListTitle({ list, setEditing }) {
                         name="name"
                         value={data.name}
                         placeholder="Le nom votre liste"
-                        className="py-1 px-2 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        className="py-1 px-2 block border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         onChange={(e) => setData("name", e.target.value)}
                     />
 
                     <InputError message={errors.name} className="mt-2" />
                 </div>
                 <div className="space-x-2">
-                    <button className="ml-3 hover:text-indigo-600">
+                    <button className="ml-3 hover:text-orange-600">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -47,7 +47,7 @@ export default function EditListTitle({ list, setEditing }) {
                         </svg>
                     </button>
                     <button
-                        className="ml-3 text-sm italic hover:text-red-700"
+                        className="ml-3 text-sm italic hover:text-orange-500"
                         onClick={() => {
                             setEditing(false);
                             reset();

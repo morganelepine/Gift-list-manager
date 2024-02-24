@@ -25,7 +25,7 @@ export default function ListToFollow({ auth, listToFollow }) {
             <div className="flex flex-col">
                 <p>
                     La liste{" "}
-                    <span className="uppercase font-semibold text-indigo-700">
+                    <span className="uppercase font-semibold text-orange-500">
                         {listToFollow.name}
                     </span>{" "}
                     de {listToFollow.user_name}
@@ -39,7 +39,7 @@ export default function ListToFollow({ auth, listToFollow }) {
                     // as="button"
                     href={route("lists.show", listToFollow.id)}
                     key={listToFollow.id}
-                    className="text-center mt-1 px-3 py-1 bg-indigo-200 border border-transparent rounded-md font-semibold text-md text-indigo-800 hover:text-white hover:bg-indigo-500 focus:bg-indigo-900 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                    className="text-center mt-1 px-3 py-1 bg-orange-200 border border-transparent rounded-md font-semibold text-md text-orange-500 hover:text-white hover:bg-orange-500 focus:bg-orange-500 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150"
                 >
                     {listToFollow.name}
                 </Link> */}
@@ -58,7 +58,7 @@ export default function ListToFollow({ auth, listToFollow }) {
                             name="private_code"
                             value={data.private_code}
                             placeholder="Le code secret"
-                            className="w-52 py-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            className="w-52 py-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             isFocused={true}
                             onChange={(e) =>
                                 setData("private_code", e.target.value)

@@ -41,7 +41,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
                             href={route("lists.followedLists")}
                             className="flex items-center mt-2 sm:mt-0"
                         >
-                            <div className="h-6 w-6 mr-1 bg-indigo-50 flex items-center justify-center rounded-full">
+                            <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -53,7 +53,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
                                     <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
                             </div>
-                            <p className="hover:text-indigo-500 text-indigo-800 text-sm">
+                            <p className="hover:text-orange-500 text-orange-500 text-sm">
                                 Voir mes listes suivies
                             </p>
                         </Link>
@@ -66,7 +66,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
             <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
                     <div className="space-y-10">
-                        <div className="flex justify-between mt-10 text-indigo-900 text-xl uppercase font-extrabold">
+                        <div className="flex justify-between mt-10  text-xl uppercase font-extrabold">
                             <p>Budget total</p>
                             <p>{totalPrice} €</p>
                         </div>
@@ -74,7 +74,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
                         {Object.entries(groupedIdeas).map(
                             ([user_name, userData]) => (
                                 <div key={user_name} className="space-y-5">
-                                    <div className="flex justify-between text-indigo-700 font-bold">
+                                    <div className="flex justify-between text-orange-500 font-bold">
                                         <p>Budget pour {user_name}</p>
                                         <p>{userData.total} €</p>
                                     </div>

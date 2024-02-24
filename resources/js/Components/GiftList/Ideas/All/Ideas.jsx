@@ -32,7 +32,7 @@ export default function Ideas({ brand, idea, index }) {
                     </div>
 
                     {/* IDEA */}
-                    <div className="p-3 flex flex-1 flex-col bg-white shadow-sm rounded-lg">
+                    <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg">
                         {editing ? (
                             <IdeaEdit
                                 auth={auth}

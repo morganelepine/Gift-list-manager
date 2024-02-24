@@ -54,7 +54,7 @@ export default function Login({ status, canResetPassword }) {
                         type="email"
                         placeholder="E-mail"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-orange-500 focus:border-orange-500 focus:ring-1"
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
@@ -72,7 +72,7 @@ export default function Login({ status, canResetPassword }) {
                             name="password"
                             type={passwordType}
                             placeholder="Mot de passe"
-                            className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-blue-500 focus:border-blue-500 focus:ring-1"
+                            className="w-full px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-orange-500 focus:border-orange-500 focus:ring-1"
                             value={data.password}
                             autoComplete="current-password"
                             onChange={(e) =>
@@ -131,14 +131,14 @@ export default function Login({ status, canResetPassword }) {
                     {/* {canResetPassword && (
                         <Link
                             href={route("password.request")}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                         >
                             Mot de passe oublié ?
                         </Link>
                     )} */}
                     <Link
                         href={route("register")}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
                         Pas encore de compte ?
                     </Link>
