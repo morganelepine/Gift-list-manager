@@ -92,11 +92,14 @@ export default function Create({ auth, list }) {
         >
             <Head title="Compléter ma liste" />
             <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
-                <form onSubmit={submit}>
+                <form onSubmit={submit} className="flex flex-col">
                     {/* @csrf */}
-                    <p className="text-sm italic mb-6">
-                        Merci de renseigner au moins le nom de l'idée ou
-                        le&nbsp;lien.
+                    <p
+                        className="text-sm italic mb-2 text-center"
+                        style={{ textWrap: "balance" }}
+                    >
+                        Merci de renseigner au moins le nom de l'idée ou le
+                        lien.
                     </p>
 
                     <div className="bg-white shadow-md space-y-5 p-5 rounded-xl">
@@ -360,7 +363,10 @@ export default function Create({ auth, list }) {
                             </div>
                         )}
                     </div>
-                    <PrimaryButton className="mt-8" disabled={processing}>
+                    <PrimaryButton
+                        className="mt-8 max-w-max sm:self-auto self-center"
+                        disabled={processing}
+                    >
                         Ajouter l'idée
                     </PrimaryButton>
                 </form>
