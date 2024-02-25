@@ -85,7 +85,7 @@ export default function UserList({
             <Head title="Liste " />
 
             <Toaster
-                position="bottom-right"
+                position="top-right"
                 expand={true}
                 richColors
                 // offset="50px"
