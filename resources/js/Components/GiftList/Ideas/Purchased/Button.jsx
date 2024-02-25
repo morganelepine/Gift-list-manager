@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
+import { toast } from "sonner";
 
 export default function Buttons({ id, idea }) {
     //Remove idea from table PURCHASED
@@ -9,6 +10,7 @@ export default function Buttons({ id, idea }) {
         destroy(route("ideas.cancelPurchase", id), {
             onSuccess: () => reset(),
         });
+        toast.info("Achat annulé");
     };
 
     return (

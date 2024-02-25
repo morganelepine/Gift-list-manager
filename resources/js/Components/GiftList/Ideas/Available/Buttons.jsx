@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
+import { toast } from "sonner";
 
 export default function Buttons({ idea }) {
     const { post, processing, reset } = useForm();
@@ -10,6 +11,7 @@ export default function Buttons({ idea }) {
         post(route("ideas.reserve", idea.id), {
             onSuccess: () => reset(),
         });
+        toast.success("Idée réservée !");
     };
 
     //Copy idea in table PURCHASED
@@ -18,6 +20,7 @@ export default function Buttons({ idea }) {
         post(route("ideas.purchase", idea.id), {
             onSuccess: () => reset(),
         });
+        toast.success("Cadeau acheté !");
     };
 
     return (

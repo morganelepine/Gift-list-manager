@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
+import Linkify from "linkify-react"; //rendre les liens cliquables
+import { Toaster } from "sonner";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import IdeasAvailable from "@/Components/GiftList/Ideas/Available/Ideas_available";
 import IdeasReserved from "@/Components/GiftList/Ideas/Reserved/Ideas_reserved";
 import IdeasPurchased from "@/Components/GiftList/Ideas/Purchased/Ideas_purchased";
-import Linkify from "linkify-react"; //rendre les liens cliquables
 
 export default function UserList({
     auth,
@@ -28,9 +29,6 @@ export default function UserList({
 
         return ideasByBrand;
     }, {});
-
-    // const seeButton =
-    //     "px-2 py-1 bg-orange-500 border border-transparent rounded-md text-sm text-white hover:bg-orange-500 transition ease-in-out duration-150";
 
     const h1 =
         "uppercase tracking-wider text-center rounded-full text-white w-full p-1 mb-3";
@@ -86,25 +84,45 @@ export default function UserList({
         >
             <Head title="Liste " />
 
+            <Toaster
+                position="bottom-right"
+                expand={true}
+                richColors
+                // offset="50px"
+                // closeButton
+                toastOptions={
+                    {
+                        // style: { background: "orange-500" },
+                        // className: "bg-orange-500",
+                    }
+                }
+            />
+
             <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas_available.length == 0 &&
-                ideas_reserved.length == 0 &&
-                ideas_purchased.length == 0 ? (
-                    <p className="text-center">
-                        Cette liste est vide pour le moment. Revenez plus tard !
-                    </p>
-                ) : ideas_available.length === 0 &&
-                  (ideas_purchased.length > 0 || ideas_reserved.length > 0) ? (
-                    <>
-                        <h1 className={`bg-orange-500 ${h1}`}>
-                            Idées disponibles
-                        </h1>
-                        <p className="text-center text-sm italic mb-10">
+                    ideas_reserved.length == 0 &&
+                    ideas_purchased.length == 0 && (
+                        <p className="text-center">
                             Cette liste est vide pour le moment. Revenez plus
                             tard !
                         </p>
-                    </>
-                ) : (
+                    )}
+
+                {ideas_available.length === 0 &&
+                    (ideas_purchased.length > 0 ||
+                        ideas_reserved.length > 0) && (
+                        <>
+                            <h1 className={`bg-orange-500 ${h1}`}>
+                                Idées disponibles
+                            </h1>
+                            <p className="text-center text-sm italic mb-10">
+                                Cette liste est vide pour le moment. Revenez
+                                plus tard !
+                            </p>
+                        </>
+                    )}
+
+                {ideas_available.length > 0 && (
                     <>
                         <h1 className={`bg-orange-500 ${h1}`}>
                             Idées disponibles
@@ -155,7 +173,7 @@ export default function UserList({
                                                         Lien à utiliser pour
                                                         bénéficier de la
                                                         réduction de parrainage
-                                                        (-15%)&nbsp;:&nbsp;
+                                                        (-15%)&nbsp;:&nbsp;{" "}
                                                         <span className="text-xs italic  hover:text-orange-500">
                                                             <Linkify
                                                                 options={{
