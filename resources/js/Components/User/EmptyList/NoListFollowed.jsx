@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
 export default function NoListFollowed() {
     return (
@@ -13,9 +14,8 @@ export default function NoListFollowed() {
             <Link
                 href={route("lists.listsToFollow")}
                 active={route().current("lists.listsToFollow")}
-                className="inline-block text-center mt-2 px-3 py-1 bg-orange-200 border border-transparent rounded-md font-semibold text-md text-orange-500 hover:text-white hover:bg-orange-700 active:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2 transition ease-in-out duration-150"
             >
-                Voir les listes
+                <PrimaryButton className="mt-3">Voir les listes</PrimaryButton>
             </Link>
         </div>
     );
