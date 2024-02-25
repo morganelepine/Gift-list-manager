@@ -17,7 +17,7 @@ export default function Ideas_reserved({ auth, ideas }) {
                 <div key={reserved.idea.id}>
                     <div className="my-2 sm:flex items-center">
                         {/* BUTTON */}
-                        {reserved.idea.status_user === auth.user.name && (
+                        {reserved.user.id === auth.user.id && (
                             <div className="sm:hidden flex mb-1">
                                 <Button idea={reserved.idea} id={reserved.id} />
                             </div>

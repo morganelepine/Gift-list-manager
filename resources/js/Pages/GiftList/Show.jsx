@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AuthList from "@/Components/GiftList/AuthList";
 import UserList from "@/Components/GiftList/UserList";
 import PrivateList from "@/Components/GiftList/PrivateList";
+import { Toaster } from "sonner";
 
 export default function Show({
     auth,
@@ -22,22 +23,37 @@ export default function Show({
     const isConnectedUser = list.user_id === auth.user.id;
 
     return (
-        <div>
-            {isConnectedUser ? (
-                <AuthList auth={auth} list={list} ideas={ideas} />
-            ) : listIsFollowed ? (
-                <UserList
-                    auth={auth}
-                    list={list}
-                    ideas={ideas}
-                    ideas_available={ideas_available}
-                    ideas_reserved={ideas_reserved}
-                    ideas_purchased={ideas_purchased}
-                />
-            ) : (
-                <PrivateList auth={auth} list={list} />
-            )}
-        </div>
+        <>
+            <Toaster
+                position="top-right"
+                expand={true}
+                richColors
+                // offset="50px"
+                // closeButton
+                toastOptions={
+                    {
+                        // style: { background: "orange-500" },
+                        // className: "bg-orange-500",
+                    }
+                }
+            />
+
+            <div>
+                {isConnectedUser ? (
+                    <AuthList auth={auth} list={list} ideas={ideas} />
+                ) : listIsFollowed ? (
+                    <UserList
+                        auth={auth}
+                        list={list}
+                        ideas_available={ideas_available}
+                        ideas_reserved={ideas_reserved}
+                        ideas_purchased={ideas_purchased}
+                    />
+                ) : (
+                    <PrivateList auth={auth} list={list} />
+                )}
+            </div>
+        </>
     );
 }
 

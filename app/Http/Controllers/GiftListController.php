@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\GiftList;
 use App\Models\Idea;
+use App\Models\GiftList;
 use App\Models\IdeaReserved;
 use App\Models\IdeaPurchased;
 use App\Models\FollowedList;
 use Illuminate\Http\Request;
-use Inertia\Response;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Carbon\Carbon;
 
@@ -27,10 +26,10 @@ class GiftListController extends Controller
     {
         $authUserId = Auth::id();
 
-        // get list id from url
+        // Get list id from url
         $list = GiftList::find($id);
 
-        // idées dans la liste dont l'id est dans l'url
+        // Get ALL ideas from specific list (id in url)
         $ideas = Idea::where('list_id', $id)
             ->orderBy('brand')
             ->orderByDesc('favorite')
@@ -38,7 +37,7 @@ class GiftListController extends Controller
             ->orderBy('idea')
             ->get();
 
-        // idées disponibles
+        // Get AVAILABLE ideas from specific list (id in url)
         $ideas_available = Idea::where('list_id', $id)->where('status', "available")
             ->orderBy('brand')
             ->orderByDesc('favorite')
@@ -46,31 +45,19 @@ class GiftListController extends Controller
             ->orderBy('idea')
             ->get();
 
-        // get reserved ideas from specific list
-        $ideas_reserved = IdeaReserved::with('idea')
+        // Get RESERVED ideas from specific list (id in url)
+        $ideas_reserved = IdeaReserved::with('idea', 'user')
         ->where('gift_list_id', $id)
         ->orderByDesc('updated_at')
         ->get();
 
-        // // idées réservées
-        // $ideas_reserved = Idea::where('list_id', $id)->where('status', "reserved")
-        //     ->orderByDesc('updated_at')
-        //     ->orderBy('status_user')
-        //     ->get();
-
-        // get purchased ideas from specific list
-        $ideas_purchased = IdeaPurchased::with('idea')
+        // Get PURCHASED ideas from specific list (id in url)
+        $ideas_purchased = IdeaPurchased::with('idea', 'user')
         ->where('gift_list_id', $id)
         ->orderByDesc('updated_at')
         ->get();
 
-        // // idées achetées
-        // $ideas_purchased = Idea::where('list_id', $id)->where('status', "purchased")
-        //     ->orderByDesc('updated_at')
-        //     ->orderBy('status_user')
-        //     ->get();
-
-        // get lists followed by connected user
+        // Get lists followed by auth user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();
 
         return Inertia::render('GiftList/Show', [
@@ -93,9 +80,9 @@ class GiftListController extends Controller
 
         $dateFormat = 'd/m/Y';
 
-        // Get the lists of the auth user
+        // Get lists CREATED by auth user
         $mylists = GiftList::where('user_id', $authUserId)->orderBy('created_at', 'desc')->get();
-        // Formatage de la date
+        // Date formatting
         foreach ($mylists as $mylist) {
             $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
             $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
@@ -103,9 +90,9 @@ class GiftListController extends Controller
             $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
 
-        // Get the lists followed by the auth user
+        // Get lists FOLLOWED by auth user
         $followedLists = $authUser->followedLists()->get();
-        // Formatage de la date pour les listes suivies
+        // Date formatting
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
             $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
@@ -120,15 +107,15 @@ class GiftListController extends Controller
     }
 
     /**
-     * Display a listing of the gift lists to follow.
+     * Display a listing of the gift lists TO FOLLOW.
      */
     public function listsToFollow(): Response
     {
-        // Get all users except the authenticated user
+        // Get all users except the auth user
         $authUserId = Auth::id();
         $users = User::where('id', '!=', $authUserId)->get();
 
-        // Get the lists to follow
+        // Get lists to follow
         $authUser = Auth::user();
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
         $listsToFollow = GiftList::whereNot('user_id', $authUserId)
@@ -136,7 +123,7 @@ class GiftListController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        // Formatage de la date
+        // Date formatting
         $dateFormat = 'd/m/Y';
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format($dateFormat);
@@ -152,15 +139,15 @@ class GiftListController extends Controller
     }
 
     /**
-     * Display a listing of the followed gift lists.
+     * Display a listing of the FOLLOWED gift lists.
      */
     public function followedLists(): Response
     {
-        // Get the lists followed by the authenticated user
+        // Get lists followed by auth user
         $authUser = Auth::user();
         $followedLists = $authUser->followedLists()->get();
 
-        // Formatage de la date
+        // Date formatting
         $dateFormat = 'd/m/Y';
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
@@ -181,16 +168,14 @@ class GiftListController extends Controller
     {
         $authUserId = Auth::id();
 
-        // Get all lists of connected user
+        // Get all lists of auth user
         $lists = GiftList::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
-        // dd($lists);
 
-        // Get all ideas in each lists of connected user
+        // Get all ideas in each lists of auth user
         $userLists = GiftList::where('user_id', $authUserId)->get();
         $listsOfIdeas = Idea::join('gift_lists', 'ideas.list_id', '=', 'gift_lists.id')
         ->select('ideas.*', 'gift_lists.*')
         ->whereIn('list_id', $userLists->pluck('id'))
-        // ->orderby('created_at', 'desc')
         ->get();
 
         return count($lists) == 1
@@ -234,7 +219,8 @@ class GiftListController extends Controller
      */
     public function update(Request $request, GiftList $list): RedirectResponse
     {
-        // $this->authorize('update', $list);
+        // Only the auth user can update the list
+        $this->authorize('update', $list);
 
         $string = 'nullable|string|max:255';
 
@@ -283,24 +269,10 @@ class GiftListController extends Controller
                 'private_code' => 'required|string',
             ]);
             $request->user()->followed_lists()->create($validated);
-            // return redirect()->back()->with('success', 'Vous suivez maintenant cette liste !');
             return redirect(route('lists.followedLists'));
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }
     }
 
-
-    /**
-     * Unfollow a list
-     */
-    public function unfollowList(FollowedList $list): RedirectResponse
-    {
-        //Only the auth user can unfollow the list
-        $this->authorize('delete', $list);
-
-        $list->delete();
-
-        return redirect(route('lists.authLists'));
-    }
 }

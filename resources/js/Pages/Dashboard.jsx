@@ -54,11 +54,6 @@ export default function Dashboard({ auth }) {
                         <h1 className="font-semibold">Bugs à corriger</h1>
                         <ul className="list-disc px-4 mt-3">
                             <li>Focus de la page des listes</li>
-                            <li>
-                                Mettre à jour la liste lorsqu'on
-                                modifie/supprime une idée (sans avoir à
-                                recharger la page)
-                            </li>
                             <li>Modifier le mot de passe à la connexion</li>
                             <li>Drag&drop qui enregistre le changement</li>
                             <li>Pas de marque renseignée = null</li>

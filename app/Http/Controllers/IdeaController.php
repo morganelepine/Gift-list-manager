@@ -2,28 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GiftList;
-use App\Models\Idea;
 use App\Models\User;
+use App\Models\Idea;
+use App\Models\GiftList;
+use App\Models\IdeaReserved;
+use App\Models\IdeaPurchased;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Inertia\Response;
 
 class IdeaController extends Controller
 {
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Idea $idea): Response
-    {
-        // return Inertia::render('Ideas/Show', [
-        //     'idea' => $idea,
-        // ]);
-    }
 
     /**
      * Display a listing of the resource.
@@ -32,8 +24,12 @@ class IdeaController extends Controller
     {
         $authUserId = Auth::id();
 
-        // Get all ideas of connected user
-        $ideas = Idea::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
+        // Get all ideas of auth user
+        $ideas = Idea::with('user:id,name')
+        ->where('user_id', $authUserId)
+        ->orderBy('price')
+        ->latest()
+        ->get();
 
         return Inertia::render('Ideas/Index', [
             'ideas' => $ideas,
@@ -43,17 +39,9 @@ class IdeaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return Inertia::render('Ideas/Create');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create_idea(Request $request, $id): Response
     {
-        // get list id from url
+        // Get list id from url
         $list = GiftList::find($id);
 
         return Inertia::render('Ideas/Create', [
@@ -119,44 +107,22 @@ class IdeaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function modify(Request $request, $listId, Idea $idea): RedirectResponse
-    {
-        $string = 'nullable|string|max:255';
-
-        $validated = $request->validate([
-            'status' => $string,
-            'status_user' => $string,
-        ]);
-
-        $idea->update($validated);
-
-        return redirect(route('lists.show', $listId));
-    }
-
-    public function updateOrder(Request $request)
-    {
-        $order = $request->input('order');
-
-        foreach ($order as $index => $ideaId) {
-            Idea::where('id', $ideaId)->update(['order' => $index + 1]);
-        }
-
-        return back();
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Idea $idea): RedirectResponse
     {
-        //Only the auth user can delete the idea
+        // Check if idea is already reserved or purchased
+        $isReserved = IdeaReserved::where('idea_id', $idea->id)->exists();
+        $isPurchased = IdeaPurchased::where('idea_id', $idea->id)->exists();
+
+        // Only the auth user can delete the idea
         $this->authorize('delete', $idea);
 
-        $idea->delete();
-
-        // return redirect(route('ideas.index'));
-        return back();
+        if ($isReserved || $isPurchased) {
+            return redirect()->back()->withErrors(['error' => 'Oops, cette idée a déjà été réservée ou achetée...']);
+        } else {
+            $idea->delete();
+            return back();
+        }
     }
 }

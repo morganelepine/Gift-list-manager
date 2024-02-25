@@ -62,7 +62,7 @@ export default function Ideas_all({ ideas }) {
                                                 <hr className="w-full h-px mt-3 mb-2 bg-orange-100 border-0"></hr>
                                             </div>
                                             {brand === "Nébuleuse" && (
-                                                <div className="flex flex-wrap bg-orange-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1 mb-3">
+                                                <div className="flex flex-wrap bg-orange-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1">
                                                     <p className="text-xs italic ">
                                                         Lien à utiliser pour
                                                         bénéficier de la

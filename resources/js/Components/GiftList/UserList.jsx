@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
-import { Toaster } from "sonner";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import IdeasAvailable from "@/Components/GiftList/Ideas/Available/Ideas_available";
 import IdeasReserved from "@/Components/GiftList/Ideas/Reserved/Ideas_reserved";
@@ -83,20 +82,6 @@ export default function UserList({
             }
         >
             <Head title="Liste " />
-
-            <Toaster
-                position="top-right"
-                expand={true}
-                richColors
-                // offset="50px"
-                // closeButton
-                toastOptions={
-                    {
-                        // style: { background: "orange-500" },
-                        // className: "bg-orange-500",
-                    }
-                }
-            />
 
             <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas_available.length == 0 &&

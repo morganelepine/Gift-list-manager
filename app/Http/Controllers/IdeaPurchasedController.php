@@ -46,11 +46,13 @@ class IdeaPurchasedController extends Controller
      */
     public function cancelPurchase(IdeaPurchased $idea): RedirectResponse
     {
-        // Update status in table IDEAS
-        $ideaToEdit = Idea::where('id', $idea->idea_id)->first();
-        $ideaToEdit->status = 'available';
-        $ideaToEdit->status_user = '';
-        $ideaToEdit->save();
+        // Update status in table IDEAS if idea still is in db
+        $ideaToEdit = Idea::find($idea->idea_id);
+        if ($ideaToEdit) {
+            $ideaToEdit->status = 'available';
+            $ideaToEdit->status_user = '';
+            $ideaToEdit->save();
+        }
 
         // Remove idea from table PURCHASED
         $idea->delete();

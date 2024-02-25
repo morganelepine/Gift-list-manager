@@ -15,7 +15,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                 <div key={purchased.id}>
                     <div className="my-2 sm:flex items-center">
                         {/* BUTTON */}
-                        {purchased.idea.status_user === auth.user.name && (
+                        {purchased.user.id === auth.user.id && (
                             <div className="sm:hidden flex mb-1">
                                 <Button
                                     idea={purchased.idea}

@@ -1,7 +1,14 @@
-import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import { toast } from "sonner";
 
 export default function EditDeleteButtons({ idea, setEditing }) {
+    const { errors } = usePage().props;
+    const addToast = () => {
+        if (errors && errors.error) {
+            toast.error(errors.error);
+        }
+    };
+
     return (
         <>
             {/* EDIT BUTTON */}
@@ -21,6 +28,7 @@ export default function EditDeleteButtons({ idea, setEditing }) {
             <Link
                 as="button"
                 href={route("ideas.destroy", idea.id)}
+                onClick={addToast}
                 method="delete"
             >
                 <svg

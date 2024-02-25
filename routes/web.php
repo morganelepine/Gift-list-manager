@@ -48,11 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
     Route::get('/ideas/create/{list}', [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
-    Route::patch('/ideas/{idea}/update', [IdeaController::class, 'modify'])->name('ideas.modify');
-
     Route::post('/ideas/{idea}/reserve', [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
     Route::delete('/ideas/{idea}/cancelReserve', [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
-
     Route::post('/ideas/{idea}/purchase', [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
     Route::delete('/ideas/{idea}/cancelPurchase', [IdeaPurchasedController::class, 'cancelPurchase'])->name('ideas.cancelPurchase');
 
@@ -60,11 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/lists-to-follow', [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
     Route::get('/lists-followed', [GiftListController::class, 'followedLists'])->name('lists.followedLists');
     Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
-    Route::delete('/lists/follow', [GiftListController::class, 'unfollowList'])->name('lists.unfollowList');
 });
 
 Route::resource('ideas', IdeaController::class)
-->only(['index', 'create', 'store', 'update', 'destroy'])
+->only(['index', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('lists', GiftListController::class)

@@ -4,6 +4,7 @@ import { useForm } from "@inertiajs/react";
 import TextInput from "@/Components/Laravel/TextInput";
 import InputError from "@/Components/Laravel/InputError";
 import SmallButton from "@/Components/Buttons/SmallButton";
+
 export default function ListToFollow({ auth, listToFollow }) {
     // console.log("auth.user.id : ", auth.user.id);
 
