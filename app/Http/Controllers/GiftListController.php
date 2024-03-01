@@ -89,7 +89,6 @@ class GiftListController extends Controller
         foreach ($mylists as $mylist) {
             $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
             $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
-            // $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
             $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
             $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
@@ -100,7 +99,6 @@ class GiftListController extends Controller
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
             $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('created_at');
-            // $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
             $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
             $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
@@ -133,7 +131,7 @@ class GiftListController extends Controller
         $dateFormat = 'd/m/Y';
         foreach ($listsToFollow as $listToFollow) {
             $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format($dateFormat);
-            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('updated_at');
+            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('created_at');
             $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format($dateFormat);
             $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
@@ -157,7 +155,7 @@ class GiftListController extends Controller
         $dateFormat = 'd/m/Y';
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
-            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('created_at');
             $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
             $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
