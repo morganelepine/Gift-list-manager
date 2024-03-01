@@ -7,8 +7,10 @@ import MyLists from "@/Components/User/MyLists";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
 
-export default function Index({ auth, listsToFollow, followedLists, mylists }) {
+export default function Index({ auth, followedLists, mylists, users }) {
     // console.log("listsToFollow : ", listsToFollow);
+
+    const admin = "m.lepineutter@gmail.com";
 
     return (
         <AuthenticatedLayout
@@ -20,7 +22,7 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
             }
         >
             <Head title="Les listes à suivre" />
-            <div className="max-w-7xl mx-auto px-4 sm:p-4">
+            <div className="max-w-6xl mx-auto px-4 sm:p-4">
                 <div className="sm:mt-6 sm:flex sm:space-x-14 justify-evenly">
                     <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
@@ -60,6 +62,24 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
                             <NoListCreated />
                         )}
                     </div>
+
+                    {auth.user.email === admin && (
+                        <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
+                            <h1 className="text-xl font-semibold mb-2">
+                                Les inscrit·es
+                            </h1>
+                            <div className="flex flex-wrap justify-center">
+                                {users.map((user) => (
+                                    <div
+                                        className="p-3 m-2 flex flex-col text-center shadow bg-white rounded-full"
+                                        key={user.id}
+                                    >
+                                        <p>{user.name}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </AuthenticatedLayout>
@@ -68,7 +88,7 @@ export default function Index({ auth, listsToFollow, followedLists, mylists }) {
 
 Index.propTypes = {
     auth: PropTypes.object.isRequired,
-    listsToFollow: PropTypes.array,
+    users: PropTypes.array,
     followedLists: PropTypes.array,
     mylists: PropTypes.array,
 };

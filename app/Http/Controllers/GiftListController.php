@@ -78,6 +78,9 @@ class GiftListController extends Controller
         $authUser = Auth::user();
         $authUserId = Auth::id();
 
+        // Get all users except auth user
+        $users = User::where('id', '!=', $authUserId)->get();
+
         $dateFormat = 'd/m/Y';
 
         // Get lists CREATED by auth user
@@ -85,7 +88,8 @@ class GiftListController extends Controller
         // Date formatting
         foreach ($mylists as $mylist) {
             $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
-            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
+            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
+            // $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('updated_at');
             $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
             $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
@@ -95,12 +99,14 @@ class GiftListController extends Controller
         // Date formatting
         foreach ($followedLists as $followedList) {
             $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
-            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
+            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('created_at');
+            // $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('updated_at');
             $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
             $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
 
-        return Inertia::render('Users/Index', [
+        return Inertia::render('GiftList/Index', [
+            'users' => $users,
             'mylists' => $mylists,
             'followedLists' => $followedLists,
         ]);
