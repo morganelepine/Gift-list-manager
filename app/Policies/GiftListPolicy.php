@@ -37,7 +37,7 @@ class GiftListPolicy
      */
     public function update(User $user, GiftList $list): bool
     {
-        //
+        return $list->user()->is($user);
     }
 
     /**
