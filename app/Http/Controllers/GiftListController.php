@@ -29,8 +29,9 @@ class GiftListController extends Controller
         // Get list id from url
         $list = GiftList::find($id);
 
-        // Get ALL ideas from specific list (id in url)
+        // Get ALL ideas (except archived) from specific list (id in url)
         $ideas = Idea::where('list_id', $id)
+            ->whereNot('status', 'archived')
             ->orderBy('brand')
             ->orderByDesc('favorite')
             ->orderBy('price')
@@ -38,7 +39,7 @@ class GiftListController extends Controller
             ->get();
 
         // Get AVAILABLE ideas from specific list (id in url)
-        $ideas_available = Idea::where('list_id', $id)->where('status', "available")
+        $ideas_available = Idea::where('list_id', $id)->where('status', 'available')
             ->orderBy('brand')
             ->orderByDesc('favorite')
             ->orderBy('price')
@@ -51,9 +52,10 @@ class GiftListController extends Controller
         ->orderByDesc('updated_at')
         ->get();
 
-        // Get PURCHASED ideas from specific list (id in url)
+        // Get PURCHASED and not archived ideas from specific list (id in url)
         $ideas_purchased = IdeaPurchased::with('idea', 'user')
         ->where('gift_list_id', $id)
+        ->where('archived', 0)
         ->orderByDesc('updated_at')
         ->get();
 
@@ -249,6 +251,7 @@ class GiftListController extends Controller
     public function archive(GiftList $list): RedirectResponse
     {
         IdeaPurchased::where('gift_list_id', $list->id)->update(['archived' => true]);
+        Idea::where('list_id', $list->id)->where('status', 'purchased')->update(['status' => 'archived']);
 
         return redirect(route('lists.show', $list->id));
     }
