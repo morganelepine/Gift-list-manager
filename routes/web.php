@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/lists-to-follow', [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
     Route::get('/lists-followed', [GiftListController::class, 'followedLists'])->name('lists.followedLists');
     Route::post('/lists/follow', [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::patch('lists/{list}/archive', [GiftListController::class, 'archive'])->name('lists.archive');
 });
 
 Route::resource('ideas', IdeaController::class)

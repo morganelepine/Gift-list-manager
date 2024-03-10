@@ -1,20 +1,34 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Lists/EditListTitle";
 import SmallButton from "@/Components/Buttons/SmallButton";
+import { toast } from "sonner";
 
 export default function AuthList({ auth, list, ideas }) {
     // console.log("ideas : ", ideas);
 
-    const [sortBy, setSortBy] = useState("created_at");
-    const handleSortChange = (newSortBy) => {
-        setSortBy(newSortBy);
-    };
-
     const [editing, setEditing] = useState(false);
+
+    const { patch, reset } = useForm();
+
+    const archiveList = (e) => {
+        e.preventDefault();
+        patch(route("lists.archive", list), {
+            onSuccess: () => reset(),
+            onError: (errors) => {
+                console.error(
+                    "Erreur lors de l'archivage de la liste :",
+                    errors
+                );
+            },
+        });
+        toast.success(
+            "Liste archivée ! Vous pouvez désormais supprimer les cadeaux qui vous ont été offerts."
+        );
+    };
 
     return (
         <AuthenticatedLayout
@@ -47,43 +61,49 @@ export default function AuthList({ auth, list, ideas }) {
                         )}
                     </div>
                     {ideas.length > 0 && (
-                        <Link
-                            as="button"
-                            href={route("ideas.create_idea", list.id)}
-                            className="flex items-center mt-2 sm:mt-0"
-                        >
-                            <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
+                        <div className="flex flex-wrap mt-2 sm:mt-0">
+                            <Link
+                                as="button"
+                                href={route("ideas.create_idea", list.id)}
+                                className="flex items-center mr-5"
+                            >
                                 <svg
                                     xmlns="https://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
-                                    className="w-5 h-5"
+                                    className="w-5 h-5 mr-1"
                                 >
                                     <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                            </div>
-                            <p className=" hover:text-orange-500 text-sm">
-                                Compléter la liste
-                            </p>
-                        </Link>
+                                <p className=" hover:text-orange-500 text-sm">
+                                    Compléter la liste
+                                </p>
+                            </Link>
+
+                            <button
+                                onClick={archiveList}
+                                className="flex items-center"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    className="w-5 h-5  mr-1"
+                                >
+                                    <path d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                                </svg>
+                                <p className=" hover:text-orange-500 text-sm">
+                                    Archiver la liste
+                                </p>
+                            </button>
+                        </div>
                     )}
                 </div>
             }
         >
             <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
-                {/* <div className="space-x-5">
-                    <button onClick={() => handleSortChange("price")}>
-                        Trier par prix
-                    </button>
-                    <button onClick={() => handleSortChange("brand")}>
-                        Trier par marque
-                    </button>
-                    <button onClick={() => handleSortChange("favorite")}>
-                        Trier par coup de coeur
-                    </button>
-                </div> */}
-
                 {ideas.length > 0 ? (
                     <div className="flex w-full" key={list.id}>
                         <ListOfIdeas list={list} ideas={ideas} auth={auth} />

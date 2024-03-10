@@ -111,9 +111,12 @@ class IdeaController extends Controller
      */
     public function destroy(Idea $idea): RedirectResponse
     {
-        // Check if idea is already reserved or purchased
+        // Check if idea is already reserved or purchased and not archived
         $isReserved = IdeaReserved::where('idea_id', $idea->id)->exists();
-        $isPurchased = IdeaPurchased::where('idea_id', $idea->id)->exists();
+        $isPurchased = IdeaPurchased::where('idea_id', $idea->id)
+                                    ->where('gift_list_id', $idea->list_id)
+                                    ->where('archived', 0)
+                                    ->exists();
 
         // Only the auth user can delete the idea
         $this->authorize('delete', $idea);

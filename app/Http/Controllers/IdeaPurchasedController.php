@@ -30,6 +30,7 @@ class IdeaPurchasedController extends Controller
             $purchasedIdea->user_id = Auth::id();
             $purchasedIdea->idea_id = $idea->id;
             $purchasedIdea->gift_list_id = $idea->list_id;
+            $purchasedIdea->archived = 0;
             $purchasedIdea->save();
 
         // If idea was in table RESERVED before being purchased, remove it

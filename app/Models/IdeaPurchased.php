@@ -28,5 +28,5 @@ class IdeaPurchased extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['user_id', 'idea_id', 'gift_list_id'];
+    protected $fillable = ['user_id', 'idea_id', 'gift_list_id', 'archived'];
 }

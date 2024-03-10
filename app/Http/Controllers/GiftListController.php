@@ -182,14 +182,18 @@ class GiftListController extends Controller
         ->whereIn('list_id', $userLists->pluck('id'))
         ->get();
 
-        return count($lists) == 1
-            ? Inertia::render('GiftList/FirstAuthList', [
-                'list' => $lists,
-                'ideas' => $listsOfIdeas,
-            ])
-            : Inertia::render('GiftList/AuthLists', [
-                'lists' => $lists,
-            ]);
+        // return count($lists) == 1
+        //     ? Inertia::render('GiftList/FirstAuthList', [
+        //         'list' => $lists,
+        //         'ideas' => $listsOfIdeas,
+        //     ])
+        //     : Inertia::render('GiftList/AuthLists', [
+        //         'lists' => $lists,
+        //     ]);
+
+        return Inertia::render('GiftList/AuthLists', [
+            'lists' => $lists,
+        ]);
     }
 
     /**
@@ -237,6 +241,16 @@ class GiftListController extends Controller
         $list->update($validated);
 
         return redirect(route('lists.authLists'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function archive(GiftList $list): RedirectResponse
+    {
+        IdeaPurchased::where('gift_list_id', $list->id)->update(['archived' => true]);
+
+        return redirect(route('lists.show', $list->id));
     }
 
     /**
