@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AuthList from "@/Components/GiftList/AuthList";
+import AuthPrivateList from "@/Components/GiftList/AuthPrivateList";
 import UserList from "@/Components/GiftList/UserList";
-import PrivateList from "@/Components/GiftList/PrivateList";
+import PrivateList from "@/Components/GiftList/PrivateCodeList";
 import { Toaster } from "sonner";
 
 export default function Show({
@@ -22,6 +23,9 @@ export default function Show({
 
     const isConnectedUser = list.user_id === auth.user.id;
 
+    const isPrivateList = list.isPrivate === 1;
+    const isSharedList = list.isPrivate === 0;
+
     return (
         <>
             <Toaster
@@ -39,8 +43,10 @@ export default function Show({
             />
 
             <div>
-                {isConnectedUser ? (
+                {isConnectedUser && isSharedList ? (
                     <AuthList auth={auth} list={list} ideas={ideas} />
+                ) : isConnectedUser && isPrivateList ? (
+                    <AuthPrivateList auth={auth} list={list} ideas={ideas} />
                 ) : listIsFollowed ? (
                     <UserList
                         auth={auth}

@@ -176,13 +176,8 @@ class GiftListController extends Controller
         $authUserId = Auth::id();
 
         // Get lists of auth user
-        $lists = GiftList::with('user:id,name')
-                ->where('user_id', $authUserId)
-                ->latest()
-                ->get();
-
-        $publicLists = $lists->where('isPrivate', 0);
-        $privateLists = $lists->where('isPrivate', 1);
+        $publicLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 0)->latest()->get();
+        $privateLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 1)->latest()->get();
 
         return Inertia::render('GiftList/AuthLists', [
             'publicLists' => $publicLists,

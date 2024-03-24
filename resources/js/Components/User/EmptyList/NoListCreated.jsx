@@ -10,10 +10,7 @@ export default function NoListCreated({ listType }) {
                 Cliquez sur ce bouton pour créer votre première liste&nbsp;!
             </p>
 
-            <Link
-                href={route("lists.create")}
-                active={route().current("lists.create")}
-            >
+            <Link href={route("lists.create")}>
                 <SmallButton className="mt-3">
                     Créer une liste {listType}
                 </SmallButton>

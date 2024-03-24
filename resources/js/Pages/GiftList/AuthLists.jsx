@@ -6,6 +6,9 @@ import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
 
 export default function AuthLists({ auth, publicLists, privateLists }) {
+    console.log({ publicLists });
+    console.log({ privateLists });
+
     return (
         <AuthenticatedLayout
             user={auth.user}
