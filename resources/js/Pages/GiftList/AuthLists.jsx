@@ -44,7 +44,7 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
             <Head title="Mes listes" />
 
             <div className="max-w-6xl mx-auto px-4 sm:p-4">
-                <div className="sm:mt-6 sm:flex justify-evenly pb-20 space-x-14">
+                <div className="sm:mt-6 sm:flex justify-evenly pb-20 sm:space-x-14">
                     <div className="flex flex-col items-center sm:w-80 mt-12 sm:mt-0">
                         <h1 className="text-xl text-center font-semibold mb-2">
                             Mes listes partagées
