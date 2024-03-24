@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
-export default function MyLists({ list }) {
-    const addButton =
-        "min-w-full px-2 py-1 bg-gradient-to-r from-bordeaux-300 to-orange-300 hover:from-orange-400 hover:to-pink-400 rounded-full text-sm text-white transition ease-in-out duration-150";
+export default function AuthListCard({ list }) {
+    const isSharedList = list.isPrivate === 0;
 
     return (
         <div className="relative flex items-start w-full">
@@ -28,20 +27,28 @@ export default function MyLists({ list }) {
                 <div className="flex flex-col items-center space-y-2 max-w-max">
                     {/* SEE BUTTON */}
                     <Link as="button" href={route("lists.show", list.id)}>
-                        <SmallButton>Voir ma liste</SmallButton>
+                        <SmallButton>
+                            {isSharedList ? (
+                                <span>Voir ma liste</span>
+                            ) : (
+                                <span>Voir et compléter ma liste</span>
+                            )}
+                        </SmallButton>
                     </Link>
 
                     {/* EDIT BUTTON */}
-                    <Link
-                        as="button"
-                        href={route("ideas.create_idea", list.id)}
-                        className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-orange-200 hover:to-bordeaux-200 transition ease-in-out duration-150"
-                    >
-                        Compléter ma liste
-                    </Link>
+                    {isSharedList && (
+                        <Link
+                            as="button"
+                            href={route("ideas.create_idea", list.id)}
+                            className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-orange-200 hover:to-bordeaux-200 transition ease-in-out duration-150"
+                        >
+                            Compléter ma liste
+                        </Link>
+                    )}
 
                     {/* PRIVATE CODE */}
-                    <ShowPrivateCode list={list} />
+                    {isSharedList && <ShowPrivateCode list={list} />}
                 </div>
             </div>
 
@@ -63,7 +70,7 @@ export default function MyLists({ list }) {
                         <path d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </Link>
-                <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-orange-500 p-2 text-xs text-center text-white group-hover:scale-100">
+                <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-gray-900 p-2 text-xs text-center text-white group-hover:scale-100">
                     Une fois supprimée, pas de retour en arrière !
                 </span>
             </div>
@@ -71,6 +78,6 @@ export default function MyLists({ list }) {
     );
 }
 
-MyLists.propTypes = {
+AuthListCard.propTypes = {
     list: PropTypes.object,
 };

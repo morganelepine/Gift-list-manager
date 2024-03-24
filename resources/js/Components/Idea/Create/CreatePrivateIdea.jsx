@@ -37,25 +37,33 @@ export default function CreatePrivateIdea({ auth, list }) {
     };
 
     return (
-        <div className="p-4 bg-white shadow-md rounded-xl">
-            <form onSubmit={submit} className="flex items-center">
-                <div className="w-full">
-                    {/* <InputLabel htmlFor="link" value="Idée cadeau" /> */}
-                    <TextInput
-                        id="idea"
-                        name="idea"
-                        value={data.idea}
-                        placeholder="Puzzle 500 pièces"
-                        className="py-1 mt-auto"
-                        isFocused={true}
-                        onChange={(e) => setData("idea", e.target.value)}
+        <div className="p-4 bg-gradient-to-r from-orange-100 to-bordeaux-100 shadow-md rounded-xl">
+            <form onSubmit={submit}>
+                <div className="flex flex-col text-center w-full">
+                    <InputLabel
+                        htmlFor="link"
+                        value="Ajouter une idée"
+                        className="mb-3"
                     />
-
-                    <InputError message={errors.idea} className="mt-2" />
+                    <div className="sm:flex">
+                        <TextInput
+                            id="idea"
+                            name="idea"
+                            value={data.idea}
+                            placeholder="Puzzle 500 pièces"
+                            className="py-1 mt-auto"
+                            isFocused={true}
+                            onChange={(e) => setData("idea", e.target.value)}
+                        />
+                        <InputError message={errors.idea} className="mt-2" />
+                        <SmallButton
+                            className="sm:ml-4 sm:mt-0 mt-3 sm:w-auto w-full"
+                            disabled={processing}
+                        >
+                            Ajouter
+                        </SmallButton>
+                    </div>
                 </div>
-                <SmallButton className="ml-4" disabled={processing}>
-                    Ajouter
-                </SmallButton>
             </form>
         </div>
     );

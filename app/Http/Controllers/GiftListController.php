@@ -175,9 +175,27 @@ class GiftListController extends Controller
     {
         $authUserId = Auth::id();
 
-        // Get lists of auth user
+        $dateFormat = 'd/m/Y';
+
+        // Get shared lists of auth user
         $publicLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 0)->latest()->get();
+        // Date formatting
+        foreach ($publicLists as $publicList) {
+            $publicList->formatted_created_at = Carbon::parse($publicList->created_at)->format($dateFormat);
+            $publicList->lastUpdatedAt = Idea::where('list_id', $publicList->id)->max('created_at');
+            $publicList->formatted_updated_at = Carbon::parse($publicList->lastUpdatedAt)->format($dateFormat);
+            $publicList->isEmpty = Idea::where('list_id', $publicList->id)->count() === 0;
+        }
+
+        // Get private lists of auth user
         $privateLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 1)->latest()->get();
+        // Date formatting
+        foreach ($privateLists as $privateList) {
+            $privateList->formatted_created_at = Carbon::parse($privateList->created_at)->format($dateFormat);
+            $privateList->lastUpdatedAt = Idea::where('list_id', $privateList->id)->max('created_at');
+            $privateList->formatted_updated_at = Carbon::parse($privateList->lastUpdatedAt)->format($dateFormat);
+            $privateList->isEmpty = Idea::where('list_id', $privateList->id)->count() === 0;
+        }
 
         return Inertia::render('GiftList/AuthLists', [
             'publicLists' => $publicLists,

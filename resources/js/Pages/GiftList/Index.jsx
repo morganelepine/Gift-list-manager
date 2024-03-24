@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FollowedList from "@/Components/User/FollowedList";
-import MyLists from "@/Components/User/MyLists";
+import AuthListCard from "@/Components/User/AuthListCard";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
 
@@ -23,7 +23,7 @@ export default function Index({ auth, followedLists, mylists, users }) {
         >
             <Head title="Les listes à suivre" />
             <div className="max-w-6xl mx-auto px-4 sm:p-4">
-                <div className="sm:mt-6 sm:flex sm:space-x-14 justify-evenly pb-20">
+                <div className="sm:mt-6 sm:flex justify-evenly pb-20">
                     <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Les listes suivies
@@ -55,7 +55,7 @@ export default function Index({ auth, followedLists, mylists, users }) {
                                     className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
                                     key={list.id}
                                 >
-                                    <MyLists list={list} auth={auth} />
+                                    <AuthListCard list={list} auth={auth} />
                                 </div>
                             ))
                         ) : (

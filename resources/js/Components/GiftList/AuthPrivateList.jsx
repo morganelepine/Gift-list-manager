@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Lists/EditListTitle";
 import SmallButton from "@/Components/Buttons/SmallButton";
+import IdeaShow from "@/Components/GiftList/Ideas/All/State/IdeaShow";
+import IdeaEdit from "@/Components/GiftList/Ideas/All/State/IdeaEdit";
+import Buttons from "@/Components/GiftList/Ideas/All/Buttons";
+import CreatePrivateIdea from "@/Components/Idea/Create/CreatePrivateIdea";
+import { toast } from "sonner";
 
 export default function AuthPrivateList({ auth, list, ideas }) {
     // console.log("ideas : ", ideas);
 
     const [editing, setEditing] = useState(false);
+
+    const { errors } = usePage().props;
+    const addToast = () => {
+        if (errors && errors.error) {
+            toast.error(errors.error);
+        }
+    };
 
     return (
         <AuthenticatedLayout
@@ -41,36 +52,65 @@ export default function AuthPrivateList({ auth, list, ideas }) {
                             </>
                         )}
                     </div>
-                    {ideas.length > 0 && (
-                        <div className="flex flex-wrap mt-2 sm:mt-0">
-                            <Link
-                                as="button"
-                                href={route("ideas.create_idea", list.id)}
-                                className="flex items-center mr-5"
-                            >
-                                <svg
-                                    xmlns="https://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    className="w-5 h-5 mr-1"
-                                >
-                                    <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <p className=" hover:text-orange-500 text-sm">
-                                    Compléter la liste
-                                </p>
-                            </Link>
-                        </div>
-                    )}
                 </div>
             }
         >
             <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
-                    <div className="flex w-full" key={list.id}>
-                        <ListOfIdeas list={list} ideas={ideas} auth={auth} />
-                    </div>
+                    <>
+                        {/* ADD IDEA FORM */}
+                        <CreatePrivateIdea list={list} auth={auth} />
+
+                        {/* LIST OF IDEAS */}
+                        <div className="mt-10">
+                            {ideas.map((idea) => (
+                                <div
+                                    key={idea.id}
+                                    className="sm:flex items-center mb-5 w-full"
+                                >
+                                    {/* EDIT & DELETE BUTTONS */}
+                                    {/* <div className="flex items-center w-16">
+                                        <Buttons
+                                            idea={idea}
+                                            setEditing={setEditing}
+                                        />
+                                    </div> */}
+
+                                    {/* DELETE BUTTON */}
+                                    <Link
+                                        as="button"
+                                        href={route("ideas.destroy", idea.id)}
+                                        onClick={addToast}
+                                        method="delete"
+                                        className="mr-2"
+                                    >
+                                        <svg
+                                            xmlns="https://www.w3.org/2000/svg"
+                                            className="h-6 w-6 my-2 text-gray-300 hover:text-orange-500"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                        </svg>
+                                    </Link>
+
+                                    {/* IDEA */}
+                                    <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg">
+                                        {editing ? (
+                                            <IdeaEdit
+                                                auth={auth}
+                                                idea={idea}
+                                                setEditing={setEditing}
+                                            />
+                                        ) : (
+                                            <IdeaShow idea={idea} />
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
                 ) : (
                     <div className="text-center">
                         <p>

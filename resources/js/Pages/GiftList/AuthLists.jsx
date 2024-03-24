@@ -1,9 +1,8 @@
 import { Head, Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import AuthListCard from "@/Components/GiftList/AuthListCard";
+import AuthListCard from "@/Components/User/AuthListCard";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
-import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
 
 export default function AuthLists({ auth, publicLists, privateLists }) {
     console.log({ publicLists });
@@ -45,20 +44,19 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
             <Head title="Mes listes" />
 
             <div className="max-w-6xl mx-auto px-4 sm:p-4">
-                <div className="sm:mt-6 sm:flex sm:space-x-14 justify-evenly pb-20">
+                <div className="sm:mt-6 sm:flex justify-evenly pb-20">
                     <div className="flex flex-col items-center sm:w-80 mt-12 sm:mt-0">
                         <h1 className="text-xl text-center font-semibold mb-2">
                             Mes listes partagées
                         </h1>
                         {publicLists.length ? (
-                            <div className="flex flex-wrap justify-center">
+                            <div className="flex flex-wrap justify-center w-full">
                                 {publicLists.map((list) => (
                                     <div
                                         key={list.id}
                                         className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
                                     >
                                         <AuthListCard list={list} />
-                                        <ShowPrivateCode list={list} />
                                     </div>
                                 ))}
                             </div>
@@ -72,11 +70,11 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
                             Mes listes privées
                         </h1>
                         {privateLists.length ? (
-                            <div className="flex flex-wrap justify-center">
+                            <div className="flex flex-wrap justify-center w-full">
                                 {privateLists.map((list) => (
                                     <div
                                         key={list.id}
-                                        className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl"
+                                        className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
                                     >
                                         <AuthListCard list={list} />
                                     </div>
