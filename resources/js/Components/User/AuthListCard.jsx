@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import ShowPrivateCode from "@/Components/GiftList/Lists/ShowPrivateCode";
+import ShowPrivateCode from "@/Components/GiftList/Auth/Lists/ShowPrivateCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function AuthListCard({ list }) {

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import IdeaShow from "@/Components/GiftList/Ideas/All/State/IdeaShow";
-import IdeaEdit from "@/Components/GiftList/Ideas/All/State/IdeaEdit";
-import Buttons from "@/Components/GiftList/Ideas/All/Buttons";
+import IdeaShow from "@/Components/GiftList/Auth/Ideas/State/IdeaShow";
+import IdeaEdit from "@/Components/GiftList/Auth/Ideas/State/IdeaEdit";
+import Buttons from "@/Components/GiftList/Buttons";
 import { Draggable } from "@hello-pangea/dnd";
 
 dayjs.extend(relativeTime);

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import ListOfIdeas from "@/Components/GiftList/Ideas/All/ListOfIdeas";
-import EditListTitle from "@/Components/GiftList/Lists/EditListTitle";
+import ListOfIdeas from "@/Components/GiftList/Auth/Ideas/ListOfIdeas";
+import EditListTitle from "@/Components/GiftList/Auth/Lists/EditListTitle";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import { toast } from "sonner";
 

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import IdeasAvailable from "@/Components/GiftList/Ideas/Available/Ideas_available";
-import IdeasReserved from "@/Components/GiftList/Ideas/Reserved/Ideas_reserved";
-import IdeasPurchased from "@/Components/GiftList/Ideas/Purchased/Ideas_purchased";
+import IdeasAvailable from "@/Components/GiftList/User/Ideas/Available/Ideas_available";
+import IdeasReserved from "@/Components/GiftList/User/Ideas/Reserved/Ideas_reserved";
+import IdeasPurchased from "@/Components/GiftList/User/Ideas/Purchased/Ideas_purchased";
 
 export default function UserList({
     auth,

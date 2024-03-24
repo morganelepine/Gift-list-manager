@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
+import Ideas from "@/Components/GiftList/Auth/Ideas/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import Linkify from "linkify-react"; //rendre les liens cliquables
-export default function Ideas_all({ ideas }) {
+
+export default function ListOfIdeas({ ideas }) {
     // Regrouper les idées par marque
     const groupedIdeas = ideas.reduce((ideasByBrand, idea) => {
         const { brand, ...rest } = idea;
@@ -104,6 +105,6 @@ export default function Ideas_all({ ideas }) {
     );
 }
 
-Ideas_all.propTypes = {
+ListOfIdeas.propTypes = {
     ideas: PropTypes.array,
 };

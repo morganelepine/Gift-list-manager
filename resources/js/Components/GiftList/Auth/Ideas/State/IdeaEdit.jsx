@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import TextInputSmall from "@/Components/Laravel/TextInputSmall";
-import InputLabel from "@/Components/Laravel/InputLabel";
 import InputError from "@/Components/Laravel/InputError";
 import SmallButton from "@/Components/Buttons/SmallButton";
 

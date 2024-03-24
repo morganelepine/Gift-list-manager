@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AuthList from "@/Components/GiftList/AuthList";
-import AuthPrivateList from "@/Components/GiftList/AuthPrivateList";
-import UserList from "@/Components/GiftList/UserList";
-import PrivateList from "@/Components/GiftList/PrivateCodeList";
+import AuthList from "@/Components/GiftList/Auth/Shared/AuthList";
+import AuthPrivateList from "@/Components/GiftList/Auth/Private/AuthPrivateList";
+import UserList from "@/Components/GiftList/User/UserList";
+import PrivateCodeList from "@/Components/GiftList/User/PrivateCodeList";
 import { Toaster } from "sonner";
 
 export default function Show({
@@ -56,7 +56,7 @@ export default function Show({
                         ideas_purchased={ideas_purchased}
                     />
                 ) : (
-                    <PrivateList auth={auth} list={list} />
+                    <PrivateCodeList auth={auth} list={list} />
                 )}
             </div>
         </>

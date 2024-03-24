@@ -7,7 +7,6 @@ export default function NoListCreated({ listType }) {
         <div className="text-center">
             <p>
                 Vous n’avez pas encore créé de liste {listType}. <br></br>
-                Cliquez sur ce bouton pour créer votre première liste&nbsp;!
             </p>
 
             <Link href={route("lists.create")}>

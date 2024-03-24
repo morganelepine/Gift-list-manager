@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import Ideas from "@/Components/GiftList/Ideas/All/Ideas";
+import Ideas from "@/Components/GiftList/Auth/Ideas/Ideas";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 export default function Ideas_all({ ideas }) {

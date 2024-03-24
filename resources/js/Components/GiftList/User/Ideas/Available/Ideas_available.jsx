@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Buttons from "@/Components/GiftList/Ideas/Available/Buttons";
+import Buttons from "@/Components/GiftList/User/Ideas/Available/Buttons";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
 export default function Ideas_available({ auth, ideas, brand }) {

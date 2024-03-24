@@ -86,9 +86,19 @@ class GiftListController extends Controller
         $dateFormat = 'd/m/Y';
 
         // Get lists CREATED by auth user
-        $mylists = GiftList::where('user_id', $authUserId)->orderBy('created_at', 'desc')->get();
+        $mySharedLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 0)->orderBy('created_at', 'desc')->get();
         // Date formatting
-        foreach ($mylists as $mylist) {
+        foreach ($mySharedLists as $mylist) {
+            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
+            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
+            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
+            $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
+        }
+
+        // Get lists CREATED by auth user
+        $myPrivateLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 1)->orderBy('created_at', 'desc')->get();
+        // Date formatting
+        foreach ($myPrivateLists as $mylist) {
             $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
             $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
             $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
@@ -107,7 +117,8 @@ class GiftListController extends Controller
 
         return Inertia::render('GiftList/Index', [
             'users' => $users,
-            'mylists' => $mylists,
+            'mySharedLists' => $mySharedLists,
+            'myPrivateLists' => $myPrivateLists,
             'followedLists' => $followedLists,
         ]);
     }

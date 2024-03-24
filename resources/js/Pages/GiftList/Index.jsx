@@ -7,10 +7,15 @@ import AuthListCard from "@/Components/User/AuthListCard";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
 
-export default function Index({ auth, followedLists, mylists, users }) {
+export default function Index({
+    auth,
+    followedLists,
+    mySharedLists,
+    myPrivateLists,
+}) {
     // console.log("listsToFollow : ", listsToFollow);
-
-    const admin = "m.lepineutter@gmail.com";
+    // const isPrivateList = list.isPrivate === 1;
+    // const isSharedList = list.isPrivate === 0;
 
     return (
         <AuthenticatedLayout
@@ -23,7 +28,7 @@ export default function Index({ auth, followedLists, mylists, users }) {
         >
             <Head title="Les listes à suivre" />
             <div className="max-w-6xl mx-auto px-4 sm:p-4">
-                <div className="sm:mt-6 sm:flex justify-evenly pb-20">
+                <div className="sm:mt-6 sm:flex justify-evenly pb-20 space-x-14">
                     <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Les listes suivies
@@ -47,10 +52,10 @@ export default function Index({ auth, followedLists, mylists, users }) {
 
                     <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
                         <h1 className="text-xl font-semibold mb-2">
-                            Mes listes
+                            Mes listes partagées
                         </h1>
-                        {mylists.length > 0 ? (
-                            mylists.map((list) => (
+                        {mySharedLists.length > 0 ? (
+                            mySharedLists.map((list) => (
                                 <div
                                     className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
                                     key={list.id}
@@ -59,27 +64,27 @@ export default function Index({ auth, followedLists, mylists, users }) {
                                 </div>
                             ))
                         ) : (
-                            <NoListCreated />
+                            <NoListCreated listType="à partager" />
                         )}
                     </div>
 
-                    {auth.user.email === admin && (
-                        <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
-                            <h1 className="text-xl font-semibold mb-2">
-                                Les inscrit·es
-                            </h1>
-                            <div className="flex flex-wrap justify-center">
-                                {users.map((user) => (
-                                    <div
-                                        className="px-3 py-2 m-2 flex flex-col text-center text-sm shadow bg-indigo-50 rounded-full"
-                                        key={user.id}
-                                    >
-                                        <p>{user.name}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                    <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
+                        <h1 className="text-xl font-semibold mb-2">
+                            Mes listes privées
+                        </h1>
+                        {myPrivateLists.length > 0 ? (
+                            myPrivateLists.map((list) => (
+                                <div
+                                    className="p-5 my-2 flex flex-col text-center shadow bg-white rounded-xl w-full"
+                                    key={list.id}
+                                >
+                                    <AuthListCard list={list} auth={auth} />
+                                </div>
+                            ))
+                        ) : (
+                            <NoListCreated listType="privée" />
+                        )}
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>
@@ -88,7 +93,7 @@ export default function Index({ auth, followedLists, mylists, users }) {
 
 Index.propTypes = {
     auth: PropTypes.object.isRequired,
-    users: PropTypes.array,
     followedLists: PropTypes.array,
-    mylists: PropTypes.array,
+    mySharedLists: PropTypes.array,
+    myPrivateLists: PropTypes.array,
 };

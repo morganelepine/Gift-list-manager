@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "@/Components/GiftList/Ideas/Reserved/Button";
+import Button from "@/Components/GiftList/User/Ideas/Reserved/Button";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
