@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
+import Checkbox from "@/Components/Laravel/Checkbox";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head } from "@inertiajs/react";
 
@@ -11,11 +12,27 @@ export default function Create({ auth }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         user_name: auth.user.name,
         name: "",
-        private_code: "",
+        private_code: "_private",
+        isPrivate: true,
     });
+
+    const [isHidden, setIsHidden] = useState(true);
+    const [isPublicList, setIsPublicList] = useState(false);
+    const handlePrivateCheck = () => {
+        setIsPublicList((current) => !current);
+        setIsHidden((current) => !current);
+        data.private_code = "";
+        // console.log({ isPublicList });
+    };
+
     const submit = (e) => {
         e.preventDefault();
-        post(route("lists.store"), { onSuccess: () => reset() });
+        post(route("lists.store"), {
+            onSuccess: () => reset(),
+            onError: (errors) => {
+                console.error(errors);
+            },
+        });
     };
 
     return (
@@ -40,7 +57,6 @@ export default function Create({ auth }) {
                             name="name"
                             value={data.name}
                             placeholder="Noël, Anniversaire, Mariage..."
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             isFocused={true}
                             onChange={(e) => setData("name", e.target.value)}
                             required
@@ -50,17 +66,42 @@ export default function Create({ auth }) {
                     </div>
 
                     <div className="mt-6">
+                        <InputLabel
+                            htmlFor="link"
+                            value="Liste privée ou à partager"
+                        />
+
+                        <div className="mt-3 flex items-center">
+                            <Checkbox
+                                id="isPrivate"
+                                name="isPrivate"
+                                type="checkbox"
+                                checked={isPublicList}
+                                onChange={(e) => {
+                                    handlePrivateCheck();
+                                    setData("isPrivate", isPublicList);
+                                }}
+                            />
+                            <p>Je souhaite partager cette liste</p>
+                        </div>
+
+                        <InputError
+                            message={errors.isPrivate}
+                            className="mt-2"
+                        />
+                    </div>
+
+                    <div className={"mt-6 " + (isHidden ? "hidden" : "block")}>
                         <InputLabel htmlFor="link" value="Code privé" />
                         <TextInput
                             id="private_code"
                             name="private_code"
                             value={data.private_code}
                             placeholder="1234"
-                            className="block w-full py-1 mt-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
                             onChange={(e) =>
                                 setData("private_code", e.target.value)
                             }
-                            required
+                            // required={isPrivateList} // only if list is not private
                         />
                         <p className="italic text-xs text-gray-600 mt-2">
                             Communiquez ce code à vos proches pour leur

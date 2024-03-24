@@ -125,6 +125,7 @@ class GiftListController extends Controller
         $authUser = Auth::user();
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
         $listsToFollow = GiftList::whereNot('user_id', $authUserId)
+        ->where('isPrivate', 0)
         ->whereNotIn('id', $followedListIds)
         ->orderBy('created_at', 'desc')
         ->get();
@@ -174,27 +175,18 @@ class GiftListController extends Controller
     {
         $authUserId = Auth::id();
 
-        // Get all lists of auth user
-        $lists = GiftList::with('user:id,name')->where('user_id', $authUserId)->latest()->get();
+        // Get lists of auth user
+        $lists = GiftList::with('user:id,name')
+                ->where('user_id', $authUserId)
+                ->latest()
+                ->get();
 
-        // Get all ideas in each lists of auth user
-        $userLists = GiftList::where('user_id', $authUserId)->get();
-        $listsOfIdeas = Idea::join('gift_lists', 'ideas.list_id', '=', 'gift_lists.id')
-        ->select('ideas.*', 'gift_lists.*')
-        ->whereIn('list_id', $userLists->pluck('id'))
-        ->get();
-
-        // return count($lists) == 1
-        //     ? Inertia::render('GiftList/FirstAuthList', [
-        //         'list' => $lists,
-        //         'ideas' => $listsOfIdeas,
-        //     ])
-        //     : Inertia::render('GiftList/AuthLists', [
-        //         'lists' => $lists,
-        //     ]);
+        $publicLists = $lists->where('isPrivate', 0);
+        $privateLists = $lists->where('isPrivate', 1);
 
         return Inertia::render('GiftList/AuthLists', [
-            'lists' => $lists,
+            'publicLists' => $publicLists,
+            'privateLists' => $privateLists,
         ]);
     }
 
@@ -213,11 +205,20 @@ class GiftListController extends Controller
     {
         $string = 'required|string|max:255';
 
-        $validated = $request->validate([
+        $rules = [
             'user_name' => $string,
             'name' => $string,
-            'private_code' => $string,
-        ]);
+            'isPrivate' => 'required|boolean',
+        ];
+
+        // If list is private, private_code is not required
+        if ($request->input('isPrivate')) {
+            $rules['private_code'] = 'nullable|string|max:255';
+        } else {
+            $rules['private_code'] = $string;
+        }
+
+        $validated = $request->validate($rules);
 
         $request->user()->gift_lists()->create($validated);
 
@@ -237,6 +238,7 @@ class GiftListController extends Controller
         $validated = $request->validate([
             'user_name' => $string,
             'name' => $string,
+            'isPrivate' => 'boolean',
             'private_code' => $string,
         ]);
 

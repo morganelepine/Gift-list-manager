@@ -32,6 +32,7 @@ class GiftList extends Model
         'user_name',
         'name',
         'private_code',
+        'isPrivate',
     ];
 
     /**
