@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
-import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function FollowedList({ followedList }) {
     // console.log("followedList : ", followedList);
@@ -24,8 +23,9 @@ export default function FollowedList({ followedList }) {
                 as="button"
                 key={followedList.id}
                 href={route("lists.show", followedList.id)}
+                className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
             >
-                <SmallButton>Voir la liste</SmallButton>
+                Voir la liste
             </Link>
             {/* <Link
                 as="button"

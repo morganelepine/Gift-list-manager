@@ -27,14 +27,16 @@ export default function AuthListCard({ list }) {
 
                 <div className="flex flex-col items-center space-y-2 max-w-max">
                     {/* SEE BUTTON */}
-                    <Link as="button" href={route("lists.show", list.id)}>
-                        <SmallButton>
-                            {isSharedList ? (
-                                <span>Voir ma liste</span>
-                            ) : (
-                                <span>Voir et compléter ma liste</span>
-                            )}
-                        </SmallButton>
+                    <Link
+                        as="button"
+                        href={route("lists.show", list.id)}
+                        className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                    >
+                        {isSharedList ? (
+                            <span>Voir ma liste</span>
+                        ) : (
+                            <span>Voir et compléter ma liste</span>
+                        )}
                     </Link>
 
                     {/* EDIT BUTTON */}

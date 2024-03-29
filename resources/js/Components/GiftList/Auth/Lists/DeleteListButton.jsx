@@ -12,7 +12,6 @@ export default function DeleteListButton({ list }) {
 
     const closeModal = () => {
         setConfirmingListDeletion(false);
-        reset();
     };
 
     return (

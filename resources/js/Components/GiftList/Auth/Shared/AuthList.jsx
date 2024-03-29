@@ -5,7 +5,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ListOfIdeas from "@/Components/GiftList/Auth/Ideas/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Auth/Lists/EditListTitle";
 import ArchiveListButton from "@/Components/GiftList/Auth/Lists/ArchiveListButton";
-import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function AuthList({ auth, list, ideas }) {
     // console.log("ideas : ", ideas);
@@ -82,9 +81,9 @@ export default function AuthList({ auth, list, ideas }) {
                         <Link
                             as="button"
                             href={route("ideas.create_idea", list.id)}
-                            className="mt-2"
+                            className="mt-2 items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                         >
-                            <SmallButton>Commencer la liste</SmallButton>
+                            Commencer la liste
                         </Link>
                     </div>
                 )}
