@@ -1,12 +1,12 @@
 import { Head, Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import AuthListCard from "@/Components/User/AuthListCard";
+import AuthListCard from "@/Components/GiftList/List/AuthListCard";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 
 export default function AuthLists({ auth, publicLists, privateLists }) {
-    console.log({ publicLists });
-    console.log({ privateLists });
+    // console.log({ publicLists });
+    // console.log({ privateLists });
 
     return (
         <AuthenticatedLayout

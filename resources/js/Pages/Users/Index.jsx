@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FollowedList from "@/Components/User/FollowedList";
-import AuthListCard from "@/Components/User/AuthListCard";
+import AuthListCard from "@/Components/GiftList/List/AuthListCard";
 import NoListCreated from "@/Components/User/EmptyList/NoListCreated";
 import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
 

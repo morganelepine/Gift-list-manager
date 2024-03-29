@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import ShowPrivateCode from "@/Components/GiftList/Auth/Lists/ShowPrivateCode";
+import DeleteListButton from "@/Components/GiftList/Auth/Lists/DeleteListButton";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function AuthListCard({ list }) {
@@ -53,27 +54,7 @@ export default function AuthListCard({ list }) {
             </div>
 
             {/* DELETE BUTTON */}
-            <div className="group absolute right-0 justify-center hidden sm:block">
-                {" "}
-                <Link
-                    as="button"
-                    href={route("lists.destroy", list.id)}
-                    method="delete"
-                >
-                    <svg
-                        xmlns="https://www.w3.org/2000/svg"
-                        className="h-7 w-7 text-gray-300 hover:text-orange-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </Link>
-                <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-gray-900 p-2 text-xs text-center text-white group-hover:scale-100">
-                    Une fois supprimée, pas de retour en arrière !
-                </span>
-            </div>
+            <DeleteListButton list={list} />
         </div>
     );
 }

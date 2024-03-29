@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
@@ -17,3 +17,7 @@ export default function NoListCreated({ listType }) {
         </div>
     );
 }
+
+NoListCreated.propTypes = {
+    listType: PropTypes.string,
+};

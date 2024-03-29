@@ -60,6 +60,24 @@ export default function Dashboard({ auth }) {
                         </ul>
                     </div>
                 </div>
+
+                {/* TOOLTIP */}
+                <div className="group absolute right-0 justify-center hidden sm:block">
+                    <button onClick={confirmListDeletion}>
+                        <svg
+                            xmlns="https://www.w3.org/2000/svg"
+                            className="h-7 w-7 text-gray-300 hover:text-orange-500"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <span className="absolute top-10 left-0 scale-0 transition-all rounded bg-gray-900 p-2 text-xs text-center text-white group-hover:scale-100">
+                        Une fois supprimée, pas de retour en arrière !
+                    </span>
+                </div>
             </div>
         </AuthenticatedLayout>
     );
