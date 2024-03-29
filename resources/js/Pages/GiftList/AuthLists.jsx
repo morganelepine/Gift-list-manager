@@ -50,7 +50,7 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
                             Mes listes partagées
                         </h1>
                         {publicLists.length ? (
-                            <div className="flex flex-wrap justify-center w-full">
+                            <div className="flex flex-col justify-center w-full">
                                 {publicLists.map((list) => (
                                     <div
                                         key={list.id}
@@ -70,7 +70,7 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
                             Mes listes privées
                         </h1>
                         {privateLists.length ? (
-                            <div className="flex flex-wrap justify-center w-full">
+                            <div className="flex flex-col justify-center w-full">
                                 {privateLists.map((list) => (
                                     <div
                                         key={list.id}

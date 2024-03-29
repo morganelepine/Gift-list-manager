@@ -28,6 +28,9 @@ export default function DeleteListButton({ list }) {
                         <path d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+                <span className="absolute top-8 left-0 scale-0 transition-all rounded bg-orange-100 py-1 px-2 text-xs text-center text-gray-900 group-hover:scale-100">
+                    Supprimer la liste
+                </span>
             </div>
 
             <Modal show={confirmingListDeletion} onClose={closeModal}>
@@ -50,7 +53,10 @@ export default function DeleteListButton({ list }) {
                         >
                             Supprimer la liste
                         </Link>
-                        <button onClick={closeModal} className="text-sm ml-3">
+                        <button
+                            onClick={closeModal}
+                            className="text-sm ml-3 hover:text-orange-500"
+                        >
                             Annuler
                         </button>
                     </div>

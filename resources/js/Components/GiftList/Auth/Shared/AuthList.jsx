@@ -81,7 +81,7 @@ export default function AuthList({ auth, list, ideas }) {
                         <Link
                             as="button"
                             href={route("ideas.create_idea", list.id)}
-                            className="mt-2 items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                            className="mt-2 items-center px-3 py-1 w-full bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                         >
                             Commencer la liste
                         </Link>

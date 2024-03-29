@@ -12,12 +12,14 @@ export default function AuthListCard({ list }) {
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col items center">
                     {/* LIST NAME */}
-                    <p>
-                        Ma liste{" "}
-                        <span className="uppercase font-semibold text-orange-500">
-                            {list.name}
-                        </span>{" "}
-                    </p>
+                    <div className="md:w-52">
+                        <p>
+                            Ma liste{" "}
+                            <span className="uppercase font-semibold text-orange-500">
+                                {list.name}
+                            </span>{" "}
+                        </p>
+                    </div>
                     <small className="italic text-gray-500 mt-1 mb-2">
                         {list.isEmpty
                             ? `Créée le ${list.formatted_created_at}`
@@ -30,7 +32,7 @@ export default function AuthListCard({ list }) {
                     <Link
                         as="button"
                         href={route("lists.show", list.id)}
-                        className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        className="items-center px-3 py-1 w-full bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                     >
                         {isSharedList ? (
                             <span>Voir ma liste</span>

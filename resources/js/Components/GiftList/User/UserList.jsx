@@ -41,7 +41,7 @@ export default function UserList({
                         La liste "{list.name}" de {list.user_name}
                     </h2>
                     <div className="hidden sm:flex">
-                        <div className="flex items-center justify-end text-xs hover:text-orange-500 ml-3">
+                        <div className="flex items-center justify-end text-xs ml-3">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"
@@ -53,7 +53,7 @@ export default function UserList({
                             </svg>
                             <p className="mr-1">Réserver</p>
                         </div>
-                        <div className="flex items-center justify-end text-xs hover:text-orange-500 ml-3">
+                        <div className="flex items-center justify-end text-xs ml-3">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -65,7 +65,7 @@ export default function UserList({
                             </svg>
                             <p className="mr-1">Acheter</p>
                         </div>
-                        <div className="flex items-center justify-end text-xs hover:text-orange-500 ml-3">
+                        <div className="flex items-center justify-end text-xs ml-3">
                             <svg
                                 xmlns="https://www.w3.org/2000/svg"
                                 fill="none"

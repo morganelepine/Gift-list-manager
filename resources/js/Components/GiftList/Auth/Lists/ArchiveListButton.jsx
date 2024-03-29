@@ -70,7 +70,10 @@ export default function ArchiveListButton({ list }) {
                         <SmallButton onClick={archiveList}>
                             Archiver la liste
                         </SmallButton>
-                        <button onClick={closeModal} className="text-sm ml-3">
+                        <button
+                            onClick={closeModal}
+                            className="text-sm ml-3 hover:text-orange-500"
+                        >
                             Annuler
                         </button>
                     </div>
