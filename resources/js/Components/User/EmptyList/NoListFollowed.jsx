@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
+import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function NoListFollowed() {
     return (
@@ -15,7 +15,7 @@ export default function NoListFollowed() {
                 href={route("lists.listsToFollow")}
                 active={route().current("lists.listsToFollow")}
             >
-                <PrimaryButton className="mt-3">Voir les listes</PrimaryButton>
+                <SmallButton className="mt-3">Voir les listes</SmallButton>
             </Link>
         </div>
     );

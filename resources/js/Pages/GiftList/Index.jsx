@@ -27,9 +27,9 @@ export default function Index({
             }
         >
             <Head title="Les listes à suivre" />
-            <div className="max-w-6xl mx-auto px-4 sm:p-4">
-                <div className="sm:mt-6 sm:flex justify-evenly pb-20 sm:space-x-14">
-                    <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0">
+            <div className="max-w-7xl mx-auto px-4 sm:p-4">
+                <div className="sm:mt-6 md:flex justify-evenly pb-20 md:space-x-14">
+                    <div className="flex flex-col items-center text-center md:w-1/3 mt-12 md:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Les listes suivies
                         </h1>
@@ -50,7 +50,7 @@ export default function Index({
                         )}
                     </div>
 
-                    <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
+                    <div className="flex flex-col items-center text-center md:w-1/3 mt-12 md:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Mes listes partagées
                         </h1>
@@ -68,7 +68,7 @@ export default function Index({
                         )}
                     </div>
 
-                    <div className="flex flex-col items-center sm:w-1/3 mt-12 sm:mt-0 ">
+                    <div className="flex flex-col items-center text-center md:w-1/3 mt-12 md:mt-0">
                         <h1 className="text-xl font-semibold mb-2">
                             Mes listes privées
                         </h1>

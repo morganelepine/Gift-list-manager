@@ -46,13 +46,12 @@ export default function ListToFollow({ auth, listToFollow }) {
                 </Link> */}
             </div>
 
-            <div className="max-w-2xl mx-auto mt-3">
+            <div className="max-w-2xl mx-auto mt-2 flex flex-col items-center">
+                <p className="flex flex-wrap text-sm text-center italic">
+                    Veuillez renseigner le code secret <br></br> que{" "}
+                    {listToFollow.user_name} vous a communiqué
+                </p>
                 <form onSubmit={submit}>
-                    <p className="text-sm italic flex flex-wrap">
-                        Veuillez renseigner le code secret <br></br> que{" "}
-                        {listToFollow.user_name} vous a communiqué
-                    </p>
-
                     <div className="my-3">
                         <TextInput
                             id="private_code"
