@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
+import Modal from "@/Components/Laravel/Modal";
 
 export default function EditDeleteButtons({ idea, setEditing }) {
     const { errors } = usePage().props;
@@ -7,6 +9,17 @@ export default function EditDeleteButtons({ idea, setEditing }) {
         if (errors && errors.error) {
             toast.error(errors.error);
         }
+    };
+
+    const [confirmingListDeletion, setConfirmingListDeletion] = useState(false);
+
+    const confirmListDeletion = () => {
+        setConfirmingListDeletion(true);
+    };
+
+    const closeModal = () => {
+        setConfirmingListDeletion(false);
+        addToast();
     };
 
     return (
@@ -25,12 +38,7 @@ export default function EditDeleteButtons({ idea, setEditing }) {
             </button>
 
             {/* DELETE BUTTON */}
-            <Link
-                as="button"
-                href={route("ideas.destroy", idea.id)}
-                onClick={addToast}
-                method="delete"
-            >
+            <button onClick={confirmListDeletion}>
                 <svg
                     xmlns="https://www.w3.org/2000/svg"
                     className="h-6 w-6 my-2 text-gray-300 hover:text-orange-500"
@@ -40,7 +48,32 @@ export default function EditDeleteButtons({ idea, setEditing }) {
                 >
                     <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                 </svg>
-            </Link>
+            </button>
+
+            <Modal show={confirmingListDeletion} onClose={closeModal}>
+                <div className="p-6">
+                    <h2 className="text-lg font-medium ">
+                        Êtes-vous sûr·e de vouloir supprimer cette idée ?
+                    </h2>
+
+                    <div className="mt-6 flex justify-end">
+                        <Link
+                            as="button"
+                            href={route("ideas.destroy", idea.id)}
+                            method="delete"
+                            className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        >
+                            Supprimer
+                        </Link>
+                        <button
+                            onClick={closeModal}
+                            className="text-sm ml-3 hover:text-orange-500"
+                        >
+                            Annuler
+                        </button>
+                    </div>
+                </div>
+            </Modal>
         </>
     );
 }

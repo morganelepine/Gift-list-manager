@@ -105,7 +105,7 @@ export default function Create({ auth }) {
                         />
                         <p className="italic text-xs text-gray-600 mt-2">
                             Communiquez ce code à vos proches pour leur
-                            permettre d'accéder à votre liste privée.
+                            permettre d'accéder à votre liste.
                         </p>
 
                         <InputError
