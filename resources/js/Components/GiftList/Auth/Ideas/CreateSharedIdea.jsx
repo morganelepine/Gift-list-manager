@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import TextInput from "@/Components/Laravel/TextInput";
 import Checkbox from "@/Components/Laravel/Checkbox";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
-import { useForm } from "@inertiajs/react";
 
 export default function CreateSharedIdea({ auth, list }) {
     const [isFavorite, setIsFavorite] = useState(1);
@@ -59,7 +59,6 @@ export default function CreateSharedIdea({ auth, list }) {
 
     return (
         <form onSubmit={submit} className="flex flex-col">
-            {/* @csrf */}
             <p
                 className="text-sm italic mb-2 text-center"
                 style={{ textWrap: "balance" }}

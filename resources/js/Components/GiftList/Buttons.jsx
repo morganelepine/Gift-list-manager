@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 import Modal from "@/Components/Laravel/Modal";
 
 export default function EditDeleteButtons({ idea, setEditing }) {
-    const { errors } = usePage().props;
-    const addToast = () => {
-        if (errors && errors.error) {
-            toast.error(errors.error);
-        }
+    const { delete: destroy, processing, reset } = useForm();
+    const deleteIdea = (e) => {
+        e.preventDefault();
+        destroy(route("ideas.destroy", idea.id), {
+            onSuccess: () => {
+                reset();
+                toast.info("Idée supprimée");
+            },
+            onError: () => {
+                toast.error(
+                    "Oops, cette idée a déjà été réservée ou achetée..."
+                );
+            },
+        });
     };
 
     const [confirmingListDeletion, setConfirmingListDeletion] = useState(false);
@@ -19,7 +28,6 @@ export default function EditDeleteButtons({ idea, setEditing }) {
 
     const closeModal = () => {
         setConfirmingListDeletion(false);
-        addToast();
     };
 
     return (
@@ -57,14 +65,14 @@ export default function EditDeleteButtons({ idea, setEditing }) {
                     </h2>
 
                     <div className="mt-6 flex justify-end">
-                        <Link
-                            as="button"
-                            href={route("ideas.destroy", idea.id)}
+                        <button
+                            onClick={deleteIdea}
                             method="delete"
                             className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                            disabled={processing}
                         >
                             Supprimer
-                        </Link>
+                        </button>
                         <button
                             onClick={closeModal}
                             className="text-sm ml-3 hover:text-orange-500"
