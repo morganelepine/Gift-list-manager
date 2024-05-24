@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use App\Notifications\NotifyListFollowed;
 
 class GiftListController extends Controller
 {
@@ -325,20 +326,27 @@ class GiftListController extends Controller
         $listId = $request->input('gift_list_id');
         $privateCode = $request->input('private_code');
         $correctPrivateCode = GiftList::where('id', $listId)->value('private_code');
-        // dd($request->all());
 
         // $encodingPrivateCode = mb_detect_encoding($privateCode);
         // $encodingCorrectPrivateCode = mb_detect_encoding($correctPrivateCode);
 
         // Comparaison insensible à la casse (strcasecmp) et aux espaces (trim)
         if (strcasecmp(trim($privateCode), trim($correctPrivateCode)) === 0) {
+            $user = $request->user();
             $validated = $request->validate([
                 'user_id' => 'required|integer',
                 'gift_list_id' => 'required|integer',
                 'private_code' => 'required|string',
             ]);
-            $request->user()->followed_lists()->create($validated);
+            $user->followed_lists()->create($validated);
+
+            // Search for user whose list has been followed and notify her⸱him
+            $giftList = GiftList::findOrFail($validated['gift_list_id']);
+            $listOwner = $giftList->user;
+            $listOwner->notify(new NotifyListFollowed($user->name, $giftList->name));
+
             return redirect(route('lists.followedLists'));
+
         } else {
             return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
         }

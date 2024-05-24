@@ -28,7 +28,7 @@ export default function Authenticated({ user, header, children }) {
                                         "lists.followedLists"
                                     )}
                                 >
-                                    Mes listes suivies
+                                    Les listes suivies
                                 </NavLink>
                                 <NavLink
                                     href={route("lists.listsToFollow")}
@@ -49,6 +49,14 @@ export default function Authenticated({ user, header, children }) {
                                     active={route().current("profile.purchase")}
                                 >
                                     Mes achats
+                                </NavLink>
+                                <NavLink
+                                    href={route("profile.notifications")}
+                                    active={route().current(
+                                        "profile.notifications"
+                                    )}
+                                >
+                                    Notifications
                                 </NavLink>
                                 <NavLink
                                     href={route("lists.create")}
@@ -209,7 +217,7 @@ export default function Authenticated({ user, header, children }) {
                             active={route().current("dashboard")}
                             className="italic"
                         >
-                            Évolutions à venir
+                            Notifications
                         </ResponsiveNavLink> */}
                     </div>
 
