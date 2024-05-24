@@ -6,7 +6,7 @@ import InputError from "@/Components/Laravel/InputError";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function ListToFollow({ auth, listToFollow }) {
-    // console.log("auth.user.id : ", auth.user.id);
+    // console.log("listToFollow : ", listToFollow);
 
     const { data, setData, post, processing, reset, errors } = useForm({
         user_id: auth.user.id,
@@ -36,18 +36,10 @@ export default function ListToFollow({ auth, listToFollow }) {
                         ? `Créée le ${listToFollow.formatted_created_at}`
                         : `Mise à jour le ${listToFollow.formatted_updated_at}`}
                 </small>
-                {/* <Link
-                    // as="button"
-                    href={route("lists.show", listToFollow.id)}
-                    key={listToFollow.id}
-                    className="text-center mt-1 px-3 py-1 bg-orange-200 border border-transparent rounded-md font-semibold text-md text-orange-500 hover:text-white hover:bg-orange-500 focus:bg-orange-500 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150"
-                >
-                    {listToFollow.name}
-                </Link> */}
             </div>
 
-            <div className="max-w-2xl mx-auto mt-2 flex flex-col items-center">
-                <p className="flex flex-wrap text-sm text-center italic">
+            <div className="mt-2 flex flex-col items-center">
+                <p className="text-sm text-center italic">
                     Veuillez renseigner le code secret <br></br> que{" "}
                     {listToFollow.user_name} vous a communiqué
                 </p>
@@ -58,7 +50,7 @@ export default function ListToFollow({ auth, listToFollow }) {
                             name="private_code"
                             value={data.private_code}
                             placeholder="Le code secret"
-                            className="w-52 py-1 border-gray-300 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            className="w-52 py-1 text-center"
                             isFocused={true}
                             onChange={(e) =>
                                 setData("private_code", e.target.value)

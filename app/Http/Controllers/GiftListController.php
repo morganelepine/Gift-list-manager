@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 
 class GiftListController extends Controller
 {
@@ -123,23 +124,24 @@ class GiftListController extends Controller
         ]);
     }
 
-    /**
-     * Display a listing of the gift lists TO FOLLOW.
+        /**
+     * Search for the specified resource in storage.
      */
-    public function listsToFollow(): Response
+    public function search(Request $request): JsonResponse
     {
-        // Get all users except the auth user
-        $authUserId = Auth::id();
-        $users = User::where('id', '!=', $authUserId)->get();
+        $key = trim($request->get('search'));
 
-        // Get lists to follow
         $authUser = Auth::user();
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
-        $listsToFollow = GiftList::whereNot('user_id', $authUserId)
-        ->where('isPrivate', 0)
-        ->whereNotIn('id', $followedListIds)
-        ->orderBy('created_at', 'desc')
-        ->get();
+
+        $listsToFollow = GiftList::query()
+            ->whereNot('user_id', Auth::id())
+            ->where('isPrivate', 0)
+            ->whereNotIn('id', $followedListIds)
+            ->where('user_name', 'like', "%{$key}%")
+            ->orWhere('name', 'like', "%{$key}%")
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         // Date formatting
         $dateFormat = 'd/m/Y';
@@ -150,8 +152,28 @@ class GiftListController extends Controller
             $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
         }
 
+        if ($listsToFollow->isEmpty()) {
+            return response()->json(['errorMessage' => 'Oops, aucun résultat ne correspond à votre recherche... Essayez un autre nom !'], 404);
+        }
+
+        return response()->json(['listsToFollow' => $listsToFollow]);
+    }
+
+    /**
+     * Display a listing of the gift lists TO FOLLOW.
+     */
+    public function listsToFollow(): Response
+    {
+        $authUser = Auth::user();
+        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+
+        $listsToFollow = GiftList::whereNot('user_id', Auth::id())
+        ->where('isPrivate', 0)
+        ->whereNotIn('id', $followedListIds)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
         return Inertia::render('Users/ListsToFollow', [
-            'users' => $users,
             'listsToFollow' => $listsToFollow,
         ]);
     }
