@@ -9,12 +9,12 @@ export default function ShowPrivateIdea({ auth, idea }) {
     return (
         <>
             {/* EDIT & DELETE BUTTONS */}
-            <div className="flex items-center w-16">
+            <div className="w-16 flex items-center">
                 <Buttons idea={idea} setEditing={setEditing} />
             </div>
 
             {/* IDEA */}
-            <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg">
+            <div className="p-3 bg-white shadow rounded-lg w-full">
                 {editing ? (
                     <EditPrivateIdea
                         auth={auth}
@@ -24,7 +24,7 @@ export default function ShowPrivateIdea({ auth, idea }) {
                 ) : (
                     <>
                         {idea.idea && (
-                            <p className="text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mb-0 sm:mr-4">
+                            <p className="text-sm sm:uppercase font-semibold">
                                 {idea.idea}
                             </p>
                         )}

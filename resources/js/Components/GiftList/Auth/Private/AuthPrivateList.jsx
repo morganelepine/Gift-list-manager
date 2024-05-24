@@ -43,7 +43,7 @@ export default function AuthPrivateList({ auth, list, ideas }) {
                 </div>
             }
         >
-            <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
+            <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
                 {ideas.length > 0 ? (
                     <>
                         {/* ADD IDEA FORM */}
@@ -52,10 +52,7 @@ export default function AuthPrivateList({ auth, list, ideas }) {
                         {/* LIST OF IDEAS */}
                         <div className="mt-10">
                             {ideas.map((idea) => (
-                                <div
-                                    key={idea.id}
-                                    className="sm:flex items-center mb-5 w-full"
-                                >
+                                <div key={idea.id} className="mb-5 flex">
                                     <ShowPrivateIdea auth={auth} idea={idea} />
                                 </div>
                             ))}
