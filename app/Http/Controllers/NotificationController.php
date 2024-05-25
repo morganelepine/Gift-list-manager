@@ -91,13 +91,17 @@ class NotificationController extends Controller
             ]);
             // Send the notification
             $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
-            $notification->markAsRead();
-            return response()->json(['message' => 'Vous avez accepté la demande.']);
 
         } else {
             $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
-            $notification->markAsRead();
-            return response()->json(['message' => 'Vous avez refusé la demande.']);
         }
+
+        $notificationData = $notification->data;
+        $notificationData['response'] = $response;
+        $notification->data = $notificationData;
+        $notification->markAsRead();
+        $notification->save();
+
+        return response()->json(['message' => 'Réponse envoyée avec succès.']);
     }
 }

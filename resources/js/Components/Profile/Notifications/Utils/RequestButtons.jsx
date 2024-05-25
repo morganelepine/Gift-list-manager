@@ -3,9 +3,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function RequestButtons({ notification }) {
-    const [yesOrNo, setYesOrNo] = useState("");
-    const [isHidden, setIsHidden] = useState(false);
-
     const respondToRequest = async (
         responseToRequest,
         notificationId,
@@ -30,8 +27,7 @@ export default function RequestButtons({ notification }) {
                 console.log("Réponse envoyée avec succès:", data);
                 toast.info("Réponse envoyée !");
                 alert("Réponse envoyée !");
-                setYesOrNo(data.message);
-                setIsHidden((current) => !current);
+                window.location.reload();
             } else {
                 console.error(
                     "Erreur lors de l'envoi de la réponse:",
@@ -48,58 +44,64 @@ export default function RequestButtons({ notification }) {
 
     return (
         <>
-            <div
-                className={
-                    "flex items-center space-x-4 text-sm border border-gray-300 rounded-full py-2 px-4 w-max " +
-                    (isHidden ? "hidden" : "block")
-                }
-            >
-                <button
-                    className="flex items-center hover:text-indigo-500"
-                    onClick={() => {
-                        respondToRequest(
-                            "accepted",
-                            notification.id,
-                            notification.data.listId
-                        );
-                    }}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+            {!notification.read_at && (
+                <div className="flex items-center space-x-4 text-sm border border-gray-300 rounded-full py-2 px-4 w-max ">
+                    <button
+                        className="flex items-center hover:text-indigo-500"
+                        onClick={() => {
+                            respondToRequest(
+                                "accepted",
+                                notification.id,
+                                notification.data.listId
+                            );
+                        }}
                     >
-                        <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    Accepter
-                </button>
-
-                <button
-                    className="flex items-center hover:text-orange-500"
-                    onClick={() => {
-                        respondToRequest(
-                            "declined",
-                            notification.id,
-                            notification.data.listId
-                        );
-                    }}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 mr-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        Accepter
+                    </button>
+                    <button
+                        className="flex items-center hover:text-orange-500"
+                        onClick={() => {
+                            respondToRequest(
+                                "declined",
+                                notification.id,
+                                notification.data.listId
+                            );
+                        }}
                     >
-                        <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    Refuser
-                </button>
-            </div>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 mr-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        Refuser
+                    </button>
+                </div>
+            )}
 
-            <p className="text-xs italic ml-8">{yesOrNo}</p>
+            {notification.data.response === "accepted" && (
+                <p className="text-xs italic ml-8">
+                    Vous avez accepté la demande.
+                </p>
+            )}
+
+            {notification.data.response === "declined" && (
+                <p className="text-xs italic ml-8">
+                    Vous avez refusé la demande.
+                </p>
+            )}
         </>
     );
 }
