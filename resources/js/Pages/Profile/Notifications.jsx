@@ -2,12 +2,10 @@ import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState, useEffect } from "react";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import "dayjs/locale/fr";
-
-dayjs.extend(relativeTime);
-dayjs.locale("fr");
+import ListFollowed from "@/Components/Profile/Notifications/ListFollowed";
+import RequestAccessToList from "@/Components/Profile/Notifications/RequestAccessToList";
+import RequestDeclined from "@/Components/Profile/Notifications/RequestDeclined";
+import RequestAccepted from "@/Components/Profile/Notifications/RequestAccepted";
 
 export default function Notifications({ auth }) {
     const [notifications, setNotifications] = useState([]);
@@ -40,25 +38,51 @@ export default function Notifications({ auth }) {
             <Head title="Mes notifications" />
 
             <div className="max-w-4xl mx-auto pb-14 px-4 mt-6 space-y-5">
-                {notifications.map((notification) => (
-                    <div className="flex sm:flex-row flex-col items-center space-x-4">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 my-2 fill-orange-500"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-                            />
-                        </svg>
-                        <p>{notification.data.notif}</p>
-                        <p className="text-sm italic ml-3 text-gray-400">
-                            {dayjs(notification.formatted_created_at).fromNow()}
-                        </p>
-                    </div>
-                ))}
+                {notifications.length ? (
+                    notifications.map((notification) => {
+                        if (notification.type === "list-followed") {
+                            return (
+                                <ListFollowed
+                                    key={notification.id}
+                                    notification={notification}
+                                />
+                            );
+                        } else if (notification.type === "request-access") {
+                            return (
+                                <RequestAccessToList
+                                    key={notification.id}
+                                    notification={notification}
+                                />
+                            );
+                        } else if (
+                            notification.type === "response-to-request" &&
+                            notification.data.response === "declined"
+                        ) {
+                            return (
+                                <RequestDeclined
+                                    key={notification.id}
+                                    notification={notification}
+                                />
+                            );
+                        } else if (
+                            notification.type === "response-to-request" &&
+                            notification.data.response === "accepted"
+                        ) {
+                            return (
+                                <RequestAccepted
+                                    key={notification.id}
+                                    notification={notification}
+                                />
+                            );
+                        } else {
+                            return null;
+                        }
+                    })
+                ) : (
+                    <p className="text-center">
+                        Vous n'avez reçu aucune notification.
+                    </p>
+                )}
             </div>
         </AuthenticatedLayout>
     );

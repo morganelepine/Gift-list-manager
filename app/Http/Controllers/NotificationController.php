@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\GiftList;
+use App\Notifications\NotifyRequestAccessToList;
+use App\Notifications\NotifyResponseToRequestAccess;
 
 class NotificationController extends Controller
 {
@@ -25,8 +29,17 @@ class NotificationController extends Controller
     #unread notifications
     public function indexUnreadNotifications(Request $request)
     {
+        $dateFormat = 'd/m/Y';
+        // $unread_notifications = [];
         $unread_notifications = Auth::user()->unreadNotifications()->get();
-        return response($unread_notifications);
+
+        foreach (Auth::user()->unread_notifications as $notification) {
+            $notification->formatted_created_at = Carbon::parse($notification->created_at)->format($dateFormat);
+            // array_push($unread_notifications, $notification);
+        }
+
+        return response()->json(['unread_notifications' => $unread_notifications]);
+
     }
 
     #mark notification as read
@@ -48,5 +61,43 @@ class NotificationController extends Controller
     {
         Auth::user()->notifications()->where('id', $id)->delete();
         return response();
+    }
+
+    #send notif when someone wants an access to your list
+    public function requestAccessToList(Request $request, User $listOwner, GiftList $list)
+    {
+        $requestingUser = Auth::user();
+
+        $listOwner->notify(new NotifyRequestAccessToList($requestingUser->name, $requestingUser->id, $list->name, $list->id));
+
+        return response()->json(['message' => 'Demande envoyée avec succès.']);
+    }
+
+    #send response accepted/declined to request
+    public function respondToAccessRequest(Request $request, $notificationId, GiftList $list)
+    {
+        $listOwner = Auth::user();
+
+        $notification = $listOwner->notifications()->find($notificationId);
+        $requestingUser = User::find($notification->data['requestingUserId']);
+        $response = $request->input('response');
+
+        if ($response === 'accepted') {
+            // Add the new relation in followed_lists table
+            $requestingUser->followed_lists()->create([
+                'user_id' => $requestingUser->id,
+                'gift_list_id' => $list->id,
+                'private_code' => $list->private_code,
+            ]);
+            // Send the notification
+            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
+            $notification->markAsRead();
+            return response()->json(['message' => 'Vous avez accepté la demande.']);
+
+        } else {
+            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
+            $notification->markAsRead();
+            return response()->json(['message' => 'Vous avez refusé la demande.']);
+        }
     }
 }

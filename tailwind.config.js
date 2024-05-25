@@ -63,6 +63,9 @@ export default {
                     900: "#273e47", //ref
                     950: "#182c34",
                 },
+                emerald: {
+                    500: "#23CE6B", //ref
+                },
             },
         },
     },

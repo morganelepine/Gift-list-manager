@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/mark-notification/{id}',     [NotificationController::class, 'markNotification']);
     Route::patch('/mark-notifications',         [NotificationController::class, 'markAllNotifications']);
     Route::delete('/notification/{id}',         [NotificationController::class, 'destroy']);
+    Route::post('/notifications/request-access/{listOwner}/{list}',         [NotificationController::class, 'requestAccessToList']);
+    Route::post('/notifications/respond-access/{notificationId}/{list}',    [NotificationController::class, 'respondToAccessRequest']);
 });
 
 Route::resource('ideas', IdeaController::class)

@@ -23,12 +23,18 @@ export default function Authenticated({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
+                                    href={route("lists.authLists")}
+                                    active={route().current("lists.authLists")}
+                                >
+                                    Mes listes
+                                </NavLink>
+                                <NavLink
                                     href={route("lists.followedLists")}
                                     active={route().current(
                                         "lists.followedLists"
                                     )}
                                 >
-                                    Les listes suivies
+                                    Listes suivies
                                 </NavLink>
                                 <NavLink
                                     href={route("lists.listsToFollow")}
@@ -36,19 +42,13 @@ export default function Authenticated({ user, header, children }) {
                                         "lists.listsToFollow"
                                     )}
                                 >
-                                    Les listes à suivre
-                                </NavLink>
-                                <NavLink
-                                    href={route("lists.authLists")}
-                                    active={route().current("lists.authLists")}
-                                >
-                                    Mes listes
+                                    Listes à suivre
                                 </NavLink>
                                 <NavLink
                                     href={route("profile.purchase")}
                                     active={route().current("profile.purchase")}
                                 >
-                                    Mes achats
+                                    Budget
                                 </NavLink>
                                 <NavLink
                                     href={route("profile.notifications")}
@@ -117,14 +117,15 @@ export default function Authenticated({ user, header, children }) {
                                         <Dropdown.Link
                                             href={route("profile.purchase")}
                                         >
-                                            Mes achats
+                                            Mon budget
                                         </Dropdown.Link>
-                                        {/* <Dropdown.Link
-                                            href={route("dashboard")}
-                                            className="italic"
+                                        <Dropdown.Link
+                                            href={route(
+                                                "profile.notifications"
+                                            )}
                                         >
-                                            [ Évolutions à venir ]
-                                        </Dropdown.Link> */}
+                                            Notifications
+                                        </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
@@ -188,6 +189,12 @@ export default function Authenticated({ user, header, children }) {
                 >
                     <div className="py-2">
                         <ResponsiveNavLink
+                            href={route("lists.authLists")}
+                            active={route().current("lists.authLists")}
+                        >
+                            Mes listes
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
                             href={route("lists.followedLists")}
                             active={route().current("lists.followedLists")}
                         >
@@ -200,10 +207,10 @@ export default function Authenticated({ user, header, children }) {
                             Les listes à suivre
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("lists.authLists")}
-                            active={route().current("lists.authLists")}
+                            href={route("profile.notifications")}
+                            active={route().current("profile.notifications")}
                         >
-                            Mes listes
+                            Notifications
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={route("lists.create")}

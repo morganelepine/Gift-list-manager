@@ -1,8 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import SecretCode from "@/Components/User/ListToFollow/SecretCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
-import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ListToFollow({ auth, listToFollow }) {
@@ -13,9 +12,37 @@ export default function ListToFollow({ auth, listToFollow }) {
         setIsHidden((current) => !current);
     };
 
-    const sendRequest = () => {
-        toast.info("Demande envoyée !");
-        alert("Fonctionnalité à venir !");
+    const requestAccess = async (listOwnerId, listId) => {
+        try {
+            const url = `/notifications/request-access/${listOwnerId}/${listId}`;
+            const settings = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+            };
+            const response = await fetch(url, settings);
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Demande envoyée avec succès:", data);
+                toast.info("Demande envoyée !");
+                alert("Demande envoyée !");
+            } else {
+                console.error(
+                    "Erreur lors de l'envoi de la demande:",
+                    response.statusText
+                );
+                alert(
+                    "Oops... votre demande n'a pas été envoyée, veuillez réessayez."
+                );
+            }
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de la demande:", error);
+        }
     };
 
     return (
@@ -36,7 +63,11 @@ export default function ListToFollow({ auth, listToFollow }) {
             </div>
 
             <div className="space-y-5 mt-3">
-                <SmallButton onClick={sendRequest}>
+                <SmallButton
+                    onClick={() =>
+                        requestAccess(listToFollow.user_id, listToFollow.id)
+                    }
+                >
                     Envoyer une demande d'accès
                 </SmallButton>
 

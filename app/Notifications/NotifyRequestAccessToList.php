@@ -7,20 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifyListFollowed extends Notification
+class NotifyRequestAccessToList extends Notification
 {
     use Queueable;
 
-    protected $follower;
-    protected $listFollowed;
+    protected $requestingUser;
+    protected $requestingUserId;
+    protected $list;
+    protected $listId;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($follower, $listFollowed)
+    public function __construct($requestingUser, $requestingUserId, $list, $listId)
     {
-        $this->follower = $follower;
-        $this->listFollowed = $listFollowed;
+        $this->requestingUser = $requestingUser;
+        $this->requestingUserId = $requestingUserId;
+        $this->list = $list;
+        $this->listId = $listId;
     }
 
     /**
@@ -34,17 +38,6 @@ class NotifyListFollowed extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>
@@ -52,8 +45,10 @@ class NotifyListFollowed extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'follower' => $this->follower,
-            'listFollowed' => $this->listFollowed
+            'requestingUser' => $this->requestingUser,
+            'requestingUserId' => $this->requestingUserId,
+            'listToFollow' => $this->list,
+            'listId' => $this->listId,
         ];
     }
 
@@ -64,6 +59,6 @@ class NotifyListFollowed extends Notification
      */
     public function databaseType(object $notifiable): string
     {
-        return 'list-followed';
+        return 'request-access';
     }
 }

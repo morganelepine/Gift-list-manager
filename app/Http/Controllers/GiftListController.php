@@ -136,11 +136,13 @@ class GiftListController extends Controller
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
 
         $listsToFollow = GiftList::query()
-            ->whereNot('user_id', Auth::id())
+            ->where('user_id', '!=', Auth::id())
             ->where('isPrivate', 0)
             ->whereNotIn('id', $followedListIds)
-            ->where('user_name', 'like', "%{$key}%")
-            ->orWhere('name', 'like', "%{$key}%")
+            ->where(function($query) use ($key) {
+                $query->where('user_name', 'like', "%{$key}%")
+                    ->orWhere('name', 'like', "%{$key}%");
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
