@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import TextInput from "@/Components/Laravel/TextInput";
 import InputError from "@/Components/Laravel/InputError";
-import SmallButton from "@/Components/Buttons/SmallButton";
+import OutlineButton from "@/Components/Buttons/OutlineButton";
 
 export default function SecretCode({ auth, listToFollow }) {
     // console.log("listToFollow : ", listToFollow);
@@ -28,12 +28,12 @@ export default function SecretCode({ auth, listToFollow }) {
                 {listToFollow.user_name} vous a communiqué
             </p>
             <form onSubmit={submit}>
-                <div className="my-3">
+                <div className="mb-3 flex">
                     <TextInput
                         id="private_code"
                         name="private_code"
                         value={data.private_code}
-                        placeholder="Le code secret"
+                        placeholder="1234"
                         className="w-52 py-1 text-center"
                         isFocused={true}
                         onChange={(e) =>
@@ -45,9 +45,10 @@ export default function SecretCode({ auth, listToFollow }) {
                         message={errors.private_code}
                         className="mt-2"
                     />
+                    <OutlineButton disabled={processing} className="mt-2 ml-2">
+                        Envoyer
+                    </OutlineButton>
                 </div>
-
-                <SmallButton disabled={processing}>Suivre la liste</SmallButton>
             </form>
         </div>
     );

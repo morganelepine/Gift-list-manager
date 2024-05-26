@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
 import Dropdown from "@/Components/Laravel/Dropdown";
 import NavLink from "@/Components/Laravel/NavLink";
@@ -8,6 +8,21 @@ import { Link } from "@inertiajs/react";
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    const [unreadNotifications, setUnreadNotifications] = useState([]);
+    const fetchUnreadNotifications = async () => {
+        try {
+            const response = await fetch("/notifications-unread");
+            const data = await response.json();
+            setUnreadNotifications(data.unread_notifications);
+        } catch (error) {
+            console.error("Error fetching unread notifications: ", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUnreadNotifications();
+    }, []);
 
     return (
         <div className="min-h-screen bg-lavande-20">
@@ -22,42 +37,75 @@ export default function Authenticated({ user, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href={route("lists.authLists")}
-                                    active={route().current("lists.authLists")}
-                                >
-                                    Mes listes
-                                </NavLink>
-                                <NavLink
-                                    href={route("lists.followedLists")}
-                                    active={route().current(
-                                        "lists.followedLists"
-                                    )}
-                                >
-                                    Listes suivies
-                                </NavLink>
+                                <div className="hidden sm:flex sm:items-center">
+                                    <Dropdown>
+                                        <Dropdown.Trigger>
+                                            <span className="inline-flex rounded-md">
+                                                <button
+                                                    type="button"
+                                                    className="inline-flex items-center pl-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        className="w-5 h-5 mr-1"
+                                                    >
+                                                        <path d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                                    </svg>
+                                                    Listes
+                                                    <svg
+                                                        className="ml-2 -mr-0.5 h-4 w-4"
+                                                        xmlns="https://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </Dropdown.Trigger>
+
+                                        <Dropdown.Content>
+                                            <Dropdown.Link
+                                                href={route("lists.authLists")}
+                                            >
+                                                Mes listes
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
+                                                href={route(
+                                                    "lists.followedLists"
+                                                )}
+                                            >
+                                                Mes listes suivies
+                                            </Dropdown.Link>
+                                        </Dropdown.Content>
+                                    </Dropdown>
+                                </div>
+
                                 <NavLink
                                     href={route("lists.listsToFollow")}
                                     active={route().current(
                                         "lists.listsToFollow"
                                     )}
                                 >
-                                    Listes à suivre
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        className="w-5 h-5 mr-1"
+                                    >
+                                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                    </svg>
+                                    Chercher
                                 </NavLink>
-                                <NavLink
-                                    href={route("profile.purchase")}
-                                    active={route().current("profile.purchase")}
-                                >
-                                    Budget
-                                </NavLink>
-                                <NavLink
-                                    href={route("profile.notifications")}
-                                    active={route().current(
-                                        "profile.notifications"
-                                    )}
-                                >
-                                    Notifications
-                                </NavLink>
+
                                 <NavLink
                                     href={route("lists.create")}
                                     active={route().current("lists.create")}
@@ -71,7 +119,63 @@ export default function Authenticated({ user, header, children }) {
                                     >
                                         <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    Créer une liste
+                                    Créer
+                                </NavLink>
+
+                                <NavLink
+                                    href={route("profile.purchase")}
+                                    active={route().current("profile.purchase")}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        className="w-5 h-5 mr-1"
+                                    >
+                                        <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                                    </svg>
+                                    Budget
+                                </NavLink>
+
+                                <NavLink
+                                    href={route("profile.notifications")}
+                                    active={route().current(
+                                        "profile.notifications"
+                                    )}
+                                >
+                                    {unreadNotifications.length ? (
+                                        <div className="flex text-indigo-500">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                strokeWidth="1.5"
+                                                stroke="currentColor"
+                                                className="w-5 h-5 mr-1"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
+                                                />
+                                            </svg>
+                                            Notifications
+                                        </div>
+                                    ) : (
+                                        <div className="flex">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                className="w-5 h-5 mr-1"
+                                            >
+                                                <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                            </svg>
+                                            Notifications
+                                        </div>
+                                    )}
                                 </NavLink>
                             </div>
                         </div>
@@ -207,12 +311,6 @@ export default function Authenticated({ user, header, children }) {
                             Les listes à suivre
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("profile.notifications")}
-                            active={route().current("profile.notifications")}
-                        >
-                            Notifications
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
                             href={route("lists.create")}
                             active={route().current("lists.create")}
                             className="flex items-center"
@@ -231,11 +329,21 @@ export default function Authenticated({ user, header, children }) {
                     <div className="py-2 border-t border-gray-200">
                         <div className="">
                             <ResponsiveNavLink href={route("profile.edit")}>
-                                Mon profil
+                                Profil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink href={route("profile.purchase")}>
-                                Mes achats
+                                Budget
                             </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                href={route("profile.notifications")}
+                                active={route().current(
+                                    "profile.notifications"
+                                )}
+                            >
+                                Notifications
+                            </ResponsiveNavLink>
+                        </div>
+                        <div className="py-2 border-t border-gray-200">
                             <ResponsiveNavLink
                                 method="post"
                                 href={route("logout")}

@@ -68,7 +68,7 @@ export default function ListToFollow({ auth, listToFollow }) {
                         requestAccess(listToFollow.user_id, listToFollow.id)
                     }
                 >
-                    Envoyer une demande d'accès
+                    Demander un accès
                 </SmallButton>
 
                 <SmallButton onClick={showSecretCode}>

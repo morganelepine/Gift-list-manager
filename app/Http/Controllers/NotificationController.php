@@ -15,12 +15,15 @@ class NotificationController extends Controller
     #index all notifications
     public function index(Request $request)
     {
+        $this->markAllNotifications();
+
         $dateFormat = 'd/m/Y';
         $notifications = [];
 
         foreach (Auth::user()->notifications as $notification) {
             $notification->formatted_created_at = Carbon::parse($notification->created_at)->format($dateFormat);
             array_push($notifications, $notification);
+            // $notification->markAsRead();
         }
 
         return response()->json(['notifications' => $notifications]);
@@ -30,16 +33,15 @@ class NotificationController extends Controller
     public function indexUnreadNotifications(Request $request)
     {
         $dateFormat = 'd/m/Y';
-        // $unread_notifications = [];
-        $unread_notifications = Auth::user()->unreadNotifications()->get();
+        $unread_notifications = [];
+        // $unread_notifications = Auth::user()->unreadNotifications()->get();
 
-        foreach (Auth::user()->unread_notifications as $notification) {
+        foreach (Auth::user()->unreadNotifications as $notification) {
             $notification->formatted_created_at = Carbon::parse($notification->created_at)->format($dateFormat);
-            // array_push($unread_notifications, $notification);
+            array_push($unread_notifications, $notification);
         }
 
         return response()->json(['unread_notifications' => $unread_notifications]);
-
     }
 
     #mark notification as read

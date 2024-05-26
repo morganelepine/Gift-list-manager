@@ -1,7 +1,7 @@
 import { Head, Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import BudgetIdeasPurchased from "@/Components/Profile/BudgetIdeasPurchased";
+import BudgetIdeasPurchased from "@/Components/Profile/Budget/BudgetIdeasPurchased";
 
 export default function Budget({ auth, ideas, totalPrice }) {
     // console.log("ideas : ", ideas);
