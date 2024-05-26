@@ -92,4 +92,12 @@ class ProfileController extends Controller
             'totalPrice' => $totalPrice
         ]);
     }
+
+    /**
+     * Display the user's notifications.
+     */
+    public function notifications(): Response
+    {
+        return Inertia::render('Profile/Notifications');
+    }
 }
