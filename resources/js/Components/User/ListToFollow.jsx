@@ -28,20 +28,19 @@ export default function ListToFollow({ auth, listToFollow }) {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Demande envoyée avec succès:", data);
-                toast.info("Demande envoyée !");
-                alert("Demande envoyée !");
+                console.log(data);
+                toast.success("Demande envoyée !");
             } else {
                 console.error(
-                    "Erreur lors de l'envoi de la demande:",
+                    "Error while sending the request:",
                     response.statusText
                 );
-                alert(
-                    "Oops... votre demande n'a pas été envoyée, veuillez réessayez."
+                toast.error(
+                    "Oops... votre demande n'a pas été envoyée. Veuillez réessayez après avoir rechargé la page."
                 );
             }
         } catch (error) {
-            console.error("Erreur lors de l'envoi de la demande:", error);
+            console.error("Error while sending the request:", error);
         }
     };
 

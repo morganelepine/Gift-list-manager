@@ -4,7 +4,6 @@ import AuthList from "@/Components/GiftList/Auth/Shared/AuthList";
 import AuthPrivateList from "@/Components/GiftList/Auth/Private/AuthPrivateList";
 import UserList from "@/Components/GiftList/User/UserList";
 import PrivateCodeList from "@/Components/GiftList/User/PrivateCodeList";
-import { Toaster } from "sonner";
 
 export default function Show({
     auth,
@@ -28,20 +27,6 @@ export default function Show({
 
     return (
         <>
-            <Toaster
-                position="top-right"
-                expand={true}
-                richColors
-                // offset="50px"
-                // closeButton
-                toastOptions={
-                    {
-                        // style: { background: "orange-500" },
-                        // className: "bg-orange-500",
-                    }
-                }
-            />
-
             <div>
                 {isConnectedUser && isSharedList ? (
                     <AuthList auth={auth} list={list} ideas={ideas} />

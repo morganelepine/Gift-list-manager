@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { toast } from "sonner";
 
 export default function RequestButtons({ notification }) {
@@ -24,21 +23,19 @@ export default function RequestButtons({ notification }) {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Réponse envoyée avec succès:", data);
-                toast.info("Réponse envoyée !");
-                alert("Réponse envoyée !");
+                console.log(data);
                 window.location.reload();
             } else {
                 console.error(
-                    "Erreur lors de l'envoi de la réponse:",
+                    "Error while sending the response:",
                     response.statusText
                 );
-                alert(
-                    "Oops... votre réponse n'a pas été envoyée, veuillez réessayez."
+                toast.error(
+                    "Oops... votre demande n'a pas été envoyée. Veuillez réessayez après avoir rechargé la page."
                 );
             }
         } catch (error) {
-            console.error("Erreur lors de l'envoi de la réponse:", error);
+            console.error("Error while sending the response:", error);
         }
     };
 
