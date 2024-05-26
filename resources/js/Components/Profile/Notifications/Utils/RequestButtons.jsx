@@ -44,7 +44,7 @@ export default function RequestButtons({ notification }) {
 
     return (
         <>
-            {!notification.read_at && (
+            {!notification.data.response && (
                 <div className="flex items-center space-x-4 text-sm border border-gray-300 rounded-full py-2 px-4 w-max ">
                     <button
                         className="flex items-center hover:text-indigo-500"

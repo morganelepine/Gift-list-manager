@@ -144,23 +144,26 @@ export default function Authenticated({ user, header, children }) {
                                         "profile.notifications"
                                     )}
                                 >
-                                    {unreadNotifications.length ? (
-                                        <div className="flex text-indigo-500">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="w-5 h-5 mr-1"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
-                                                />
-                                            </svg>
-                                            Notifications
+                                    {unreadNotifications.length > 0 ? (
+                                        <div className="flex">
+                                            <div className="relative">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth="1.5"
+                                                    stroke="currentColor"
+                                                    className="w-5 h-5 mr-1 text-orange-500"
+                                                >
+                                                    <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                                </svg>
+                                                <span class="absolute text-orange-500 -top-2 -right-0 text-2xs font-extrabold">
+                                                    {unreadNotifications.length}
+                                                </span>
+                                            </div>
+                                            <p className="ml-1">
+                                                Notifications
+                                            </p>
                                         </div>
                                     ) : (
                                         <div className="flex">
@@ -212,23 +215,6 @@ export default function Authenticated({ user, header, children }) {
                                             href={route("profile.edit")}
                                         >
                                             Mon profil
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href={route("lists.authLists")}
-                                        >
-                                            Mes listes
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href={route("profile.purchase")}
-                                        >
-                                            Mon budget
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href={route(
-                                                "profile.notifications"
-                                            )}
-                                        >
-                                            Notifications
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route("logout")}
@@ -302,13 +288,13 @@ export default function Authenticated({ user, header, children }) {
                             href={route("lists.followedLists")}
                             active={route().current("lists.followedLists")}
                         >
-                            Mes listes suivies
+                            Les listes suivies
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={route("lists.listsToFollow")}
                             active={route().current("lists.listsToFollow")}
                         >
-                            Les listes à suivre
+                            Chercher une liste
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={route("lists.create")}
@@ -317,13 +303,6 @@ export default function Authenticated({ user, header, children }) {
                         >
                             Créer une liste
                         </ResponsiveNavLink>
-                        {/* <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
-                            className="italic"
-                        >
-                            Notifications
-                        </ResponsiveNavLink> */}
                     </div>
 
                     <div className="py-2 border-t border-gray-200">
@@ -339,8 +318,14 @@ export default function Authenticated({ user, header, children }) {
                                 active={route().current(
                                     "profile.notifications"
                                 )}
+                                className="flex items-center"
                             >
                                 Notifications
+                                {unreadNotifications.length > 0 && (
+                                    <span class="text-center w-4 h-4 ml-2 rounded-full bg-orange-500 text-white text-xs font-semibold">
+                                        {unreadNotifications.length}
+                                    </span>
+                                )}
                             </ResponsiveNavLink>
                         </div>
                         <div className="py-2 border-t border-gray-200">

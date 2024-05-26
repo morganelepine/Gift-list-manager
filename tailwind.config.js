@@ -12,6 +12,9 @@ export default {
 
     theme: {
         extend: {
+            fontSize: {
+                "2xs": "0.6rem",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 yeseva: ["Yeseva One", ...defaultTheme.fontFamily.sans],
