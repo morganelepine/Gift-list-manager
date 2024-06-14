@@ -12,6 +12,9 @@ export default {
 
     theme: {
         extend: {
+            fontSize: {
+                "2xs": "0.6rem",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 yeseva: ["Yeseva One", ...defaultTheme.fontFamily.sans],
@@ -62,6 +65,9 @@ export default {
                     800: "#2f505b",
                     900: "#273e47", //ref
                     950: "#182c34",
+                },
+                emerald: {
+                    500: "#23CE6B", //ref
                 },
             },
         },

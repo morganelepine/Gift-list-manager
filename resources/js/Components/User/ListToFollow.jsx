@@ -1,24 +1,47 @@
-import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { useForm } from "@inertiajs/react";
-import TextInput from "@/Components/Laravel/TextInput";
-import InputError from "@/Components/Laravel/InputError";
+import SecretCode from "@/Components/User/ListToFollow/SecretCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
+import { toast } from "sonner";
 
 export default function ListToFollow({ auth, listToFollow }) {
     // console.log("listToFollow : ", listToFollow);
 
-    const { data, setData, post, processing, reset, errors } = useForm({
-        user_id: auth.user.id,
-        gift_list_id: listToFollow.id,
-        private_code: "",
-    });
+    const [isHidden, setIsHidden] = useState(true);
+    const showSecretCode = () => {
+        setIsHidden((current) => !current);
+    };
 
-    const submit = (e) => {
-        e.preventDefault();
-        post(route("lists.followList"), {
-            onSuccess: () => reset(),
-        });
+    const requestAccess = async (listOwnerId, listId) => {
+        try {
+            const url = `/notifications/request-access/${listOwnerId}/${listId}`;
+            const settings = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+            };
+            const response = await fetch(url, settings);
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                toast.success("Demande envoyée !");
+            } else {
+                console.error(
+                    "Error while sending the request:",
+                    response.statusText
+                );
+                toast.error(
+                    "Oops... votre demande n'a pas été envoyée. Veuillez réessayez après avoir rechargé la page."
+                );
+            }
+        } catch (error) {
+            console.error("Error while sending the request:", error);
+        }
     };
 
     return (
@@ -38,35 +61,22 @@ export default function ListToFollow({ auth, listToFollow }) {
                 </small>
             </div>
 
-            <div className="mt-2 flex flex-col items-center">
-                <p className="text-sm text-center italic">
-                    Veuillez renseigner le code secret <br></br> que{" "}
-                    {listToFollow.user_name} vous a communiqué
-                </p>
-                <form onSubmit={submit}>
-                    <div className="my-3">
-                        <TextInput
-                            id="private_code"
-                            name="private_code"
-                            value={data.private_code}
-                            placeholder="Le code secret"
-                            className="w-52 py-1 text-center"
-                            isFocused={true}
-                            onChange={(e) =>
-                                setData("private_code", e.target.value)
-                            }
-                            required
-                        />
-                        <InputError
-                            message={errors.private_code}
-                            className="mt-2"
-                        />
-                    </div>
+            <div className="space-y-5 mt-3">
+                <SmallButton
+                    onClick={() =>
+                        requestAccess(listToFollow.user_id, listToFollow.id)
+                    }
+                >
+                    Demander un accès
+                </SmallButton>
 
-                    <SmallButton disabled={processing}>
-                        Suivre la liste
-                    </SmallButton>
-                </form>
+                <SmallButton onClick={showSecretCode}>
+                    Renseiger le code secret
+                </SmallButton>
+
+                <div className={"mt-2 " + (isHidden ? "hidden" : "block")}>
+                    <SecretCode listToFollow={listToFollow} auth={auth} />
+                </div>
             </div>
         </>
     );
