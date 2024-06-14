@@ -15,7 +15,7 @@ export default function PrivateList({ auth, list }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("lists.followList"), {
+        post(route("lists.followList", list.id), {
             onSuccess: () => reset(),
         });
     };

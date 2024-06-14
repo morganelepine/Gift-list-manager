@@ -16,7 +16,7 @@ export default function SecretCode({ auth, listToFollow }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("lists.followList"), {
+        post(route("lists.followList", listToFollow.id), {
             onSuccess: () => reset(),
         });
     };

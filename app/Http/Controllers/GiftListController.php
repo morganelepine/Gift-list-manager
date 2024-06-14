@@ -323,11 +323,10 @@ class GiftListController extends Controller
     /**
      * Follow a list
      */
-    public function followList(Request $request): RedirectResponse
+    public function followList(Request $request, GiftList $list): RedirectResponse
     {
-        $listId = $request->input('gift_list_id');
         $privateCode = $request->input('private_code');
-        $correctPrivateCode = GiftList::where('id', $listId)->value('private_code');
+        $correctPrivateCode = GiftList::where('id', $list->id)->value('private_code');
 
         // $encodingPrivateCode = mb_detect_encoding($privateCode);
         // $encodingCorrectPrivateCode = mb_detect_encoding($correctPrivateCode);
