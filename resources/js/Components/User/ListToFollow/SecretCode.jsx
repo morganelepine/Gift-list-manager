@@ -28,7 +28,7 @@ export default function SecretCode({ auth, listToFollow }) {
                 {listToFollow.user_name} vous a communiqué
             </p>
             <form onSubmit={submit}>
-                <div className="mb-3 flex">
+                <div className="flex">
                     <TextInput
                         id="private_code"
                         name="private_code"
@@ -41,14 +41,11 @@ export default function SecretCode({ auth, listToFollow }) {
                         }
                         required
                     />
-                    <InputError
-                        message={errors.private_code}
-                        className="mt-2"
-                    />
                     <OutlineButton disabled={processing} className="mt-2 ml-2">
                         Envoyer
                     </OutlineButton>
                 </div>
+                <InputError message={errors.private_code} className="mt-2" />
             </form>
         </div>
     );
