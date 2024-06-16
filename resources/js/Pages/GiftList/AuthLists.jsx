@@ -20,9 +20,9 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
                         <Link
                             as="button"
                             href={route("lists.create")}
-                            className="flex items-center mt-2 sm:mt-0"
+                            className="flex items-center mt-2 sm:mt-0 hover:text-orange-500"
                         >
-                            <div className="h-6 w-6 mr-1 bg-orange-50 flex items-center justify-center rounded-full">
+                            <div className="h-6 w-6 mr-1 flex items-center justify-center rounded-full">
                                 <svg
                                     xmlns="https://www.w3.org/2000/svg"
                                     fill="none"
@@ -33,9 +33,7 @@ export default function AuthLists({ auth, publicLists, privateLists }) {
                                     <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-                            <p className="hover:text-orange-500  text-sm">
-                                Créer une liste
-                            </p>
+                            <p className="text-sm">Créer une liste</p>
                         </Link>
                     )}
                 </div>

@@ -48,7 +48,7 @@ export default function AuthList({ auth, list, ideas }) {
                             <Link
                                 as="button"
                                 href={route("ideas.create_idea", list.id)}
-                                className="flex items-center"
+                                className="flex items-center hover:text-orange-500"
                             >
                                 <svg
                                     xmlns="https://www.w3.org/2000/svg"
@@ -59,9 +59,7 @@ export default function AuthList({ auth, list, ideas }) {
                                 >
                                     <path d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <p className=" hover:text-orange-500 text-sm">
-                                    Compléter la liste
-                                </p>
+                                <p className="text-sm">Compléter la liste</p>
                             </Link>
                         </div>
                     )}

@@ -22,6 +22,8 @@ class IdeaFactory extends Factory
         $user = User::inRandomOrder()->first();
         $giftList = GiftList::where('user_id', $user->id)->inRandomOrder()->first();
         $statusUser = User::where('id', '!=', $user->id)->inRandomOrder()->first();
+        $status = fake()->randomElement(['available', 'reserved', 'purchased']);
+        $statusUserName = $status === 'available' ? '' : $statusUser->name;
 
         return [
             'list_id' => $giftList->id,
@@ -37,8 +39,8 @@ class IdeaFactory extends Factory
             'promo_details' => fake()->randomElement(['', 'Actuellement à 6,50€ (soldes)']),
             'membership' => fake()->url(),
             'membership_reduction' => fake()->randomElement(['réduction de 15%', 'un acheté, un offert']),
-            'status' => fake()->randomElement(['available', 'reserved', 'purchased']),
-            'status_user' => $statusUser->name,
+            'status' => $status,
+            'status_user' => $statusUserName,
         ];
     }
 }

@@ -30,6 +30,7 @@ export default function Buttons({ idea }) {
                 <button
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-orange-500"
                     disabled={processing}
+                    title="Réserver"
                 >
                     <svg
                         xmlns="https://www.w3.org/2000/svg"
@@ -49,6 +50,7 @@ export default function Buttons({ idea }) {
                 <button
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-orange-500"
                     disabled={processing}
+                    title="Acheter"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

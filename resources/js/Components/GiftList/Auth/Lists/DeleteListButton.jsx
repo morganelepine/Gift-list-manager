@@ -45,6 +45,12 @@ export default function DeleteListButton({ list }) {
                     </p>
 
                     <div className="mt-6 flex justify-end">
+                        <button
+                            onClick={closeModal}
+                            className="text-sm mr-3 hover:text-orange-500"
+                        >
+                            Annuler
+                        </button>
                         <Link
                             as="button"
                             href={route("lists.destroy", list.id)}
@@ -53,12 +59,6 @@ export default function DeleteListButton({ list }) {
                         >
                             Supprimer la liste
                         </Link>
-                        <button
-                            onClick={closeModal}
-                            className="text-sm ml-3 hover:text-orange-500"
-                        >
-                            Annuler
-                        </button>
                     </div>
                 </div>
             </Modal>

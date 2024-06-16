@@ -12,6 +12,9 @@ export default {
 
     theme: {
         extend: {
+            boxShadow: {
+                up: "0 4px 4px 4px rgb(0 0 0 / 0.1)",
+            },
             fontSize: {
                 "2xs": "0.6rem",
             },

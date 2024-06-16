@@ -38,7 +38,7 @@ export default function ArchiveListButton({ list }) {
         <>
             <button
                 onClick={confirmListArchiving}
-                className="flex items-center mr-5"
+                className="flex items-center mr-5 hover:text-orange-500"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +49,7 @@ export default function ArchiveListButton({ list }) {
                 >
                     <path d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                 </svg>
-                <p className=" hover:text-orange-500 text-sm">
-                    Archiver la liste
-                </p>
+                <p className="text-sm">Archiver la liste</p>
             </button>
 
             <Modal show={confirmingListArchiving} onClose={closeModal}>
@@ -67,15 +65,15 @@ export default function ArchiveListButton({ list }) {
                     </p>
 
                     <div className="mt-6 flex justify-end">
-                        <SmallButton onClick={archiveList}>
-                            Archiver la liste
-                        </SmallButton>
                         <button
                             onClick={closeModal}
-                            className="text-sm ml-3 hover:text-orange-500"
+                            className="text-sm mr-3 hover:text-orange-500"
                         >
                             Annuler
                         </button>
+                        <SmallButton onClick={archiveList}>
+                            Archiver la liste
+                        </SmallButton>
                     </div>
                 </div>
             </Modal>

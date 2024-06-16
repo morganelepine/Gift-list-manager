@@ -9,7 +9,7 @@ export default function Welcome({ auth }) {
         <>
             <Head title="Welcome" />
 
-            <div className="min-h-screen flex flex-col justify-between items-center bg-gradient-to-r from-bordeaux-100 to-orange-100">
+            <div className="min-h-screen flex flex-col justify-between items-center">
                 <LoginRegister auth={auth} />
                 <Intro />
                 <Footer />

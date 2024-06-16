@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
-import SmallButton from "@/Components/Buttons/SmallButton";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
 export default function NoListCreated({ listType }) {
     return (
@@ -10,9 +10,9 @@ export default function NoListCreated({ listType }) {
             </p>
 
             <Link href={route("lists.create")}>
-                <SmallButton className="mt-3">
+                <PrimaryButton className="mt-3">
                     Créer une liste {listType}
-                </SmallButton>
+                </PrimaryButton>
             </Link>
         </div>
     );

@@ -100,7 +100,6 @@ export default function DeleteUserForm({ className = "" }) {
                         <SecondaryButton onClick={closeModal}>
                             Annuler
                         </SecondaryButton>
-
                         <DangerButton className="ml-3" disabled={processing}>
                             Supprimer mon compte
                         </DangerButton>

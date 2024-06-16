@@ -28,6 +28,7 @@ export default function Buttons({ id, idea }) {
                 <button
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-bordeaux-800"
                     disabled={processing}
+                    title="Confirmer l'achat"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +47,7 @@ export default function Buttons({ id, idea }) {
                 <button
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-bordeaux-800"
                     disabled={processing}
+                    title="Annuler l'achat"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -27,12 +27,13 @@ export default function AuthListCard({ list }) {
                     </small>{" "}
                 </div>
 
-                <div className="flex flex-col items-center space-y-2 max-w-max">
+                <div className="flex flex-col items-center max-w-max">
                     {/* SEE BUTTON */}
                     <Link
                         as="button"
                         href={route("lists.show", list.id)}
-                        className="items-center px-3 py-1 w-full bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        className="items-center max-w-max px-3 py-1 w-full bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        title="Voir ma liste"
                     >
                         {isSharedList ? (
                             <span>Voir ma liste</span>
@@ -46,7 +47,8 @@ export default function AuthListCard({ list }) {
                         <Link
                             as="button"
                             href={route("ideas.create_idea", list.id)}
-                            className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-orange-200 hover:to-bordeaux-200 transition ease-in-out duration-150"
+                            // className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-bordeaux-100 hover:to-orange-50 transition ease-in-out duration-150"
+                            className="px-3 py-1 mt-1 text-sm text-orange-500 underline"
                         >
                             Compléter ma liste
                         </Link>
