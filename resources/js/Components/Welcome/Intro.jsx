@@ -2,7 +2,7 @@ export default function Intro() {
     return (
         <div className="sm:px-32 p-8 flex lg:flex-row flex-col items-center lg:space-x-16">
             <img
-                src="/images/exemple-liste-merrymate-2.jpg"
+                src="/images/exemple-liste-merrymate.jpg"
                 alt="Exemple de liste"
                 className="w-96 object-cover rounded-xl shadow-md order-2 lg:order-1 lg:mt-0 mt-6"
             />
