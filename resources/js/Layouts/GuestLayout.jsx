@@ -48,7 +48,7 @@ export default function Guest({ children }) {
                     </li>
                     <li>
                         <a
-                            href="https://www.linkedin.com/in/morgane-l%C3%A9pine-utter-a7bb5353/"
+                            href="https://www.linkedin.com/in/morgane-l-a7bb5353/"
                             target="_blank"
                             className="hover:text-orange-500 sm:font-medium"
                         >

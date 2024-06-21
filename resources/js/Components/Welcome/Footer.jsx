@@ -15,7 +15,7 @@ export default function Footer() {
                 <span className="">
                     par{" "}
                     <a
-                        href="https://www.linkedin.com/in/morgane-l%C3%A9pine-utter-a7bb5353/"
+                        href="https://www.linkedin.com/in/morgane-l-a7bb5353/"
                         target="_blank"
                         className="hover:text-orange-500 hover:underline sm:font-medium"
                     >
@@ -36,7 +36,7 @@ export default function Footer() {
                 </li>
                 <li>
                     <a
-                        href="https://www.linkedin.com/in/morgane-l%C3%A9pine-utter-a7bb5353/"
+                        href="https://www.linkedin.com/in/morgane-l-a7bb5353/"
                         target="_blank"
                         className="hover:text-orange-500 sm:font-medium"
                     >
