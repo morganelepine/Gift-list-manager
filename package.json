@@ -31,9 +31,5 @@
         "react-beautiful-dnd": "^13.1.1",
         "react-google-recaptcha": "^3.1.0",
         "sonner": "^1.4.1"
-    },
-    "engines": {
-        "node": "18.17.0",
-        "npm": ">=10.5.2"
     }
 }

@@ -30,7 +30,6 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-        // data.append("capchaToken", capchaToken);
         post(route("register"));
     };
 
@@ -133,7 +132,7 @@ export default function Register() {
 
                 <div className="mt-4">
                     <ReCAPTCHA
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                        sitekey="6LeVO_4pAAAAABdABWA0tJvWKyUeGk-X9j3tMeqt"
                         onChange={handleRecaptcha}
                     />
                     <InputError message={errors.recaptcha} className="mt-2" />
