@@ -48,7 +48,11 @@ class RegisteredUserController extends Controller
         ]);
 
         if (!$this->recaptchaService->verify($request->input('recaptcha'), $request->ip())) {
-            return response()->json(['message' => 'Invalid reCAPTCHA response'], 422);
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Invalid reCAPTCHA response'], 422);
+            } else {
+                return redirect()->back()->withErrors(['recaptcha' => 'Invalid reCAPTCHA response'])->withInput();
+            }
         }
 
         $user = User::create([
