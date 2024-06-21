@@ -10,6 +10,7 @@ export default defineConfig({
         }),
         react(),
     ],
+    envPrefix: "VITE_",
     build: {
         outDir: "public/build",
     },
