@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Services\RecaptchaService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
+    protected $recaptchaService;
+
+    public function __construct(RecaptchaService $recaptchaService)
+    {
+        $this->recaptchaService = $recaptchaService;
+    }
+
     /**
      * Display the registration view.
      */
@@ -36,18 +44,18 @@ class RegisteredUserController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            // 'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif']
+            'recaptcha' => 'required'
         ]);
 
-        // // On upload l'image dans "/storage/app/public/users"
-        // $photo_path = $request->photo->storePublicly("users");
+        if (!$this->recaptchaService->verify($request->input('recaptcha'), $request->ip())) {
+            return response()->json(['message' => 'Invalid reCAPTCHA response'], 422);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            // 'photo' => $photo_path
         ]);
 
         event(new Registered($user));

@@ -12,7 +12,7 @@ export default function NoListFollowed() {
                 active={route().current("lists.listsToFollow")}
             >
                 <PrimaryButton className="mt-3">
-                    Voir les listes disponibles
+                    Chercher une liste
                 </PrimaryButton>
             </Link>
         </div>

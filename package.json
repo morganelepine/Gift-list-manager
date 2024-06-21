@@ -29,6 +29,7 @@
         "linkify-react": "^4.1.0",
         "prop-types": "^15.8.1",
         "react-beautiful-dnd": "^13.1.1",
+        "react-google-recaptcha": "^3.1.0",
         "sonner": "^1.4.1"
     }
 }

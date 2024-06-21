@@ -301,6 +301,8 @@ class GiftListController extends Controller
      */
     public function archive(GiftList $list): RedirectResponse
     {
+        // IdeaReserved::where('gift_list_id', $list->id)->update(['archived' => true]);
+        // Idea::where('list_id', $list->id)->where('status', 'reserved')->update(['status' => 'archived']);
         IdeaPurchased::where('gift_list_id', $list->id)->update(['archived' => true]);
         Idea::where('list_id', $list->id)->where('status', 'purchased')->update(['status' => 'archived']);
 

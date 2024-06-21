@@ -3,26 +3,20 @@ import { Link } from "@inertiajs/react";
 
 export default function Guest({ children }) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-r from-bordeaux-100 to-orange-100">
-            {/* <div
-            className="bg-cover bg-center min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 "
-            style={{
-                backgroundImage:
-                    "url('https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?q=80&w=1907&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                backgroundColor: "rgba(255, 255, 255, 0.8)",
-            }}
-        > */}
-            <div>
+        <div className="min-h-screen flex justify-center bg-gradient-to-r from-bordeaux-100 to-orange-100">
+            <div className="flex flex-col justify-center items-center">
                 <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                    <h1 className="text-xl text-center font-yeseva bg-gradient-to-r from-orange-500 to-bordeaux-500 inline-block text-transparent bg-clip-text">
+                        MerryMate
+                    </h1>
+                    {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
                 </Link>
-            </div>
 
-            <div className="sm:max-w-md m-6 p-6 bg-white shadow-md rounded-md overflow-hidden sm:rounded-lg">
-                {children}
-            </div>
+                <div className="sm:max-w-md mt-6 mx-6 p-6 bg-white shadow-md rounded-md overflow-hidden sm:rounded-lg">
+                    {children}
+                </div>
 
-            <footer className="fixed bottom-0 left-0 w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-orange-50 to-pink-50 shadow-md text-gray-500 text-sm">
+                {/* <footer className="fixed bottom-0 left-0 w-full px-20 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-orange-50 to-pink-50 shadow-md text-gray-500 text-sm">
                 <div className="flex justify-center items-center font-medium">
                     <span className="">Fait avec</span>
                     <svg
@@ -65,7 +59,8 @@ export default function Guest({ children }) {
                         </a>
                     </li>
                 </ul>
-            </footer>
+            </footer> */}
+            </div>
         </div>
     );
 }

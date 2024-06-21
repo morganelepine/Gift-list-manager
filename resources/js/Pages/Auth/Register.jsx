@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Head, Link, useForm } from "@inertiajs/react";
+import ReCAPTCHA from "react-google-recaptcha";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/Laravel/InputError";
 import InputLabel from "@/Components/Laravel/InputLabel";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import TextInput from "@/Components/Laravel/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -15,6 +16,12 @@ export default function Register() {
         password_confirmation: "",
     });
 
+    const [reCaptchaToken, setReCaptchaToken] = useState("");
+    const handleRecaptcha = (token) => {
+        setReCaptchaToken(token);
+        setData("recaptcha", token);
+    };
+
     useEffect(() => {
         return () => {
             reset("password", "password_confirmation");
@@ -23,7 +30,7 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
+        // data.append("capchaToken", capchaToken);
         post(route("register"));
     };
 
@@ -124,22 +131,13 @@ export default function Register() {
                     />
                 </div>
 
-                {/* <div className="mt-4">
-                    <InputLabel htmlFor="photo" value="Photo" />
-
-                    <TextInput
-                        id="photo"
-                        type="file"
-                        name="photo"
-                        value={data.photo}
-                        className="mt-1 block w-full"
-                        autoComplete="photo"
-                        onChange={(e) => setData("photo", e.target.value)}
-                        required
+                <div className="mt-4">
+                    <ReCAPTCHA
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                        onChange={handleRecaptcha}
                     />
-
-                    <InputError message={errors.photo} className="mt-2" />
-                </div> */}
+                    <InputError message={errors.recaptcha} className="mt-2" />
+                </div>
 
                 <div className="flex sm:flex-row flex-col items-center justify-end mt-4 sm:space-x-4">
                     <Link

@@ -5,6 +5,8 @@ namespace Tests\Feature\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Services\RecaptchaService;
+use Mockery;
 
 class RegistrationTest extends TestCase
 {
@@ -19,14 +21,29 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
+        // Create a mock of RecaptchaService with verify returning true
+        $recaptchaMock = Mockery::mock(RecaptchaService::class);
+        $recaptchaMock->shouldReceive('verify')->andReturn(true);
+        // Replace the RecaptchaService instance with the mock
+        $this->app->instance(RecaptchaService::class, $recaptchaMock);
+
         $response = $this->post('/register', [
             'name' => 'Test User',
+            'last_name' => 'Last Name',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'recaptcha' => 'recaptcha',
         ]);
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    // Clean mocks after testing to avoid interference with other tests
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
     }
 }

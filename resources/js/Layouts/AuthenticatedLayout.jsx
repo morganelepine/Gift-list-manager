@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
+// import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
 import Dropdown from "@/Components/Laravel/Dropdown";
 import NavLink from "@/Components/Laravel/NavLink";
 import ResponsiveNavLink from "@/Components/Laravel/ResponsiveNavLink";
@@ -32,12 +32,15 @@ export default function Authenticated({ user, header, children }) {
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href={route("lists.index")}>
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <h1 className="text-xl text-center font-yeseva bg-gradient-to-r from-orange-500 to-bordeaux-500 inline-block text-transparent bg-clip-text">
+                                        MerryMate
+                                    </h1>
+                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <div className="hidden sm:flex sm:items-center">
+                            <div className="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
+                                <div className="hidden lg:flex lg:items-center">
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md">
@@ -183,7 +186,7 @@ export default function Authenticated({ user, header, children }) {
                             </div>
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center sm:ml-6">
+                        <div className="hidden lg:flex lg:items-center lg:ml-6">
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -228,7 +231,7 @@ export default function Authenticated({ user, header, children }) {
                             </div>
                         </div>
 
-                        <div className="-mr-2 flex items-center sm:hidden">
+                        <div className="-mr-2 flex items-center lg:hidden">
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
@@ -274,7 +277,7 @@ export default function Authenticated({ user, header, children }) {
                 <div
                     className={
                         (showingNavigationDropdown ? "block" : "hidden") +
-                        " sm:hidden"
+                        " lg:hidden"
                     }
                 >
                     <div className="py-2">
