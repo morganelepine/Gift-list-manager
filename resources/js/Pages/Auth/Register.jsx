@@ -132,7 +132,7 @@ export default function Register() {
 
                 <div className="mt-4">
                     <ReCAPTCHA
-                        sitekey="6LeVO_4pAAAAABdABWA0tJvWKyUeGk-X9j3tMeqt"
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                         onChange={handleRecaptcha}
                     />
                     <InputError message={errors.recaptcha} className="mt-2" />

@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
 
         if (!$this->recaptchaService->verify($request->input('recaptcha'), $request->ip())) {
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'Invalid reCAPTCHA response'], 422);
+                return response()->json(['message' => 'request expectsJson: Invalid reCAPTCHA response'], 422);
             } else {
                 return redirect()->back()->withErrors(['recaptcha' => 'Invalid reCAPTCHA response'])->withInput();
             }
