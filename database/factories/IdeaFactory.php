@@ -23,7 +23,7 @@ class IdeaFactory extends Factory
         $giftList = GiftList::where('user_id', $user->id)->inRandomOrder()->first();
         $statusUser = User::where('id', '!=', $user->id)->inRandomOrder()->first();
         $status = fake()->randomElement(['available', 'reserved', 'purchased']);
-        $statusUserName = $status === 'available' ? '' : $statusUser->name;
+        $statusUserName = $status === 'available' ? '' : $statusUser->user_name;
 
         return [
             'list_id' => $giftList->id,
