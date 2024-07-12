@@ -16,6 +16,10 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "symfony/css-selector": "^6.4.8",
+        "symfony/event-dispatcher": "^6.4.8",
+        "symfony/string": "^6.4.9",
+        "symfony/yaml": "^6.4.8",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
