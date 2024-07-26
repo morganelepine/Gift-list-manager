@@ -38,50 +38,60 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/privatecode', function () {
-    return Inertia::render('PrivateCode');
-})->middleware(['auth', 'verified'])->name('privatecode');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/my-purchases', [ProfileController::class, 'purchase'])->name('profile.purchase');
-    Route::get('/notifications-test', [ProfileController::class, 'notifications'])->name('profile.notifications');
+// Profile management
+Route::middleware('auth')->prefix('profile')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/budget', [ProfileController::class, 'purchase'])->name('profile.purchase');
+    Route::get('/notifications', [ProfileController::class, 'notifications'])->name('profile.notifications');
+});
 
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
-    Route::get('/ideas/create/{list}',              [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
-    Route::post('/ideas/{idea}/reserve',            [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
-    Route::delete('/ideas/{idea}/cancelReserve',    [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
-    Route::post('/ideas/{idea}/purchase',           [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
-    Route::delete('/ideas/{idea}/cancelPurchase',   [IdeaPurchasedController::class, 'cancelPurchase'])->name('ideas.cancelPurchase');
-
-    Route::get('/my-lists',                 [GiftListController::class, 'authLists'])->name('lists.authLists');
-    Route::get('/lists-to-follow',          [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
-    Route::get('/lists-followed',           [GiftListController::class, 'followedLists'])->name('lists.followedLists');
-    Route::post('/lists/{list}/follow',     [GiftListController::class, 'followList'])->name('lists.followList');
-    Route::patch('lists/{list}/archive',    [GiftListController::class, 'archive'])->name('lists.archive');
-    Route::get('lists/search',              [GiftListController::class, 'search'])->name('lists.search');
-
-    Route::get('/notifications',                [NotificationController::class, 'index']);
-    Route::get('/notifications-unread',         [NotificationController::class, 'indexUnreadNotifications']);
-    Route::patch('/mark-notification/{id}',     [NotificationController::class, 'markNotification']);
-    Route::patch('/mark-notifications',         [NotificationController::class, 'markAllNotifications']);
-    Route::delete('/notification/{id}',         [NotificationController::class, 'destroy']);
-    Route::post('/notifications/request-access/{listOwner}/{list}',         [NotificationController::class, 'requestAccessToList']);
-    Route::post('/notifications/respond-access/{notificationId}/{list}',    [NotificationController::class, 'respondToAccessRequest']);
+// Ideas management
+Route::middleware('auth')->prefix('ideas')->group(function () {
+    Route::get('/create/{list}',              [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
+    Route::post('/{idea}/reserve',            [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
+    Route::delete('/{idea}/cancelReserve',    [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
+    Route::post('/{idea}/purchase',           [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
+    Route::delete('/{idea}/cancelPurchase',   [IdeaPurchasedController::class, 'cancelPurchase'])->name('ideas.cancelPurchase');
 });
 
 Route::resource('ideas', IdeaController::class)
 ->only(['index', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
+
+// Lists management
+Route::middleware('auth')->prefix('lists')->group(function () {
+    Route::get('/my-lists',             [GiftListController::class, 'authLists'])->name('lists.authLists');
+    Route::get('/to-follow',            [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
+    Route::get('/followed',             [GiftListController::class, 'followedLists'])->name('lists.followedLists');
+    Route::post('/{list}/follow', [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::patch('/{list}/archive',     [GiftListController::class, 'archive'])->name('lists.archive');
+    Route::get('/search',               [GiftListController::class, 'search'])->name('lists.search');
+});
+
 Route::resource('lists', GiftListController::class)
 ->only(['show', 'index', 'create', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
-Route::resource('users', UserController::class);
+Route::get('/privatecode', function () {
+    return Inertia::render('PrivateCode');
+})->middleware(['auth', 'verified'])->name('privatecode');
+
+
+// Notifications management
+Route::middleware('auth')->prefix('notifications')->group(function () {
+    Route::get('/all',          [NotificationController::class, 'index']);
+    Route::get('/unread',       [NotificationController::class, 'indexUnreadNotifications']);
+    Route::patch('/mark/{id}',  [NotificationController::class, 'markNotification']);
+    Route::patch('/mark/all',   [NotificationController::class, 'markAllNotifications']);
+    Route::delete('/{id}',      [NotificationController::class, 'destroy']);
+    Route::post('/request-access/{listOwner}/{list}',         [NotificationController::class, 'requestAccessToList']);
+    Route::post('/respond-access/{notificationId}/{list}',    [NotificationController::class, 'respondToAccessRequest']);
+});
 
 require __DIR__.'/auth.php';

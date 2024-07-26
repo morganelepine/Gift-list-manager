@@ -12,7 +12,7 @@ export default function Notifications({ auth }) {
 
     const fetchNotifications = async () => {
         try {
-            const response = await fetch("/notifications");
+            const response = await fetch("/notifications/all");
             const data = await response.json();
             setNotifications(data.notifications);
         } catch (error) {

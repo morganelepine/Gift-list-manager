@@ -98,7 +98,7 @@ class GiftListTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/my-lists');
+            ->assertRedirect('/lists/my-lists');
 
         $giftList->refresh();
 
@@ -122,7 +122,7 @@ class GiftListTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/my-lists');
+            ->assertRedirect('/lists/my-lists');
 
         $this->assertNull($giftList->fresh());
     }
