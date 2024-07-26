@@ -33,7 +33,7 @@ export default function SecretCode({ auth, listToFollow }) {
                         id="private_code"
                         name="private_code"
                         value={data.private_code}
-                        placeholder="1234"
+                        placeholder="Exemple : 12ab"
                         className="w-52 py-1 text-center"
                         isFocused={true}
                         onChange={(e) =>

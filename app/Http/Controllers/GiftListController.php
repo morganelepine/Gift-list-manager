@@ -9,13 +9,14 @@ use App\Models\IdeaReserved;
 use App\Models\IdeaPurchased;
 use App\Models\FollowedList;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Inertia\Response;
 use Inertia\Inertia;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
 use App\Notifications\NotifyListFollowed;
 
 class GiftListController extends Controller
@@ -87,7 +88,7 @@ class GiftListController extends Controller
 
         $dateFormat = 'd/m/Y';
 
-        // Get lists CREATED by auth user
+        // Get PUBLIC lists CREATED by auth user
         $mySharedLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 0)->orderBy('created_at', 'desc')->get();
         // Date formatting
         foreach ($mySharedLists as $mylist) {
@@ -97,7 +98,7 @@ class GiftListController extends Controller
             $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
         }
 
-        // Get lists CREATED by auth user
+        // Get PRIVATE lists CREATED by auth user
         $myPrivateLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 1)->orderBy('created_at', 'desc')->get();
         // Date formatting
         foreach ($myPrivateLists as $mylist) {
@@ -125,7 +126,7 @@ class GiftListController extends Controller
         ]);
     }
 
-        /**
+    /**
      * Search for the specified resource in storage.
      */
     public function search(Request $request): JsonResponse
@@ -221,6 +222,10 @@ class GiftListController extends Controller
             $publicList->lastUpdatedAt = Idea::where('list_id', $publicList->id)->max('created_at');
             $publicList->formatted_updated_at = Carbon::parse($publicList->lastUpdatedAt)->format($dateFormat);
             $publicList->isEmpty = Idea::where('list_id', $publicList->id)->count() === 0;
+
+            if (strlen($publicList->private_code) > 20) {
+                $publicList->private_code = Crypt::decrypt($publicList->private_code);
+            }
         }
 
         // Get private lists of auth user
@@ -258,16 +263,12 @@ class GiftListController extends Controller
             'user_name' => $string,
             'name' => $string,
             'isPrivate' => 'required|boolean',
+            'private_code' => 'required|string|max:65535'
         ];
 
-        // If list is private, private_code is not required
-        if ($request->input('isPrivate')) {
-            $rules['private_code'] = 'nullable|string|max:255';
-        } else {
-            $rules['private_code'] = $string;
-        }
-
         $validated = $request->validate($rules);
+
+        $validated['private_code'] = Crypt::encrypt($validated['private_code']);
 
         $request->user()->gift_lists()->create($validated);
 
@@ -288,7 +289,7 @@ class GiftListController extends Controller
             'user_name' => $string,
             'name' => $string,
             'isPrivate' => 'boolean',
-            'private_code' => $string,
+            'private_code' => 'string|max:65535'
         ]);
 
         $list->update($validated);
@@ -329,18 +330,17 @@ class GiftListController extends Controller
     {
         $privateCode = $request->input('private_code');
         $correctPrivateCode = GiftList::where('id', $list->id)->value('private_code');
-
-        // $encodingPrivateCode = mb_detect_encoding($privateCode);
-        // $encodingCorrectPrivateCode = mb_detect_encoding($correctPrivateCode);
+        $decryptedCorrectPrivateCode = Crypt::decrypt($correctPrivateCode);
 
         // Comparaison insensible à la casse (strcasecmp) et aux espaces (trim)
-        if (strcasecmp(trim($privateCode), trim($correctPrivateCode)) === 0) {
+        if (strcasecmp(trim($privateCode), trim($decryptedCorrectPrivateCode)) === 0) {
             $user = $request->user();
             $validated = $request->validate([
                 'user_id' => 'required|integer',
                 'gift_list_id' => 'required|integer',
                 'private_code' => 'required|string',
             ]);
+            $validated['private_code'] = Crypt::encrypt($validated['private_code']);
             $user->followed_lists()->create($validated);
 
             // Search for user whose list has been followed and notify her⸱him

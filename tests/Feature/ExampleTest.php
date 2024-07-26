@@ -16,4 +16,10 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_encryption_key_is_set_correctly(): void
+    {
+        $expectedKey = env('APP_KEY');
+        $this->assertNotEmpty($expectedKey, 'APP_KEY is not set in the environment');
+    }
 }

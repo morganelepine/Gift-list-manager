@@ -7,6 +7,7 @@ use App\Models\GiftList;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Crypt;
 
 class GiftListTest extends TestCase
 {
@@ -39,13 +40,15 @@ class GiftListTest extends TestCase
         $response = $this->post('/lists', $listData);
         $response->assertStatus(302);
 
-        $this->assertDatabaseHas('gift_lists', [
-            'user_id' => $user->id,
-            'user_name' => $user->name,
-            'name' => 'Anniversaire',
-            'private_code' => '_private',
-            'isPrivate' => true,
-        ]);
+        $createdList = GiftList::where('user_id', $user->id)->first();
+        $this->assertNotNull($createdList);
+
+        $decryptedPrivateCode = Crypt::decrypt($createdList->private_code);
+
+        $this->assertEquals('_private', $decryptedPrivateCode);
+        $this->assertEquals($user->id, $createdList->user_id);
+        $this->assertEquals('Anniversaire', $createdList->name);
+        $this->assertTrue((bool)$createdList->isPrivate);
     }
 
 
@@ -65,13 +68,15 @@ class GiftListTest extends TestCase
         $response = $this->post('/lists', $listData);
         $response->assertStatus(302);
 
-        $this->assertDatabaseHas('gift_lists', [
-            'user_id' => $user->id,
-            'user_name' => $user->name,
-            'name' => 'Anniversaire',
-            'private_code' => '1234',
-            'isPrivate' => false,
-        ]);
+        $createdList = GiftList::where('user_id', $user->id)->first();
+        $this->assertNotNull($createdList);
+
+        $decryptedPrivateCode = Crypt::decrypt($createdList->private_code);
+
+        $this->assertEquals('1234', $decryptedPrivateCode);
+        $this->assertEquals($user->id, $createdList->user_id);
+        $this->assertEquals('Anniversaire', $createdList->name);
+        $this->assertFalse((bool)$createdList->isPrivate);
     }
 
     public function test_giftlist_name_can_be_updated(): void
@@ -129,7 +134,7 @@ class GiftListTest extends TestCase
             'user_id' => $user->id,
             'user_name' => $user->name,
             'name' => 'Mariage',
-            'private_code' => '1234',
+            'private_code' => Crypt::encrypt('1234'),
             'isPrivate' => false,
         ]);
         $follower = User::factory()->create();
@@ -182,5 +187,35 @@ class GiftListTest extends TestCase
                 'listId' => $giftList->id
             ]),
         ]);
+    }
+
+    public function test_decrypt_private_code_or_use_plain_text(): void
+    {
+        $user = User::factory()->create();
+
+        // Private code not crypted (old)
+        $plainCodeList = GiftList::factory()->create([
+            'user_id' => $user->id,
+            'private_code' => 'plain_text_code',
+        ]);
+
+        $decryptedPrivateCode = strlen($plainCodeList->private_code) > 20
+            ? Crypt::decrypt($plainCodeList->private_code)
+            : $plainCodeList->private_code;
+
+        $this->assertEquals('plain_text_code', $decryptedPrivateCode);
+
+        // Private code crypted (new)
+        $encryptedCode = Crypt::encrypt('encrypted_text_code');
+        $encryptedCodeList = GiftList::factory()->create([
+            'user_id' => $user->id,
+            'private_code' => $encryptedCode,
+        ]);
+
+        $decryptedPrivateCode = strlen($encryptedCodeList->private_code) > 50
+            ? Crypt::decrypt($encryptedCodeList->private_code)
+            : $encryptedCodeList->private_code;
+
+        $this->assertEquals('encrypted_text_code', $decryptedPrivateCode);
     }
 }

@@ -97,7 +97,7 @@ export default function Create({ auth }) {
                             id="private_code"
                             name="private_code"
                             value={data.private_code}
-                            placeholder="1234"
+                            placeholder="Exemple : 12ab"
                             onChange={(e) =>
                                 setData("private_code", e.target.value)
                             }
