@@ -12,7 +12,7 @@ export default function Authenticated({ user, header, children }) {
     const [unreadNotifications, setUnreadNotifications] = useState([]);
     const fetchUnreadNotifications = async () => {
         try {
-            const response = await fetch("/notifications-unread");
+            const response = await fetch("/notifications/unread");
             const data = await response.json();
             setUnreadNotifications(data.unread_notifications);
         } catch (error) {

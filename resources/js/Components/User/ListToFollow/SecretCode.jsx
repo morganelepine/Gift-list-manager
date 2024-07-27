@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
-import TextInput from "@/Components/Laravel/TextInput";
-import InputError from "@/Components/Laravel/InputError";
+import TextInput from "@/Components/Utils/TextInput";
+import InputError from "@/Components/Utils/InputError";
 import OutlineButton from "@/Components/Buttons/OutlineButton";
 
 export default function SecretCode({ auth, listToFollow }) {
