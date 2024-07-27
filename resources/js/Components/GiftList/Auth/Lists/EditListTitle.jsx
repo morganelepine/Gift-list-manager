@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
-import InputError from "@/Components/Laravel/InputError";
+import InputError from "@/Components/Utils/InputError";
 
 export default function EditListTitle({ list, setEditing }) {
     // console.log("idea.promo : ", idea.promo);

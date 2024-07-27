@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
-import TextInputSmall from "@/Components/Laravel/TextInputSmall";
-import InputError from "@/Components/Laravel/InputError";
+import TextInputSmall from "@/Components/Utils/TextInputSmall";
+import InputError from "@/Components/Utils/InputError";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function IdeaEdit({ auth, idea, setEditing }) {

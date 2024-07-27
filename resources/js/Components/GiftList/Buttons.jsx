@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
-import Modal from "@/Components/Laravel/Modal";
+import Modal from "@/Components/Utils/Modal";
 
 export default function EditDeleteButtons({ idea, setEditing }) {
     const { delete: destroy, processing, reset } = useForm();

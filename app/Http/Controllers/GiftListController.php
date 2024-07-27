@@ -142,7 +142,7 @@ class GiftListController extends Controller
             ->whereNotIn('id', $followedListIds)
             ->where(function($query) use ($key) {
                 $query->where('user_name', 'like', "%{$key}%")
-                    ->orWhere('name', 'like', "%{$key}%");
+                      ->orWhere('name', 'like', "%{$key}%");
             })
             ->orderBy('created_at', 'desc')
             ->get();
@@ -169,6 +169,7 @@ class GiftListController extends Controller
     public function listsToFollow(): Response
     {
         $authUser = Auth::user();
+
         $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
 
         $listsToFollow = GiftList::whereNot('user_id', Auth::id())
@@ -330,7 +331,11 @@ class GiftListController extends Controller
     {
         $privateCode = $request->input('private_code');
         $correctPrivateCode = GiftList::where('id', $list->id)->value('private_code');
-        $decryptedCorrectPrivateCode = Crypt::decrypt($correctPrivateCode);
+        if (strlen($correctPrivateCode) > 20) {
+            $decryptedCorrectPrivateCode = Crypt::decrypt($correctPrivateCode);
+        } else {
+            $decryptedCorrectPrivateCode = $correctPrivateCode;
+        }
 
         // Comparaison insensible à la casse (strcasecmp) et aux espaces (trim)
         if (strcasecmp(trim($privateCode), trim($decryptedCorrectPrivateCode)) === 0) {
@@ -351,7 +356,9 @@ class GiftListController extends Controller
             return redirect(route('lists.followedLists'));
 
         } else {
-            return redirect()->back()->withErrors(['private_code' => 'Ce code est incorrect pour la liste demandée.']);
+            return redirect()->back()->withErrors(
+                ['private_code' => 'Ce code est incorrect pour la liste demandée.']
+            );
         }
     }
 

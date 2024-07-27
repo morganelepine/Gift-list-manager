@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 // import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
-import Dropdown from "@/Components/Laravel/Dropdown";
-import NavLink from "@/Components/Laravel/NavLink";
-import ResponsiveNavLink from "@/Components/Laravel/ResponsiveNavLink";
+import Dropdown from "@/Components/Utils/Dropdown";
+import NavLink from "@/Components/Utils/NavLink";
+import ResponsiveNavLink from "@/Components/Utils/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 
 export default function Authenticated({ user, header, children }) {
@@ -12,7 +12,7 @@ export default function Authenticated({ user, header, children }) {
     const [unreadNotifications, setUnreadNotifications] = useState([]);
     const fetchUnreadNotifications = async () => {
         try {
-            const response = await fetch("/notifications/unread");
+            const response = await fetch("/notifications-unread");
             const data = await response.json();
             setUnreadNotifications(data.unread_notifications);
         } catch (error) {

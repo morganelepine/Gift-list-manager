@@ -1,7 +1,7 @@
-import InputError from "@/Components/Laravel/InputError";
-import InputLabel from "@/Components/Laravel/InputLabel";
+import InputError from "@/Components/Utils/InputError";
+import InputLabel from "@/Components/Utils/InputLabel";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
-import TextInput from "@/Components/Laravel/TextInput";
+import TextInput from "@/Components/Utils/TextInput";
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 

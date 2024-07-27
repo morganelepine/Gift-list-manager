@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import InputError from "@/Components/Laravel/InputError";
-import InputLabel from "@/Components/Laravel/InputLabel";
-import TextInput from "@/Components/Laravel/TextInput";
+import InputError from "@/Components/Utils/InputError";
+import InputLabel from "@/Components/Utils/InputLabel";
+import TextInput from "@/Components/Utils/TextInput";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function CreatePrivateIdea({ auth, list }) {

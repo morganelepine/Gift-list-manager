@@ -10,7 +10,7 @@ class GiftList extends Model
 {
     use HasFactory;
 
-    //Une liste ne peut avoir qu'un user
+    // A list can only belong to one user
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

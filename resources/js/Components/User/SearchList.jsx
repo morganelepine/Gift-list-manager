@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import ListToFollow from "@/Components/User/ListToFollow";
-import TextInput from "@/Components/Laravel/TextInput";
+import TextInput from "@/Components/Utils/TextInput";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function SearchList({ auth }) {

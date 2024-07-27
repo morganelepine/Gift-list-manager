@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import Modal from "@/Components/Laravel/Modal";
+import Modal from "@/Components/Utils/Modal";
 
 export default function DeleteListButton({ list }) {
     const [confirmingListDeletion, setConfirmingListDeletion] = useState(false);

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import InputError from "@/Components/Laravel/InputError";
-import InputLabel from "@/Components/Laravel/InputLabel";
-import TextInput from "@/Components/Laravel/TextInput";
-import Checkbox from "@/Components/Laravel/Checkbox";
+import InputError from "@/Components/Utils/InputError";
+import InputLabel from "@/Components/Utils/InputLabel";
+import TextInput from "@/Components/Utils/TextInput";
+import Checkbox from "@/Components/Utils/Checkbox";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import { useForm, Head } from "@inertiajs/react";
 

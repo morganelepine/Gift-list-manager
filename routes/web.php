@@ -69,7 +69,7 @@ Route::middleware('auth')->prefix('lists')->group(function () {
     Route::get('/my-lists',             [GiftListController::class, 'authLists'])->name('lists.authLists');
     Route::get('/to-follow',            [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
     Route::get('/followed',             [GiftListController::class, 'followedLists'])->name('lists.followedLists');
-    Route::post('/{list}/follow', [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::post('/{list}/follow',       [GiftListController::class, 'followList'])->name('lists.followList');
     Route::patch('/{list}/archive',     [GiftListController::class, 'archive'])->name('lists.archive');
     Route::get('/search',               [GiftListController::class, 'search'])->name('lists.search');
 });

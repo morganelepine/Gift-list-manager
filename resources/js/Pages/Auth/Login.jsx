@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Checkbox from "@/Components/Laravel/Checkbox";
+import Checkbox from "@/Components/Utils/Checkbox";
 import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/Laravel/InputError";
-import InputLabel from "@/Components/Laravel/InputLabel";
+import InputError from "@/Components/Utils/InputError";
+import InputLabel from "@/Components/Utils/InputLabel";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
-import TextInput from "@/Components/Laravel/TextInput";
+import TextInput from "@/Components/Utils/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Login({ status, canResetPassword }) {

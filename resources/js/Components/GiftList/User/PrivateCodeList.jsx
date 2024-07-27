@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Head, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import TextInput from "@/Components/Laravel/TextInput";
-import InputError from "@/Components/Laravel/InputError";
+import TextInput from "@/Components/Utils/TextInput";
+import InputError from "@/Components/Utils/InputError";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
 export default function PrivateList({ auth, list }) {

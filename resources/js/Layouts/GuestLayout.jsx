@@ -1,4 +1,4 @@
-import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
+import ApplicationLogo from "@/Components/Utils/ApplicationLogo";
 import { Link } from "@inertiajs/react";
 
 export default function Guest({ children }) {
