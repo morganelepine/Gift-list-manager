@@ -34,22 +34,22 @@ Or log in directly through the CLI:
 -   Select the closest region to your end-users to optimize latency.
 -   Select GitHub as the deployment method and link your GitHub repository.
 -   Enable automatic deployment so that each push to GitHub is automatically deployed to Heroku.
--   Optional : enable the "Wait for CI to pass before deploy" option so that Heroku only deploys the application if the GitHub Actions tests pass.
+-   _Optional_ : enable the "Wait for CI to pass before deploy" option so that Heroku only deploys the application if the GitHub Actions tests pass.
 
 #### 3. Configure buildpacks
 
-Buildpacks are scripts used by Heroku to install dependencies and configure the application's environment. This can be done through the Heroku dashboard or via the CLI:
+Buildpacks are scripts used by Heroku to install dependencies and configure the application's environment.  
+This can be done through the Heroku dashboard or via the CLI:
 
 ```bash
   heroku buildpacks:add heroku/nodejs
   heroku buildpacks:set heroku/php
 ```
 
-**Note**: The order of the buildpacks is important. In this project, Node.js is listed before PHP to ensure the React frontend is built before the Laravel application is deployed.
-
 #### 4. Project deployment
 
-By default, Heroku uses Apache with PHP to start the application from the project root directory. Since MerryMate's document root is the `public/` subdirectory, create a `Procfile` in the project's root directory with the following line:
+By default, Heroku uses Apache with PHP to start the application from the project root directory.  
+Since the document root of the app is the `public/` subdirectory, create a `Procfile` in the project's root directory with the following line:
 
 ```bash
 web: vendor/bin/heroku-php-apache2 public/
@@ -66,7 +66,8 @@ git push heroku main
 
 #### 6. Environment variables configuration
 
-Add the necessary environment variables, such as those in the .env file, to Heroku's Config Vars to securely manage sensitive data. This can be done through the Heroku dashboard or via the CLI:
+Add the necessary environment variables, such as those in the `.env` file, to Heroku's Config Vars to securely manage sensitive data.  
+This can be done through the Heroku dashboard or via the CLI:
 
 ```bash
 heroku config:set APP_KEY=<your-app-key>
@@ -74,13 +75,11 @@ heroku config:set APP_KEY=<your-app-key>
 
 #### 7. Adding a MySQL database
 
-MerryMate uses MySQL as its database. Add the JawsDB MySQL add-on from the Add-ons section of the Heroku dashboard or via the CLI:
+Add the JawsDB MySQL add-on from the Add-ons section of the Heroku dashboard or via the CLI:
 
 ```bash
 heroku addons:create jawsdb:kitefin
 ```
-
-Retrieve the database URL from the Config Vars section.
 
 **Note**: JawsDB is a free add-on with limitations. Regularly back up your data.
 
@@ -92,7 +91,10 @@ After deployment, run the migrations to create the tables in the new database:
 heroku run php artisan migrate:fresh
 ```
 
-**Note**: If you encounter the error `Syntax error or access violation: 1071 Specified key was too long`, adjust the default string length by adding the following line in the boot() method of the `AppServiceProvider.php` file :
+**Note**: If you encounter the following error:
+
+> _Syntax error or access violation: 1071 Specified key was too long_  
+> adjust the default string length by adding the following line in the boot() method of the `AppServiceProvider.php` file :
 
 ```bash
 Schema::defaultStringLength(191)
