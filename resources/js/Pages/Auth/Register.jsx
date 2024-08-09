@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Head, Link, useForm } from "@inertiajs/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/Utils/InputError";
 import InputLabel from "@/Components/Utils/InputLabel";
-import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 import TextInput from "@/Components/Utils/TextInput";
+import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -16,9 +16,7 @@ export default function Register() {
         password_confirmation: "",
     });
 
-    const [reCaptchaToken, setReCaptchaToken] = useState("");
     const handleRecaptcha = (token) => {
-        setReCaptchaToken(token);
         setData("recaptcha", token);
     };
 
