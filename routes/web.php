@@ -52,7 +52,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 // Ideas management
 Route::middleware('auth')->prefix('ideas')->group(function () {
-    Route::get('/create/{list}',              [IdeaController::class, 'create_idea'])->name('ideas.create_idea');
+    Route::get('/create/{list}',              [IdeaController::class, 'create'])->name('ideas.create');
     Route::post('/{idea}/reserve',            [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
     Route::delete('/{idea}/cancelReserve',    [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
     Route::post('/{idea}/purchase',           [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
@@ -60,7 +60,7 @@ Route::middleware('auth')->prefix('ideas')->group(function () {
 });
 
 Route::resource('ideas', IdeaController::class)
-->only(['index', 'store', 'update', 'destroy'])
+->only(['store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 

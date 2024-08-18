@@ -14,8 +14,6 @@ export default function Show({
     ideas_purchased,
     followedLists,
 }) {
-    // console.log("followedLists : ", followedLists);
-
     const listIsFollowed = followedLists.some(
         (followedList) => followedList.gift_list_id === list.id
     );

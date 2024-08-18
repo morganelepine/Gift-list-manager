@@ -9,8 +9,6 @@ import Buttons from "@/Components/GiftList/Buttons";
 dayjs.extend(relativeTime);
 
 export default function Ideas({ brand, idea }) {
-    // console.log("idea : ", idea);
-
     const { auth } = usePage().props;
 
     const [editing, setEditing] = useState(false);

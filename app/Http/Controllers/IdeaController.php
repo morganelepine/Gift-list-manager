@@ -16,30 +16,10 @@ use Inertia\Inertia;
 
 class IdeaController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
-    {
-        $authUserId = Auth::id();
-
-        // Get all ideas of auth user
-        $ideas = Idea::with('user:id,name')
-        ->where('user_id', $authUserId)
-        ->orderBy('price')
-        ->latest()
-        ->get();
-
-        return Inertia::render('Ideas/Index', [
-            'ideas' => $ideas,
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
-    public function create_idea(Request $request, $id): Response
+    public function create(Request $request, $id): Response
     {
         // Get list id from url
         $list = GiftList::find($id);

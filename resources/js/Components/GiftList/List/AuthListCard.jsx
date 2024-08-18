@@ -45,8 +45,7 @@ export default function AuthListCard({ list }) {
                     {isSharedList && (
                         <Link
                             as="button"
-                            href={route("ideas.create_idea", list.id)}
-                            // className="px-3 py-1 bg-white rounded-full text-sm border border-orange-500 hover:bg-gradient-to-r hover:from-bordeaux-100 hover:to-orange-50 transition ease-in-out duration-150"
+                            href={route("ideas.create", list.id)}
                             className="px-3 py-1 mt-1 text-sm text-orange-500 underline"
                         >
                             Compléter ma liste

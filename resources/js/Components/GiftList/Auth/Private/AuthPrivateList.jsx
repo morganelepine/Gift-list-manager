@@ -66,7 +66,7 @@ export default function AuthPrivateList({ auth, list, ideas }) {
                         </p>
                         <Link
                             as="button"
-                            href={route("ideas.create_idea", list.id)}
+                            href={route("ideas.create", list.id)}
                             className="mt-2"
                         >
                             <SmallButton>Commencer la liste</SmallButton>

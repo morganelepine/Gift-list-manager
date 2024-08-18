@@ -47,7 +47,7 @@ export default function AuthList({ auth, list, ideas }) {
                             <ArchiveListButton list={list} />
                             <Link
                                 as="button"
-                                href={route("ideas.create_idea", list.id)}
+                                href={route("ideas.create", list.id)}
                                 className="flex items-center hover:text-orange-500"
                             >
                                 <svg
@@ -79,7 +79,7 @@ export default function AuthList({ auth, list, ideas }) {
                         </p>
                         <Link
                             as="button"
-                            href={route("ideas.create_idea", list.id)}
+                            href={route("ideas.create", list.id)}
                             className="mt-2"
                         >
                             <SmallButton>Commencer la liste</SmallButton>

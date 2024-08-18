@@ -13,10 +13,6 @@ export default function Index({
     mySharedLists,
     myPrivateLists,
 }) {
-    // console.log("listsToFollow : ", listsToFollow);
-    // const isPrivateList = list.isPrivate === 1;
-    // const isSharedList = list.isPrivate === 0;
-
     return (
         <AuthenticatedLayout
             user={auth.user}

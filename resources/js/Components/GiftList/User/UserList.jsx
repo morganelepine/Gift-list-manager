@@ -14,8 +14,6 @@ export default function UserList({
     ideas_reserved,
     ideas_purchased,
 }) {
-    // console.log("followedList : ", followedList);
-
     // Regrouper les idées par marque
     const groupedIdeas = ideas_available.reduce((ideasByBrand, idea) => {
         const { brand, ...rest } = idea;
