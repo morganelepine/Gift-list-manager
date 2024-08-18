@@ -92,9 +92,9 @@ heroku run php artisan migrate:fresh
 ```
 
 **Note**: If you encounter the following error:
-
 > _Syntax error or access violation: 1071 Specified key was too long_  
-> adjust the default string length by adding the following line in the boot() method of the `AppServiceProvider.php` file :
+
+adjust the default string length by adding the following line in the boot() method of the `AppServiceProvider.php` file:
 
 ```bash
 Schema::defaultStringLength(191)
@@ -102,4 +102,4 @@ Schema::defaultStringLength(191)
 
 #### 9. Configure PHPMyAdmin (optional)
 
-To easily view the database, configure PHPMyAdmin to connect to your Heroku database by adding the connection details to the `config.inc.php file`.
+To easily view the database, configure PHPMyAdmin to connect to your Heroku database by adding the connection details to the `config.inc.php` file.
