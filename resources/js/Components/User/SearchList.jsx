@@ -39,7 +39,7 @@ export default function SearchList({ auth }) {
         <>
             <form className="flex flex-col text-center" onSubmit={handleSubmit}>
                 <label htmlFor="link" className="text-xl font-semibold mb-4">
-                    Rechercher une listE
+                    Rechercher une liste
                 </label>
                 <TextInput
                     id="search"

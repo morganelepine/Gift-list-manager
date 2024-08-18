@@ -25,18 +25,6 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
-    // Un user peut réserver plusieurs idées
-    public function ideaReserved()
-    {
-        return $this->hasMany(IdeaReserved::class);
-    }
-
-    // Un user peut acheter plusieurs idées
-    public function ideaPurchased()
-    {
-        return $this->hasMany(IdeaPurchased::class);
-    }
-
     // Un user peut suivre plusieurs listes
     public function followed_lists(): HasMany
     {

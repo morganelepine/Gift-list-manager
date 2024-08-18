@@ -3,10 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GiftListController;
 use App\Http\Controllers\IdeaController;
-use App\Http\Controllers\IdeaReservedController;
-use App\Http\Controllers\IdeaPurchasedController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -52,11 +49,10 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 // Ideas management
 Route::middleware('auth')->prefix('ideas')->group(function () {
-    Route::get('/create/{list}',              [IdeaController::class, 'create'])->name('ideas.create');
-    Route::post('/{idea}/reserve',            [IdeaReservedController::class, 'reserveIdea'])->name('ideas.reserve');
-    Route::delete('/{idea}/cancelReserve',    [IdeaReservedController::class, 'cancelReservation'])->name('ideas.cancelReserve');
-    Route::post('/{idea}/purchase',           [IdeaPurchasedController::class, 'purchaseIdea'])->name('ideas.purchase');
-    Route::delete('/{idea}/cancelPurchase',   [IdeaPurchasedController::class, 'cancelPurchase'])->name('ideas.cancelPurchase');
+    Route::get('/create/{list}',    [IdeaController::class, 'create'])->name('ideas.create');
+    Route::post('/{idea}/reserve',  [IdeaController::class, 'reserveIdea'])->name('ideas.reserve');
+    Route::post('/{idea}/purchase', [IdeaController::class, 'purchaseIdea'])->name('ideas.purchase');
+    Route::delete('/{idea}/cancelReserveOrPurchase',    [IdeaController::class, 'cancelReservationOrPurchase'])->name('ideas.cancelReserveOrPurchase');
 });
 
 Route::resource('ideas', IdeaController::class)

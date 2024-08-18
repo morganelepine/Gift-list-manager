@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
-export default function Buttons({ id, idea }) {
+export default function Buttons({ idea }) {
     //Copy idea in table PURCHASED
     const { post, delete: destroy, processing, reset } = useForm();
     const purchaseIdea = (e) => {
@@ -16,7 +16,7 @@ export default function Buttons({ id, idea }) {
     //Remove idea from table RESERVED
     const cancelReserve = (e) => {
         e.preventDefault();
-        destroy(route("ideas.cancelReserve", id), {
+        destroy(route("ideas.cancelReserveOrPurchase", idea.id), {
             onSuccess: () => reset(),
         });
         toast.info("Réservation annulée");
@@ -47,7 +47,7 @@ export default function Buttons({ id, idea }) {
                 <button
                     className="flex items-center justify-end text-xs text-gray-400 hover:text-bordeaux-800"
                     disabled={processing}
-                    title="Annuler l'achat"
+                    title="Annuler la réservation"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -69,5 +69,4 @@ export default function Buttons({ id, idea }) {
 
 Buttons.propTypes = {
     idea: PropTypes.object,
-    id: PropTypes.number,
 };

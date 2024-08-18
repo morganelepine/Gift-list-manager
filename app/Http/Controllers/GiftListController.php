@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Idea;
 use App\Models\GiftList;
-use App\Models\IdeaReserved;
-use App\Models\IdeaPurchased;
 use App\Models\FollowedList;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -42,7 +40,8 @@ class GiftListController extends Controller
             ->get();
 
         // Get AVAILABLE ideas from specific list (id in url)
-        $ideas_available = Idea::where('list_id', $id)->where('status', 'available')
+        $ideas_available = Idea::where('list_id', $id)
+            ->where('status', 'available')
             ->orderBy('brand')
             ->orderByDesc('favorite')
             ->orderBy('price')
@@ -50,17 +49,16 @@ class GiftListController extends Controller
             ->get();
 
         // Get RESERVED ideas from specific list (id in url)
-        $ideas_reserved = IdeaReserved::with('idea', 'user')
-        ->where('gift_list_id', $id)
-        ->orderByDesc('updated_at')
-        ->get();
+        $ideas_reserved = Idea::where('list_id', $id)
+            ->where('status', 'reserved')
+            ->orderByDesc('updated_at')
+            ->get();
 
         // Get PURCHASED and not archived ideas from specific list (id in url)
-        $ideas_purchased = IdeaPurchased::with('idea', 'user')
-        ->where('gift_list_id', $id)
-        ->where('archived', 0)
-        ->orderByDesc('updated_at')
-        ->get();
+        $ideas_purchased = Idea::where('list_id', $id)
+            ->where('status', 'purchased')
+            ->orderByDesc('updated_at')
+            ->get();
 
         // Get lists followed by auth user
         $followedLists = FollowedList::where('user_id', $authUserId)->get();
@@ -178,7 +176,7 @@ class GiftListController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
-        return Inertia::render('Users/ListsToFollow', [
+        return Inertia::render('GiftList/ListsToFollow', [
             'listsToFollow' => $listsToFollow,
         ]);
     }
@@ -201,7 +199,7 @@ class GiftListController extends Controller
             $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
         }
 
-        return Inertia::render('Users/FollowedLists', [
+        return Inertia::render('GiftList/FollowedLists', [
             'followedLists' => $followedLists,
         ]);
     }
@@ -303,9 +301,7 @@ class GiftListController extends Controller
      */
     public function archive(GiftList $list): RedirectResponse
     {
-        // IdeaReserved::where('gift_list_id', $list->id)->update(['archived' => true]);
-        // Idea::where('list_id', $list->id)->where('status', 'reserved')->update(['status' => 'archived']);
-        IdeaPurchased::where('gift_list_id', $list->id)->update(['archived' => true]);
+        Idea::where('list_id', $list->id)->where('status', 'reserved')->update(['status' => 'archived']);
         Idea::where('list_id', $list->id)->where('status', 'purchased')->update(['status' => 'archived']);
 
         return redirect(route('lists.show', $list->id));

@@ -11,16 +11,13 @@ export default function Ideas_purchased({ auth, ideas }) {
 
     return (
         <div className="w-full space-y-5 sm:space-y-0">
-            {ideas.map((purchased) => (
-                <div key={purchased.id}>
+            {ideas.map((idea) => (
+                <div key={idea.id}>
                     <div className="my-2 sm:flex items-center">
                         {/* BUTTON */}
-                        {purchased.user.id === auth.user.id && (
+                        {idea.user_id === auth.user.id && (
                             <div className="sm:hidden flex mb-1">
-                                <Button
-                                    idea={purchased.idea}
-                                    id={purchased.id}
-                                />
+                                <Button idea={idea} />
                             </div>
                         )}
 
@@ -30,7 +27,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                 <div className="flex flex-col mr-3 w-full">
                                     <div className="flex justify-between items-center">
                                         <div className="flex flex-wrap items-center">
-                                            {purchased.idea.favorite === 1 && (
+                                            {idea.favorite === 1 && (
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 16 16"
@@ -41,58 +38,42 @@ export default function Ideas_purchased({ auth, ideas }) {
                                                 </svg>
                                             )}
 
-                                            {purchased.idea.idea && (
+                                            {idea.idea && (
                                                 <p className="text-sm sm:uppercase text-gray-400 mr-2 mb-1 sm:mb-0 sm:mr-4 line-through">
-                                                    {purchased.idea.idea}
+                                                    {idea.idea}
                                                 </p>
                                             )}
-                                            {purchased.idea.brand && (
+                                            {idea.brand && (
                                                 <small className="text-sm text-center text-gray-400 mb-1 sm:mb-0 mr-4 line-through">
-                                                    {purchased.idea.brand}
+                                                    {idea.brand}
                                                 </small>
                                             )}
                                         </div>
-                                        {/* BUTTON */}
-                                        {/* {idea.status_user ===
-                                            auth.user.name && (
-                                            <div className="hidden sm:flex">
-                                                <Button
-                                                    auth={auth}
-                                                    idea={idea}
-                                                />
-                                            </div>
-                                        )} */}
                                     </div>
-                                    {purchased.idea.link && (
+                                    {idea.link && (
                                         <p className="text-sm italic text-gray-400 hover:text-indigo-500 max-h-5 text-ellipsis overflow-hidden break-all line-through">
                                             <Linkify
                                                 options={{
                                                     target: "blank",
                                                 }}
                                             >
-                                                {purchased.idea.link}
+                                                {idea.link}
                                             </Linkify>
                                         </p>
                                     )}
                                     <div className="flex justify-end items-center text-right">
                                         <small className="text-xs italic text-gray-700">
                                             Acheté
-                                            {purchased.idea.status_user ===
-                                            auth.user.name
+                                            {idea.status_user === auth.user.name
                                                 ? " "
-                                                : ` par ${purchased.idea.status_user} `}
-                                            {dayjs(
-                                                purchased.idea.updated_at
-                                            ).fromNow()}
+                                                : ` par ${idea.status_user} `}
+                                            {dayjs(idea.updated_at).fromNow()}
                                         </small>
                                         {/* BUTTON */}
-                                        {purchased.idea.status_user ===
+                                        {idea.status_user ===
                                             auth.user.name && (
                                             <div className="hidden sm:flex sm:ml-2">
-                                                <Button
-                                                    idea={purchased.idea}
-                                                    id={purchased.id}
-                                                />
+                                                <Button idea={idea} />
                                             </div>
                                         )}
                                     </div>
