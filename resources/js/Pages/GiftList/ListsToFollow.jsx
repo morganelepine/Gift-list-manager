@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SearchList from "@/Components/User/SearchList";
 
-export default function ListsToFollow({ auth, listsToFollow }) {
+export default function ListsToFollow({ auth, listsToFollow, token }) {
     // console.log("listsToFollow : ", listsToFollow);
 
     return (
@@ -19,7 +19,7 @@ export default function ListsToFollow({ auth, listsToFollow }) {
             <div className="max-w-7xl mx-auto pb-14 px-4 sm:flex justify-center">
                 <div className="mt-6 sm:w-80">
                     {listsToFollow.length > 0 ? (
-                        <SearchList auth={auth} />
+                        <SearchList auth={auth} token={token} />
                     ) : (
                         <div className="flex flex-col items-center">
                             <p className="text-center">

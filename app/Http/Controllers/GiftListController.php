@@ -176,8 +176,11 @@ class GiftListController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
 
+        $token = csrf_token();
+
         return Inertia::render('GiftList/ListsToFollow', [
             'listsToFollow' => $listsToFollow,
+            'token' => $token
         ]);
     }
 
