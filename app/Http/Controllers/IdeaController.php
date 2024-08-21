@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Idea;
 use App\Models\GiftList;
-use App\Models\IdeaReserved;
-use App\Models\IdeaPurchased;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
@@ -92,11 +90,8 @@ class IdeaController extends Controller
     public function destroy(Idea $idea): RedirectResponse
     {
         // Check if idea is already reserved or purchased and not archived
-        $isReserved = IdeaReserved::where('idea_id', $idea->id)->exists();
-        $isPurchased = IdeaPurchased::where('idea_id', $idea->id)
-                                    ->where('gift_list_id', $idea->list_id)
-                                    ->where('archived', 0)
-                                    ->exists();
+        $isReserved = Idea::where('id', $idea->id)->where('status', 'reserved')->exists();
+        $isPurchased = Idea::where('id', $idea->id)->where('status', 'purchased')->exists();
 
         // Only the auth user can delete the idea
         $this->authorize('delete', $idea);
@@ -107,5 +102,47 @@ class IdeaController extends Controller
             $idea->delete();
             return back();
         }
+    }
+
+    /**
+     * Reserve an idea.
+     */
+    public function reserveIdea(Request $request, $ideaId): RedirectResponse
+    {
+        // Update status in table IDEAS
+        $idea = Idea::findOrFail($ideaId);
+        $idea->status = 'reserved';
+        $idea->status_user = Auth::user()->name;
+        $idea->save();
+
+        return back();
+    }
+
+    /**
+     * Purchase an idea.
+     */
+    public function purchaseIdea(Request $request, $ideaId): RedirectResponse
+    {
+        // Update status in table IDEAS
+        $idea = Idea::findOrFail($ideaId);
+        $idea->status = 'purchased';
+        $idea->status_user = Auth::user()->name;
+        $idea->save();
+
+        return back();
+    }
+
+    /**
+     * Cancel reservation or purchase of an idea.
+     */
+    public function cancelReservationOrPurchase(Request $request, $ideaId): RedirectResponse
+    {
+        // Update status in table IDEAS
+        $idea = Idea::findOrFail($ideaId);
+        $idea->status = 'available';
+        $idea->status_user = '';
+        $idea->save();
+
+        return back();
     }
 }

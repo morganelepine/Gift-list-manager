@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { toast } from "sonner";
 
-export default function RequestButtons({ notification }) {
+export default function RequestButtons({ notification, token }) {
     const respondToRequest = async (
         responseToRequest,
         notificationId,
@@ -13,9 +13,7 @@ export default function RequestButtons({ notification }) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute("content"),
+                    "X-CSRF-TOKEN": token,
                 },
                 body: JSON.stringify({ response: responseToRequest }),
             };

@@ -4,7 +4,7 @@ import SecretCode from "@/Components/User/ListToFollow/SecretCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import { toast } from "sonner";
 
-export default function ListToFollow({ auth, listToFollow }) {
+export default function ListToFollow({ auth, listToFollow, token }) {
     // console.log("listToFollow : ", listToFollow);
 
     const [isHidden, setIsHidden] = useState(true);
@@ -19,9 +19,7 @@ export default function ListToFollow({ auth, listToFollow }) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute("content"),
+                    "X-CSRF-TOKEN": token,
                 },
             };
             const response = await fetch(url, settings);

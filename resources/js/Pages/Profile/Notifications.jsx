@@ -7,7 +7,7 @@ import RequestAccessToList from "@/Components/Profile/Notifications/RequestAcces
 import RequestDeclined from "@/Components/Profile/Notifications/RequestDeclined";
 import RequestAccepted from "@/Components/Profile/Notifications/RequestAccepted";
 
-export default function Notifications({ auth }) {
+export default function Notifications({ auth, token }) {
     const [notifications, setNotifications] = useState([]);
 
     const fetchNotifications = async () => {
@@ -52,6 +52,7 @@ export default function Notifications({ auth }) {
                                 <RequestAccessToList
                                     key={notification.id}
                                     notification={notification}
+                                    token={token}
                                 />
                             );
                         } else if (

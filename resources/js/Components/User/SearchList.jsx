@@ -4,7 +4,7 @@ import ListToFollow from "@/Components/User/ListToFollow";
 import TextInput from "@/Components/Utils/TextInput";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
-export default function SearchList({ auth }) {
+export default function SearchList({ auth, token }) {
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
     const [error, setError] = useState("");
@@ -39,7 +39,7 @@ export default function SearchList({ auth }) {
         <>
             <form className="flex flex-col text-center" onSubmit={handleSubmit}>
                 <label htmlFor="link" className="text-xl font-semibold mb-4">
-                    Rechercher une listE
+                    Rechercher une liste
                 </label>
                 <TextInput
                     id="search"
@@ -61,7 +61,11 @@ export default function SearchList({ auth }) {
                             className="flex flex-col p-5 my-5 text-center shadow bg-white rounded-xl"
                             key={list.id}
                         >
-                            <ListToFollow listToFollow={list} auth={auth} />
+                            <ListToFollow
+                                listToFollow={list}
+                                auth={auth}
+                                token={token}
+                            />
                         </div>
                     ))}
                 </div>
