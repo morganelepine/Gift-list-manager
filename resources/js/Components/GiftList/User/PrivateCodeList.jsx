@@ -6,7 +6,7 @@ import TextInput from "@/Components/Utils/TextInput";
 import InputError from "@/Components/Utils/InputError";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton";
 
-export default function PrivateList({ auth, list }) {
+export default function PrivateCodeList({ auth, list }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         user_id: auth.user.id,
         gift_list_id: list.id,
@@ -33,7 +33,7 @@ export default function PrivateList({ auth, list }) {
         >
             <Head title="Accès refusé" />
             <div className="max-w-4xl mx-auto pb-14 px-4 mt-6">
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center text-center">
                     <form onSubmit={submit}>
                         <p className="text-sm italic">
                             Veuillez renseigner le code communiqué par{" "}
@@ -70,7 +70,7 @@ export default function PrivateList({ auth, list }) {
     );
 }
 
-PrivateList.propTypes = {
+PrivateCodeList.propTypes = {
     auth: PropTypes.object.isRequired,
     list: PropTypes.object,
 };

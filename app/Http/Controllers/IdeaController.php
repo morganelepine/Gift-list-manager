@@ -11,9 +11,17 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Repositories\IdeaRepository;
 
 class IdeaController extends Controller
 {
+    protected $ideaRepository;
+
+    public function __construct(IdeaRepository $ideaRepository)
+    {
+        $this->ideaRepository = $ideaRepository;
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -80,7 +88,6 @@ class IdeaController extends Controller
 
         $idea->update($validated);
 
-        // return redirect(route('ideas.index'));
         return back();
     }
 
@@ -109,12 +116,7 @@ class IdeaController extends Controller
      */
     public function reserveIdea(Request $request, $ideaId): RedirectResponse
     {
-        // Update status in table IDEAS
-        $idea = Idea::findOrFail($ideaId);
-        $idea->status = 'reserved';
-        $idea->status_user = Auth::user()->name;
-        $idea->save();
-
+        $this->ideaRepository->updateIdeaStatus($ideaId, 'reserved', Auth::user()->name);
         return back();
     }
 
@@ -123,12 +125,7 @@ class IdeaController extends Controller
      */
     public function purchaseIdea(Request $request, $ideaId): RedirectResponse
     {
-        // Update status in table IDEAS
-        $idea = Idea::findOrFail($ideaId);
-        $idea->status = 'purchased';
-        $idea->status_user = Auth::user()->name;
-        $idea->save();
-
+        $this->ideaRepository->updateIdeaStatus($ideaId, 'purchased', Auth::user()->name);
         return back();
     }
 
@@ -137,12 +134,7 @@ class IdeaController extends Controller
      */
     public function cancelReservationOrPurchase(Request $request, $ideaId): RedirectResponse
     {
-        // Update status in table IDEAS
-        $idea = Idea::findOrFail($ideaId);
-        $idea->status = 'available';
-        $idea->status_user = '';
-        $idea->save();
-
+        $this->ideaRepository->updateIdeaStatus($ideaId, 'available', '');
         return back();
     }
 }
