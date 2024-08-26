@@ -39,6 +39,11 @@ export default function CreateSharedIdea({ auth, list }) {
     });
     const submit = (e) => {
         e.preventDefault();
+
+        if (!data.brand) {
+            data.brand = "Sans marque";
+        }
+
         post(route("ideas.store"), {
             onSuccess: () => reset(),
             onError: (errors) => {

@@ -16,52 +16,38 @@ use Inertia\Response;
 use Inertia\Inertia;
 use Carbon\Carbon;
 use App\Notifications\NotifyListFollowed;
+use App\Repositories\IdeaRepository;
+use App\Repositories\GiftListRepository;
+use App\Services\GiftListService;
 
 class GiftListController extends Controller
 {
+    protected $ideaRepository;
+    protected $giftListService;
+    protected $giftListRepository;
+
+    public function __construct(IdeaRepository $ideaRepository, GiftListService $giftListService, GiftListRepository $giftListRepository)
+    {
+        $this->ideaRepository = $ideaRepository;
+        $this->giftListService = $giftListService;
+        $this->giftListRepository = $giftListRepository;
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(Request $request, $id): Response
     {
-        $authUserId = Auth::id();
-
         // Get list id from url
         $list = GiftList::find($id);
 
-        // Get ALL ideas (except archived) from specific list (id in url)
-        $ideas = Idea::where('list_id', $id)
-            ->whereNot('status', 'archived')
-            ->orderBy('brand')
-            ->orderByDesc('favorite')
-            ->orderBy('price')
-            ->orderBy('idea')
-            ->get();
-
-        // Get AVAILABLE ideas from specific list (id in url)
-        $ideas_available = Idea::where('list_id', $id)
-            ->where('status', 'available')
-            ->orderBy('brand')
-            ->orderByDesc('favorite')
-            ->orderBy('price')
-            ->orderBy('idea')
-            ->get();
-
-        // Get RESERVED ideas from specific list (id in url)
-        $ideas_reserved = Idea::where('list_id', $id)
-            ->where('status', 'reserved')
-            ->orderByDesc('updated_at')
-            ->get();
-
-        // Get PURCHASED and not archived ideas from specific list (id in url)
-        $ideas_purchased = Idea::where('list_id', $id)
-            ->where('status', 'purchased')
-            ->orderByDesc('updated_at')
-            ->get();
+        $ideas = $this->ideaRepository->getIdeasByStatus($id, ['available', 'reserved', 'purchased']);
+        $ideas_available = $this->ideaRepository->getIdeasByStatus($id, ['available']);
+        $ideas_reserved = $this->ideaRepository->getUnavailableIdeasByStatus($id, 'reserved');
+        $ideas_purchased = $this->ideaRepository->getUnavailableIdeasByStatus($id, 'purchased');
 
         // Get lists followed by auth user
-        $followedLists = FollowedList::where('user_id', $authUserId)->get();
+        $followedLists = FollowedList::where('user_id', Auth::id())->get();
 
         return Inertia::render('GiftList/Show', [
             'list' => $list,
@@ -78,43 +64,17 @@ class GiftListController extends Controller
      */
     public function index(): Response
     {
-        $authUser = Auth::user();
-        $authUserId = Auth::id();
-
         // Get all users except auth user
-        $users = User::where('id', '!=', $authUserId)->get();
-
-        $dateFormat = 'd/m/Y';
+        $users = User::where('id', '!=', Auth::id())->get();
 
         // Get PUBLIC lists CREATED by auth user
-        $mySharedLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 0)->orderBy('created_at', 'desc')->get();
-        // Date formatting
-        foreach ($mySharedLists as $mylist) {
-            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
-            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
-            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
-            $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
-        }
+        $mySharedLists = $this->giftListService->getFormattedUserLists(false);
 
         // Get PRIVATE lists CREATED by auth user
-        $myPrivateLists = GiftList::where('user_id', $authUserId)->where('isPrivate', 1)->orderBy('created_at', 'desc')->get();
-        // Date formatting
-        foreach ($myPrivateLists as $mylist) {
-            $mylist->formatted_created_at = Carbon::parse($mylist->created_at)->format($dateFormat);
-            $mylist->lastUpdatedAt = Idea::where('list_id', $mylist->id)->max('created_at');
-            $mylist->formatted_updated_at = Carbon::parse($mylist->lastUpdatedAt)->format($dateFormat);
-            $mylist->isEmpty = Idea::where('list_id', $mylist->id)->count() === 0;
-        }
+        $myPrivateLists = $this->giftListService->getFormattedUserLists(true);
 
         // Get lists FOLLOWED by auth user
-        $followedLists = $authUser->followedLists()->get();
-        // Date formatting
-        foreach ($followedLists as $followedList) {
-            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
-            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('created_at');
-            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
-            $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
-        }
+        $followedLists = $this->giftListService->getFollowedLists();
 
         return Inertia::render('GiftList/Index', [
             'users' => $users,
@@ -131,8 +91,7 @@ class GiftListController extends Controller
     {
         $key = trim($request->get('search'));
 
-        $authUser = Auth::user();
-        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
+        $followedListIds = $this->giftListRepository->getFollowedListsIds();
 
         $listsToFollow = GiftList::query()
             ->where('user_id', '!=', Auth::id())
@@ -142,17 +101,10 @@ class GiftListController extends Controller
                 $query->where('user_name', 'like', "%{$key}%")
                       ->orWhere('name', 'like', "%{$key}%");
             })
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->get();
 
-        // Date formatting
-        $dateFormat = 'd/m/Y';
-        foreach ($listsToFollow as $listToFollow) {
-            $listToFollow->formatted_created_at = Carbon::parse($listToFollow->created_at)->format($dateFormat);
-            $listToFollow->lastUpdatedAt = Idea::where('list_id', $listToFollow->id)->max('created_at');
-            $listToFollow->formatted_updated_at = Carbon::parse($listToFollow->lastUpdatedAt)->format($dateFormat);
-            $listToFollow->isEmpty = Idea::where('list_id', $listToFollow->id)->count() === 0;
-        }
+        $listsToFollow = $this->giftListService->formatEachLists($listsToFollow);
 
         if ($listsToFollow->isEmpty()) {
             return response()->json(['errorMessage' => 'Oops, aucun résultat ne correspond à votre recherche... Essayez un autre nom !'], 404);
@@ -166,15 +118,7 @@ class GiftListController extends Controller
      */
     public function listsToFollow(): Response
     {
-        $authUser = Auth::user();
-
-        $followedListIds = $authUser->followedLists()->pluck('gift_lists.id')->all();
-
-        $listsToFollow = GiftList::whereNot('user_id', Auth::id())
-        ->where('isPrivate', 0)
-        ->whereNotIn('id', $followedListIds)
-        ->orderBy('created_at', 'desc')
-        ->get();
+        $listsToFollow = $this->giftListRepository->getListsToFollow();
 
         $token = csrf_token();
 
@@ -189,18 +133,7 @@ class GiftListController extends Controller
      */
     public function followedLists(): Response
     {
-        // Get lists followed by auth user
-        $authUser = Auth::user();
-        $followedLists = $authUser->followedLists()->get();
-
-        // Date formatting
-        $dateFormat = 'd/m/Y';
-        foreach ($followedLists as $followedList) {
-            $followedList->formatted_created_at = Carbon::parse($followedList->created_at)->format($dateFormat);
-            $followedList->lastUpdatedAt = Idea::where('list_id', $followedList->id)->max('created_at');
-            $followedList->formatted_updated_at = Carbon::parse($followedList->lastUpdatedAt)->format($dateFormat);
-            $followedList->isEmpty = Idea::where('list_id', $followedList->id)->count() === 0;
-        }
+        $followedLists = $this->giftListService->getFollowedLists();
 
         return Inertia::render('GiftList/FollowedLists', [
             'followedLists' => $followedLists,
@@ -212,32 +145,13 @@ class GiftListController extends Controller
      */
     public function authLists(): Response
     {
-        $authUserId = Auth::id();
+        $privateLists = $this->giftListService->getFormattedUserLists(true);
 
-        $dateFormat = 'd/m/Y';
-
-        // Get shared lists of auth user
-        $publicLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 0)->latest()->get();
-        // Date formatting
+        $publicLists = $this->giftListService->getFormattedUserLists(false);
         foreach ($publicLists as $publicList) {
-            $publicList->formatted_created_at = Carbon::parse($publicList->created_at)->format($dateFormat);
-            $publicList->lastUpdatedAt = Idea::where('list_id', $publicList->id)->max('created_at');
-            $publicList->formatted_updated_at = Carbon::parse($publicList->lastUpdatedAt)->format($dateFormat);
-            $publicList->isEmpty = Idea::where('list_id', $publicList->id)->count() === 0;
-
             if (strlen($publicList->private_code) > 20) {
                 $publicList->private_code = Crypt::decrypt($publicList->private_code);
             }
-        }
-
-        // Get private lists of auth user
-        $privateLists = GiftList::with('user:id,name')->where('user_id', $authUserId)->where('isPrivate', 1)->latest()->get();
-        // Date formatting
-        foreach ($privateLists as $privateList) {
-            $privateList->formatted_created_at = Carbon::parse($privateList->created_at)->format($dateFormat);
-            $privateList->lastUpdatedAt = Idea::where('list_id', $privateList->id)->max('created_at');
-            $privateList->formatted_updated_at = Carbon::parse($privateList->lastUpdatedAt)->format($dateFormat);
-            $privateList->isEmpty = Idea::where('list_id', $privateList->id)->count() === 0;
         }
 
         return Inertia::render('GiftList/AuthLists', [
