@@ -4,10 +4,10 @@ import { toast } from "sonner";
 
 export default function Buttons({ idea }) {
     //Copy idea in table PURCHASED
-    const { post, delete: destroy, processing, reset } = useForm();
+    const { patch, processing, reset } = useForm();
     const purchaseIdea = (e) => {
         e.preventDefault();
-        post(route("ideas.purchase", idea.id), {
+        patch(route("ideas.purchase", idea.id), {
             onSuccess: () => reset(),
         });
         toast.success("Cadeau acheté !");
@@ -16,7 +16,7 @@ export default function Buttons({ idea }) {
     //Remove idea from table RESERVED
     const cancelReserve = (e) => {
         e.preventDefault();
-        destroy(route("ideas.cancelReserveOrPurchase", idea.id), {
+        patch(route("ideas.cancel", idea.id), {
             onSuccess: () => reset(),
         });
         toast.info("Réservation annulée");

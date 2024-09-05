@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import ApplicationLogo from "@/Components/Laravel/ApplicationLogo";
 import Dropdown from "@/Components/Utils/Dropdown";
 import NavLink from "@/Components/Utils/NavLink";
 import ResponsiveNavLink from "@/Components/Utils/ResponsiveNavLink";
@@ -35,7 +34,6 @@ export default function Authenticated({ user, header, children }) {
                                     <h1 className="text-xl text-center font-yeseva bg-gradient-to-r from-orange-500 to-bordeaux-500 inline-block text-transparent bg-clip-text">
                                         MerryMate
                                     </h1>
-                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
                                 </Link>
                             </div>
 

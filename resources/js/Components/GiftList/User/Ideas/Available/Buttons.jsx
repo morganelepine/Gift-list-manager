@@ -3,12 +3,12 @@ import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
 export default function Buttons({ idea }) {
-    const { post, processing, reset } = useForm();
+    const { patch, processing, reset } = useForm();
 
     //Copy idea in table RESERVED
     const reserveIdea = (e) => {
         e.preventDefault();
-        post(route("ideas.reserve", idea.id), {
+        patch(route("ideas.reserve", idea.id), {
             onSuccess: () => reset(),
         });
         toast.success("Idée réservée !");
@@ -17,7 +17,7 @@ export default function Buttons({ idea }) {
     //Copy idea in table PURCHASED
     const purchaseIdea = (e) => {
         e.preventDefault();
-        post(route("ideas.purchase", idea.id), {
+        patch(route("ideas.purchase", idea.id), {
             onSuccess: () => reset(),
         });
         toast.success("Cadeau acheté !");

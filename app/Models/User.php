@@ -31,7 +31,7 @@ class User extends Authenticatable
         return $this->hasMany(FollowedList::class);
     }
 
-    //  Each user can follow several lists and each list can be followed by several users
+    // Each user can follow several lists and each list can be followed by several users
     public function followedLists()
     {
         return $this->belongsToMany(GiftList::class, 'followed_lists')->withPivot('private_code');

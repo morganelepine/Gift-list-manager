@@ -10,10 +10,16 @@ class Idea extends Model
 {
     use HasFactory;
 
-    //Une idée ne peut avoir qu'un user
+    // Une idée ne peut avoir été créée que par un user
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Une idée ne peut être que dans une liste
+    public function giftList(): BelongsTo
+    {
+        return $this->belongsTo(GiftList::class);
     }
 
     /**

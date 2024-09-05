@@ -4,10 +4,10 @@ import { toast } from "sonner";
 
 export default function Buttons({ idea }) {
     //Remove idea from table PURCHASED
-    const { delete: destroy, processing, reset } = useForm();
+    const { patch, processing, reset } = useForm();
     const cancelPurchase = (e) => {
         e.preventDefault();
-        destroy(route("ideas.cancelReserveOrPurchase", idea.id), {
+        patch(route("ideas.cancel", idea.id), {
             onSuccess: () => reset(),
         });
         toast.info("Achat annulé");

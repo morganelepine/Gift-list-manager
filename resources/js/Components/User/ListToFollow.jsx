@@ -34,7 +34,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
                     response.statusText
                 );
                 toast.error(
-                    "Oops... votre demande n'a pas été envoyée. Veuillez réessayez après avoir rechargé la page."
+                    "Oops... votre demande n'a pas été envoyée. Veuillez réessayer."
                 );
             }
         } catch (error) {

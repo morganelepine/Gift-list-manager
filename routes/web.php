@@ -49,10 +49,10 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 // Ideas management
 Route::middleware('auth')->prefix('ideas')->group(function () {
-    Route::get('/create/{list}',    [IdeaController::class, 'create'])->name('ideas.create');
-    Route::post('/{idea}/reserve',  [IdeaController::class, 'reserveIdea'])->name('ideas.reserve');
-    Route::post('/{idea}/purchase', [IdeaController::class, 'purchaseIdea'])->name('ideas.purchase');
-    Route::delete('/{idea}/cancelReserveOrPurchase',    [IdeaController::class, 'cancelReservationOrPurchase'])->name('ideas.cancelReserveOrPurchase');
+    Route::get('/create/{list}',     [IdeaController::class, 'create'])->name('ideas.create');
+    Route::patch('/{idea}/reserve',  [IdeaController::class, 'reserveIdea'])->name('ideas.reserve');
+    Route::patch('/{idea}/purchase', [IdeaController::class, 'purchaseIdea'])->name('ideas.purchase');
+    Route::patch('/{idea}/cancel',   [IdeaController::class, 'cancelReservationOrPurchase'])->name('ideas.cancel');
 });
 
 Route::resource('ideas', IdeaController::class)
@@ -62,12 +62,12 @@ Route::resource('ideas', IdeaController::class)
 
 // Lists management
 Route::middleware('auth')->prefix('lists')->group(function () {
-    Route::get('/created',              [GiftListController::class, 'authLists'])->name('lists.authLists');
-    Route::get('/followed',             [GiftListController::class, 'followedLists'])->name('lists.followedLists');
-    Route::get('/to-follow',            [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
-    Route::post('/{list}/follow',       [GiftListController::class, 'followList'])->name('lists.followList');
-    Route::patch('/{list}/archive',     [GiftListController::class, 'archive'])->name('lists.archive');
-    Route::get('/search',               [GiftListController::class, 'search'])->name('lists.search');
+    Route::get('/created',          [GiftListController::class, 'authLists'])->name('lists.authLists');
+    Route::get('/followed',         [GiftListController::class, 'followedLists'])->name('lists.followedLists');
+    Route::get('/to-follow',        [GiftListController::class, 'listsToFollow'])->name('lists.listsToFollow');
+    Route::post('/{list}/follow',   [GiftListController::class, 'followList'])->name('lists.followList');
+    Route::patch('/{list}/archive', [GiftListController::class, 'archive'])->name('lists.archive');
+    Route::get('/search',           [GiftListController::class, 'search'])->name('lists.search');
 });
 
 Route::resource('lists', GiftListController::class)

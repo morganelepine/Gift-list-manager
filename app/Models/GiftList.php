@@ -16,6 +16,12 @@ class GiftList extends Model
         return $this->belongsTo(User::class);
     }
 
+    // A list can contain several ideas
+    public function ideas(): HasMany
+    {
+        return $this->hasMany(Idea::class);
+    }
+
     // Each list can be followed by several users and each user can follow several lists
     public function followers()
     {
