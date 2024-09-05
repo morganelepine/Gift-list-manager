@@ -98,7 +98,7 @@ class GiftListTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/lists/created');
+            ->assertRedirect("/lists/{$giftList->id}");
 
         $giftList->refresh();
 

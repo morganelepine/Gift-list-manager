@@ -109,7 +109,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                         name="favorite"
                         type="checkbox"
                         value={isFavorite}
-                        defaultChecked={false}
+                        defaultChecked={isFavorite}
                         onChange={(e) => {
                             handleFavoriteCheck();
                             setData("favorite", e.target.checked);

@@ -210,7 +210,8 @@ class GiftListController extends Controller
 
         $list->update($validated);
 
-        return redirect(route('lists.authLists'));
+        // return redirect(route('lists.authLists'));
+        return redirect()->route('lists.show', $list->id);
     }
 
     /**
