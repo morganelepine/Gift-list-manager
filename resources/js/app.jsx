@@ -22,7 +22,7 @@ createInertiaApp({
             <>
                 <App {...props} />{" "}
                 <Toaster
-                    position="top-right"
+                    position="bottom-right"
                     expand={true}
                     richColors
                     // offset="50px"
