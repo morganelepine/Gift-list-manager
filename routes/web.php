@@ -86,8 +86,8 @@ Route::middleware('auth')->prefix('notifications')->group(function () {
     Route::patch('/mark/{id}',  [NotificationController::class, 'markNotification']);
     Route::patch('/mark/all',   [NotificationController::class, 'markAllNotifications']);
     Route::delete('/{id}',      [NotificationController::class, 'destroy']);
-    Route::post('/request-access/{listOwner}/{list}',         [NotificationController::class, 'requestAccessToList']);
-    Route::post('/respond-access/{notificationId}/{list}',    [NotificationController::class, 'respondToAccessRequest']);
+    Route::post('/request-access/{listOwner}/{list}',       [NotificationController::class, 'requestAccessToList'])->name('notifications.requestAccessToList');
+    Route::post('/respond-access/{notificationId}/{list}',  [NotificationController::class, 'respondToAccessRequest'])->name('notifications.respondToAccessRequest');
 });
 
 require __DIR__.'/auth.php';

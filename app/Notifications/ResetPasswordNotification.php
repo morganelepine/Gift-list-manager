@@ -45,7 +45,7 @@ class ResetPasswordNotification extends Notification
             ->line('Pour créer un nouveau mot de passe, vous pouvez cliquer sur le bouton ci-dessous :')
             ->action('Réinitialiser mon mot de passe', url(route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
             ->line('Si vous n\'avez pas effectué de demande de mot de passe oublié, aucune action n\'est requise.')
-            ->salutation('À bientôt !');
+            ->salutation('À bientôt sur MerryMate !');
     }
 
     public function getToken()

@@ -70,7 +70,7 @@ class NotificationController extends Controller
     {
         $requestingUser = Auth::user();
 
-        $listOwner->notify(new NotifyRequestAccessToList($requestingUser->name, $requestingUser->id, $list->name, $list->id));
+        $listOwner->notify(new NotifyRequestAccessToList($listOwner, $requestingUser->name, $requestingUser->id, $list->name, $list->id));
 
         return response()->json(['message' => 'Demande envoyée avec succès.']);
     }

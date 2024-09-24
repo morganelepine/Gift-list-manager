@@ -3,12 +3,14 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NotifyRequestAccessToList extends Notification
 {
     use Queueable;
 
+    protected $listOwner;
     protected $requestingUser;
     protected $requestingUserId;
     protected $list;
@@ -17,8 +19,9 @@ class NotifyRequestAccessToList extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($requestingUser, $requestingUserId, $list, $listId)
+    public function __construct($listOwner, $requestingUser, $requestingUserId, $list, $listId)
     {
+        $this->listOwner = $listOwner;
         $this->requestingUser = $requestingUser;
         $this->requestingUserId = $requestingUserId;
         $this->list = $list;
@@ -31,7 +34,20 @@ class NotifyRequestAccessToList extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail', 'database'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toMail(object $notifiable): MailMessage
+    {
+        return (new MailMessage)
+            ->subject($this->requestingUser . ' souhaite accéder à ta liste "' . $this->list . '"')
+            ->greeting('Bonjour ' . $this->listOwner->name . ',')
+            ->line($this->requestingUser . ' souhaite accéder à ta liste "' . $this->list . '". Clique sur le bouton ci-dessous pour accepter ou refuser sa demande :')
+            ->action('Gérer la demande', url(route('profile.notifications')))
+            ->salutation('À bientôt sur MerryMate !');
     }
 
     /**
