@@ -20,17 +20,9 @@ export default function ForgotPassword({ status }) {
             <Head title="Mot de passe oublié" />
 
             <div className="mb-4 text-sm text-gray-600">
-                Vous avez oublié votre mot de passe ? Pas de problème !
-                Renseignez votre adresse e-mail et nous vous enverrons un lien
-                de réinitialisation du mot de passe qui vous permettra d'en
-                choisir un nouveau.
+                Renseignez votre adresse e-mail afin de recevoir un lien de
+                réinitialisation de votre mot de passe.
             </div>
-
-            {status && (
-                <div className="mb-4 font-medium text-sm text-green-600">
-                    {status}
-                </div>
-            )}
 
             <form onSubmit={submit}>
                 <TextInput
@@ -45,7 +37,13 @@ export default function ForgotPassword({ status }) {
 
                 <InputError message={errors.email} className="mt-2" />
 
-                <div className="flex items-center justify-end mt-4">
+                {status && (
+                    <div className="mt-2 font-medium text-sm text-indigo-500">
+                        {status}
+                    </div>
+                )}
+
+                <div className="flex items-center justify-center mt-4">
                     <PrimaryButton className="ml-4" disabled={processing}>
                         Recevoir le lien
                     </PrimaryButton>

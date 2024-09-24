@@ -138,19 +138,16 @@ export default function Register() {
                 </div>
 
                 <div className="flex sm:flex-row flex-col items-center justify-end mt-4 sm:space-x-4">
+                    <PrimaryButton disabled={processing}>
+                        Créer mon compte
+                    </PrimaryButton>
+
                     <Link
                         href={route("login")}
-                        className="underline text-sm text-gray-600 hover:text-orange-500 rounded-md order-2 md:order-1 mt-2 sm:mt-0"
+                        className="underline text-sm text-gray-600 hover:text-orange-500 rounded-md mt-2 sm:mt-0"
                     >
                         Déjà enregistré·e ?
                     </Link>
-
-                    <PrimaryButton
-                        className="order-1 md:order-2"
-                        disabled={processing}
-                    >
-                        Créer mon compte
-                    </PrimaryButton>
                 </div>
             </form>
         </GuestLayout>

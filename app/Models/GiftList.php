@@ -47,7 +47,7 @@ class GiftList extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        // 'private_code',
+        // @TODO create a custom cast class for encrypting private code (or apply a new function to hash the private code)
     ];
 
     /**
@@ -56,6 +56,6 @@ class GiftList extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        // 'private_code' => 'hashed',
+        // @TODO create a custom cast class for encrypting private code (or apply a new function to hash the private code)
     ];
 }

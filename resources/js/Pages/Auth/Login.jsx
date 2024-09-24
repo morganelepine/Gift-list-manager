@@ -39,7 +39,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Connexion" />
 
             {status && (
-                <div className="mb-4 font-medium text-sm text-green-600">
+                <div className="mb-4 font-medium text-sm text-indigo-500">
                     {status}
                 </div>
             )}
@@ -110,6 +110,15 @@ export default function Login({ status, canResetPassword }) {
                     </div>
 
                     <InputError message={errors.password} className="mt-2" />
+
+                    {canResetPassword && (
+                        <Link
+                            href={route("password.request")}
+                            className="underline text-xs italic text-gray-600 hover:text-orange-500 rounded-md order-2 md:order-1 mt-2 sm:mt-0"
+                        >
+                            Mot de passe oublié ?
+                        </Link>
+                    )}
                 </div>
 
                 <div className="block mt-4">
@@ -128,27 +137,16 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="flex sm:flex-row flex-col items-center justify-end mt-4 sm:space-x-4">
-                    {/* {canResetPassword && (
-                        <Link
-                            href={route("password.request")}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-                        >
-                            Mot de passe oublié ?
-                        </Link>
-                    )} */}
+                    <PrimaryButton disabled={processing}>
+                        Se connecter
+                    </PrimaryButton>
+
                     <Link
                         href={route("register")}
-                        className="underline text-sm text-gray-600 hover:text-orange-500 rounded-md order-2 md:order-1 mt-2 sm:mt-0"
+                        className="underline text-sm text-gray-600 hover:text-orange-500 rounded-md mt-2 sm:mt-0"
                     >
                         Pas encore de compte ?
                     </Link>
-
-                    <PrimaryButton
-                        className="order-1 md:order-2"
-                        disabled={processing}
-                    >
-                        Se connecter
-                    </PrimaryButton>
                 </div>
             </form>
         </GuestLayout>
