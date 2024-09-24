@@ -84,7 +84,7 @@ class NotificationController extends Controller
         $requestingUser = User::find($notification->data['requestingUserId']);
         $response = $request->input('response');
 
-        if ($response === 'accepted') {
+        if ($response === 'accepté') {
             // Add the new relation in followed_lists table
             $requestingUser->followed_lists()->create([
                 'user_id' => $requestingUser->id,
@@ -92,10 +92,10 @@ class NotificationController extends Controller
                 'private_code' => $list->private_code,
             ]);
             // Send the notification
-            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
+            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $requestingUser, $listOwner->name, $list->name, $list->id));
 
         } else {
-            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $listOwner->name, $list->name, $list->id));
+            $requestingUser->notify(new NotifyResponseToRequestAccess($response, $requestingUser, $listOwner->name, $list->name, $list->id));
         }
 
         $notificationData = $notification->data;

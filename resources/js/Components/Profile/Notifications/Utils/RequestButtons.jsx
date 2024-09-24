@@ -45,7 +45,7 @@ export default function RequestButtons({ notification, token }) {
                         className="flex items-center hover:text-indigo-500"
                         onClick={() => {
                             respondToRequest(
-                                "accepted",
+                                "accepté",
                                 notification.id,
                                 notification.data.listId
                             );
@@ -66,7 +66,7 @@ export default function RequestButtons({ notification, token }) {
                         className="flex items-center hover:text-orange-500"
                         onClick={() => {
                             respondToRequest(
-                                "declined",
+                                "décliné",
                                 notification.id,
                                 notification.data.listId
                             );
@@ -86,13 +86,13 @@ export default function RequestButtons({ notification, token }) {
                 </div>
             )}
 
-            {notification.data.response === "accepted" && (
+            {notification.data.response === "accepté" && (
                 <p className="text-xs italic ml-8">
                     Vous avez accepté la demande.
                 </p>
             )}
 
-            {notification.data.response === "declined" && (
+            {notification.data.response === "décliné" && (
                 <p className="text-xs italic ml-8">
                     Vous avez refusé la demande.
                 </p>

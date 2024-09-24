@@ -12,6 +12,7 @@ class NotifyResponseToRequestAccess extends Notification
     use Queueable;
 
     protected $response;
+    protected $requestingUser;
     protected $listOwner;
     protected $list;
     protected $listId;
@@ -19,9 +20,10 @@ class NotifyResponseToRequestAccess extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($response, $listOwner, $list, $listId)
+    public function __construct($response, $requestingUser, $listOwner, $list, $listId)
     {
         $this->response = $response;
+        $this->requestingUser = $requestingUser;
         $this->listOwner = $listOwner;
         $this->list = $list;
         $this->listId = $listId;
@@ -34,7 +36,21 @@ class NotifyResponseToRequestAccess extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail', 'database'];
+    }
+
+
+    /**
+     * Get the mail representation of the notification.
+     */
+    public function toMail(object $notifiable): MailMessage
+    {
+        return (new MailMessage)
+            ->subject($this->listOwner . ' a ' . $this->response . ' ta demande')
+            ->greeting('Bonjour ' . $this->requestingUser->name . ',')
+            ->line($this->listOwner . ' a ' . $this->response . ' ta demande de suivre sa liste "' . $this->list . '".')
+            ->action('Voir la liste', url(route('lists.show', $this->listId)))
+            ->salutation('À bientôt sur MerryMate !');
     }
 
     /**

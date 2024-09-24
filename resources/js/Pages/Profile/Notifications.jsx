@@ -57,7 +57,7 @@ export default function Notifications({ auth, token }) {
                             );
                         } else if (
                             notification.type === "response-to-request" &&
-                            notification.data.response === "declined"
+                            notification.data.response === "décliné"
                         ) {
                             return (
                                 <RequestDeclined
@@ -67,7 +67,7 @@ export default function Notifications({ auth, token }) {
                             );
                         } else if (
                             notification.type === "response-to-request" &&
-                            notification.data.response === "accepted"
+                            notification.data.response === "accepté"
                         ) {
                             return (
                                 <RequestAccepted
