@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import ShowPrivateCode from "@/Components/GiftList/Auth/Lists/ShowPrivateCode";
-import DeleteListButton from "@/Components/GiftList/Auth/Lists/DeleteListButton";
+import ShowPrivateCode from "@/Components/GiftList/Action/ShowPrivateCode";
+import DeleteListButton from "@/Components/GiftList/Action/Delete";
 
 export default function AuthListCard({ list }) {
     const isSharedList = list.isPrivate === 0;

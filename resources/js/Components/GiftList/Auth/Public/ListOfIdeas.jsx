@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
-import Ideas from "@/Components/GiftList/Auth/Ideas/Ideas";
+// import Ideas from "@/Components/GiftList/Auth/Ideas/Ideas";
+import Ideas from "@/Components/Ideas/PublicList/Idea";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
 export default function ListOfIdeas({ ideas }) {

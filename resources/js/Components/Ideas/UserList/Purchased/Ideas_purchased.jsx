@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import Button from "@/Components/GiftList/User/Ideas/Purchased/Button";
+import Button from "@/Components/Ideas/UserList/Purchased/Button";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
 dayjs.extend(relativeTime);

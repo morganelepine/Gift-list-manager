@@ -2,8 +2,8 @@ import React from "react";
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import FollowedList from "@/Components/User/FollowedList";
-import NoListFollowed from "@/Components/User/EmptyList/NoListFollowed";
+import FollowedList from "@/Components/GiftList/User/ListFollowed/FollowedListCard";
+import NoListFollowed from "@/Components/GiftList/User/ListFollowed/NoListFollowed";
 
 export default function FollowedLists({ auth, followedLists }) {
     // console.log("followedLists : ", followedLists);

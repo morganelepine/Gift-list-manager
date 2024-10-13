@@ -45,7 +45,7 @@ class IdeaController extends Controller
         $validated = $request->validate([
             'list_id' => 'required|integer',
             'user_name' => 'required|string|max:255',
-            'idea' => 'required_without:link|nullable|string|max:255',
+            'idea' => 'required_without:link|nullable|string|max:550',
             'brand' => $string,
             'link' => 'required_without:idea|nullable|string|max:255',
             'details' => $string,
@@ -74,7 +74,7 @@ class IdeaController extends Controller
         $validated = $request->validate([
             'idea' => $string,
             'brand' => $string,
-            'link' => $string,
+            'link' => 'nullable|string|max:550',
             'details' => $string,
             'price' => 'nullable|integer',
             'favorite' => 'boolean',

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AuthList from "@/Components/GiftList/Auth/Shared/AuthList";
+import AuthList from "@/Components/GiftList/Auth/Public/AuthList";
 import AuthPrivateList from "@/Components/GiftList/Auth/Private/AuthPrivateList";
-import UserList from "@/Components/GiftList/User/UserList";
-import PrivateCodeList from "@/Components/GiftList/User/PrivateCodeList";
+import UserList from "@/Components/GiftList/User/List/UserList";
+import PrivateCodeList from "@/Components/GiftList/User/ListToFollow/PrivateCodeList";
 
 export default function Show({
     auth,

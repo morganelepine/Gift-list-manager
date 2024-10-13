@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
-import CreatePrivateIdea from "@/Components/GiftList/Auth/Private/CreatePrivateIdea";
-import CreateSharedIdea from "@/Components/GiftList/Auth/Ideas/CreateSharedIdea";
+import CreatePrivateIdea from "@/Components/Ideas/PrivateList/CreatePrivateIdea";
+import CreateSharedIdea from "@/Components/Ideas/PublicList/CreateSharedIdea";
 
 export default function Create({ auth, list }) {
     const isSharedList = list.isPrivate === 0;

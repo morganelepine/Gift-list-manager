@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import SecretCode from "@/Components/User/ListToFollow/SecretCode";
+import SecretCode from "@/Components/GiftList/User/ListToFollow/SecretCode";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import { toast } from "sonner";
 
 export default function ListToFollow({ auth, listToFollow, token }) {
-    // console.log("listToFollow : ", listToFollow);
+    const [requestSent, setRequestSent] = useState(false);
+    useEffect(() => {
+        const storedRequestSent = localStorage.getItem(
+            `requestSent-${listToFollow.id}`
+        );
+        if (storedRequestSent === "true") {
+            setRequestSent(true);
+        }
+    }, [listToFollow.id]);
 
     const [isHidden, setIsHidden] = useState(true);
     const showSecretCode = () => {
@@ -13,6 +21,8 @@ export default function ListToFollow({ auth, listToFollow, token }) {
     };
 
     const requestAccess = async (listOwnerId, listId) => {
+        setRequestSent(true);
+
         try {
             const url = `/notifications/request-access/${listOwnerId}/${listId}`;
             const settings = {
@@ -28,6 +38,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
                 const data = await response.json();
                 console.log(data);
                 toast.success("Demande envoyée !");
+                localStorage.setItem(`requestSent-${listId}`, "true");
             } else {
                 console.error(
                     "Error while sending the request:",
@@ -39,6 +50,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
             }
         } catch (error) {
             console.error("Error while sending the request:", error);
+            setRequestSent(false);
         }
     };
 
@@ -64,6 +76,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
                     onClick={() =>
                         requestAccess(listToFollow.user_id, listToFollow.id)
                     }
+                    disabled={requestSent}
                 >
                     Demander un accès
                 </SmallButton>

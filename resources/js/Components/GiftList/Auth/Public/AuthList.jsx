@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import ListOfIdeas from "@/Components/GiftList/Auth/Ideas/ListOfIdeas";
-import EditListTitle from "@/Components/GiftList/Auth/Lists/EditListTitle";
-import ArchiveListButton from "@/Components/GiftList/Auth/Lists/ArchiveListButton";
+import ListOfIdeas from "@/Components/GiftList/Auth/Public/ListOfIdeas";
+import EditListTitle from "@/Components/GiftList/Action/EditTitle";
+import ArchiveListButton from "@/Components/GiftList/Action/Archive";
 import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function AuthList({ auth, list, ideas }) {

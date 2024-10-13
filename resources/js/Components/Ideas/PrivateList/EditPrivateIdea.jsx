@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import TextInputSmall from "@/Components/Utils/TextInputSmall";
 import InputError from "@/Components/Utils/InputError";
-import SmallButton from "@/Components/Buttons/SmallButton";
 
 export default function IdeaPrivateEdit({ auth, idea, setEditing }) {
     // console.log("idea.promo : ", idea.promo);

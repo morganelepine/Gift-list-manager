@@ -1,7 +1,7 @@
 import { Head } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import SearchList from "@/Components/User/SearchList";
+import SearchList from "@/Components/GiftList/Action/Search";
 
 export default function ListsToFollow({ auth, listsToFollow, token }) {
     // console.log("listsToFollow : ", listsToFollow);

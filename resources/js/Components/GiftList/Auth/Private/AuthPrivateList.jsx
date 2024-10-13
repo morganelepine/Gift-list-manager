@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import EditListTitle from "@/Components/GiftList/Auth/Lists/EditListTitle";
+import EditListTitle from "@/Components/GiftList/Action/EditTitle";
 import SmallButton from "@/Components/Buttons/SmallButton";
-import CreatePrivateIdea from "@/Components/GiftList/Auth/Private/CreatePrivateIdea";
-import ShowPrivateIdea from "@/Components/GiftList/Auth/Private/ShowPrivateIdea";
+import CreatePrivateIdea from "@/Components/Ideas/PrivateList/CreatePrivateIdea";
+import ShowPrivateIdea from "@/Components/Ideas/PrivateList/ShowPrivateIdea";
 
 export default function AuthPrivateList({ auth, list, ideas }) {
     const [editing, setEditing] = useState(false);

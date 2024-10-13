@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import ListToFollow from "@/Components/User/ListToFollow";
+import ListToFollow from "@/Components/GiftList/User/ListToFollow/ListToFollowCard";
 import TextInput from "@/Components/Utils/TextInput";
 import SmallButton from "@/Components/Buttons/SmallButton";
 

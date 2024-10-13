@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import EditPrivateIdea from "@/Components/GiftList/Auth/Private/EditPrivateIdea";
-import Buttons from "@/Components/GiftList/Buttons";
+import EditPrivateIdea from "@/Components/Ideas/PrivateList/EditPrivateIdea";
+import Buttons from "@/Components/Ideas/Buttons";
 
 export default function ShowPrivateIdea({ auth, idea }) {
     const [editing, setEditing] = useState(false);
