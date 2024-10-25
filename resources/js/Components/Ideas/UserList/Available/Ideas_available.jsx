@@ -23,7 +23,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                                         <div className="flex flex-wrap items-center">
                                             {(idea.favorite === 1 ||
                                                 idea.idea) && (
-                                                <p className="text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mb-0 sm:mr-4">
+                                                <p className="flex items-center text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mb-0 sm:mr-4">
                                                     {idea.favorite === 1 && (
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"

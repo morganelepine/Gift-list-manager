@@ -29,7 +29,7 @@ export default function Ideas_purchased({ auth, ideas }) {
                                         <div className="flex flex-wrap items-center">
                                             {(idea.favorite === 1 ||
                                                 idea.idea) && (
-                                                <p className="text-sm sm:uppercase text-gray-400 mr-2 mb-1 sm:mb-0 sm:mr-4 line-through">
+                                                <p className="flex items-center text-sm sm:uppercase text-gray-400 mr-2 mb-1 sm:mb-0 sm:mr-4 line-through">
                                                     {idea.favorite === 1 && (
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
