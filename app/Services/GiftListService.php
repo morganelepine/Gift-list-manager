@@ -16,24 +16,31 @@ class GiftListService
         $this->giftListRepository = $giftListRepository;
     }
 
-    public function formatOneList($list, $dateFormat = 'd/m/Y')
+    public function formatOneList(&$list, $dateFormat = 'd/m/Y')
     {
-        $list->formatted_created_at = Carbon::parse($list->created_at)->format($dateFormat);
-        $list->lastUpdatedAt = Idea::where('list_id', $list->id)->max('created_at');
-        $list->formatted_updated_at = Carbon::parse($list->lastUpdatedAt)->format($dateFormat);
-        $list->isEmpty = Idea::where('list_id', $list->id)->count() === 0;
+        $list['formatted_created_at'] = Carbon::parse($list['created_at'])->format($dateFormat);
+        $list['lastUpdatedAt'] = Idea::where('list_id', $list['id'])->max('created_at');
+        $list['formatted_updated_at'] = Carbon::parse($list['lastUpdatedAt'])->format($dateFormat);
+        $list['isEmpty'] = Idea::where('list_id', $list['id'])->count() === 0;
 
         return $list;
     }
 
-    public function formatEachLists($lists, $dateFormat = 'd/m/Y')
-    {
-        foreach ($lists as $list) {
-            $this->formatOneList($list, $dateFormat);
-        }
+public function formatEachLists($lists, $dateFormat = 'd/m/Y')
+{
+    $listsArray = $lists->toArray();
 
-        return $lists;
+    foreach ($listsArray as &$list) {
+        $this->formatOneList($list, $dateFormat);
     }
+
+    usort($listsArray, function ($a, $b) {
+        return $a['lastUpdatedAt'] < $b['lastUpdatedAt'] ? 1 : -1;
+    });
+
+    return collect($listsArray);
+}
+
 
     public function getFormattedUserLists(bool $isPrivate)
     {
