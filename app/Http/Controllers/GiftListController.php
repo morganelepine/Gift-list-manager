@@ -148,9 +148,9 @@ class GiftListController extends Controller
         $privateLists = $this->giftListService->getFormattedUserLists(true);
 
         $publicLists = $this->giftListService->getFormattedUserLists(false);
-        foreach ($publicLists as $publicList) {
-            if (strlen($publicList->private_code) > 20) {
-                $publicList->private_code = Crypt::decrypt($publicList->private_code);
+        foreach ($publicLists as &$publicList) {
+            if (strlen($publicList['private_code']) > 20) {
+                $publicList['private_code'] = Crypt::decrypt($publicList['private_code']);
             }
         }
 
@@ -179,6 +179,7 @@ class GiftListController extends Controller
             'user_name' => $string,
             'name' => $string,
             'isPrivate' => 'required|boolean',
+            // 'private_code' => 'required_if:isPrivate,false|string|max:65535',
             'private_code' => 'required|string|max:65535'
         ];
 

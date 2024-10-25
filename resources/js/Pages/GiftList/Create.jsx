@@ -17,11 +17,20 @@ export default function Create({ auth }) {
     });
 
     const [isHidden, setIsHidden] = useState(true);
-    const [isPublicList, setIsPublicList] = useState(false);
+    const [isPrivateList, setIsPrivateList] = useState(null);
+    const [isPublicList, setIsPublicList] = useState(null);
+
     const handlePrivateCheck = () => {
-        setIsPublicList((current) => !current);
-        setIsHidden((current) => !current);
+        setIsPrivateList(true);
+        setIsPublicList(false);
+        setIsHidden(true);
+    };
+
+    const handlePublicCheck = () => {
         data.private_code = "";
+        setIsPrivateList(false);
+        setIsPublicList(true);
+        setIsHidden(false);
     };
 
     const submit = (e) => {
@@ -63,23 +72,49 @@ export default function Create({ auth }) {
                     </div>
 
                     <div className="mt-6">
-                        <InputLabel
-                            htmlFor="link"
-                            value="Liste privée ou à partager"
-                        />
+                        <InputLabel htmlFor="link" value="Statut de la liste" />
 
-                        <div className="mt-3 flex items-center">
-                            <Checkbox
-                                id="isPrivate"
-                                name="isPrivate"
-                                type="checkbox"
-                                checked={isPublicList}
-                                onChange={(e) => {
-                                    handlePrivateCheck();
-                                    setData("isPrivate", isPublicList);
-                                }}
-                            />
-                            <p>Je souhaite partager cette liste</p>
+                        <div className="mt-5">
+                            <div className="flex items-center">
+                                <Checkbox
+                                    id="isPrivate"
+                                    name="isPrivate"
+                                    type="checkbox"
+                                    checked={isPrivateList}
+                                    onChange={(e) => {
+                                        handlePrivateCheck();
+                                        setData("isPrivate", true);
+                                    }}
+                                />
+                                <p>Je souhaite garder cette liste privée</p>
+                            </div>
+                            <p className="italic text-xs text-gray-600 mt-2">
+                                En cochant cette case, votre liste ne sera
+                                visible que par vous. Vos proches ne pourront
+                                donc pas y accéder.
+                            </p>
+                        </div>
+
+                        <div className="mt-5">
+                            <div className="flex items-center">
+                                <Checkbox
+                                    id="isPublic"
+                                    name="isPublic"
+                                    type="checkbox"
+                                    checked={isPublicList}
+                                    onChange={(e) => {
+                                        handlePublicCheck();
+                                        setData("isPrivate", false);
+                                    }}
+                                />
+                                <p>Je souhaite partager cette liste</p>
+                            </div>
+                            <p className="italic text-xs text-gray-600 mt-2">
+                                En cochant cette case, votre liste apparaîtra
+                                dans l'onglet "Chercher". Pour la suivre, vos
+                                proches pourront soit vous envoyer une demande,
+                                soit renseigner votre code privé.
+                            </p>
                         </div>
 
                         <InputError
@@ -88,7 +123,12 @@ export default function Create({ auth }) {
                         />
                     </div>
 
-                    <div className={"mt-6 " + (isHidden ? "hidden" : "block")}>
+                    <div
+                        className={
+                            "mt-6 bg-orange-50 shadow-md p-5 rounded-xl " +
+                            (isHidden ? "hidden" : "block")
+                        }
+                    >
                         <InputLabel htmlFor="link" value="Code privé" />
                         <TextInput
                             id="private_code"
@@ -102,7 +142,8 @@ export default function Create({ auth }) {
                         />
                         <p className="italic text-xs text-gray-600 mt-2">
                             Communiquez ce code à vos proches pour leur
-                            permettre d'accéder à votre liste.
+                            permettre d'accéder à votre liste. Ils pourront
+                            également vous envoyer directement une demande.
                         </p>
 
                         <InputError
