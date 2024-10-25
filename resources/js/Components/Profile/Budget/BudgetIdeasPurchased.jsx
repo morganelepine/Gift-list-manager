@@ -15,7 +15,7 @@ export default function BudgetIdeasPurchased({ idea }) {
                             </p>
                         )}
                         {idea.details && (
-                            <p className="min-w-max text-xs text-center text-white bg-orange-500 rounded-full px-2 mb-1 sm:mb-0 mr-4">
+                            <p className="text-xs text-left text-white bg-orange-500 rounded-full px-2 mb-1 sm:mb-0 mr-4">
                                 {idea.details}
                             </p>
                         )}

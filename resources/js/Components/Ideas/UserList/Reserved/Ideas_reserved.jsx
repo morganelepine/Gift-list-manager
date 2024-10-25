@@ -29,23 +29,24 @@ export default function Ideas_reserved({ auth, ideas }) {
                                 <div className="flex flex-col mr-3 w-full">
                                     <div className="flex justify-between items-center">
                                         <div className="flex flex-wrap items-center">
-                                            {idea.favorite === 1 && (
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 16 16"
-                                                    fill="currentColor"
-                                                    className="w-4 h-4 mr-1 fill-bordeaux-800"
-                                                >
-                                                    <path d="M2 6.342a3.375 3.375 0 0 1 6-2.088 3.375 3.375 0 0 1 5.997 2.26c-.063 2.134-1.618 3.76-2.955 4.784a14.437 14.437 0 0 1-2.676 1.61c-.02.01-.038.017-.05.022l-.014.006-.004.002h-.002a.75.75 0 0 1-.592.001h-.002l-.004-.003-.015-.006a5.528 5.528 0 0 1-.232-.107 14.395 14.395 0 0 1-2.535-1.557C3.564 10.22 1.999 8.558 1.999 6.38L2 6.342Z" />
-                                                </svg>
-                                            )}
-                                            {idea.idea && (
+                                            {(idea.favorite === 1 ||
+                                                idea.idea) && (
                                                 <p className="text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mb-0 sm:mr-4">
+                                                    {idea.favorite === 1 && (
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 16 16"
+                                                            fill="currentColor"
+                                                            className="w-4 h-4 mr-1 fill-bordeaux-800"
+                                                        >
+                                                            <path d="M2 6.342a3.375 3.375 0 0 1 6-2.088 3.375 3.375 0 0 1 5.997 2.26c-.063 2.134-1.618 3.76-2.955 4.784a14.437 14.437 0 0 1-2.676 1.61c-.02.01-.038.017-.05.022l-.014.006-.004.002h-.002a.75.75 0 0 1-.592.001h-.002l-.004-.003-.015-.006a5.528 5.528 0 0 1-.232-.107 14.395 14.395 0 0 1-2.535-1.557C3.564 10.22 1.999 8.558 1.999 6.38L2 6.342Z" />
+                                                        </svg>
+                                                    )}
                                                     {idea.idea}
                                                 </p>
                                             )}
                                             {idea.details && (
-                                                <p className="min-w-max text-xs text-center bg-bordeaux-800 text-white rounded-full px-2 mb-1 sm:mb-0 mr-4">
+                                                <p className="text-xs text-left bg-bordeaux-800 text-white rounded-full px-2 mb-1 sm:mb-0 mr-4">
                                                     {idea.details}
                                                 </p>
                                             )}
