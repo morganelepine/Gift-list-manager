@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -6,11 +6,20 @@ import ListOfIdeas from "@/Components/GiftList/Auth/Public/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Action/EditTitle";
 import ArchiveListButton from "@/Components/GiftList/Action/Archive";
 import SmallButton from "@/Components/Buttons/SmallButton";
+import AddIdeaAlertModal from "@/Components/GiftList/Auth/Public/AddIdeaAlertModal";
 
-export default function AuthList({ auth, list, ideas }) {
-    // console.log("ideas : ", ideas);
-
+export default function AuthList({ auth, list, ideas, ideas_available }) {
     const [editing, setEditing] = useState(false);
+
+    const [modalVisible, setModalVisible] = useState(false);
+    useEffect(() => {
+        if (ideas.length > 0 && ideas_available.length < 6) {
+            setModalVisible(true);
+        }
+    }, [ideas_available]);
+    const closeModal = () => {
+        setModalVisible(false);
+    };
 
     return (
         <AuthenticatedLayout
@@ -87,12 +96,20 @@ export default function AuthList({ auth, list, ideas }) {
                     </div>
                 )}
             </div>
+
+            <AddIdeaAlertModal
+                list={list}
+                ideas_available={ideas_available}
+                modalVisible={modalVisible}
+                closeModal={closeModal}
+            />
         </AuthenticatedLayout>
     );
 }
 
 AuthList.propTypes = {
     auth: PropTypes.object.isRequired,
-    list: PropTypes.array,
+    list: PropTypes.object,
     ideas: PropTypes.array,
+    ideas_available: PropTypes.array,
 };

@@ -24,25 +24,34 @@ export default function Show({
     const isSharedList = list.isPrivate === 0;
 
     return (
-        <>
-            <div>
-                {isConnectedUser && isSharedList ? (
-                    <AuthList auth={auth} list={list} ideas={ideas} />
-                ) : isConnectedUser && isPrivateList ? (
-                    <AuthPrivateList auth={auth} list={list} ideas={ideas} />
-                ) : listIsFollowed ? (
-                    <UserList
-                        auth={auth}
-                        list={list}
-                        ideas_available={ideas_available}
-                        ideas_reserved={ideas_reserved}
-                        ideas_purchased={ideas_purchased}
-                    />
-                ) : (
-                    <PrivateCodeList auth={auth} list={list} />
-                )}
-            </div>
-        </>
+        <div>
+            {isConnectedUser && isSharedList && (
+                <AuthList
+                    auth={auth}
+                    list={list}
+                    ideas={ideas}
+                    ideas_available={ideas_available}
+                />
+            )}
+
+            {isConnectedUser && isPrivateList && (
+                <AuthPrivateList auth={auth} list={list} ideas={ideas} />
+            )}
+
+            {!isConnectedUser && listIsFollowed && (
+                <UserList
+                    auth={auth}
+                    list={list}
+                    ideas_available={ideas_available}
+                    ideas_reserved={ideas_reserved}
+                    ideas_purchased={ideas_purchased}
+                />
+            )}
+
+            {!isConnectedUser && !listIsFollowed && (
+                <PrivateCodeList auth={auth} list={list} />
+            )}
+        </div>
     );
 }
 
@@ -50,5 +59,8 @@ Show.propTypes = {
     auth: PropTypes.object.isRequired,
     list: PropTypes.object,
     ideas: PropTypes.array,
+    ideas_available: PropTypes.array,
+    ideas_reserved: PropTypes.array,
+    ideas_purchased: PropTypes.array,
     followedLists: PropTypes.array,
 };
