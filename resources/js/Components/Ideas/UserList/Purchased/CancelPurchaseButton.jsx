@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
-export default function Buttons({ idea }) {
+export default function CancelPurchaseButton({ idea }) {
     //Remove idea from table PURCHASED
     const { patch, processing, reset } = useForm();
     const cancelPurchase = (e) => {
@@ -25,7 +25,7 @@ export default function Buttons({ idea }) {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer fill-white"
+                    className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer"
                 >
                     <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
@@ -35,7 +35,7 @@ export default function Buttons({ idea }) {
     );
 }
 
-Buttons.propTypes = {
+CancelPurchaseButton.propTypes = {
     idea: PropTypes.object,
     id: PropTypes.number,
 };

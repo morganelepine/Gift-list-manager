@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import Button from "@/Components/Ideas/UserList/Purchased/Button";
+import CancelPurchaseButton from "@/Components/Ideas/UserList/Purchased/CancelPurchaseButton";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 
 dayjs.extend(relativeTime);
@@ -14,10 +14,10 @@ export default function Ideas_purchased({ auth, ideas }) {
             {ideas.map((idea) => (
                 <div key={idea.id}>
                     <div className="my-2 sm:flex items-center">
-                        {/* BUTTON */}
-                        {idea.user_id === auth.user.id && (
-                            <div className="sm:hidden flex mb-1">
-                                <Button idea={idea} />
+                        {/* CANCEL PURCHASE BUTTON */}
+                        {idea.status_user === auth.user.name && (
+                            <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
+                                <CancelPurchaseButton idea={idea} />
                             </div>
                         )}
 
@@ -69,13 +69,6 @@ export default function Ideas_purchased({ auth, ideas }) {
                                                 : ` par ${idea.status_user} `}
                                             {dayjs(idea.updated_at).fromNow()}
                                         </small>
-                                        {/* BUTTON */}
-                                        {idea.status_user ===
-                                            auth.user.name && (
-                                            <div className="hidden sm:flex sm:ml-2">
-                                                <Button idea={idea} />
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             </div>

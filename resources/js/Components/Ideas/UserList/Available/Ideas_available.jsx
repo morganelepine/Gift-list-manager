@@ -11,7 +11,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                 <div key={idea.id}>
                     <div className="my-2 sm:flex items-center">
                         {/* RESERVE & BUY BUTTONS */}
-                        <div className="flex sm:flex-col mr-2 mb-1">
+                        <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
                             <Buttons auth={auth} idea={idea} />
                         </div>
 

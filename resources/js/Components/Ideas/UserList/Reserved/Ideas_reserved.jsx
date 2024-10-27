@@ -16,9 +16,9 @@ export default function Ideas_reserved({ auth, ideas }) {
             {ideas.map((idea) => (
                 <div key={idea.id}>
                     <div className="my-2 sm:flex items-center">
-                        {/* BUTTON */}
-                        {idea.user_id === auth.user.id && (
-                            <div className="sm:hidden flex mb-1">
+                        {/* CANCEL RESERVATION and CONFIRM PURCHASE BUTTONS */}
+                        {idea.status_user === auth.user.name && (
+                            <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
                                 <Button idea={idea} />
                             </div>
                         )}
@@ -76,14 +76,6 @@ export default function Ideas_reserved({ auth, ideas }) {
                                                 : ` par ${idea.status_user} `}
                                             {dayjs(idea.updated_at).fromNow()}
                                         </small>
-
-                                        {/* BUTTON */}
-                                        {idea.status_user ===
-                                            auth.user.name && (
-                                            <div className="hidden sm:flex sm:ml-2">
-                                                <Button idea={idea} />
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             </div>
