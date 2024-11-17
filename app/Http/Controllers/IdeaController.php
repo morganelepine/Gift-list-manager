@@ -50,6 +50,7 @@ class IdeaController extends Controller
             'link' => 'required_without:idea|nullable|string|max:255',
             'details' => $string,
             'price' => 'nullable|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB max
             'favorite' => 'boolean',
             'promo' => 'boolean',
             'promo_details' => $string,
@@ -58,6 +59,10 @@ class IdeaController extends Controller
             'status' => $string,
             'status_user' => $string,
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
 
         $request->user()->ideas()->create($validated);
 

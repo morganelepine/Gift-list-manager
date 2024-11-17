@@ -1,5 +1,6 @@
 import React from "react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
+import Image from "@/Components/Ideas/Image";
 
 export default function IdeaShow({ brand, idea }) {
     return (
@@ -87,6 +88,7 @@ export default function IdeaShow({ brand, idea }) {
                     </p>
                 </div>
             )}
+            {idea.image && <Image idea={idea} />}
         </div>
     );
 }

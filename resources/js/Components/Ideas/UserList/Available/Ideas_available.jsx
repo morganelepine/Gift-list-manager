@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import Buttons from "@/Components/Ideas/UserList/Available/Buttons";
 import Linkify from "linkify-react"; //rendre les liens cliquables
+import Image from "@/Components/Ideas/Image";
 
 export default function Ideas_available({ auth, ideas, brand }) {
-    // console.log("listOfIdeas : ", listOfIdeas);
-
     return (
         <div className="w-full space-y-5 sm:space-y-0">
             {ideas.map((idea) => (
@@ -109,6 +108,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                                         </p>
                                     </div>
                                 )}
+                                {idea.image && <Image idea={idea} />}
                             </div>
                         </div>
                     </div>

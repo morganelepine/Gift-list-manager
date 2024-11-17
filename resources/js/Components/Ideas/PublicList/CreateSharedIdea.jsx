@@ -18,9 +18,6 @@ export default function CreateSharedIdea({ auth, list }) {
         setIsPromo((current) => !current);
     };
 
-    // console.log("list : ", list);
-    // console.log("list.id : ", list.id);
-
     const { data, setData, post, processing, reset, errors } = useForm({
         list_id: list.id,
         user_name: auth.user.name,
@@ -29,6 +26,7 @@ export default function CreateSharedIdea({ auth, list }) {
         link: "",
         details: "",
         price: "",
+        image: "",
         favorite: 0,
         promo: 0,
         promo_details: "",
@@ -37,6 +35,7 @@ export default function CreateSharedIdea({ auth, list }) {
         status: "available",
         status_user: "",
     });
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -44,10 +43,18 @@ export default function CreateSharedIdea({ auth, list }) {
             data.brand = "Sans marque";
         }
 
-        post(route("ideas.store"), {
+        const formData = new FormData();
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+        post(route("ideas.store"), formData, {
             onSuccess: () => reset(),
             onError: (errors) => {
                 console.error(errors);
+            },
+            headers: {
+                "Content-Type": "multipart/form-data",
             },
         });
     };
@@ -144,6 +151,18 @@ export default function CreateSharedIdea({ auth, list }) {
 
                         <InputError message={errors.price} className="mt-2" />
                     </div>
+                </div>
+
+                <div className="">
+                    <InputLabel htmlFor="link" value="Ajouter une image" />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        name="image"
+                        className="py-1 pt-2"
+                        onChange={(e) => setData("image", e.target.files[0])}
+                    />
+                    <InputError message={errors.image} className="mt-2" />
                 </div>
 
                 <div className="flex items-center">
