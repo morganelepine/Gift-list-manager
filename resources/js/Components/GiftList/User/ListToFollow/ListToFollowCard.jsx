@@ -82,7 +82,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
                 </SmallButton>
 
                 <SmallButton onClick={showSecretCode}>
-                    Renseiger le code secret
+                    Renseigner le code secret
                 </SmallButton>
 
                 <div className={"mt-2 " + (isHidden ? "hidden" : "block")}>
