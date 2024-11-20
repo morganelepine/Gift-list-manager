@@ -12,7 +12,7 @@ export default function FollowedList({ followedList }) {
                 <span className="uppercase font-semibold text-orange-500">
                     {followedList.name}
                 </span>{" "}
-                de {followedList.user_name}
+                de {followedList.user_name} {followedList.user_lastname}
             </p>
             <small className="italic text-gray-500 mt-1 mb-2">
                 {followedList.isEmpty

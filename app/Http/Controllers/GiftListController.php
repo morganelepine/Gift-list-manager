@@ -40,6 +40,8 @@ class GiftListController extends Controller
     {
         // Get list id from url
         $list = GiftList::find($id);
+        $user = User::find($list->user_id);
+        $list->user_lastname = $user ? $user->last_name : null;
 
         $ideas = $this->ideaRepository->getIdeasByStatus($id, ['available', 'reserved', 'purchased']);
         $ideas_available = $this->ideaRepository->getIdeasByStatus($id, ['available']);

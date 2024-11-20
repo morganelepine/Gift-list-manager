@@ -26,7 +26,8 @@ export default function PrivateCodeList({ auth, list }) {
             header={
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        La liste "{list.name}" de {list.user_name}
+                        La liste "{list.name}" de {list.user_name}{" "}
+                        {list.user_lastname}
                     </h2>
                 </div>
             }
@@ -61,7 +62,8 @@ export default function PrivateCodeList({ auth, list }) {
                         </div>
 
                         <PrimaryButton className="" disabled={processing}>
-                            Suivre la liste de {list.user_name}
+                            Suivre la liste de {list.user_name}{" "}
+                            {list.user_lastname}
                         </PrimaryButton>
                     </form>
                 </div>

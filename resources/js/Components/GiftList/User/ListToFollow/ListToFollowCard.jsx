@@ -62,7 +62,7 @@ export default function ListToFollow({ auth, listToFollow, token }) {
                     <span className="uppercase font-semibold text-orange-500">
                         {listToFollow.name}
                     </span>{" "}
-                    de {listToFollow.user_name}
+                    de {listToFollow.user_name} {listToFollow.user_lastname}
                 </p>
                 <small className="italic text-gray-500 mt-1 mb-2">
                     {listToFollow.isEmpty

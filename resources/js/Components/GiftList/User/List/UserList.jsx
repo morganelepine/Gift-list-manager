@@ -36,7 +36,8 @@ export default function UserList({
             header={
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        La liste "{list.name}" de {list.user_name}
+                        La liste "{list.name}" de {list.user_name}{" "}
+                        {list.user_lastname}
                     </h2>
                     <div className="hidden sm:flex">
                         <div className="flex items-center justify-end text-xs ml-3">
