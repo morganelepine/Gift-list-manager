@@ -15,8 +15,7 @@
 
         <!-- Icon -->
         <meta name="theme-color" content="#000000">
-        <link rel="icon" type="image/png" sizes="192x192" href="/icons/logo-MerryMate-192.png">
-        <link rel="apple-touch-icon" sizes="192x192" href="/icons/logo-MerryMate-192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/logo-MerryMate-32.png">
 
         <!-- Scripts -->
         @routes
