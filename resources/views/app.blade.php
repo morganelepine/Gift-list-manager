@@ -13,6 +13,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
 
+        <!-- Icon -->
+        <meta name="theme-color" content="#000000">
+        <link rel="icon" type="image/png" sizes="192x192" href="/icons/logo-MerryMate-192.png">
+        <link rel="apple-touch-icon" sizes="192x192" href="/icons/logo-MerryMate-192.png">
+
         <!-- Scripts -->
         @routes
         @viteReactRefresh
