@@ -99,10 +99,16 @@ class GiftListController extends Controller
             ->where('user_id', '!=', Auth::id())
             ->where('isPrivate', 0)
             ->whereNotIn('id', $followedListIds)
+            ->join('users', 'gift_lists.user_id', '=', 'users.id')
             ->where(function($query) use ($key) {
-                $query->where('user_name', 'like', "%{$key}%")
-                      ->orWhere('name', 'like', "%{$key}%");
+                $keywords = explode(' ', $key);
+                foreach ($keywords as $word) {
+                    $query->orWhere('users.name', 'like', "%{$word}%")
+                          ->orWhere('users.last_name', 'like', "%{$word}%")
+                          ->orWhere('gift_lists.name', 'like', "%{$word}%");
+                }
             })
+            ->select('gift_lists.*')
             ->latest()
             ->get();
 
