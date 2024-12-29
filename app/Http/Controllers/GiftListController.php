@@ -98,7 +98,7 @@ class GiftListController extends Controller
         $listsToFollow = GiftList::query()
             ->where('user_id', '!=', Auth::id())
             ->where('isPrivate', 0)
-            ->whereNotIn('id', $followedListIds)
+            ->whereNotIn('gift_lists.id', $followedListIds)
             ->join('users', 'gift_lists.user_id', '=', 'users.id')
             ->where(function($query) use ($key) {
                 $keywords = explode(' ', $key);
