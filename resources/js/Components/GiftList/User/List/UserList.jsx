@@ -151,20 +151,24 @@ export default function UserList({
                                                 </p>
                                                 <hr className="w-full h-px mt-3 mb-2 bg-orange-200 border-0"></hr>
                                             </div>
-                                            {brand === "Nébuleuse" && (
-                                                <div className="flex flex-wrap rounded p-1 sm:p-0 mt-1 mb-3">
+                                            {(brand === "Nébuleuse" ||
+                                                brand === "Asos") && (
+                                                <div className="flex flex-wrap p-1 sm:p-0 mt-2 mb-3">
                                                     <p className="text-xs italic ">
                                                         Lien à utiliser pour
-                                                        bénéficier de la
-                                                        réduction de parrainage
-                                                        (-15%)&nbsp;:&nbsp;{" "}
-                                                        <span className="text-xs italic  hover:text-orange-500">
+                                                        bénéficier d'une
+                                                        réduction de
+                                                        parrainage&nbsp;:&nbsp;
+                                                        <span className="text-xs italic hover:text-orange-500">
                                                             <Linkify
                                                                 options={{
                                                                     target: "blank",
                                                                 }}
                                                             >
-                                                                https://snwbl.io/nebuleuse/ROXANE66244
+                                                                {brand ===
+                                                                "Nébuleuse"
+                                                                    ? "https://nebuleusebijoux.com#ref=1835832"
+                                                                    : "https://asos.mention-me.com/m/ol/hr5ry-roxane-lepine-utter"}
                                                             </Linkify>
                                                         </span>
                                                     </p>

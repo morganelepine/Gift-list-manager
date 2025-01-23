@@ -258,7 +258,7 @@ export default function CreateSharedIdea({ auth, list }) {
                                 id="membership"
                                 name="membership"
                                 value={data.membership}
-                                placeholder="https://snwbl.io/nebuleuse/ROXANE66244"
+                                placeholder="https://nebuleusebijoux.com#ref=1835832"
                                 className="py-1"
                                 onChange={(e) =>
                                     setData("membership", e.target.value)

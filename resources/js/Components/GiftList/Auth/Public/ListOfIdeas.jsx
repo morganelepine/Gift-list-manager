@@ -34,25 +34,6 @@ export default function ListOfIdeas({ ideas }) {
                             </p>
                             <hr className="w-full h-px mt-3 mb-2 bg-orange-100 border-0"></hr>
                         </div>
-                        {(brand === "Nébuleuse" || brand === "Asos") && (
-                            <div className="flex flex-wrap bg-orange-50 sm:bg-transparent rounded p-1 sm:p-0 mt-1">
-                                <p className="text-xs italic ">
-                                    Lien à utiliser pour bénéficier d'une
-                                    réduction de parrainage &nbsp;:&nbsp;
-                                </p>
-                                <p className="text-xs italic text-orange-500 hover:text-orange-500">
-                                    <Linkify
-                                        options={{
-                                            target: "blank",
-                                        }}
-                                    >
-                                        {brand === "Nébuleuse"
-                                            ? "https://snwbl.io/nebuleuse/ROXANE66244"
-                                            : "https://asos.mention-me.com/m/ol/mj8ho-roxane-lepine-utter"}
-                                    </Linkify>
-                                </p>
-                            </div>
-                        )}
                         {brandData.ideas.map((idea, index) => (
                             <div key={idea.id}>
                                 <Ideas
