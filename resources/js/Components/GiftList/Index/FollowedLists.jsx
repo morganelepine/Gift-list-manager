@@ -25,9 +25,11 @@ export default function FollowedLists({ auth, followedLists }) {
                                 />
                             </div>
                         ))}
-                        {followedLists.length > 3 && (
+                        {followedLists.length > 2 && (
                             <LinkButton onClick={() => setShowAll(!showAll)}>
-                                {showAll ? "Voir moins" : "Voir plus"}
+                                {showAll
+                                    ? "Voir moins"
+                                    : "Voir toutes les listes"}
                             </LinkButton>
                         )}
                     </div>
