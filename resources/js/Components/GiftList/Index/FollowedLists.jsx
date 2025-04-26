@@ -29,7 +29,7 @@ export default function FollowedLists({ auth, followedLists }) {
                             <LinkButton onClick={() => setShowAll(!showAll)}>
                                 {showAll
                                     ? "Voir moins"
-                                    : "Voir toutes les listes"}
+                                    : "Voir toutes les listes suivies"}
                             </LinkButton>
                         )}
                     </div>
