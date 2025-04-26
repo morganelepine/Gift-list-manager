@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Modal from "@/Components/Utils/Modal";
+import LinkButton from "@/Components/Buttons/LinkButton";
 import { Link } from "@inertiajs/react";
 
 export default function AddIdeaAlertModal({
@@ -17,6 +18,14 @@ export default function AddIdeaAlertModal({
                 ? ` qu'une idée disponible`
                 : ` que ${ideas_available.length} idées disponibles`;
     }
+
+    const handleNoReminder = () => {
+        localStorage.setItem(
+            `few-ideas-left-reminder-${list.id}`,
+            "no-reminder"
+        );
+        closeModal();
+    };
 
     return (
         <Modal show={modalVisible} onClose={closeModal}>
@@ -39,14 +48,23 @@ export default function AddIdeaAlertModal({
                     Ça reste entre nous, mais il ne reste plus
                     {numberOfAvailableIdeas} dans votre liste...
                 </p>
-                <div className="mt-4 flex justify-center">
+                <div className="mt-4 flex flex-col text-center">
                     <Link
                         as="button"
                         href={route("ideas.create", list.id)}
-                        className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        className="self-center px-4 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                     >
                         Ajouter des idées
                     </Link>
+                    <LinkButton onClick={handleNoReminder}>
+                        Ne plus me le rappeler
+                    </LinkButton>
+                    <div className="flex justify-center">
+                        <p className="text-gray-600 text-xs italic">
+                            ...pendant 30 jours
+                        </p>
+                        <span className="text-xs pl-1">😄</span>
+                    </div>
                 </div>
             </div>
         </Modal>

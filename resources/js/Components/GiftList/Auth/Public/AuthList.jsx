@@ -7,18 +7,49 @@ import EditListTitle from "@/Components/GiftList/Action/EditTitle";
 import ArchiveListButton from "@/Components/GiftList/Action/Archive";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import AddIdeaAlertModal from "@/Components/GiftList/Auth/Public/AddIdeaAlertModal";
+import ArchiveReminderModal from "@/Components/GiftList/Auth/Public/ArchiveReminderModal";
 
 export default function AuthList({ auth, list, ideas, ideas_available }) {
     const [editing, setEditing] = useState(false);
+    const [fewIdeasLeftModalVisible, setFewIdeasLeftModalVisible] =
+        useState(false);
+    const [archiveReminderVisible, setArchiveReminderVisible] = useState(false);
 
-    const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
-        if (ideas.length > 0 && ideas_available.length < 6) {
-            setModalVisible(true);
+        if (
+            ideas.length > 0 &&
+            ideas_available.length < 6 &&
+            !localStorage.getItem(`few-ideas-left-reminder-${list.id}`)
+        ) {
+            setFewIdeasLeftModalVisible(true);
         }
-    }, [ideas_available]);
-    const closeModal = () => {
-        setModalVisible(false);
+
+        if (auth.user.last_login_at) {
+            const lastLoginDate = new Date(auth.user.last_login_at);
+            const today = new Date();
+            const lastLoginInDays =
+                (today - lastLoginDate) / (1000 * 60 * 60 * 24);
+
+            // If user has not logged in for at least 30 days
+            if (lastLoginInDays > 30) {
+                if (!localStorage.getItem(`archive-reminder-${list.id}`)) {
+                    setArchiveReminderVisible(true);
+                    localStorage.setItem(
+                        `archive-reminder-${list.id}`,
+                        "shown"
+                    );
+                }
+                localStorage.removeItem(`few-ideas-left-reminder-${list.id}`);
+            }
+        }
+    }, [ideas_available, list.id, auth.user.last_login_at]);
+
+    const closeFewIdeasLeftModal = () => {
+        setFewIdeasLeftModalVisible(false);
+    };
+
+    const closeArchiveReminderModal = () => {
+        setArchiveReminderVisible(false);
     };
 
     return (
@@ -100,8 +131,14 @@ export default function AuthList({ auth, list, ideas, ideas_available }) {
             <AddIdeaAlertModal
                 list={list}
                 ideas_available={ideas_available}
-                modalVisible={modalVisible}
-                closeModal={closeModal}
+                modalVisible={fewIdeasLeftModalVisible}
+                closeModal={closeFewIdeasLeftModal}
+            />
+
+            <ArchiveReminderModal
+                list={list}
+                modalVisible={archiveReminderVisible}
+                closeModal={closeArchiveReminderModal}
             />
         </AuthenticatedLayout>
     );
