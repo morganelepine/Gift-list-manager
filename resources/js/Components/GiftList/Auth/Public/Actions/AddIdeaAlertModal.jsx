@@ -52,7 +52,7 @@ export default function AddIdeaAlertModal({
                     <Link
                         as="button"
                         href={route("ideas.create", list.id)}
-                        className="self-center px-4 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        className="self-center px-5 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                     >
                         Ajouter des idées
                     </Link>

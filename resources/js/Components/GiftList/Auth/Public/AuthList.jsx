@@ -1,56 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ListOfIdeas from "@/Components/GiftList/Auth/Public/ListOfIdeas";
 import EditListTitle from "@/Components/GiftList/Action/EditTitle";
 import ArchiveListButton from "@/Components/GiftList/Action/Archive";
-import SmallButton from "@/Components/Buttons/SmallButton";
-import AddIdeaAlertModal from "@/Components/GiftList/Auth/Public/AddIdeaAlertModal";
-import ArchiveReminderModal from "@/Components/GiftList/Auth/Public/ArchiveReminderModal";
+import AddIdeaAlert from "@/Components/GiftList/Auth/Public/Actions/AddIdeaAlert";
+import ArchiveReminder from "@/Components/GiftList/Auth/Public/Actions/ArchiveReminder";
+import EmptyPublicList from "./EmptyPublicList";
 
 export default function AuthList({ auth, list, ideas, ideas_available }) {
     const [editing, setEditing] = useState(false);
-    const [fewIdeasLeftModalVisible, setFewIdeasLeftModalVisible] =
-        useState(false);
-    const [archiveReminderVisible, setArchiveReminderVisible] = useState(false);
 
-    useEffect(() => {
-        if (
-            ideas.length > 0 &&
-            ideas_available.length < 6 &&
-            !localStorage.getItem(`few-ideas-left-reminder-${list.id}`)
-        ) {
-            setFewIdeasLeftModalVisible(true);
-        }
-
-        if (auth.user.last_login_at) {
-            const lastLoginDate = new Date(auth.user.last_login_at);
-            const today = new Date();
-            const lastLoginInDays =
-                (today - lastLoginDate) / (1000 * 60 * 60 * 24);
-
-            // If user has not logged in for at least 30 days
-            if (lastLoginInDays > 30) {
-                if (!localStorage.getItem(`archive-reminder-${list.id}`)) {
-                    setArchiveReminderVisible(true);
-                    localStorage.setItem(
-                        `archive-reminder-${list.id}`,
-                        "shown"
-                    );
-                }
-                localStorage.removeItem(`few-ideas-left-reminder-${list.id}`);
-            }
-        }
-    }, [ideas_available, list.id, auth.user.last_login_at]);
-
-    const closeFewIdeasLeftModal = () => {
-        setFewIdeasLeftModalVisible(false);
-    };
-
-    const closeArchiveReminderModal = () => {
-        setArchiveReminderVisible(false);
-    };
+    const daysSinceLastLogin = usePage().props.days_since_last_login;
 
     return (
         <AuthenticatedLayout
@@ -112,33 +74,20 @@ export default function AuthList({ auth, list, ideas, ideas_available }) {
                         <ListOfIdeas list={list} ideas={ideas} auth={auth} />
                     </div>
                 ) : (
-                    <div className="text-center">
-                        <p>
-                            Votre liste est vide. Cliquez sur ce bouton pour la
-                            compléter :
-                        </p>
-                        <Link
-                            as="button"
-                            href={route("ideas.create", list.id)}
-                            className="mt-2"
-                        >
-                            <SmallButton>Commencer la liste</SmallButton>
-                        </Link>
-                    </div>
+                    <EmptyPublicList auth={auth} list={list} ideas={ideas} />
                 )}
             </div>
 
-            <AddIdeaAlertModal
+            <AddIdeaAlert
                 list={list}
+                ideas={ideas}
                 ideas_available={ideas_available}
-                modalVisible={fewIdeasLeftModalVisible}
-                closeModal={closeFewIdeasLeftModal}
+                daysSinceLastLogin={daysSinceLastLogin}
             />
 
-            <ArchiveReminderModal
+            <ArchiveReminder
                 list={list}
-                modalVisible={archiveReminderVisible}
-                closeModal={closeArchiveReminderModal}
+                daysSinceLastLogin={daysSinceLastLogin}
             />
         </AuthenticatedLayout>
     );

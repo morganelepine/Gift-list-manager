@@ -24,6 +24,6 @@ export default defineConfig({
     test: {
         environment: "jsdom", // pour simuler le navigateur
         globals: true, // pour éviter d'importer 'describe', 'it', etc
-        setupFiles: "./tests/setupTests.js",
+        setupFiles: "./tests/setupTests.jsx",
     },
 });

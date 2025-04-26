@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Carbon\Carbon;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,8 +32,20 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
+
+        $user = $request->user();
+        $daysSinceLastLogin = null;
+        if ($user->last_login_at) {
+            $lastLoginAt = Carbon::parse($user->last_login_at);
+            $daysSinceLastLogin = $lastLoginAt->diffInDays(now());
+        }
+
+        session(['days_since_last_login' => $daysSinceLastLogin]);
+
+        $user->update([
+            'last_login_at' => now(),
+        ]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -42,10 +55,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->user()->update([
-            'last_login_at' => now(),
-        ]);
-
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
