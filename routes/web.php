@@ -43,6 +43,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/budget', [ProfileController::class, 'purchase'])->name('profile.purchase');
+    Route::get('/gifts', [ProfileController::class, 'gifts'])->name('profile.gifts');
     Route::get('/notifications', [ProfileController::class, 'notifications'])->name('profile.notifications');
 });
 

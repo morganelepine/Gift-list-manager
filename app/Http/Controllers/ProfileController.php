@@ -79,6 +79,18 @@ class ProfileController extends Controller
     }
 
     /**
+     * Display the gifts received by the user.
+     */
+    public function gifts(): Response
+    {
+        $ideas = Idea::where('user_id', Auth::id())->where('status', 'archived')->orderByDesc('updated_at')->get();
+
+        return Inertia::render('Profile/Gifts', [
+            'ideas' => $ideas,
+        ]);
+    }
+
+    /**
      * Display the user's notifications.
      */
     public function notifications(): Response

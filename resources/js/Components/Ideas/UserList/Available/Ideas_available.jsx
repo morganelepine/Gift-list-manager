@@ -23,7 +23,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                                         <div className="flex flex-wrap items-center">
                                             {(idea.favorite === 1 ||
                                                 idea.idea) && (
-                                                <p className="flex items-center text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mb-0 sm:mr-4">
+                                                <p className="flex items-center text-sm sm:uppercase font-semibold  mr-2 mb-1 sm:mr-4">
                                                     {idea.favorite === 1 && (
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                                                 </p>
                                             )}
                                             {idea.details && (
-                                                <p className="text-xs text-left text-white bg-orange-400 rounded-full px-2 mb-1 sm:mb-0 mr-4">
+                                                <p className="text-xs text-center text-orange-500 border border-orange-400 rounded-full px-2 py-0.5 mb-1 mr-4">
                                                     {idea.details}
                                                 </p>
                                             )}
@@ -62,7 +62,7 @@ export default function Ideas_available({ auth, ideas, brand }) {
                                     </div>
                                     {idea.price && (
                                         <div className="min-w-max">
-                                            <p className="text-xs text-orange-500 border border-orange-500 rounded-lg p-1 text-center">
+                                            <p className="text-xs text-white bg-orange-500 rounded-lg px-2 py-1 text-center">
                                                 {idea.price} €
                                             </p>
                                         </div>

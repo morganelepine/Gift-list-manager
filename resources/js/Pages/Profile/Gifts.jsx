@@ -3,28 +3,19 @@ import PropTypes from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import BudgetIdeasPurchased from "@/Components/Profile/Budget/BudgetIdeasPurchased";
 
-export default function Budget({ auth, ideas, totalPrice }) {
-    // console.log("ideas : ", ideas);
+export default function Gifts({ auth, ideas }) {
+    const groupedIdeas = ideas.reduce((giftsReceivedByUser, idea) => {
+        const year = new Date(idea.updated_at).getFullYear();
 
-    // Regrouper les idées par user_name
-    const groupedIdeas = ideas.reduce((giftsBoughtByUser, idea) => {
-        const { user_name, price } = idea;
-
-        // Ajouter l'idée à la liste des idées pour le user_name correspondant
-        // Chaque propriété de l'objet accumulateur giftsBoughtByUser
-        // contient à la fois une liste d'idées associées à ce nom d'utilisateur (ideas)
-        // et le total des prix de ces idées (total)
-        if (!giftsBoughtByUser[user_name]) {
-            giftsBoughtByUser[user_name] = {
-                ideas: [idea],
-                total: price,
-            };
+        if (giftsReceivedByUser[year]) {
+            giftsReceivedByUser[year].ideas.push(idea);
         } else {
-            giftsBoughtByUser[user_name].ideas.push(idea);
-            giftsBoughtByUser[user_name].total += price;
+            giftsReceivedByUser[year] = {
+                ideas: [idea],
+            };
         }
 
-        return giftsBoughtByUser;
+        return giftsReceivedByUser;
     }, {});
 
     return (
@@ -33,7 +24,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
             header={
                 <div className="sm:flex items-center justify-between">
                     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        Mes achats
+                        Mes cadeaux reçus
                     </h2>
                     {ideas.length === 0 && (
                         <Link
@@ -61,20 +52,15 @@ export default function Budget({ auth, ideas, totalPrice }) {
         >
             <Head title="Mes achats" />
 
-            <div className="max-w-3xl mx-auto pb-14 px-4 mt-6">
+            <div className="max-w-3xl mx-auto pb-14 px-4 mt-10">
                 {ideas.length > 0 ? (
                     <div className="space-y-10">
-                        <div className="flex justify-between mt-10 text-xl uppercase font-extrabold">
-                            <p>Budget total</p>
-                            <p>{totalPrice} €</p>
-                        </div>
-
-                        {Object.entries(groupedIdeas).map(
-                            ([user_name, userData]) => (
-                                <div key={user_name} className="space-y-5">
+                        {Object.entries(groupedIdeas)
+                            .sort(([yearA], [yearB]) => yearB - yearA)
+                            .map(([updated_at, userData]) => (
+                                <div key={updated_at} className="space-y-5">
                                     <div className="flex justify-between text-orange-500 font-bold">
-                                        <p>Budget pour {user_name}</p>
-                                        <p>{userData.total} €</p>
+                                        <p>Cadeaux reçus en {updated_at}</p>
                                     </div>
                                     <div className="space-y-3">
                                         {userData.ideas.map((idea) => (
@@ -85,12 +71,12 @@ export default function Budget({ auth, ideas, totalPrice }) {
                                         ))}
                                     </div>
                                 </div>
-                            )
-                        )}
+                            ))}
                     </div>
                 ) : (
                     <p className="text-center">
-                        Vous n'avez effectué aucun achat pour le moment.
+                        Vous n'avez reçu aucun cadeau provenant de vos listes
+                        pour le moment.
                     </p>
                 )}
             </div>
@@ -98,7 +84,7 @@ export default function Budget({ auth, ideas, totalPrice }) {
     );
 }
 
-Budget.propTypes = {
+Gifts.propTypes = {
     auth: PropTypes.object,
     ideas: PropTypes.array,
 };
