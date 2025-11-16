@@ -18,6 +18,7 @@ export default function CreatePrivateIdea({ auth, list }) {
         details: "",
         price: "",
         favorite: 0,
+        is_multiple: 0,
         promo: 0,
         promo_details: "",
         membership: "",

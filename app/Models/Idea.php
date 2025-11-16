@@ -37,6 +37,7 @@ class Idea extends Model
         'details',
         'price',
         'favorite',
+        'is_multiple',
         'promo',
         'promo_details',
         'membership',

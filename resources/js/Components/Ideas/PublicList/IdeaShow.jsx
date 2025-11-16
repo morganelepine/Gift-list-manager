@@ -20,6 +20,11 @@ export default function IdeaShow({ brand, idea }) {
                                     </svg>
                                 )}
                                 {idea.idea}
+                                {idea.is_multiple === 1 && (
+                                    <span className="ml-2 italic lowercase text-xs font-normal text-gray-600">
+                                        (peut être offert plusieurs fois)
+                                    </span>
+                                )}
                             </p>
                         )}
                         {idea.details && (
@@ -64,17 +69,19 @@ export default function IdeaShow({ brand, idea }) {
                         <p className="text-sm  mr-2">en promo</p>
                     </div>
                     {idea.promo_details && (
-                        <p className="text-xs italic  mt-1 bg-orange-50 rounded-lg p-1 ml-2">
+                        <p className="text-xs italic bg-orange-50 rounded-full px-3 py-1 ml-2 mt-1">
                             {idea.promo_details}
                         </p>
                     )}
                 </div>
             )}
             {idea.membership && brand !== "Nébuleuse" && (
-                <div className="flex flex-wrap bg-orange-50 rounded-md p-1 mt-3">
-                    <p className="text-xs italic ">
-                        Lien/code à utiliser pour bénéficier d'une réduction (
-                        {idea.membership_reduction}) :&nbsp;
+                <div className="flex flex-wrap bg-orange-50 rounded-full px-3 py-1 mt-3 max-w-max">
+                    <p className="text-xs italic">
+                        Lien/code à utiliser pour bénéficier d'une réduction{" "}
+                        {idea.membership_reduction &&
+                            `(${idea.membership_reduction})`}{" "}
+                        :&nbsp;
                     </p>
                     <p className="text-xs italic text-orange-500 hover:text-orange-500">
                         <Linkify

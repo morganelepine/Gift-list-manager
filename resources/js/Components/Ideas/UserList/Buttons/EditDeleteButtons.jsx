@@ -59,16 +59,16 @@ export default function EditDeleteButtons({ idea, setEditing }) {
             </button>
 
             <Modal show={confirmingListDeletion} onClose={closeModal}>
-                <div className="p-6">
-                    <h2 className="text-lg font-medium ">
+                <div className="flex flex-col items-center p-6">
+                    <h2 className="text-lg text-center font-medium">
                         Êtes-vous sûr·e de vouloir supprimer cette idée ?
                     </h2>
 
-                    <div className="mt-6 flex justify-end">
+                    <div className="mt-4">
                         <button
                             onClick={deleteIdea}
                             method="delete"
-                            className="items-center px-3 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                            className="items-center px-4 py-2 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                             disabled={processing}
                         >
                             Supprimer

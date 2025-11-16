@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import IdeasAvailable from "@/Components/Ideas/UserList/Available/Ideas_available";
-import IdeasReserved from "@/Components/Ideas/UserList/Reserved/Ideas_reserved";
-import IdeasPurchased from "@/Components/Ideas/UserList/Purchased/Ideas_purchased";
+import IdeasAvailable from "@/Components/Ideas/UserList/Ideas_available";
+import IdeasReserved from "@/Components/Ideas/UserList/Ideas_reserved";
+import IdeasPurchased from "@/Components/Ideas/UserList/Ideas_purchased";
 
 export default function UserList({
     auth,
@@ -174,14 +174,18 @@ export default function UserList({
                                                     </p>
                                                 </div>
                                             )}
-                                            <IdeasAvailable
-                                                key={list.id}
-                                                auth={auth}
-                                                ideas={
-                                                    brandData.ideas_available
-                                                }
-                                                brand={brand}
-                                            />
+                                            <div className="w-full space-y-5 sm:space-y-0">
+                                                {brandData.ideas_available.map(
+                                                    (idea) => (
+                                                        <IdeasAvailable
+                                                            key={list.id}
+                                                            auth={auth}
+                                                            idea={idea}
+                                                            brand={brand}
+                                                        />
+                                                    )
+                                                )}
+                                            </div>
                                         </div>
                                     )
                                 )}
@@ -210,13 +214,15 @@ export default function UserList({
                             </svg>
                         </div>
                         <div className="flex flex-col justify-center bg-indigo-50 rounded-xl mt-0 sm:px-6 sm:py-4 p-3 mb-10">
-                            <div className="flex items-center justify-between w-full">
-                                <IdeasPurchased
-                                    key={list.id}
-                                    list={list}
-                                    ideas={ideas_purchased}
-                                    auth={auth}
-                                />
+                            <div className="w-full space-y-5 sm:space-y-0">
+                                {ideas_purchased.map((idea) => (
+                                    <IdeasPurchased
+                                        key={list.id}
+                                        list={list}
+                                        idea={idea}
+                                        auth={auth}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </>
@@ -257,13 +263,15 @@ export default function UserList({
                             </svg>
                         </div>
                         <div className="flex flex-col justify-center bg-bordeaux-50 rounded-xl mt-0 sm:px-6 sm:py-4 p-3 mb-10">
-                            <div className="flex items-center justify-between w-full">
-                                <IdeasReserved
-                                    key={list.id}
-                                    list={list}
-                                    ideas={ideas_reserved}
-                                    auth={auth}
-                                />
+                            <div className="w-full space-y-5 sm:space-y-0">
+                                {ideas_reserved.map((idea) => (
+                                    <IdeasReserved
+                                        key={list.id}
+                                        list={list}
+                                        idea={idea}
+                                        auth={auth}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </>

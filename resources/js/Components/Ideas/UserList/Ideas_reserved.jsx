@@ -1,0 +1,92 @@
+import PropTypes from "prop-types";
+import ButtonCancel from "@/Components/Ideas/UserList/Buttons/ButtonCancel";
+import ButtonPurchase from "@/Components/Ideas/UserList/Buttons/ButtonPurchase";
+import Linkify from "linkify-react"; //rendre les liens cliquables
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/fr";
+
+dayjs.extend(relativeTime);
+dayjs.locale("fr");
+
+export default function Ideas_reserved({ auth, idea }) {
+    return (
+        <div key={idea.id}>
+            <div className="my-2 sm:flex items-center">
+                {/* CANCEL RESERVATION and CONFIRM PURCHASE BUTTONS */}
+                {idea.status_user === auth.user.name && (
+                    <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
+                        <ButtonPurchase idea={idea} />
+                        <ButtonCancel idea={idea} />
+                    </div>
+                )}
+
+                {/* IDEA */}
+                <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg w-full">
+                    <div className="flex flex-wrap items-center">
+                        {idea.idea && (
+                            <p className="flex items-center text-sm sm:uppercase font-semibold mr-2 sm:mr-4 mb-1">
+                                {idea.idea}
+                                <span className="ml-1 italic lowercase text-xs font-normal text-gray-600">
+                                    {idea.is_multiple === 1
+                                        ? "(peut être offert plusieurs fois)"
+                                        : null}
+                                </span>
+                            </p>
+                        )}
+                        {idea.details && (
+                            <p className="text-xs text-left border border-bordeaux-800 text-bordeaux-800 rounded-full px-2 mr-2 sm:mr-4 mb-1">
+                                {idea.details}
+                            </p>
+                        )}
+                        {idea.brand && (
+                            <small className="text-sm text-center text-gray-600 mr-4 mb-1">
+                                {idea.brand}
+                            </small>
+                        )}
+                    </div>
+
+                    {idea.link && (
+                        <p className="text-sm italic hover:text-bordeaux-800 max-h-5 text-ellipsis overflow-hidden break-all mb-1">
+                            <Linkify
+                                options={{
+                                    target: "blank",
+                                }}
+                            >
+                                {idea.link}
+                            </Linkify>
+                        </p>
+                    )}
+
+                    {idea.is_multiple === 1 && (
+                        <p className="bg-bordeaux-100 rounded-full text-xs text-center max-w-max px-3 py-1 sm:mb-0 my-1">
+                            Modèle choisi :{" "}
+                            {idea.choice ? (
+                                <span className="text-bordeaux-800">
+                                    {idea.choice}
+                                </span>
+                            ) : (
+                                <span className="italic">non précisé</span>
+                            )}
+                        </p>
+                    )}
+
+                    <div className="flex justify-end items-center text-right">
+                        <small className="text-xs italic text-gray-700">
+                            Réservé
+                            {idea.status_user === auth.user.name
+                                ? " "
+                                : ` par ${idea.status_user} `}
+                            {dayjs(idea.updated_at).fromNow()}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+Ideas_reserved.propTypes = {
+    auth: PropTypes.object.isRequired,
+    idea: PropTypes.object,
+};

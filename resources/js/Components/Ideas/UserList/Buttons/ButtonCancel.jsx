@@ -2,23 +2,25 @@ import PropTypes from "prop-types";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 
-export default function CancelPurchaseButton({ idea }) {
-    //Remove idea from table PURCHASED
+export default function ButtonCancel({ idea }) {
     const { patch, processing, reset } = useForm();
-    const cancelPurchase = (e) => {
+    const cancelRoute =
+        idea.is_multiple === 0 ? "ideas.cancel" : "multiple-ideas.cancel";
+
+    const cancelReserve = (e) => {
         e.preventDefault();
-        patch(route("ideas.cancel", idea.id), {
+        patch(route(cancelRoute, idea.id), {
             onSuccess: () => reset(),
         });
-        toast.info("Achat annulé");
+        toast.info("Réservation annulée");
     };
 
     return (
-        <form onSubmit={cancelPurchase}>
+        <form onSubmit={cancelReserve}>
             <button
-                className="flex items-center justify-end text-xs text-gray-400 hover:text-indigo-500"
+                className="flex items-center justify-end text-xs text-gray-400 hover:text-gray-800"
                 disabled={processing}
-                title="Annuler l'achat"
+                title="Annuler la réservation"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -29,13 +31,14 @@ export default function CancelPurchaseButton({ idea }) {
                 >
                     <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <p className="block sm:hidden ml-1 mr-3">Annuler l'achat</p>
+                <p className="block sm:hidden ml-1 mr-3">
+                    Annuler la réservation
+                </p>
             </button>
         </form>
     );
 }
 
-CancelPurchaseButton.propTypes = {
+ButtonCancel.propTypes = {
     idea: PropTypes.object,
-    id: PropTypes.number,
 };

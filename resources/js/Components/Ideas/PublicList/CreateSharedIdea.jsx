@@ -18,8 +18,10 @@ export default function CreateSharedIdea({ auth, list }) {
         setIsPromo((current) => !current);
     };
 
-    // console.log("list : ", list);
-    // console.log("list.id : ", list.id);
+    const [isMultiple, setIsMultiple] = useState(1);
+    const handleMultipleCheck = () => {
+        setIsMultiple((current) => !current);
+    };
 
     const { data, setData, post, processing, reset, errors } = useForm({
         list_id: list.id,
@@ -30,6 +32,7 @@ export default function CreateSharedIdea({ auth, list }) {
         details: "",
         price: "",
         favorite: 0,
+        is_multiple: 0,
         promo: 0,
         promo_details: "",
         membership: "",
@@ -162,6 +165,24 @@ export default function CreateSharedIdea({ auth, list }) {
                     <p>L'article est un coup de cœur</p>
 
                     <InputError message={errors.favorite} className="mt-2" />
+                </div>
+
+                <div className="flex items-center">
+                    <Checkbox
+                        id="is_multiple"
+                        name="is_multiple"
+                        type="checkbox"
+                        value={isMultiple}
+                        defaultChecked={false}
+                        onChange={(e) => {
+                            handleMultipleCheck();
+                            setData("is_multiple", e.target.checked);
+                        }}
+                    />
+
+                    <p>L'article peut être offert plusieurs fois</p>
+
+                    <InputError message={errors.is_multiple} className="mt-2" />
                 </div>
             </div>
 

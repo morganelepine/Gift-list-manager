@@ -3,15 +3,42 @@
 namespace App\Repositories;
 
 use App\Models\Idea;
+use App\Models\MultipleIdea;
 
 class IdeaRepository
 {
     public function getUnavailableIdeasByStatus(int $listId, string $status)
     {
-        return Idea::where('list_id', $listId)
-                   ->where('status', $status)
-                   ->orderByDesc('updated_at')
-                   ->get();
+        $singleIdeas = Idea::where('list_id', $listId)
+            ->where('status', $status)
+            ->orderByDesc('updated_at')
+            ->get();
+
+        $multipleIdeas = MultipleIdea::with('idea')
+            ->whereHas('idea', function ($query) use ($listId) {
+                $query->where('list_id', $listId);
+            })
+            ->where('status', $status)
+            ->orderByDesc('updated_at')
+            ->get()
+            ->map(function ($multipleIdea) {
+                // Format "fake" idea
+                return [
+                    'id' => $multipleIdea->id,
+                    'idea' => $multipleIdea->idea->idea,
+                    'brand' => $multipleIdea->idea->brand,
+                    'details' => $multipleIdea->idea->details,
+                    'link' => $multipleIdea->idea->link,
+                    'favorite' => $multipleIdea->idea->favorite,
+                    'status_user' => $multipleIdea->status_user,
+                    'updated_at' => $multipleIdea->updated_at,
+                    'status' => $multipleIdea->status,
+                    'is_multiple' => 1,
+                    'choice' => $multipleIdea->choice,
+                ];
+            });
+
+        return $singleIdeas->concat($multipleIdeas);
     }
 
     public function getIdeasByStatus(int $listId, array $status)
@@ -25,13 +52,19 @@ class IdeaRepository
                    ->get();
     }
 
-
-    public function updateIdeaStatus(int $ideaId, string $status, string $statusUser)
+    public function updateIdeaStatus(int $ideaId, string $status, string $statusUser, ?string $choice = null)
     {
-        $idea = Idea::findOrFail($ideaId);
+        $multipleIdea = MultipleIdea::find($ideaId);
 
-        $idea->status = $status;
-        $idea->status_user = $statusUser;
-        $idea->save();
+        if ($multipleIdea) {
+            $multipleIdea->status = $status;
+            $multipleIdea->choice = $choice;
+            $multipleIdea->save();
+        } else {
+            $idea = Idea::find($ideaId);
+            $idea->status = $status;
+            $idea->status_user = $statusUser;
+            $idea->save();
+        }
     }
 }

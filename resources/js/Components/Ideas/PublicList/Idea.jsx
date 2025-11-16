@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import IdeaShow from "@/Components/Ideas/PublicList/IdeaShow";
 import IdeaEdit from "@/Components/Ideas/PublicList/IdeaEdit";
-import Buttons from "@/Components/Ideas/Buttons";
+import EditDeleteButtons from "@/Components/Ideas/UserList/Buttons/EditDeleteButtons";
 
 dayjs.extend(relativeTime);
 
@@ -17,7 +17,7 @@ export default function Ideas({ brand, idea }) {
         <div className="sm:space-y-3 sm:flex items-center sm:mb-0 mb-3">
             {/* EDIT & DELETE BUTTONS */}
             <div className="flex items-center w-16">
-                <Buttons idea={idea} setEditing={setEditing} />
+                <EditDeleteButtons idea={idea} setEditing={setEditing} />
             </div>
 
             {/* IDEA */}

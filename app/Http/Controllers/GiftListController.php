@@ -272,7 +272,7 @@ class GiftListController extends Controller
             $user->followed_lists()->create($validated);
 
             // Search for user whose list has been followed and notify her⸱him
-            $giftList = GiftList::findOrFail($validated['gift_list_id']);
+            $giftList = GiftList::find($validated['gift_list_id']);
             $listOwner = $giftList->user;
             $listOwner->notify(new NotifyListFollowed($user->name, $giftList->name));
 

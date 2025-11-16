@@ -14,6 +14,7 @@ export default function IdeaPrivateEdit({ auth, idea, setEditing }) {
         details: idea.details,
         price: idea.price,
         favorite: idea.favorite,
+        is_multiple: idea.is_multiple,
         membership: idea.membership,
         membership_reduction: idea.membership_reduction,
         promo: idea.promo,

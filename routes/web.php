@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GiftListController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\MultipleIdeaController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,18 @@ Route::middleware('auth')->prefix('ideas')->group(function () {
 });
 
 Route::resource('ideas', IdeaController::class)
+->only(['store', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+
+// Multiple ideas management
+Route::middleware('auth')->prefix('multiple-ideas')->group(function () {
+    Route::patch('/{multipleIdea}/reserve',  [MultipleIdeaController::class, 'reserveMultipleIdea'])->name('multiple-ideas.reserve');
+    Route::patch('/{multipleIdea}/purchase', [MultipleIdeaController::class, 'purchaseMultipleIdea'])->name('multiple-ideas.purchase');
+    Route::patch('/{multipleIdea}/cancel',   [MultipleIdeaController::class, 'cancelMultipleIdea'])->name('multiple-ideas.cancel');
+});
+
+Route::resource('multiple-ideas', MultipleIdeaController::class)
 ->only(['store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 

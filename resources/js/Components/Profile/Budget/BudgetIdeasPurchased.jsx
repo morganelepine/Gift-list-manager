@@ -7,7 +7,7 @@ export default function BudgetIdeasPurchased({ idea }) {
     return (
         <div className="p-3 flex flex-1 flex-col bg-white shadow rounded-lg">
             <div className="flex justify-between">
-                <div className="flex flex-col mr-3 w-full">
+                <div className="flex flex-col mr-2 w-full">
                     <div className="flex flex-wrap items-center">
                         {idea.idea && (
                             <p className="text-sm font-semibold mr-2 mb-1 sm:mr-4">

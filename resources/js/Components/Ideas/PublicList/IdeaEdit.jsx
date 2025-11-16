@@ -18,6 +18,11 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
         setIsPromo((current) => !current);
     };
 
+    const [isMultiple, setIsMultiple] = useState(idea.is_multiple);
+    const handleMultipleCheck = () => {
+        setIsMultiple((current) => !current);
+    };
+
     const { data, setData, patch, clearErrors, reset, errors } = useForm({
         user_name: auth.user.id,
         idea: idea.idea,
@@ -26,6 +31,7 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
         details: idea.details,
         price: idea.price,
         favorite: idea.favorite,
+        is_multiple: idea.is_multiple,
         membership: idea.membership,
         membership_reduction: idea.membership_reduction,
         promo: idea.promo,
@@ -118,6 +124,22 @@ export default function IdeaEdit({ auth, idea, setEditing }) {
                     />
                     <p>L'article est un coup de cœur</p>
                     <InputError message={errors.favorite} className="mt-2" />
+                </div>
+                <div className="flex items-center mt-3 mb-4">
+                    <TextInputSmall
+                        id="is_multiple"
+                        name="is_multiple"
+                        type="checkbox"
+                        value={isMultiple}
+                        defaultChecked={isMultiple}
+                        onChange={(e) => {
+                            handleMultipleCheck();
+                            setData("is_multiple", e.target.checked);
+                        }}
+                        className="mr-2"
+                    />
+                    <p>L'article peut être offert plusieurs fois</p>
+                    <InputError message={errors.is_multiple} className="mt-2" />
                 </div>
                 <div className="flex items-center mt-3 mb-4">
                     <TextInputSmall

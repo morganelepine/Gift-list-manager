@@ -35,6 +35,7 @@ class IdeaFactory extends Factory
             'details' => fake()->word(),
             'price' => fake()->randomNumber(3),
             'favorite' => fake()->boolean(),
+            'is_multiple' => fake()->boolean(),
             'promo' => fake()->boolean(),
             'promo_details' => fake()->randomElement(['', 'Actuellement à 6,50€ (soldes)']),
             'membership' => fake()->url(),

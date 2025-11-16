@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Idea;
+use App\Models\MultipleIdea;
 use App\Models\GiftList;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,6 +50,7 @@ class IdeaController extends Controller
             'details' => $string,
             'price' => 'nullable|integer',
             'favorite' => 'boolean',
+            'is_multiple' => 'boolean',
             'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
@@ -78,6 +78,7 @@ class IdeaController extends Controller
             'details' => $string,
             'price' => 'nullable|integer',
             'favorite' => 'boolean',
+            'is_multiple' => 'boolean',
             'promo' => 'boolean',
             'promo_details' => $string,
             'membership' => $string,
@@ -98,12 +99,14 @@ class IdeaController extends Controller
     {
         // Check if idea is already reserved or purchased and not archived
         $isReserved = Idea::where('id', $idea->id)->where('status', 'reserved')->exists();
+        $isReservedMultiple = MultipleIdea::where('idea_id', $idea->id)->where('status', 'reserved')->exists();
         $isPurchased = Idea::where('id', $idea->id)->where('status', 'purchased')->exists();
+        $isPurchasedMultiple = MultipleIdea::where('idea_id', $idea->id)->where('status', 'purchased')->exists();
 
         // Only the auth user can delete the idea
         $this->authorize('delete', $idea);
 
-        if ($isReserved || $isPurchased) {
+        if ($isReserved || $isReservedMultiple|| $isPurchased || $isPurchasedMultiple) {
             return redirect()->back()->withErrors(['error' => 'Oops, cette idée a déjà été réservée ou achetée...']);
         } else {
             $idea->delete();
