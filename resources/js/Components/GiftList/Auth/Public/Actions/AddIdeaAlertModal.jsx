@@ -52,11 +52,11 @@ export default function AddIdeaAlertModal({
                     <Link
                         as="button"
                         href={route("ideas.create", list.id)}
-                        className="self-center px-5 py-1 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
+                        className="self-center px-5 pt-1 pb-1.5 bg-gradient-to-r from-bordeaux-500 to-orange-500 hover:from-orange-600 hover:to-pink-600 rounded-full text-sm text-white transition ease-in-out duration-150"
                     >
                         Ajouter des idées
                     </Link>
-                    <LinkButton onClick={handleNoReminder}>
+                    {/* <LinkButton onClick={handleNoReminder}>
                         Ne plus me le rappeler
                     </LinkButton>
                     <div className="flex justify-center">
@@ -64,7 +64,7 @@ export default function AddIdeaAlertModal({
                             ...pendant 30 jours
                         </p>
                         <span className="text-xs pl-1">😄</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Modal>
