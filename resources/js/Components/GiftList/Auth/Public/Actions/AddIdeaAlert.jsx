@@ -19,12 +19,14 @@ export default function AddIdeaAlert({
         ) {
             setFewIdeasLeftModalVisible(true);
         }
+    }, [ideas.length, ideas_available.length, list.id]);
 
+    useEffect(() => {
         // If user has not logged in for at least 30 days
         if (daysSinceLastLogin !== null && daysSinceLastLogin > 30) {
             localStorage.removeItem(`few-ideas-left-reminder-${list.id}`);
         }
-    }, [daysSinceLastLogin]);
+    }, [daysSinceLastLogin, list.id]);
 
     const closeFewIdeasLeftModal = () => {
         setFewIdeasLeftModalVisible(false);
