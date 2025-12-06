@@ -186,6 +186,7 @@ export default function UserList({
                                         list={list}
                                         idea={idea}
                                         auth={auth}
+                                        userName={userName}
                                     />
                                 ))}
                             </div>
@@ -235,6 +236,7 @@ export default function UserList({
                                         list={list}
                                         idea={idea}
                                         auth={auth}
+                                        userName={userName}
                                     />
                                 ))}
                             </div>

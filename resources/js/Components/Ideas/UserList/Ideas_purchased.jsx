@@ -6,7 +6,7 @@ import Linkify from "linkify-react"; //rendre les liens cliquables
 
 dayjs.extend(relativeTime);
 
-export default function Ideas_purchased({ auth, idea }) {
+export default function Ideas_purchased({ auth, idea, userName }) {
     return (
         <div key={idea.id}>
             <div className="my-2 sm:flex items-center">
@@ -14,7 +14,7 @@ export default function Ideas_purchased({ auth, idea }) {
                 {(idea.status_user === auth.user.name ||
                     idea.status_user_id === auth.user.id) && (
                     <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
-                        <ButtonCancel idea={idea} />
+                        <ButtonCancel idea={idea} userName={userName} />
                     </div>
                 )}
 
@@ -84,4 +84,5 @@ export default function Ideas_purchased({ auth, idea }) {
 Ideas_purchased.propTypes = {
     auth: PropTypes.object.isRequired,
     idea: PropTypes.object,
+    userName: PropTypes.string,
 };
