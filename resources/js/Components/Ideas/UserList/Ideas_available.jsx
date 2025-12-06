@@ -3,14 +3,22 @@ import Linkify from "linkify-react"; //rendre les liens cliquables
 import ButtonPurchase from "@/Components/Ideas/UserList/Buttons/ButtonPurchase";
 import ButtonReserve from "@/Components/Ideas/UserList/Buttons/ButtonReserve";
 
-export default function Ideas_available({ auth, idea, brand }) {
+export default function Ideas_available({ auth, idea, brand, userName }) {
     return (
         <div key={idea.id}>
             <div className="my-2 sm:flex items-center">
                 {/* RESERVE & BUY BUTTONS */}
                 <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
-                    <ButtonPurchase auth={auth} idea={idea} />
-                    <ButtonReserve auth={auth} idea={idea} />
+                    <ButtonPurchase
+                        auth={auth}
+                        idea={idea}
+                        userName={userName}
+                    />
+                    <ButtonReserve
+                        auth={auth}
+                        idea={idea}
+                        userName={userName}
+                    />
                 </div>
 
                 {/* IDEA */}
@@ -134,4 +142,6 @@ export default function Ideas_available({ auth, idea, brand }) {
 Ideas_available.propTypes = {
     auth: PropTypes.object.isRequired,
     idea: PropTypes.object,
+    brand: PropTypes.string,
+    userName: PropTypes.string,
 };

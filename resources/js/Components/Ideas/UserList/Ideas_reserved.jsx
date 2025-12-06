@@ -14,7 +14,8 @@ export default function Ideas_reserved({ auth, idea }) {
         <div key={idea.id}>
             <div className="my-2 sm:flex items-center">
                 {/* CANCEL RESERVATION and CONFIRM PURCHASE BUTTONS */}
-                {idea.status_user === auth.user.name && (
+                {(idea.status_user === auth.user.name ||
+                    idea.status_user_id === auth.user.id) && (
                     <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
                         <ButtonPurchase idea={idea} />
                         <ButtonCancel idea={idea} />
@@ -74,7 +75,8 @@ export default function Ideas_reserved({ auth, idea }) {
                     <div className="flex justify-end items-center text-right">
                         <small className="text-xs italic text-gray-700">
                             Réservé
-                            {idea.status_user === auth.user.name
+                            {idea.status_user === auth.user.name ||
+                            idea.status_user_id === auth.user.id
                                 ? " "
                                 : ` par ${idea.status_user} `}
                             {dayjs(idea.updated_at).fromNow()}

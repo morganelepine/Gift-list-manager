@@ -1,17 +1,22 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
 import Modal from "@/Components/Utils/Modal";
 import SmallButton from "@/Components/Buttons/SmallButton";
 import InputError from "@/Components/Utils/InputError";
 
-export default function ButtonPurchase({ idea }) {
+export default function ButtonPurchase({ idea, userName }) {
     const [purchaseConfirm, setPurchaseConfirm] = useState(false);
 
     const { data, setData, patch, processing, reset, errors } = useForm({
         choice: "",
+        userName: userName,
     });
+
+    useEffect(() => {
+        setData("userName", userName);
+    }, [userName]);
 
     const openModal = () => {
         reset();
@@ -32,10 +37,10 @@ export default function ButtonPurchase({ idea }) {
                 ? "multiple-ideas.purchase"
                 : "ideas.purchase";
 
-        const payload =
-            idea.is_multiple === 1 && !ignoreChoice && data.choice
-                ? { choice: data.choice }
-                : {};
+        const payload = { userName };
+        if (idea.is_multiple === 1 && !ignoreChoice && data.choice) {
+            payload.choice = data.choice;
+        }
 
         patch(route(routeName, idea.id), payload, {
             preserveScroll: true,
@@ -133,4 +138,5 @@ export default function ButtonPurchase({ idea }) {
 
 ButtonPurchase.propTypes = {
     idea: PropTypes.object.isRequired,
+    userName: PropTypes.string,
 };

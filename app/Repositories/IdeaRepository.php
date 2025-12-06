@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Idea;
 use App\Models\MultipleIdea;
+use Illuminate\Support\Facades\Auth;
 
 class IdeaRepository
 {
@@ -31,6 +32,7 @@ class IdeaRepository
                     'link' => $multipleIdea->idea->link,
                     'favorite' => $multipleIdea->idea->favorite,
                     'status_user' => $multipleIdea->status_user,
+                    'status_user_id' => $multipleIdea->status_user_id,
                     'updated_at' => $multipleIdea->updated_at,
                     'status' => $multipleIdea->status,
                     'is_multiple' => 1,
@@ -64,6 +66,7 @@ class IdeaRepository
             $idea = Idea::find($ideaId);
             $idea->status = $status;
             $idea->status_user = $statusUser;
+            $idea->status_user_id = Auth::user()->id;
             $idea->save();
         }
     }

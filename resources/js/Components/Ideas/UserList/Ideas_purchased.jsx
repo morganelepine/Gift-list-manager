@@ -11,7 +11,8 @@ export default function Ideas_purchased({ auth, idea }) {
         <div key={idea.id}>
             <div className="my-2 sm:flex items-center">
                 {/* CANCEL PURCHASE BUTTON */}
-                {idea.status_user === auth.user.name && (
+                {(idea.status_user === auth.user.name ||
+                    idea.status_user_id === auth.user.id) && (
                     <div className="flex sm:flex-col mr-2 mb-1 sm:mb-0">
                         <ButtonCancel idea={idea} />
                     </div>
@@ -67,7 +68,8 @@ export default function Ideas_purchased({ auth, idea }) {
                     <div className="flex justify-end items-center text-right">
                         <small className="text-xs italic text-gray-700">
                             Acheté
-                            {idea.status_user === auth.user.name
+                            {idea.status_user === auth.user.name ||
+                            idea.status_user_id === auth.user.id
                                 ? " "
                                 : ` par ${idea.status_user} `}
                             {dayjs(idea.updated_at).fromNow()}

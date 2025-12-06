@@ -44,5 +44,6 @@ class Idea extends Model
         'membership_reduction',
         'status',
         'status_user',
+        'status_user_id',
     ];
 }

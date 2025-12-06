@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import Linkify from "linkify-react"; //rendre les liens cliquables
@@ -6,6 +6,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import IdeasAvailable from "@/Components/Ideas/UserList/Ideas_available";
 import IdeasReserved from "@/Components/Ideas/UserList/Ideas_reserved";
 import IdeasPurchased from "@/Components/Ideas/UserList/Ideas_purchased";
+import UserListHeader from "@/Components/GiftList/User/List/UserListHeader";
 
 export default function UserList({
     auth,
@@ -30,54 +31,17 @@ export default function UserList({
     const h1 =
         "uppercase tracking-wider text-center rounded-full text-white w-full p-1 mb-3";
 
+    const [userName, setUserName] = useState(auth.user.name);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <div className="flex items-center justify-between">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        La liste "{list.name}" de {list.user_name}{" "}
-                        {list.user_lastname}
-                    </h2>
-                    <div className="hidden sm:flex">
-                        <div className="flex items-center justify-end text-xs ml-3">
-                            <svg
-                                xmlns="https://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                className="w-4 h-4 mr-1"
-                            >
-                                <path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                            </svg>
-                            <p className="mr-1">Réserver</p>
-                        </div>
-                        <div className="flex items-center justify-end text-xs ml-3">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                className="w-4 h-4 mr-1"
-                            >
-                                <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                            <p className="mr-1">Acheter</p>
-                        </div>
-                        <div className="flex items-center justify-end text-xs ml-3">
-                            <svg
-                                xmlns="https://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                className="w-4 h-4 mr-1"
-                            >
-                                <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                            </svg>
-                            <p className="mr-1">Annuler</p>
-                        </div>
-                    </div>
-                </div>
+                <UserListHeader
+                    auth={auth}
+                    list={list}
+                    setUserName={setUserName}
+                />
             }
         >
             <Head title="Liste " />
@@ -182,6 +146,7 @@ export default function UserList({
                                                             auth={auth}
                                                             idea={idea}
                                                             brand={brand}
+                                                            userName={userName}
                                                         />
                                                     )
                                                 )}

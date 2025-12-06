@@ -42,6 +42,7 @@ class IdeaFactory extends Factory
             'membership_reduction' => fake()->randomElement(['réduction de 15%', 'un acheté, un offert']),
             'status' => $status,
             'status_user' => $statusUserName,
+            'status_user_id' => $statusUser !== null ? $statusUser->id : null,
         ];
     }
 }

@@ -24,6 +24,7 @@ class MultipleIdea extends Model
         'idea_id',
         'status',
         'status_user',
+        'status_user_id',
         'choice',
     ];
 }

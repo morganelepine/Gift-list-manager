@@ -25,6 +25,7 @@ export default function CreatePrivateIdea({ auth, list }) {
         membership_reduction: "",
         status: "available",
         status_user: "",
+        status_user_id: null,
     });
 
     const submit = (e) => {

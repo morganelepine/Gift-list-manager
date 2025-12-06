@@ -57,6 +57,7 @@ class IdeaController extends Controller
             'membership_reduction' => $string,
             'status' => $string,
             'status_user' => $string,
+            'status_user_id' => 'nullable|integer',
         ]);
 
         $request->user()->ideas()->create($validated);
@@ -85,6 +86,7 @@ class IdeaController extends Controller
             'membership_reduction' => $string,
             'status' => $string,
             'status_user' => $string,
+            'status_user_id' => 'nullable|integer',
         ]);
 
         $idea->update($validated);
@@ -119,7 +121,7 @@ class IdeaController extends Controller
      */
     public function reserveIdea(Request $request, $ideaId): RedirectResponse
     {
-        $this->ideaRepository->updateIdeaStatus($ideaId, 'reserved', Auth::user()->name);
+        $this->ideaRepository->updateIdeaStatus($ideaId, 'reserved', $request->get('userName'));
         return back();
     }
 
@@ -128,7 +130,7 @@ class IdeaController extends Controller
      */
     public function purchaseIdea(Request $request, $ideaId): RedirectResponse
     {
-        $this->ideaRepository->updateIdeaStatus($ideaId, 'purchased', Auth::user()->name);
+        $this->ideaRepository->updateIdeaStatus($ideaId, 'purchased', $request->get('userName'));
         return back();
     }
 

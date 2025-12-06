@@ -27,7 +27,8 @@ class MultipleIdeaController extends Controller
         $idea = Idea::find($ideaId);
         MultipleIdea::create([
             'idea_id' => $idea->id,
-            'status_user' => Auth::user()->name,
+            'status_user' => $request->get('userName'),
+            'status_user_id' => Auth::user()->id,
             'status' => "reserved",
             'choice' => $request->get('choice'),
         ]);
@@ -43,13 +44,14 @@ class MultipleIdeaController extends Controller
         $choice = $request->get('choice');
 
         if ($multipleIdea) {
-            $this->ideaRepository->updateIdeaStatus($ideaId, 'purchased', Auth::user()->name, $choice);
+            $this->ideaRepository->updateIdeaStatus($ideaId, 'purchased', $request->get('userName'), $choice);
             return back();
         } else {
             $idea = Idea::find($ideaId);
             MultipleIdea::create([
                 'idea_id' => $idea->id,
-                'status_user' => Auth::user()->name,
+                'status_user' => $request->get('userName'),
+                'status_user_id' => Auth::user()->id,
                 'status' => "purchased",
                 'choice' => $choice,
             ]);
